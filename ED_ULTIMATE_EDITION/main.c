@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "item.h"
 #include "funçoes.h"
 #include "executa_comando.h"
 

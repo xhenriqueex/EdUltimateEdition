@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "item.h"
-
-//INICIA SRUCT ITEM
+//INICIA STRUCT ITEM
 typedef struct it {
     void* valor;
     char* tipo;
-}it;
+} it;
 
 //DEFINE O TIPO DO ITEM
 typedef void* Item;
@@ -30,7 +29,7 @@ char* get_tipo_item (Item item)
 {
     it* aux;
     aux = (it*) item;
-    return aux->type;
+    return aux->tipo;
 }
 
 //PEGA O VALOR DO ITEM
@@ -38,7 +37,7 @@ Valor get_valor_item (Item item)
 {
     it* aux;
     aux = (it*) item;
-    return aux->value;
+    return aux->valor;
 }
 
 //LIBERA A MEMÓRIA ALOCADA DOS ITENS
@@ -46,7 +45,7 @@ void free_item (Item item)
 {
     it* aux;
     aux = (it*) item;
-    free (aux->type);
+    free (aux->tipo);
     free (aux);
     return; 
 }
