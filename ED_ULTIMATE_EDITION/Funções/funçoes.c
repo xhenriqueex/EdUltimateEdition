@@ -42,3 +42,9 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
     }
     return aux;
 }
+
+//VERIFICA SE DUAS FIGURAS SE SOBREPÕEM
+int sobrepoe (void* fig1, void* fig2)
+{
+    
+}
