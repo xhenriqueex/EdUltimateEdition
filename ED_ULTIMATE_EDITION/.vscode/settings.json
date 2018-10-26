@@ -2,9 +2,18 @@
     "git.ignoreLimitWarning": true,
     "cSpell.language": ",pt,pt_BR",
     "cSpell.words": [
+        "anot",
+        "anotacao",
+        "anotation",
+        "anotaçao",
+        "anotaçoes",
         "diretorio",
         "retangulo",
         "saida",
         "variáves"
-    ]
+    ],
+    "files.associations": {
+        "*.txt": "csharp",
+        "executa_comando.h": "c"
+    }
 }

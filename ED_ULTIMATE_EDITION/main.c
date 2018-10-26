@@ -16,6 +16,10 @@ typedef struct params {
     char* diretorio_saida;
     char** comando_vetor;
     long int max_figuras;
+    int contador_figuras;
+    Item* figuras;
+    Fila* anotaçoes;
+    Fila* resultado;
 } Parametros;
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
@@ -45,6 +49,16 @@ void main(int argc, char* argv[])
     p->caminho_SVG = NULL;
     p->comando_vetor = NULL;
     p->max_figuras = 1000;
+    p->contador_figuras = 0;
+    p->anotaçoes = cria_fila();
+    p->resultado = cria_fila();
+
+    //INICIALIZANDO VETOR DE FIGURAS
+    p->figuras = (Item*) calloc (1000, sizeof(Item));
+    for(i=0;i<1000; i++)
+    {
+        *(p->figuras+i) = NULL;
+    }
 
     //INICIALIZANDO A FILA
 

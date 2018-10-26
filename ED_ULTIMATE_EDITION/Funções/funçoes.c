@@ -42,12 +42,6 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
     return aux;
 }
 
-//VERIFICA SE DUAS FIGURAS SE SOBREPÕEM
-int sobrepoe (void* fig1, void* fig2)
-{
-
-}
-
 //IDENTIFICA TODOS OS PARAMETROS DO COMANDO LIDO E RETORNA UM VETOR DE PARAMETROS
 char** trata_comando(char *leitura)
 {
