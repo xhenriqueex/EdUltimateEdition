@@ -5,9 +5,16 @@
 #include "funçoes.h"
 #include "retangulo.h"
 #include "circulo.h"
+#include "quadra.h"
+#include "hidrante.h"
+#include "semaforo.h"
+#include "radiobase.h"
 #include "anotaçao.h"
 #include "item.h"
 #include "fila.h"
+#include "lista.h"
+#include "mergesort.h"
+#include "parproximo.h"
 
 #define C "circulo"
 #define R "retangulo"
@@ -17,21 +24,37 @@ typedef struct params {
     char* caminho_GEO;
     char* caminho_TXT;
     char* caminho_SVG;
+    char* caminho_QRY;
     char* diretorio_entrada;
     char* arquivo_entrada;
     char* diretorio_saida;
+    char* arquivo_entrada_qry;
+    char* cor_borda_quadra;
+    char* cor_preenche_quadra;
+    char* cor_borda_hidrante;
+    char* cor_preenche_hidrante;
+    char* cor_borda_semaforo;
+    char* cor_preenche_semaforo;
+    char* cor_borda_radiobase;
+    char* cor_preenche_radiobase;
     char** comando_vetor;
     long int max_figuras;
     int contador_figuras;
     Item* figuras;
     Fila* anotaçoes;
     Fila* resultado;
+    Lista quadras;
+    Lista hidrantes;
+    Lista semaforos;
+    Lista radiobases;
 } Parametros;
 
 void executa_comando (void* p)
 {
     Parametros* par;
     par = (Parametros*) p;
+    //COMANDOS DO ARQUIVO .GEO
+
     //ALTERA O NÚMERO MÁXIMO DE FIGURAS
     if (!strcmp (*(par->comando_vetor), "nx"))
     {
@@ -46,6 +69,54 @@ void executa_comando (void* p)
     if (!strcmp (*(par->comando_vetor), "r"))
     {
         caso_r (par);
+        return;
+    }
+    //CRIA UMA QUADRA
+    if (!strcmp (*(par->comando_vetor), "q"))
+    {
+        caso_q (par);
+        return;
+    }
+    //CRIA UM HIDRANTE
+    if (!strcmp (*(par->comando_vetor), "h"))
+    {
+        caso_h (par);
+        return;
+    }
+    //CRIA UM SEMÁFORO
+    if (!strcmp (*(par->comando_vetor), "s"))
+    {
+        caso_s (par);
+        return;
+    }
+    //CRIA UMA RADIOBASE
+    if (!strcmp (*(par->comando_vetor), "t"))
+    {
+        caso_t (par);
+        return;
+    }
+    //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA QUADRA
+    if (!strcmp (*(par->comando_vetor), "cq"))
+    {
+        caso_cq (par);
+        return;
+    }
+    //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO HIDRANTE
+    if (!strcmp (*(par->comando_vetor), "ch"))
+    {
+        caso_ch (par);
+        return;
+    }
+    //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA RADIO-BASE
+    if (!strcmp (*(par->comando_vetor), "ct"))
+    {
+        caso_ct (par);
+        return;
+    }
+    //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO SEMAFORO
+    if (!strcmp (*(par->comando_vetor), "cs"))
+    {
+        caso_cs (par);
         return;
     }
     //VERIFICAR SE DUAS FIGURAS SE SOBREPOEM
@@ -78,7 +149,66 @@ void executa_comando (void* p)
         caso_hashtag (par);
         return;
     }
+
+    //COMANDOS DO ARQUIVOS .QRY 
+
+    //REPORTA O QUE ESTIVER DENTRO DO RETÂNGULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "q?"))
+    {
+        caso_q_pergunta (par);
+        return;
+    }
+    //REPORTA O QUE ESTIVER DENTRO DO CÍRCULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "Q?"))
+    {
+        caso_Q_pergunta (par);
+        return;
+    }
+    //DELETA TODAS AS QUADRAS DENTRO DO RETÂNGULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "dq"))
+    {
+        caso_dq (par);
+        return;
+    }
+    //DELETA TODOS OS EQUIPAMENTOS DENTRO DO RETÂNGULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "dle"))
+    {
+        caso_dle (par);
+        return;
+    }
+    //DELETA TODAS AS QUADRAS DENTRO DO CÍRCULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "Dq"))
+    {
+        caso_Dq (par);
+        return;
+    }
+    //DELETA TODOS OS EQUIPAMENTOS DENTRO DO CÍRCULO ESPECIFICADO
+    if (!strcmp (*(par->comando_vetor), "Dle"))
+    {
+        caso_Dle (par);
+        return;
+    }
+    //MUDA AS CORES DA QUADRA IDENTIFICADA PELO CEP
+    if (!strcmp (*(par->comando_vetor), "cc"))
+    {
+        caso_cc (par);
+        return;
+    }
+    //IMPRIME NO .TXT AS COORDENADAS DE UMA DETERMINADA QUADRA OU EQUIPAMENTO
+    if (!strcmp (*(par->comando_vetor), "crd?"))
+    {
+        caso_crd_pergunta (par);
+        return;
+    }
+    //DETERMINA AS RADIOBASES MAIS PRÓXIMAS
+    if (!strcmp (*(par->comando_vetor), "crb?"))
+    {
+        caso_crb_pergunta (par);
+        return;
+    }
 }
+
+//FUNÇÕES REFERENTES AOS COMANDOS DO ARQUIVO .GEO
 
 void caso_nx (Parametros* par)
 {
@@ -87,9 +217,10 @@ void caso_nx (Parametros* par)
 }
 void caso_c (Parametros* par)
 {
-    int id, r, x, y;
-    char* cor1;
-    char* cor2;
+    int id;
+    double r, x, y;
+    char* radiobase1;
+    char* radiobase2;
     void* fig;
     Item it;
     if (par->contador_figuras >= par->max_figuras)
@@ -97,13 +228,13 @@ void caso_c (Parametros* par)
         printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
         return;
     }
-    id = *(par->comando_vetor + 1);
-    sscanf (*(par->comando_vetor + 2), "%s", cor1);
-    sscanf (*(par->comando_vetor + 3), "%s", cor2);
-    r = *(par->comando_vetor + 4);
-    x = *(par->comando_vetor + 5);
-    y = *(par->comando_vetor + 6);
-    fig = cria_circulo (id, cor1, cor2, r, x, y);
+    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
+    sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
+    sscanf (*(par->comando_vetor + 4), "%ld", r);
+    sscanf (*(par->comando_vetor + 5), "%ld", x);
+    sscanf (*(par->comando_vetor + 6), "%ld", y);
+    fig = cria_circulo (id, radiobase1, radiobase2, r, x, y);
     it = cria_item (fig, C);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
@@ -111,9 +242,10 @@ void caso_c (Parametros* par)
 }
 void caso_r (Parametros* par)
 {
-    int id, w, h, x, y;
-    char* cor1;
-    char* cor2;
+    int id;
+    double w, h, x, y;
+    char* radiobase1;
+    char* radiobase2;
     void* fig;
     Item it;
     if (par->contador_figuras >= par->max_figuras)
@@ -121,19 +253,104 @@ void caso_r (Parametros* par)
         printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
         return;
     }
-    id = *(par->comando_vetor + 1);
-    sscanf (*(par->comando_vetor + 2), "%s", cor1);
-    sscanf (*(par->comando_vetor + 3), "%s", cor2);
-    w = *(par->comando_vetor + 4);
-    h = *(par->comando_vetor + 5);
-    x = *(par->comando_vetor + 6);
-    y = *(par->comando_vetor + 7);
-    fig = cria_retangulo (id, cor1, cor2, w, h, x, y);
+    
+    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
+    sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
+    sscanf (*(par->comando_vetor + 4), "%ld", w);
+    sscanf (*(par->comando_vetor + 5), "%ld", h);
+    sscanf (*(par->comando_vetor + 6), "%ld", x);
+    sscanf (*(par->comando_vetor + 7), "%ld", y);
+    fig = cria_retangulo (id, radiobase1, radiobase2, w, h, x, y);
     it = cria_item (fig, R);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
     return;
 }
+
+void caso_q (Parametros* par)
+{
+    double w, h, x, y;
+    char* cep;
+    Quadra* quadra;
+    sscanf (*(par->comando_vetor + 1), "%s", cep);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    sscanf (*(par->comando_vetor + 4), "%ld", w);
+    sscanf (*(par->comando_vetor + 5), "%ld", h);
+    quadra = cria_quadra (cep, x, y, w, h, par->cor_borda_quadra, par->cor_preenche_quadra);
+    insere_lista (par->quadras, quadra);
+    return;
+}
+
+void caso_h (Parametros* par)
+{
+    int id;
+    double x, y;
+    Hidrante* hidrante;
+    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    hidrante = create_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
+    insere_lista (par->hidrantes, hidrante);
+    return;
+}
+
+void caso_s (Parametros* par)
+{
+    int id;
+    double x, y;
+    Semaforo* semaforo;
+    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    semaforo = cria_semaforo(id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
+    insere_lista (par->semaforos, semaforo);
+    return;
+    
+}
+
+void caso_t (Parametros* par)
+{
+    int id;
+    double x, y;
+    Radiobase* radiobase;
+    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
+    insere_lista (par->radiobases, radiobase);
+    return;
+}
+
+void caso_cq (Parametros* par)
+{
+    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_quadra);
+    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_quadra);
+    return;
+}
+
+void caso_ch (Parametros* par)
+{
+    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_hidrante);
+    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_hidrante);
+    return;
+}
+
+void caso_ct (Parametros* par)
+{
+    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_radiobase);
+    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_radiobase);
+    return;
+}
+
+void caso_cs (Parametros* par)
+{
+    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_semaforo);
+    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_semaforo);
+    return;
+}
+
 void caso_o (Parametros* par)
 {
     double* centro1;
@@ -553,7 +770,7 @@ void caso_a (Parametros* par)
 {
     int id, i;
     char* percorre;
-    char* svg_content;
+    char* conteudo_svg;
     char* sufixo;
     char* corB;
     char* saida_svg;
@@ -619,14 +836,14 @@ void caso_a (Parametros* par)
         }
         if (!strcmp (get_tipo_item (par->figuras[i]), R))
         {
-            svg_content = cria_svg_retangulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, svg_content);
+            conteudo_svg = cria_svg_retangulo (get_valor_item (par->figuras[i]));
+            fprintf (saida_svg, conteudo_svg);
             continue;
         }
         else
         {
-            svg_content = cria_svg_circulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, svg_content);
+            conteudo_svg = cria_svg_circulo (get_valor_item (par->figuras[i]));
+            fprintf (saida_svg, conteudo_svg);
             continue;
         }
     }
@@ -634,8 +851,8 @@ void caso_a (Parametros* par)
     while (!fila_vazia (par->anotaçoes))
     {
         fila_linha = remove_fila (par->anotaçoes);
-        svg_content = cria_anotacao_svg (fila_linha);
-        fprintf (saida_svg, svg_content);
+        conteudo_svg = cria_anotacao_svg (fila_linha);
+        fprintf (saida_svg, conteudo_svg);
         insere_fila (aux, fila_linha);
         continue;
     }
@@ -647,12 +864,12 @@ void caso_a (Parametros* par)
     if(!strcmp (get_tipo_item (fig), R))
     {
         centro1 = centro_massa_retangulo (get_valor_item (fig));
-        corB = get_cor1_retangulo (get_valor_item (fig));
+        corB = get_radiobase1_retangulo (get_valor_item (fig));
     }
     else
     {
         centro1 = centro_massa_circulo (get_valor_item (fig));
-        corB = get_cor1_circulo (get_valor_item (fig));
+        corB = get_radiobase1_circulo (get_valor_item (fig));
     }
     x1 = *centro1;
     y1 = *(centro1 + 1);
@@ -680,79 +897,77 @@ void caso_a (Parametros* par)
         fprintf (saida_svg, "\n<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"%s\" stroke-width=\"2\"/>", x1, y1, x2, y2, corB);
         fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%.2f</text>", (x1 + dx/2), (y1+dy/2), result);
     }
+    //fprintf (saida_svg, "\n</svg>");
+    //fclose (saida_svg);
+    //return;
+    void* primeiro;
+    primeiro = get_primeiro_lista (par->quadras);
+    do
+    {
+        if (get_valor_lista (par->quadras, primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (par->quadras, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_quadra (get_valor_lista (par->quadras, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (par->quadras, primeiro)), get_y_quadra (get_valor_lista (par->quadras, primeiro)), get_cep_quadra (get_valor_lista (par->quadras, primeiro)));
+        primeiro = get_proximo_lista (par->quadras, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->hidrantes);
+    do
+    {
+        if (get_valor_lista(par->hidrantes, primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (par->hidrantes, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_hidrante (get_valor_lista (par->hidrantes, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (par->hidrantes, primeiro)), get_y_hidrante (get_valor_lista (par->hidrantes, primeiro)));
+        primeiro = get_proximo_lista (par->hidrantes, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->semaforos);
+    do
+    {
+        if (get_valor_lista (par->semaforos, primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (par->semaforos, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (par->semaforos, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (par->semaforos, primeiro)), get_y_semaforo (get_valor_lista (par->semaforos, primeiro)));
+        primeiro = get_proximo_lista (par->semaforos, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->radiobases);
+    do
+    {
+        if (get_valor_lista (par->radiobases, primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (par->radiobases, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (par->radiobases, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (par->radiobases, primeiro)), get_y_radiobase(get_valor_lista (par->radiobases, primeiro)));
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
+    }
+    while (primeiro != NULL);
+    free(conteudo_svg);
     fprintf (saida_svg, "\n</svg>");
     fclose (saida_svg);
     return;
-    /*
-    void* first;
-    first = get_first_lista (quad_list);
-    do
-    {
-        if (get_value_lista(quad_list, first) == NULL)
-        {
-            first = get_next_lista (quad_list, first);
-            continue;
-        }
-        svg_content = generate_svg_quadra(get_value_lista(quad_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra(get_value_lista(quad_list, first)), get_y_quadra(get_value_lista(quad_list, first)), get_cep_quadra(get_value_lista(quad_list, first)));
-        first = get_next_lista (quad_list, first);
-    }
-    while (first != NULL);
-    first = get_first_lista (hid_list);
-    do
-    {
-        if (get_value_lista(hid_list, first) == NULL)
-        {
-            first = get_next_lista (hid_list, first);
-            continue;
-        }
-        svg_content = generate_svg_hidrante(get_value_lista(hid_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_value_lista(hid_list, first)), get_y_hidrante(get_value_lista(hid_list, first)));
-        first = get_next_lista (hid_list, first);
-    }
-    while (first != NULL);
-    first = get_first_lista (sem_list);
-    do
-    {
-        if (get_value_lista(sem_list, first) == NULL)
-        {
-            first = get_next_lista (sem_list, first);
-            continue;
-        }
-        svg_content = generate_svg_semaforo(get_value_lista(sem_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo(get_value_lista(sem_list, first)), get_y_semaforo(get_value_lista(sem_list, first)));
-        first = get_next_lista (sem_list, first);
-    }
-    while (first != NULL);
-    first = get_first_lista (rb_list);
-    do
-    {
-        if (get_value_lista(rb_list, first) == NULL)
-        {
-            first = get_next_lista (rb_list, first);
-            continue;
-        }
-        svg_content = generate_svg_radiobase(get_value_lista(rb_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase(get_value_lista(rb_list, first)), get_y_radiobase(get_value_lista(rb_list, first)));
-        first = get_next_lista (rb_list, first);
-    }
-    while (first != NULL);
-    free(svg_content);
-    fprintf (saida_svg, "\n</svg>");
-    fclose (saida_svg);
-    break;
-    */
 }
 
 void caso_hashtag (Parametros* par)
 {
     int i;
     char* percorre;
-    char* svg_content;
+    char* conteudo_svg;
     void* fila_linha;
     Fila aux;
     FILE* saida_svg;
@@ -778,84 +993,82 @@ void caso_hashtag (Parametros* par)
         if (!strcmp(get_tipo_item (par->figuras[i]), R))
         {
 
-            svg_content = cria_svg_retangulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, svg_content);
+            conteudo_svg = cria_svg_retangulo (get_valor_item (par->figuras[i]));
+            fprintf (saida_svg, conteudo_svg);
             continue;
         }
         else
         {
-            svg_content = cria_svg_circulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, svg_content);
+            conteudo_svg = cria_svg_circulo (get_valor_item (par->figuras[i]));
+            fprintf (saida_svg, conteudo_svg);
             continue;
         }
-        free (svg_content);
+        free (conteudo_svg);
     }
-    /*
-    void* first;
-    first = get_first_lista (quad_list);
+    void* primeiro;
+    primeiro = get_primeiro_lista (par->quadras);
     do
     {
-        if (get_value_lista(quad_list, first) == NULL)
+        if (get_valor_lista (par->quadras, primeiro) == NULL)
         {
-            first = get_next_lista (quad_list, first);
+            primeiro = get_proximo_lista (par->quadras, primeiro);
             continue;
         }
-        svg_content = generate_svg_quadra(get_value_lista(quad_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra(get_value_lista(quad_list, first)) + 3, get_y_quadra(get_value_lista(quad_list, first)) + (get_h_quadra(get_value_lista(quad_list, first))) - 3, get_cep_quadra(get_value_lista(quad_list, first)));
-        first = get_next_lista (quad_list, first);
+        conteudo_svg = cria_svg_quadra (get_valor_lista (par->quadras, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (par->quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (par->quadras, primeiro)) + (get_h_quadra (get_valor_lista (par->quadras, primeiro))) - 3, get_cep_quadra (get_valor_lista (par->quadras, primeiro)));
+        primeiro = get_proximo_lista (par->quadras, primeiro);
     }
-    while (first != NULL);
-    first = get_first_lista (hid_list);
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->hidrantes);
     do
     {
-        if (get_value_lista(hid_list, first) == NULL)
+        if (get_valor_lista (par->hidrantes, primeiro) == NULL)
         {
-            first = get_next_lista (hid_list, first);
+            primeiro = get_proximo_lista (par->hidrantes, primeiro);
             continue;
         }
-        svg_content = generate_svg_hidrante(get_value_lista(hid_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_value_lista(hid_list, first)), get_y_hidrante(get_value_lista(hid_list, first)));
-        first = get_next_lista (hid_list, first);
+        conteudo_svg = cria_svg_hidrante (get_valor_lista (par->hidrantes, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (par->hidrantes, primeiro)), get_y_hidrante (get_valor_lista (par->hidrantes, primeiro)));
+        primeiro = get_proximo_lista (par->hidrantes, primeiro);
     }
-    while (first != NULL);
-    first = get_first_lista (sem_list);
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->semaforos);
     do
     {
-        if (get_value_lista(sem_list, first) == NULL)
+        if (get_valor_lista (par->semaforos, primeiro) == NULL)
         {
-            first = get_next_lista (sem_list, first);
+            primeiro = get_proximo_lista (par->semaforos, primeiro);
             continue;
         }
-        svg_content = generate_svg_semaforo(get_value_lista(sem_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo(get_value_lista(sem_list, first)), get_y_semaforo(get_value_lista(sem_list, first)));
-        first = get_next_lista (sem_list, first);
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (par->semaforos, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (par->semaforos, primeiro)), get_y_semaforo (get_valor_lista (par->semaforos, primeiro)));
+        primeiro = get_proximo_lista (par->semaforos, primeiro);
     }
-    while (first != NULL);
-    first = get_first_lista (rb_list);
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->radiobases);
     do
     {
-        if (get_value_lista(rb_list, first) == NULL)
+        if (get_valor_lista (par->radiobases, primeiro) == NULL)
         {
-            first = get_next_lista (rb_list, first);
+            primeiro = get_proximo_lista (par->radiobases, primeiro);
             continue;
         }
-        svg_content = generate_svg_radiobase(get_value_lista(rb_list, first));
-        fprintf (saida_svg, svg_content);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase(get_value_lista(rb_list, first)), get_y_radiobase(get_value_lista(rb_list, first)));
-        first = get_next_lista (rb_list, first);
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (par->radiobases, primeiro));
+        fprintf (saida_svg, conteudo_svg);
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (par->radiobases, primeiro)), get_y_radiobase (get_valor_lista (par->radiobases, primeiro)));
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
     }
-    while (first != NULL);
-    free(svg_content);
-    */
+    while (primeiro != NULL);
+    free(conteudo_svg);
     aux = cria_fila ();
     while (!fila_vazia (par->anotaçoes))
     {
         fila_linha = remove_fila (par->anotaçoes);
-        svg_content = cria_svg_anotacao (fila_linha);
-        fprintf (saida_svg, svg_content);
+        conteudo_svg = cria_svg_anotacao (fila_linha);
+        fprintf (saida_svg, conteudo_svg);
         insere_fila (aux, fila_linha);
         continue;
     }
@@ -878,11 +1091,319 @@ void caso_hashtag (Parametros* par)
     fprintf (saida_txt, "\nARQUIVO: %s\n\n", par->arquivo_entrada);
     while (!fila_vazia (par->resultado))
     {
-        svg_content = remove_fila (par->resultado);
-        fprintf (saida_txt, svg_content);
+        conteudo_svg = remove_fila (par->resultado);
+        fprintf (saida_txt, conteudo_svg);
         continue;
     }
     fclose (saida_txt);
     printf ("\n");
+    return;
+}
+
+//FUNÇÕES REFERENTES AOS COMANDOS DO ARQUIVO .QRY
+
+void caso_q_pergunta (Parametros* par)
+{
+    double w, h, x, y;
+    char* aux;
+    Anotaçao anot;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%ld", x);
+    sscanf (*(par->comando_vetor + 2), "%ld", y);
+    sscanf (*(par->comando_vetor + 3), "%ld", w);
+    sscanf (*(par->comando_vetor + 4), "%ld", h);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (w, h, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    reporta_dentro_retangulo (par->resultado, par->quadras, par->hidrantes, par->semaforos, par->radiobases, x, y, w, h);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_Q_pergunta (Parametros* par)
+{
+    double r, x, y;
+    Anotaçao* anot;
+    char* aux;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%ld", r);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (r, 0, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    reporta_dentro_circulo (par->resultado, par->quadras, par->hidrantes, par->semaforos, par->radiobases, x, y, r);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_dq (Parametros* par)
+{
+    double x, y, w, h;
+    char* aux;
+    Anotaçao anot;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%ld", x);
+    sscanf (*(par->comando_vetor + 2), "%ld", y);
+    sscanf (*(par->comando_vetor + 3), "%ld", w);
+    sscanf (*(par->comando_vetor + 4), "%ld", h);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (w, h, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    delete_quadra_dentro_retangulo (par->resultado, par->quadras, x, y, w, h);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_dle (Parametros* par)
+{
+    double w, h, x, y;
+    Anotaçao anot;
+    char* aux;
+    char* tipo;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%s", tipo);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    sscanf (*(par->comando_vetor + 4), "%ld", w);
+    sscanf (*(par->comando_vetor + 5), "%ld", h);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (w, h, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    delete_equipamento_dentro_retangulo (par->resultado, tipo, par->hidrantes, par->semaforos, par->radiobases, x, y, w, h);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_Dq (Parametros* par)
+{
+    double r, x, y;
+    char* aux;
+    Anotaçao* anot;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%ld", r);
+    sscanf (*(par->comando_vetor + 2), "%ld", x);
+    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (r, 0, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    delete_quadra_dentro_circulo (par->resultado, par->quadras, x, y, r);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_Dle (Parametros* par)
+{
+    double r, x, y;
+    char* aux;
+    char* tipo;
+    Anotaçao* anot;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%s", tipo);
+    sscanf (*(par->comando_vetor + 2), "%ld", r);
+    sscanf (*(par->comando_vetor + 3), "%ld", x);
+    sscanf (*(par->comando_vetor + 4), "%ld", y);
+    insere_fila (par->resultado, aux);
+    anot = cria_anotacao (r, 0, x, y, "");
+    insere_fila (par->anotaçoes, (Valor*) anot);
+    delete_equipamento_dentro_circulo (par->resultado, tipo, par->hidrantes, par->semaforos, par->radiobases, x, y, r);
+    insere_fila (par->resultado, "\n");
+    return;
+}
+
+void caso_cc (Parametros* par)
+{
+    char* aux;
+    char* cor_borda;
+    char* cor_preenche;
+    sscanf (*par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor + 1), "%s", cor_borda);
+    sscanf (*(par->comando_vetor + 2), "%s", cor_preenche);
+    void* primeiro;
+    Quadra *compare;
+    primeiro = get_primeiro_lista (par->quadras);
+    do
+    {
+        compare = get_valor_lista (par->quadras, primeiro);
+        if (!strcmp (get_cep_quadra (compare), aux))
+        {
+            compare = troca_cor_quadra (compare, cor_borda, cor_preenche);
+            break;
+        }
+        primeiro = get_proximo_lista (par->quadras, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->hidrantes);
+    do
+    {
+        compare = get_valor_lista (par->hidrantes, primeiro);
+        if (!strcmp(get_id_hidrante (compare), aux))
+        {
+            compare = muda_cor_hidrante (compare, cor_borda, cor_preenche);
+            break;
+        }
+        primeiro = get_proximo_lista (par->hidrantes, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->semaforos);
+    do
+    {
+        compare = get_valor_lista (par->semaforos, primeiro);
+        if (!strcmp (get_id_semaforo (compare), aux))
+        {
+            compare = muda_cor_semaforo (compare, cor_borda, cor_preenche);
+            break;
+        }
+        primeiro = get_proximo_lista (par->semaforos, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->radiobases);
+    do
+    {
+        compare = get_valor_lista (par->radiobases, primeiro);
+        if (!strcmp(get_id_radiobase (compare), aux))
+        {
+            compare = muda_cor_radiobase (compare, cor_borda, cor_preenche);
+            break;
+        }
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
+    }
+    while (primeiro != NULL);
+    return;
+}
+
+void caso_crd_pergunta (Parametros* par)
+{
+    char* aux;
+    sscanf (*par->comando_vetor, "%s", aux);
+    insere_fila(par->resultado, "crd? ");
+    insere_fila(par->resultado, aux);
+    void* primeiro;
+    Quadra *compare;
+    primeiro = get_primeiro_lista (par->quadras);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        compare = get_valor_lista (par->quadras, primeiro);
+        if (!strcmp(get_cep_quadra (compare), aux))
+        {
+            escreve_crd_quadra (par->resultado, compare);
+            break;
+        }
+        primeiro = get_proximo_lista (par->quadras, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->hidrantes);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        compare = get_valor_lista (par->hidrantes, primeiro);
+        if (strcmp(get_id_hidrante(compare), aux) == 0)
+        {
+            escreve_crd_hidrante (par->resultado, compare);
+            break;
+        }
+        primeiro = get_proximo_lista (par->hidrantes, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->semaforos);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        compare = get_valor_lista (par->semaforos, primeiro);
+        if (strcmp(get_id_semaforo(compare), aux) == 0)
+        {
+            escreve_crd_semaforo (par->resultado, compare);
+            break;
+        }
+        primeiro = get_proximo_lista (par->semaforos, primeiro);
+    }
+    while (primeiro != NULL);
+    primeiro = get_primeiro_lista (par->radiobases);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        compare = get_valor_lista (par->radiobases, primeiro);
+        if (!strcmp (get_id_radiobase (compare), aux))
+        {
+            escreve_crd_radiobase (par->resultado, compare);
+            break;
+        }
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
+    }
+    while (primeiro != NULL);
+    return;
+}
+
+void caso_crb_pergunta (Parametros* par)
+{
+    int i;
+    double dist;
+    char* radiobase1;
+    char* radiobase2;
+    char* cor_preenche;
+    char* aux;
+    char* saida;
+    char* saida_crb;
+    void* primeiro;
+    void* aux_crb;
+    void* rb1 = NULL;
+    void* rb2 = NULL;
+    Ponto** vetor_lista;
+    sscanf (par->comando_vetor, "%s", aux);
+    insere_fila (par->resultado, aux);
+    vetor_lista = (Ponto**) calloc (largura_lista (par->radiobases), sizeof (Ponto*));
+    primeiro = get_primeiro_lista (par->radiobases);
+    for (i=0; i<largura_lista (par->radiobases); i++)
+    {
+        aux_crb = get_valor_lista (par->radiobases, primeiro);
+        vetor_lista[i] = (Ponto*) calloc (1, sizeof (Ponto));
+        vetor_lista[i]->id = get_id_radiobase (aux_crb);
+        vetor_lista[i]->x = get_x_radiobase (aux_crb);
+        vetor_lista[i]->y = get_y_radiobase (aux_crb);
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
+    }
+    saida_crb = (char*) calloc (155, sizeof(char));
+    //CHAMA A FUNÇÃO CLOSEST_PAIR
+    dist = closest_pair (vetor_lista, largura_lista (par->radiobases), saida_crb);
+    sscanf (saida_crb, "%s %s", radiobase1, radiobase2);
+    saida = (char*) calloc (155, sizeof(char));
+    sprintf (saida, "\nRbs - ID = %s \nRbs - ID = %s \nDISTÂNCIA = %f\n", radiobase1, radiobase2, dist); 
+    insere_fila (par->resultado, saida);
+    primeiro = get_primeiro_lista (par->radiobases);
+    do
+    {
+        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), radiobase1))
+        {
+            rb1 = get_valor_lista (par->radiobases, primeiro);
+        }
+        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), radiobase2))
+        {
+            rb2 = get_valor_lista(par->radiobases, primeiro);
+        }
+        if (rb1 != NULL && rb2 != NULL)
+        {
+            break;
+        }
+        primeiro = get_proximo_lista (par->radiobases, primeiro);
+    }
+    while (primeiro != NULL);
+    Anotaçao* anot;
+    anot = cria_anotacao (10, 0, get_x_radiobase (rb1), get_y_radiobase (rb1), "");
+    insere_fila (par->anotaçoes, anot);
+    anot = cria_anotacao (10, 0, get_x_radiobase (rb2), get_y_radiobase (rb2), "");
+    insere_fila (par->anotaçoes, anot);
     return;
 }

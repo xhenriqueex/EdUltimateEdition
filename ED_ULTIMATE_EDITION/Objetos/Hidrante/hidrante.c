@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//DEFINE A STRUCT HIDRANTE
+typedef struct hidrante {
+    double r;
+    double x;
+    double y;
+    char* id;
+    char* cor_borda;
+    char* cor_preenche;
+} Hidrante;
+
+//RETORNA UM PONTEIRO PARA VOID COM AS INFORMAÇÕES DO HIDRANTE
+void* cria_hidrante (char* id, double r, double x, double y, char* cor_borda, char* cor_preenche)
+{
+    Hidrante* aux;
+    aux = (Hidrante*) calloc (1, sizeof (Hidrante));
+    aux->id = (char*) calloc (strlen (id) + 2, sizeof (char));
+    strcpy (aux->id, id);
+    aux->cor_borda = (char*) calloc (55, sizeof (char));
+    strcpy (aux->cor_borda, cor_borda);
+    aux->cor_preenche = (char*) calloc (55, sizeof (char));
+    strcpy (aux->cor_preenche, cor_preenche);
+    aux->r = r;
+    aux->x = x;
+    aux->y = y;
+    return (void*) aux;
+}
+
+//RETORNA UMA STRING COM AS INFORMAÇÕES PARA IMPRIMIR O HIDRANTE NO SVG
+char* cria_svg_hidrante (void* hidrante)
+{
+    Hidrante* aux;
+    char* result = (char*) calloc (255, sizeof (char));
+    aux = (Hidrante*) hidrante;
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    return result;
+}
+
+//PEGA O ID DO HIDRANTE
+char* get_id_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = hidrante;
+    return hid->id;
+}
+//PEGA O RAIO DO HIDRANTE
+double get_r_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return hid->r;
+}
+
+//PEGA O X DO HIDRANTE
+double get_x_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return hid->x;
+}
+
+//PEGA O Y DO HIDRANTE
+double get_y_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return hid->y;
+}
+
+//ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DO HIDRANTE
+void* muda_cor_hidrante (void* hidrante, char* cor_borda, char* cor_preenche)
+{
+    Hidrante* aux;
+    aux = (Hidrante*) hidrante;
+    strcpy (aux->cor_borda, cor_borda);
+    strcpy (aux->cor_preenche, cor_preenche);
+    return (void*) aux;
+}
+
+//PEGA A COR1 DO HIDRANTE
+char* get_cor1_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return hid->cor_borda;
+}
+
+//PEGA A COR2 DO HIDRANTE
+char* get_cor2_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return hid->cor_preenche;
+}
