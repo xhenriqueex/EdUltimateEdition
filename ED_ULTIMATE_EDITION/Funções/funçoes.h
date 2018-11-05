@@ -23,4 +23,10 @@ int tamanho_strings (char** strings);
 //LIBERA AS STRINGS DO VETOR DE COMANDOS
 void free_strings (char** strings);
 
+//VERIFICA E RETORNA O MAIOR VALOR
+double maior (double x1, double x2);
+
+//VERIFICA E RETORNA O MENOR VALOR
+double menor (double x1, double x2);
+
 #endif

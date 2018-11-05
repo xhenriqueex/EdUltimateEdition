@@ -106,3 +106,23 @@ void free_strings (char** strings)
 	}
 	free(strings);
 }
+
+//VERIFICA E RETORNA O MAIOR VALOR
+double maior (double x1, double x2)
+{
+    if (x1 > x2)
+    {
+        return x1;
+    }
+    return x2;
+}
+
+//VERIFICA E RETORNA O MENOR VALOR
+double menor (double x1, double x2)
+{
+    if (x1 < x2)
+    {
+        return x1;
+    }
+    return x2;
+}

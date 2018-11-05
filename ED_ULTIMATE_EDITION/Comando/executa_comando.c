@@ -311,8 +311,8 @@ void caso_o (Parametros* par)
     }
     else if (!strcmp (get_tipo_item (fig1), R))
     {
-        valor1 = max (get_x_retangulo (get_valor_item (fig1)), min (get_x_circulo (get_valor_item (fig2)), get_x_retangulo (get_valor_item (fig1)) + get_w_retangulo (get_valor_item (fig1))));
-        valor2 = max (get_y_retangulo (get_valor_item (fig1)), min (get_y_circulo (get_valor_item (fig2)), get_y_retangulo (get_valor_item (fig1)) + get_h_retangulo (get_valor_item (fig1))));
+        valor1 = maior (get_x_retangulo (get_valor_item (fig1)), menor (get_x_circulo (get_valor_item (fig2)), get_x_retangulo (get_valor_item (fig1)) + get_w_retangulo (get_valor_item (fig1))));
+        valor2 = maior (get_y_retangulo (get_valor_item (fig1)), menor (get_y_circulo (get_valor_item (fig2)), get_y_retangulo (get_valor_item (fig1)) + get_h_retangulo (get_valor_item (fig1))));
         dentro = dentro_borda_circulo (get_valor_item (fig2), valor1, valor2);
         if (dentro == 1)
         {
@@ -346,8 +346,8 @@ void caso_o (Parametros* par)
     }
     else if (!strcmp (get_tipo_item ((fig1)), C))
     {
-        valor1 = max (get_x_retangulo (get_valor_item (fig2)), min (get_x_circulo (get_valor_item (fig1)), get_x_retangulo (get_valor_item (fig2)) + get_w_retangulo(get_valor_item(fig2))));
-        valor2 = max (get_y_retangulo (get_valor_item (fig2)), min (get_y_circulo (get_valor_item (fig1)), get_y_retangulo (get_valor_item (fig2)) + get_h_retangulo(get_valor_item(fig2))));
+        valor1 = maior (get_x_retangulo (get_valor_item (fig2)), menor (get_x_circulo (get_valor_item (fig1)), get_x_retangulo (get_valor_item (fig2)) + get_w_retangulo(get_valor_item(fig2))));
+        valor2 = maior (get_y_retangulo (get_valor_item (fig2)), menor (get_y_circulo (get_valor_item (fig1)), get_y_retangulo (get_valor_item (fig2)) + get_h_retangulo(get_valor_item(fig2))));
         dentro = dentro_borda_circle (get_valor_item (fig1), valor1, valor2);
         if (dentro == 1)
         {
