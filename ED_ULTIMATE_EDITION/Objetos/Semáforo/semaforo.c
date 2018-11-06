@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "semaforo.h"
 
 //INICIA A STRUCT SEMÁFORO
 typedef struct semaforo{

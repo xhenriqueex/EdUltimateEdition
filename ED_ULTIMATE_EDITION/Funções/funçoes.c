@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fila.h"
-#include "lista.h"
-#include "circulo.h"
-#include "retangulo.h"
-#include "quadra.h"
-#include "hidrante.h"
-#include "semaforo.h"
-#include "radiobase.h"
+#include "../Estruturas/Fila/fila.h"
+#include "../Estruturas/Lista/lista.h"
+#include "../Formas/Círculo/circulo.h"
+#include "../Formas/Retângulo/retangulo.h"
+#include "../Objetos/Quadra/quadra.h"
+#include "../Objetos/Hidrante/hidrante.h"
+#include "../Objetos/Semáforo/semaforo.h"
+#include "../Objetos/Rádiobase/radiobase.h"
+#include "funçoes.h"
 
 #define C "circulo"
 #define R "retangulo"

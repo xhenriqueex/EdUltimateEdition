@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "lista.h"
+#include "../Lista/lista.h"
+#include "arvore.h"
 
 typedef struct nó {
     void* valor;

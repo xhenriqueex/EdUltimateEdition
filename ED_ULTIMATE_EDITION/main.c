@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "item.h"
-#include "lista.h"
-#include "funçoes.h"
-#include "executa_comando.h"
+#include "Objetos/Item/item.h"
+#include "Estruturas/Lista/lista.h"
+#include "Funções/funçoes.h"
+#include "Comando/executa_comando.h"
 
 //DECLARAÇÃO DA STRUCT DE VARIÁVEIS
 typedef struct params {

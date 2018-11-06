@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "retangulo.h"
+#include "../../Formas/Retângulo/retangulo.h"
+#include "quadra.h"
 
 //DEFINE A STRUCT QUADRA
 typedef struct quadra{

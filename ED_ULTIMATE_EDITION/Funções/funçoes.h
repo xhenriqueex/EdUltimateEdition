@@ -3,7 +3,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #include <stdio.h>
-#include "fila.h"
+#include "../Estruturas/Fila/fila.h"
 
 //TRATA OS CAMINHOS
 void altera_caminho (char** caminho);
@@ -27,7 +27,7 @@ void free_strings (char** strings);
 double maior (double x1, double x2);
 
 //VERIFICA E RETORNA O MENOR VALOR
-double menor (double x1, double x2);
+double menor_overlap (double x1, double x2);
 
 //REPORTA TODOS OS ITENS DENTRO DO RETÂNGULO
 void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double w, double h);

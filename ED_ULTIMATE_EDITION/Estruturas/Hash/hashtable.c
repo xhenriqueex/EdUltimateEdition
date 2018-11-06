@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lista.h"
+#include "hashtable.h"
 
 //DEFINE A STRUCT HASHTABLE
 typedef struct hash {

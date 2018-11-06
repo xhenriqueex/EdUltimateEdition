@@ -3,7 +3,8 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
-#include "mergesort.h"
+#include "../Estruturas/Merge/mergesort.h"
+#include "parproximo.h"
 
 //DEFINE A STRUCT PONTO
 typedef struct ponto

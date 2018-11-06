@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "item.h"
+
 //INICIA STRUCT ITEM
 typedef struct it {
     void* valor;
