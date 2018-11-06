@@ -89,7 +89,7 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
 }
 
 //IDENTIFICA TODOS OS PARAMETROS DO COMANDO LIDO E RETORNA UM VETOR DE PARAMETROS
-char** trata_comando(char *leitura)
+char** trata_comando (char *leitura)
 {
     char** string = NULL;
 	char* aux = NULL;
@@ -97,36 +97,36 @@ char** trata_comando(char *leitura)
     char* auxR = NULL;
 	int i = 0;
 	int n = 0;
-	aux = (char *) calloc(strlen(leitura)+1, sizeof(char));
-	string = (char **) calloc(1, sizeof(char *));
-	strcpy(aux, leitura);
+	aux = (char *) calloc (strlen (leitura) + 1, sizeof (char));
+	string = (char**) calloc (1, sizeof (char*));
+	strcpy (aux, leitura);
 	auxR = aux;
-	if(aux[0] == 32) 
+	if (aux[0] == 32) 
     {
 		aux++;
 	}
-	if (aux[strlen(aux)-1] == '\n') 
+	if (aux[strlen (aux) - 1] == '\n') 
     {
-		aux[strlen(aux)-1] = '\0';
+		aux[strlen (aux) - 1] = '\0';
 	}
     do 
     {
-		string = (char **) realloc(string, (1+i)*sizeof(char *));
+		string = (char**) realloc (string, (1 + i) * sizeof (char*));
 		string[i] = NULL;
-		n = strcspn(aux, " ");
-		aux2 = strtok(aux, " ");
-		if(aux2 == NULL) 
+		n = strcspn (aux, " ");
+		aux2 = strtok (aux, " ");
+		if (aux2 == NULL) 
         {
             break;
 		}
-		string[i] = (char *) calloc(strlen(aux2)+1, sizeof(char));
-		strcpy(string[i], aux2);
+		string[i] = (char*) calloc (strlen (aux2) + 1, sizeof (char));
+		strcpy (string[i], aux2);
 		aux[n] = ' ';
-		aux += n+1;
+		aux += n + 1;
 		i++;
 	} 
     while (string[i-1] != NULL);
-    free(auxR);
+    free (auxR);
 	return string;
 }
 
@@ -146,11 +146,11 @@ int tamanho_strings (char** strings)
 void free_strings (char** strings)
 {
     int i = 0;
-	for (i = 0; i < tamanhoStrings(strings); i++)
+	for (i = 0; i < tamanhoStrings (strings); i++)
     {
-		free(strings[i]);
+		free (strings[i]);
 	}
-	free(strings);
+	free (strings);
 }
 
 //VERIFICA E RETORNA O MAIOR VALOR

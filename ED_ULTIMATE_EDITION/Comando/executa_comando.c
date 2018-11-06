@@ -57,6 +57,7 @@ void executa_comando (void* p)
 {
     Parametros* par;
     par = (Parametros*) p;
+
     //COMANDOS DO ARQUIVO .GEO
 
     //ALTERA O NÚMERO MÁXIMO DE FIGURAS
@@ -335,7 +336,7 @@ void executa_comando (void* p)
 
 void caso_nx (Parametros* par)
 {
-    sscanf(*(par->comando_vetor + 1), "%ld", par->max_figuras);
+    sscanf (*(par->comando_vetor + 1), "%ld", par->max_figuras);
     return;
 }
 void caso_c (Parametros* par)
@@ -724,7 +725,7 @@ void caso_i (Parametros* par)
 {
     int id, x, y, i, in1, in2;
     char* string;
-    string = (char*) calloc (strlen(par->comando_vetor) + 1 + strlen(par->comando_vetor + 1) + 1 + strlen(par->comando_vetor + 2) + 1 + strlen(par->comando_vetor + 3) + 1, sizeof(char));
+    string = (char*) calloc (strlen(par->comando_vetor) + 1 + strlen (par->comando_vetor + 1) + 1 + strlen (par->comando_vetor + 2) + 1 + strlen (par->comando_vetor + 3) + 1, sizeof(char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 1));
@@ -797,13 +798,13 @@ void caso_d (Parametros* par)
     double* centro1;
     double* centro2;
     double dx, dy, result;
-    string = (char*) calloc (strlen(par->comando_vetor) + 1 + strlen(par->comando_vetor + 1) + 1 + strlen(par->comando_vetor + 2) + 1, sizeof(char));
+    string = (char*) calloc (strlen (par->comando_vetor) + 1 + strlen (par->comando_vetor + 1) + 1 + strlen (par->comando_vetor + 2) + 1, sizeof (char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 1));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 2));
-    insere_fila(par->resultado, string);
+    insere_fila (par->resultado, string);
     Item fig1 = NULL;
     Item fig2 = NULL;
     for (i=0; i<=par->contador_figuras; i++)
@@ -1003,7 +1004,7 @@ void caso_a (Parametros* par)
         {
             continue;
         }
-        if (!strcmp (get_tipo_item(par->figuras[i]), R))
+        if (!strcmp (get_tipo_item (par->figuras[i]), R))
         {
             centro2 = centro_massa_retangulo (get_valor_item (par->figuras[i]));
         }
@@ -1041,7 +1042,7 @@ void caso_a (Parametros* par)
     primeiro = get_primeiro_lista (par->hidrantes);
     do
     {
-        if (get_valor_lista(par->hidrantes, primeiro) == NULL)
+        if (get_valor_lista (par->hidrantes, primeiro) == NULL)
         {
             primeiro = get_proximo_lista (par->hidrantes, primeiro);
             continue;
