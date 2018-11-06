@@ -279,3 +279,27 @@ void* get_ultimo_lista (void* lista)
     retorno->lista = lista;
     return (void*) retorno;
 }
+
+//CONCATENA A SEGUNDA LISTA NA PRIMEIRA
+void concat_listas (void* lista1, void* lista2)
+{
+    Lista* list1;
+    list1 = (Lista*) lista1;
+    Lista* list2;
+    list2 = (Lista*) lista2;
+    if (list1->tamanho == 0)
+    {
+        list1->primeiro = list2->primeiro;
+        list1->ultimo = list2->tamanho;
+        list1->tamanho = list2->tamanho;
+        return;
+    }
+    if (list2->tamanho == 0)
+    {
+        return;
+    }
+    list1->ultimo->prox = list2->primeiro;
+    list2->primeiro->ant = list1->ultimo;
+    list1->ultimo = list2->ultimo;
+    list1->tamanho += list2->tamanho;
+}

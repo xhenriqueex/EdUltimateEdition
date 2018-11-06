@@ -45,4 +45,7 @@ void* get_anterior_lista (void* lista, void* posic);
 //RETORNA O ÚLTIMO ELEMENTO DA LISTA
 void* get_ultimo_lista (void* lista);
 
+//CONCATENA A SEGUNDA LISTA NA PRIMEIRA
+void concat_listas (Lista list1, Lista list2);
+
 #endif
