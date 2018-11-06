@@ -46,6 +46,6 @@ void* get_anterior_lista (void* lista, void* posic);
 void* get_ultimo_lista (void* lista);
 
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
-void concat_listas (Lista list1, Lista list2);
+void concat_listas (void* list1, void* list2);
 
 #endif

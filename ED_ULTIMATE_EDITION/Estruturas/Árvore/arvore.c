@@ -157,7 +157,7 @@ void* get_valor_nodulo (Arvore* arv, Nó* nodulo, int dim, void* ref)
     {
         dim = 0;
     }
-    if (arv->compare (nodulo->valor, ref, dim) == 0)
+    if (arv->compare (nodulo->valor, ref, dim) == 0 && arv->compare (nodulo->valor, ref, dim + 1) == 0)
     {
         return nodulo->valor;
     }
@@ -165,7 +165,7 @@ void* get_valor_nodulo (Arvore* arv, Nó* nodulo, int dim, void* ref)
     {
         return get_valor_nodulo (arv, nodulo->esquerda, dim, ref);
     }
-    if (arv->compare (nodulo->valor, ref, dim) > 0)
+    if (arv->compare (nodulo->valor, ref, dim) >= 0)
     {
         return get_valor_nodulo (arv, nodulo->direita, dim, ref);
     }
@@ -197,7 +197,7 @@ Lista remove_valor_nodulo (Arvore* arv, Nó* nodulo, int dim, void* ref)
     }
     int i = arv->compare (nodulo->valor, ref, dim);
     Lista list = cria_lista();
-    if (i==0)
+    if (i==0 && arv->compare (nodulo->valor, ref, dim + 1) == 0)
     {
         get_todos_nodulo (nodulo->esquerda, list);
         get_todos_nodulo (nodulo->direita, list);
@@ -207,18 +207,18 @@ Lista remove_valor_nodulo (Arvore* arv, Nó* nodulo, int dim, void* ref)
     }
     if (i<0)
     {
-        list = remove_valor_nodulo (arv, nodulo->esquerda, dim, ref);
+        list = remove_valor_nodulo (arv, nodulo->esquerda, dim + 1, ref);
         if (list == NULL)
         {
-            list = remove_valor_nodulo (arv, nodulo->direita, dim, ref);
+            list = remove_valor_nodulo (arv, nodulo->direita, dim + 1, ref);
         }
     }
-    if (i>0)
+    if (i>=0)
     {
-        list = remove_valor_nodulo (arv, nodulo->direita, dim, ref);
+        list = remove_valor_nodulo (arv, nodulo->direita, dim + 1, ref);
         if (list == NULL)
         {
-            list = remove_valor_nodulo (arv, nodulo->esquerda, dim, ref);
+            list = remove_valor_nodulo (arv, nodulo->esquerda, dim + 1, ref);
         }
     }
     return list;
