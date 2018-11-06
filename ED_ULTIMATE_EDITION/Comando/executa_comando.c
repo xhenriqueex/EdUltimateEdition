@@ -25,10 +25,14 @@ typedef struct params {
     char* caminho_TXT;
     char* caminho_SVG;
     char* caminho_QRY;
+    char* caminho_EC;
+    char* caminho_PM;
     char* diretorio_entrada;
     char* arquivo_entrada;
     char* diretorio_saida;
     char* arquivo_entrada_qry;
+    char* arquivo_entrada_ec;
+    char* arquivo_entrada_pm;
     char* cor_borda_quadra;
     char* cor_preenche_quadra;
     char* cor_borda_hidrante;
@@ -92,7 +96,7 @@ void executa_comando (void* p)
     //CRIA UMA RADIOBASE
     if (!strcmp (*(par->comando_vetor), "t"))
     {
-        caso_t (par);
+        caso_t_geo (par);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA QUADRA
@@ -150,6 +154,35 @@ void executa_comando (void* p)
         return;
     }
 
+    //COMANDOS DO ARQUIVO .EC
+    
+    //DEFINE O TIPO DO ESTABELECIMENTO COMERCIAL
+    if (!strcmp (*(par->comando_vetor), "t"))
+    {
+        caso_t_ec (par);
+        return;
+    }
+    //INSERE UM NOVO ESTABELECIMENTO COMERCIAL DE UM DETERMINADO TIPO
+    if (!strcmp (*(par->comando_vetor), "e"))
+    {
+        caso_e (par);
+        return;
+    }
+
+    //COMANDOS DO ARQUIVO .PM
+    //INSERE UMA PESSOA IDENTIFICADA POR UM CPF
+    if (!strcmp (*(par->comando_vetor), "p"))
+    {
+        caso_p (par);
+        return;
+    }
+    //INFORMA O ENDEREÇO ONDE UMA PESSOA MORA
+    if (!strcmp (*(par->comando_vetor), "m"))
+    {
+        caso_m (par);
+        return;
+    }
+    
     //COMANDOS DO ARQUIVOS .QRY 
 
     //REPORTA O QUE ESTIVER DENTRO DO RETÂNGULO ESPECIFICADO
@@ -204,6 +237,96 @@ void executa_comando (void* p)
     if (!strcmp (*(par->comando_vetor), "crb?"))
     {
         caso_crb_pergunta (par);
+        return;
+    }
+    //MORADORES DA QUADRA DEFINIDA PELO CEP
+    if (!strcmp (*(par->comando_vetor), "m?"))
+    {
+        caso_m_pergunta (par);
+        return;
+    }
+    //MORADORES DAS QUADRAS DENTRO DO RETÂNGULO
+    if (!strcmp (*(par->comando_vetor), "mr?"))
+    {
+        caso_mr_pergunta (par);
+        return;
+    }
+    //IMPRIME OS DADOS DO MORADOR IDENTIFICADO PELO CPF
+    if (!strcmp (*(par->comando_vetor), "dm?"))
+    {
+        caso_dm_pergunta (par);
+        return;
+    }
+    //IMPRIME OS DADOS DO ESTABELECIMENTO IDENTIFICADO PELO CNPJ
+    if (!strcmp (*(par->comando_vetor), "de?"))
+    {
+        caso_de_pergunta (par);
+        return;
+    }
+    //APAGA TODOS OS DADOS DE UMA PESSOA
+    if (!strcmp (*(par->comando_vetor), "rip"))
+    {
+        caso_rip (par);
+        return;
+    }
+    //LISTA OS ESTABELECIMENTOS DE UMA QUADRA
+    if (!strcmp (*(par->comando_vetor), "ecq?"))
+    {
+        caso_ecq_pergunta (par);
+        return;
+    }
+    //LISTA OS ESTABELECIMeNTOS DE UM DETERMINADO TIPO EM UM RETÂNGULO
+    if (!strcmp (*(par->comando_vetor), "ecr?"))
+    {
+        caso_ecr_pergunta (par);
+        return;
+    }
+    //LISTA OS TIPOS DE ESTABELECIMENTOS DE UMA QUADRA ESPECÍFICA
+    if (!strcmp (*(par->comando_vetor), "tecq?"))
+    {
+        caso_tecq_pergunta (par);
+        return;
+    }
+    //LISTA OS TIPOS DE ESTABELECIMENTOS COMERCIAIS EM UM RETÂNGULO
+    if (!strcmp (*(par->comando_vetor), "tecr?"))
+    {
+        caso_tecr_pergunta (par);
+        return;
+    }
+    //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UM ENDEREÇO ESPECÍFICO
+    if (!strcmp (*(par->comando_vetor), "hmpe?"))
+    {
+        caso_hmpe_pergunta (par);
+        return;
+    }
+    //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UMA RADIOBASE ESPECÍFICA
+    if (!strcmp (*(par->comando_vetor), "hmp?"))
+    {
+        caso_hmp_pergunta (par);
+        return;
+    }
+    //APAGA TODOS OS DADOS DE UM ESTABELECIMENTO
+    if (!strcmp (*(par->comando_vetor), "fec"))
+    {
+        caso_fec (par);
+        return;
+    }
+    //MUDA O ENDEREÇO DA PESSOA E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
+    if (!strcmp (*(par->comando_vetor), "mud"))
+    {
+        caso_mud (par);
+        return;
+    }
+    //MUDA O ESTABELECIMENTO DE ENDEREÇO E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
+    if (!strcmp (*(par->comando_vetor), "mudec"))
+    {
+        caso_mudec (par);
+        return;
+    }
+    //DESAPROPRIA UMA REGIÃO (DELETA TUDO DENTRO DELA, MAS A PESSOA NÃO MORRE, SÓ DEIXA DE MORAR LÁ)
+    if (!strcmp (*(par->comando_vetor), "dpr"))
+    {
+        caso_dpr (par);
         return;
     }
 }
@@ -310,7 +433,7 @@ void caso_s (Parametros* par)
     
 }
 
-void caso_t (Parametros* par)
+void caso_t_geo (Parametros* par)
 {
     int id;
     double x, y;
@@ -457,7 +580,7 @@ void caso_o (Parametros* par)
         insere_fila (par->resultado, (Valor*) "\nNAO\n");
         return;
     }
-    else if (!strcmp (get_tipo_item (fig1), R) && !strcmp (get_tipo_item (fig2), R) == 0)
+    else if (!strcmp (get_tipo_item (fig1), R) && !strcmp (get_tipo_item (fig2), R))
     {
         dentro = 1;
         valor1 = get_x_retangulo (get_valor_item (fig1)) + get_w_retangulo (get_valor_item (fig1));
@@ -1405,5 +1528,101 @@ void caso_crb_pergunta (Parametros* par)
     insere_fila (par->anotaçoes, anot);
     anot = cria_anotacao (10, 0, get_x_radiobase (rb2), get_y_radiobase (rb2), "");
     insere_fila (par->anotaçoes, anot);
+    return;
+}
+
+void caso_m_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_mr_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_dm_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_de_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_rip (Parametros* par)
+{
+    return;
+}
+
+void caso_ecq_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_ecr_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_tecq_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_tecr_pergunta (Parametros* par)
+{
+    return;
+}
+
+void caso_hmpe_pergunta (Parametros* par)
+{
+    return;
+}
+void caso_hmp_pergunta (Parametros* par)
+{
+    return;
+}
+void caso_fec (Parametros* par)
+{
+    return;
+}
+void caso_mud (Parametros* par)
+{
+    return;
+}
+
+void caso_mudec (Parametros* par)
+{
+    return;
+}
+
+void caso_dpr (Parametros* par)
+{
+    return;
+}
+
+//COMANDOS REFERENTES AO ARQUIVO .EC
+
+void caso_t_ec (Parametros* par)
+{
+    return;
+}
+
+void caso_e (Parametros* par)
+{
+    return;
+}
+
+//COMANDOS REFERENTES AO ARQUIVO .PM
+
+void caso_p (Parametros* par)
+{
+    return;
+}
+
+void caso_m (Parametros* par)
+{
     return;
 }

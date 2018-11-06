@@ -17,7 +17,7 @@ void caso_h (Parametros* par);
 
 void caso_s (Parametros* par);
 
-void caso_t (Parametros* par);
+void caso_t_geo (Parametros* par);
 
 void caso_o (Parametros* par);
 
@@ -44,5 +44,43 @@ void caso_cc (Parametros* par);
 void caso_crd_pergunta (Parametros* par);
 
 void caso_crb_pergunta (Parametros* par);
+
+void caso_t_ec (Parametros* par);
+
+void caso_e (Parametros* par);
+
+void caso_p (Parametros* par);
+
+void caso_m (Parametros* par);
+
+void caso_m_pergunta (Parametros* par);
+
+void caso_mr_pergunta (Parametros* par);
+
+void caso_dm_pergunta (Parametros* par);
+
+void caso_de_pergunta (Parametros* par);
+
+void caso_rip (Parametros* par);
+
+void caso_ecq_pergunta (Parametros* par);
+
+void caso_ecr_pergunta (Parametros* par);
+
+void caso_tecq_pergunta (Parametros* par);
+
+void caso_tecr_pergunta (Parametros* par);
+
+void caso_hmpe_pergunta (Parametros* par);
+
+void caso_hmp_pergunta (Parametros* par);
+
+void caso_fec (Parametros* par);
+
+void caso_mud (Parametros* par);
+
+void caso_mudec (Parametros* par);
+
+void caso_dpr (Parametros* par);
 
 #endif

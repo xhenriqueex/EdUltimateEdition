@@ -20,10 +20,14 @@ typedef struct params {
     char* caminho_TXT;
     char* caminho_SVG;
     char* caminho_QRY;
+    char* caminho_EC;
+    char* caminho_PM;
     char* diretorio_entrada;
     char* arquivo_entrada;
     char* diretorio_saida;
     char* arquivo_entrada_qry;
+    char* arquivo_entrada_ec;
+    char* arquivo_entrada_pm;
     char* cor_borda_quadra;
     char* cor_preenche_quadra;
     char* cor_borda_hidrante;

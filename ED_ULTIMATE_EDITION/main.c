@@ -13,10 +13,16 @@ typedef struct params {
     char* caminho_TXT;
     char* caminho_SVG;
     char* caminho_QRY;
+    char* caminho_EC;
+    char* caminho_PM;
+    //char* caminho_VIA;
     char* diretorio_entrada;
     char* arquivo_entrada;
     char* diretorio_saida;
     char* arquivo_entrada_qry;
+    char* arquivo_entrada_ec;
+    char* arquivo_entrada_pm;
+    //char* arquivo_entrada_via;
     char* cor_borda_quadra;
     char* cor_preenche_quadra;
     char* cor_borda_hidrante;
@@ -58,13 +64,14 @@ void main(int argc, char* argv[])
     //ALOCANDO STRUCT
     p = (Parametros*) calloc (1, sizeof(Parametros));
 
-    //INICIALIZANDO STRUCT
-
     //INICIALIZANDO CAMINHOS
     p->caminho_GEO = NULL;
     p->caminho_TXT = NULL;
     p->caminho_SVG = NULL;
     p->caminho_QRY = NULL;
+    p->caminho_EC = NULL;
+    p->caminho_PM = NULL;
+    //p->caminho_VIA = NULL;
 
     //INICIALIZANDO VETOR DE COMANDOS
     p->comando_vetor = NULL;
@@ -115,40 +122,66 @@ void main(int argc, char* argv[])
     p->arquivo_entrada = NULL;
     p->diretorio_saida = NULL;
     p->arquivo_entrada_qry = NULL;
+    p->arquivo_entrada_ec = NULL;
+    p->arquivo_entrada_pm = NULL;
+    //p->arquivo_entrada_via = NULL;
 
     //TRATANDO OS CAMINHOS
     for (i=0; i<argc; i++)
     {
-        if (strcmp(argv[i], "-e") == 0)
+        if (!strcmp (argv[i], "-e"))
         {
-            p->diretorio_entrada = (char*) calloc(strlen(argv[i+1])+1, sizeof(char));
+            p->diretorio_entrada = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
             strcpy (p->diretorio_entrada, argv[i+1]);
             altera_caminho (&p->diretorio_entrada);
             i++;
             continue;
         }
-        if (strcmp(argv[i], "-f") == 0)
+        if (!strcmp (argv[i], "-f"))
         {
-            p->arquivo_entrada = (char*) calloc(strlen(argv[i+1])+1, sizeof(char));
+            p->arquivo_entrada = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
             strcpy (p->arquivo_entrada, argv[i+1]);
             i++;
             continue;
         }
-        if (strcmp(argv[i], "-o") == 0)
+        if (!strcmp (argv[i], "-o"))
         {
-            p->diretorio_saida = (char*) calloc(strlen(argv[i+1])+1, sizeof(char));
+            p->diretorio_saida = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
             strcpy (p->diretorio_saida, argv[i+1]);
             altera_caminho (&p->diretorio_saida);
             i++;
             continue;
         }
-        if (strcmp(argv[i], "-q") == 0)
+        if (!strcmp (argv[i], "-q"))
         {
-            p->arquivo_entrada_qry = (char*) calloc(strlen(argv[i+1])+1, sizeof(char));
+            p->arquivo_entrada_qry = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
             strcpy (p->arquivo_entrada_qry, argv[i+1]);
             i++;
             continue;
         }
+        if (!strcmp (argv[i], "-ec"))
+        {
+            p->arquivo_entrada_ec = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
+            strcpy (p->arquivo_entrada_ec, argv[i+1]);
+            i++;
+            continue;
+        }
+        if (!strcmp (argv[i], "-pm"))
+        {
+            p->arquivo_entrada_pm = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
+            strcpy (p->arquivo_entrada_pm, argv[i+1]);
+            i++;
+            continue;
+        }
+        /*
+        if (!strcmp (argv[i], "-v"))
+        {
+            p->arquivo_entrada_via = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
+            strcpy (p->arquivo_entrada_via, argv[i+1]);
+            i++;
+            continue;
+        }
+        */
     }
     if (p->diretorio_entrada != NULL)
     {
@@ -160,6 +193,20 @@ void main(int argc, char* argv[])
         strcpy (p->caminho_QRY, p->diretorio_entrada);
         strcat (p->caminho_QRY, "/");
         strcat (p->caminho_QRY, p->arquivo_entrada_qry);
+        p->caminho_EC = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada_ec) + 2, sizeof (char));
+        strcpy (p->caminho_EC, p->diretorio_entrada);
+        strcat (p->caminho_EC, "/");
+        strcat (p->caminho_EC, p->arquivo_entrada_ec);
+        p->caminho_PM = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada_pm) + 2, sizeof (char));
+        strcpy (p->caminho_PM, p->diretorio_entrada);
+        strcat (p->caminho_PM, "/");
+        strcat (p->caminho_PM, p->arquivo_entrada_pm);
+        /*
+        p->caminho_VIA = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada_via) + 2, sizeof (char));
+        strcpy (p->caminho_VIA, p->diretorio_entrada);
+        strcat (p->caminho_VIA, "/");
+        strcat (p->caminho_VIA, p->arquivo_entrada_via);
+        */
     }
     else
     {
@@ -167,6 +214,14 @@ void main(int argc, char* argv[])
         strcpy (p->caminho_GEO, p->arquivo_entrada);
         p->caminho_QRY = (char*) calloc (strlen (p->arquivo_entrada_qry) + 1, sizeof(char));
         strcpy (p->caminho_QRY, p->arquivo_entrada_qry);
+        p->caminho_EC = (char*) calloc (strlen (p->arquivo_entrada_ec) + 1, sizeof(char));
+        strcpy (p->caminho_EC, p->arquivo_entrada_ec);
+        p->caminho_PM = (char*) calloc (strlen (p->arquivo_entrada_pm) + 1, sizeof(char));
+        strcpy (p->caminho_PM, p->arquivo_entrada_pm);
+        /*
+        p->caminho_VIA = (char*) calloc (strlen (p->arquivo_entrada_via) + 1, sizeof(char));
+        strcpy (p->caminho_VIA, p->arquivo_entrada_via);
+        */
     }
 
     //ABRINDO O ARQUIVO .GEO
@@ -192,7 +247,7 @@ void main(int argc, char* argv[])
     //FECHANDO O ARQUIVO
     fclose (arquivo);
 
-    /*ABRINDO O ARQUIVO .QRY*/
+    //ABRINDO O ARQUIVO .QRY
     arquivo = fopen (p->caminho_QRY, "r");
     if (arquivo == NULL)
     {
@@ -218,6 +273,90 @@ void main(int argc, char* argv[])
 
     //FECHANDO O ARQUIVO
     fclose (arquivo);
+
+    //ABRINDO O ARQUIVO .EC
+    arquivo = fopen (p->caminho_EC, "r");
+    if (arquivo == NULL)
+    {
+        printf ("\nArquivo .ec não encontrado!\n");
+        return 0;
+    }
+    printf ("\nArquivo .ec aberto com sucesso!\n");
+
+    //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+    comandos = coloca_comandos_arquivo_fila (arquivo);
     
+    //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+    while (!fila_vazia (comandos))
+    {
+        comando = (char*) remove_fila (comandos);
+        p->comando_vetor = trata_comando (comando);
+        executa_comando (p);
+        free (comando);
+    }
+
+    //FECHANDO O ARQUIVO .EC
+    //fecha_ec (arquivo, p);
+
+    //FECHANDO O ARQUIVO
+    fclose (arquivo);
+
+    //ABRINDO O ARQUIVO .PM
+    arquivo = fopen (p->caminho_PM, "r");
+    if (arquivo == NULL)
+    {
+        printf ("\nArquivo .pm não encontrado!\n");
+        return 0;
+    }
+    printf ("\nArquivo .pm aberto com sucesso!\n");
+
+    //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+    comandos = coloca_comandos_arquivo_fila (arquivo);
+    
+    //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+    while (!fila_vazia (comandos))
+    {
+        comando = (char*) remove_fila (comandos);
+        p->comando_vetor = trata_comando (comando);
+        executa_comando (p);
+        free (comando);
+    }
+
+    //FECHANDO O ARQUIVO .PM
+    //fecha_pm (arquivo, p);
+
+    //FECHANDO O ARQUIVO
+    fclose (arquivo);
+
+    /*
+    //ABRINDO O ARQUIVO .VIA
+    arquivo = fopen (p->caminho_VIA, "r");
+    if (arquivo == NULL)
+    {
+        printf ("\nArquivo .via não encontrado!\n");
+        return 0;
+    }
+    printf ("\nArquivo .via aberto com sucesso!\n");
+
+    //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+    comandos = coloca_comandos_arquivo_fila (arquivo);
+    
+    //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+    while (!fila_vazia (comandos))
+    {
+        comando = (char*) remove_fila (comandos);
+        p->comando_vetor = trata_comando (comando);
+        executa_comando (p);
+        free (comando);
+    }
+
+    //FECHANDO O ARQUIVO .VIA
+    fecha_via (arquivo, p);
+
+    //FECHANDO O ARQUIVO
+    fclose (arquivo);
+    */
+
+    //FINALIZANDO O PROGRAMA
     return 1;
 }
