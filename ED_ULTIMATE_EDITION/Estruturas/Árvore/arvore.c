@@ -196,14 +196,16 @@ Lista remove_valor_nodulo (Arvore* arv, Nó* nodulo, int dim, void* ref)
         dim = 0;
     }
     int i = arv->compare (nodulo->valor, ref, dim);
-    Lista list = cria_lista();
+    Lista list;
     if (i==0 && arv->compare (nodulo->valor, ref, dim + 1) == 0)
     {
+        list = cria_lista();
         get_todos_nodulo (nodulo->esquerda, list);
         get_todos_nodulo (nodulo->direita, list);
         nodulo->valor = NULL;
         nodulo->direita = NULL;
         nodulo->direita = NULL;
+        return list;
     }
     if (i<0)
     {
