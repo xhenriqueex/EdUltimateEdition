@@ -26,6 +26,9 @@
     ],
     "files.associations": {
         "*.txt": "csharp",
-        "executa_comando.h": "c"
+        "executa_comando.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "lista.h": "c"
     }
 }

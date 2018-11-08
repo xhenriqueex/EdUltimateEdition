@@ -7,44 +7,8 @@
 #include "Funções/funçoes.h"
 #include "Comando/executa_comando.h"
 
-//DECLARAÇÃO DA STRUCT DE VARIÁVEIS
-typedef struct params {
-    char* caminho_GEO;
-    char* caminho_TXT;
-    char* caminho_SVG;
-    char* caminho_QRY;
-    char* caminho_EC;
-    char* caminho_PM;
-    //char* caminho_VIA;
-    char* diretorio_entrada;
-    char* arquivo_entrada;
-    char* diretorio_saida;
-    char* arquivo_entrada_qry;
-    char* arquivo_entrada_ec;
-    char* arquivo_entrada_pm;
-    //char* arquivo_entrada_via;
-    char* cor_borda_quadra;
-    char* cor_preenche_quadra;
-    char* cor_borda_hidrante;
-    char* cor_preenche_hidrante;
-    char* cor_borda_semaforo;
-    char* cor_preenche_semaforo;
-    char* cor_borda_radiobase;
-    char* cor_preenche_radiobase;
-    char** comando_vetor;
-    long int max_figuras;
-    int contador_figuras;
-    Item* figuras;
-    Fila* anotaçoes;
-    Fila* resultado;
-    Lista quadras;
-    Lista hidrantes;
-    Lista semaforos;
-    Lista radiobases;
-} Parametros;
-
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
-void main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     //DECLARANDO STRUCT
     Parametros* p;
@@ -83,7 +47,7 @@ void main(int argc, char* argv[])
     p->contador_figuras = 0;
 
     //INICIALIZANDO FILAS
-    p->anotaçoes = cria_fila();
+    p->anotacoes = cria_fila();
     p->resultado = cria_fila();
 
     //INICIALIZANDO LISTAS
@@ -269,7 +233,7 @@ void main(int argc, char* argv[])
     }
 
     //FECHANDO O ARQUIVO .QRY
-    fecha_qry (arquivo, p);
+    fecha_qry (p);
 
     //FECHANDO O ARQUIVO
     fclose (arquivo);
