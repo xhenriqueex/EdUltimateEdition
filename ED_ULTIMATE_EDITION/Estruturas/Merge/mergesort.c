@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
-#include "mergesort.h"
 
 void Merge (void** lista, int size, int compare (void*, void*));
 

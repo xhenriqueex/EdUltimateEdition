@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hidrante.h"
 
 //DEFINE A STRUCT HIDRANTE
 typedef struct hidrante {

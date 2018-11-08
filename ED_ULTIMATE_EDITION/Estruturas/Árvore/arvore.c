@@ -3,7 +3,6 @@
 #include <string.h>
 #include <math.h>
 #include "../Lista/lista.h"
-#include "arvore.h"
 
 typedef struct nó {
     void* valor;
