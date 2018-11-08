@@ -2,12 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Objetos/Item/item.h"
+#include "Estruturas/Lista/lista.h"
+#include "Funções/funçoes.h"
+#include "Comando/executa_comando.h"
 #include "./Parâmetros/parametros.h"
-#include "./Funções/funçoes.h"
-#include "./Comando/executa_comando.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
-void main (int argc, char* argv[])
+int main(int argc, char* argv[])
 {
     //DECLARANDO STRUCT
     Parametros* p;
@@ -46,7 +48,7 @@ void main (int argc, char* argv[])
     p->contador_figuras = 0;
 
     //INICIALIZANDO FILAS
-    p->anotaçoes = cria_fila();
+    p->anotacoes = cria_fila();
     p->resultado = cria_fila();
 
     //INICIALIZANDO LISTAS
@@ -234,7 +236,7 @@ void main (int argc, char* argv[])
     }
 
     //FECHANDO O ARQUIVO .QRY
-    fecha_qry (arquivo, p);
+    fecha_qry (p);
 
     //FECHANDO O ARQUIVO
     fclose (arquivo);
