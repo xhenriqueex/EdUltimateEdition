@@ -27,7 +27,7 @@ void free_strings (char** strings);
 double maior (double x1, double x2);
 
 //VERIFICA E RETORNA O MENOR VALOR
-double menor_overlap (double x1, double x2);
+double menor (double x1, double x2);
 
 //REPORTA TODOS OS ITENS DENTRO DO RETÂNGULO
 void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double w, double h);

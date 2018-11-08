@@ -6,6 +6,7 @@
 #include "Estruturas/Lista/lista.h"
 #include "Funções/funçoes.h"
 #include "Comando/executa_comando.h"
+#include "./Parâmetros/parametros.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -26,7 +27,7 @@ int main(int argc, char* argv[])
     char* comando;
 
     //ALOCANDO STRUCT
-    p = (Parametros*) calloc (1, sizeof(Parametros));
+    p = (Parametros*) calloc (1, sizeof (Parametros));
 
     //INICIALIZANDO CAMINHOS
     p->caminho_GEO = NULL;
@@ -55,6 +56,8 @@ int main(int argc, char* argv[])
     p->hidrantes = cria_lista();
     p->semaforos = cria_lista();
     p->radiobases = cria_lista();
+
+    //INICIALIZANDO HASHTABLES
 
     //INICIALIZANDO CORES PADRÃO
     p->cor_borda_quadra = (char*) calloc (155, sizeof(char));
