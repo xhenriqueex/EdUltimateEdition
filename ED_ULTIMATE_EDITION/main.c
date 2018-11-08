@@ -2,49 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Objetos/Item/item.h"
-#include "Estruturas/Lista/lista.h"
-#include "Funções/funçoes.h"
-#include "Comando/executa_comando.h"
-
-//DECLARAÇÃO DA STRUCT DE VARIÁVEIS
-typedef struct params {
-    char* caminho_GEO;
-    char* caminho_TXT;
-    char* caminho_SVG;
-    char* caminho_QRY;
-    char* caminho_EC;
-    char* caminho_PM;
-    //char* caminho_VIA;
-    char* diretorio_entrada;
-    char* arquivo_entrada;
-    char* diretorio_saida;
-    char* arquivo_entrada_qry;
-    char* arquivo_entrada_ec;
-    char* arquivo_entrada_pm;
-    //char* arquivo_entrada_via;
-    char* cor_borda_quadra;
-    char* cor_preenche_quadra;
-    char* cor_borda_hidrante;
-    char* cor_preenche_hidrante;
-    char* cor_borda_semaforo;
-    char* cor_preenche_semaforo;
-    char* cor_borda_radiobase;
-    char* cor_preenche_radiobase;
-    char** comando_vetor;
-    long int max_figuras;
-    int contador_figuras;
-    Item* figuras;
-    Fila* anotaçoes;
-    Fila* resultado;
-    Lista quadras;
-    Lista hidrantes;
-    Lista semaforos;
-    Lista radiobases;
-} Parametros;
+#include "./Parâmetros/parametros.h"
+#include "./Funções/funçoes.h"
+#include "./Comando/executa_comando.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
-void main(int argc, char* argv[])
+void main (int argc, char* argv[])
 {
     //DECLARANDO STRUCT
     Parametros* p;
@@ -62,7 +25,7 @@ void main(int argc, char* argv[])
     char* comando;
 
     //ALOCANDO STRUCT
-    p = (Parametros*) calloc (1, sizeof(Parametros));
+    p = (Parametros*) calloc (1, sizeof (Parametros));
 
     //INICIALIZANDO CAMINHOS
     p->caminho_GEO = NULL;
@@ -91,6 +54,8 @@ void main(int argc, char* argv[])
     p->hidrantes = cria_lista();
     p->semaforos = cria_lista();
     p->radiobases = cria_lista();
+
+    //INICIALIZANDO HASHTABLES
 
     //INICIALIZANDO CORES PADRÃO
     p->cor_borda_quadra = (char*) calloc (155, sizeof(char));
