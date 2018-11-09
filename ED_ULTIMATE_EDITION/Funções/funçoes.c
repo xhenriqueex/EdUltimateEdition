@@ -910,14 +910,14 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
     free(conteudo_svg);
-    while (!empty_fila(par->anotaçoes))
+    while (!empty_fila(par->anotacoes))
     {
-        conteudo_svg = cria_anotacao_svg (remove_fila (par->anotaçoes));
+        conteudo_svg = cria_anotacao_svg (remove_fila (par->anotacoes));
         fprintf (saida_SVG, conteudo_svg);
         free (conteudo_svg);
         continue;
     }
-    free (par->anotaçoes);
+    free (par->anotacoes);
     fprintf (saida_SVG, "\n</svg>");
     fclose (saida_SVG);
     remove_ext = par->arquivo_entrada;
