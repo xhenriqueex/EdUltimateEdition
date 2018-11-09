@@ -79,11 +79,13 @@ void executa_comando (void* p)
     if (!strcmp (*(par->comando_vetor), "nx"))
     {
         caso_nx (par);
+        return;
     }
     //CRIAR UM CÍRCULO
     if (!strcmp (*(par->comando_vetor), "c"))
     {
         caso_c (par);
+        return;
     }
     //CRIAR UM RETÂNGULO
     if (!strcmp (*(par->comando_vetor), "r"))
