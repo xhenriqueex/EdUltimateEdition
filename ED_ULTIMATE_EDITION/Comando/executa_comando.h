@@ -2,39 +2,7 @@
 
 #ifndef EXECUTA_COMANDO_H
 #define EXECUTA_COMANDO_H
-
-typedef struct params {
-    char* caminho_GEO;
-    char* caminho_TXT;
-    char* caminho_SVG;
-    char* caminho_QRY;
-    char* caminho_EC;
-    char* caminho_PM;
-    char* diretorio_entrada;
-    char* arquivo_entrada;
-    char* diretorio_saida;
-    char* arquivo_entrada_qry;
-    char* arquivo_entrada_ec;
-    char* arquivo_entrada_pm;
-    char* cor_borda_quadra;
-    char* cor_preenche_quadra;
-    char* cor_borda_hidrante;
-    char* cor_preenche_hidrante;
-    char* cor_borda_semaforo;
-    char* cor_preenche_semaforo;
-    char* cor_borda_radiobase;
-    char* cor_preenche_radiobase;
-    char** comando_vetor;
-    long int max_figuras;
-    int contador_figuras;
-    Item* figuras;
-    Fila* anotacoes;
-    Fila* resultado;
-    Lista quadras;
-    Lista hidrantes;
-    Lista semaforos;
-    Lista radiobases;
-} Parametros;
+#include "../Parâmetros/parametros.h"
 
 void executa_comando (void* p);
 

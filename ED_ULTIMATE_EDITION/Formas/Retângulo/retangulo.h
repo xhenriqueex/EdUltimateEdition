@@ -37,7 +37,10 @@ double get_x_retangulo (void* rectangle);
 double get_y_retangulo (void* rectangle);
 
 //PEGA A COR1 DO RETÂNGULO
-char* get_cor_retangulo (void* rectangle);
+char* get_cor1_retangulo (void* rectangle);
+
+//PEGA A COR2 DO RETÂNGULO
+char* get_cor2_retangulo (void* rectangle);
 
 //FUNÇÃO PARA DAR FREE NA MEMÓRIA ALOCADA DO RETÂNGULO
 void free_retangulo (void* rectangle);

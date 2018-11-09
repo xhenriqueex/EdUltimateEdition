@@ -4,7 +4,7 @@
 #include <string.h>
 #include "Estruturas/Item/item.h"
 #include "Estruturas/Lista/lista.h"
-#include "Funções/funçoes.h"
+#include "Funções/funcoes.h"
 #include "Comando/executa_comando.h"
 #include "Parâmetros/parametros.h"
 #include "Objetos/Quadra/quadra.h"

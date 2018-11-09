@@ -25,7 +25,7 @@ double get_x_semaforo (void* semaforo);
 double get_y_semaforo (void* semaforo);
 
 //ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DO SEMÁFORO
-void* troca_cor_semaforo (void* semaforo, char* cor_borda, char* cor_preenche);
+void* muda_cor_semaforo (void* semaforo, char* cor_borda, char* cor_preenche);
 
 //PEGA A COR1 DO SEMÁFORO
 char* get_cor1_semaforo (void* semaforo);

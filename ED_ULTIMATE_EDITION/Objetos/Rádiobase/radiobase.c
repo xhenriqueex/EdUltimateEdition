@@ -88,7 +88,7 @@ char* get_cor2_radiobase (void* radiobase)
 }
 
 //ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DA RÁDIO-BASE
-void* troca_cor_radiobase (void* radiobase, char* cor_borda, char* cor_preenche)
+void* muda_cor_radiobase (void* radiobase, char* cor_borda, char* cor_preenche)
 {
     Radiobase* aux;
     aux = (Radiobase*) radiobase;

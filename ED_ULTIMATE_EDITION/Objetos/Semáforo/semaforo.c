@@ -88,7 +88,7 @@ char* get_cor2_semaforo (void* semaforo)
 }
 
 //ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DO SEMÁFORO
-void* troca_cor_semaforo (void* semaforo, char* cor_borda, char* cor_preenche)
+void* muda_cor_semaforo (void* semaforo, char* cor_borda, char* cor_preenche)
 {
     Semaforo* aux;
     aux = (Semaforo*) semaforo;

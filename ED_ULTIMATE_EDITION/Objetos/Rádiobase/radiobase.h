@@ -25,7 +25,7 @@ double get_x_radiobase (void* radiobase);
 double get_y_radiobase (void* radiobase);
 
 //ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DA RÁDIO BASE
-void* troca_cor_radiobase (void* radiobase, char* cor_borda, char* cor_preenche);
+void* muda_cor_radiobase (void* radiobase, char* cor_borda, char* cor_preenche);
 
 //PEGA A COR1 DA RÁDIO BASE
 char* get_cor1_radiobase (void* radiobase);
