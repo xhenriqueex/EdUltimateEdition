@@ -356,7 +356,7 @@ void caso_nx (Parametros* par)
 }
 void caso_c (Parametros* par)
 {
-    int id;
+    long int id;
     double r, x, y;
     char* radiobase1;
     char* radiobase2;
@@ -367,7 +367,7 @@ void caso_c (Parametros* par)
         printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
         return;
     }
-    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 1), "%ld", id);
     sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
     sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
     sscanf (*(par->comando_vetor + 4), "%ld", r);
@@ -381,7 +381,7 @@ void caso_c (Parametros* par)
 }
 void caso_r (Parametros* par)
 {
-    int id;
+    long int id;
     double w, h, x, y;
     char* radiobase1;
     char* radiobase2;
@@ -393,7 +393,7 @@ void caso_r (Parametros* par)
         return;
     }
     
-    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 1), "%ld", id);
     sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
     sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
     sscanf (*(par->comando_vetor + 4), "%ld", w);
@@ -513,8 +513,8 @@ void caso_o (Parametros* par)
     Item fig1 = NULL;
     Item fig2 = NULL;
     Anotacao anotacao;
-    id1 = (long int) atoi (*(par->comando_vetor + 1));
-    id2 = (long int) atoi (*(par->comando_vetor + 2));
+    sscanf (*(par->comando_vetor + 1), "%ld", id1);
+    sscanf (*(par->comando_vetor + 2), "%ld", id2);
     string = (char*) calloc (strlen (*par->comando_vetor) + 1 + strlen (*(par->comando_vetor + 1) + 1) + strlen (*(par->comando_vetor + 2)) + 1, sizeof (char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
