@@ -2,28 +2,16 @@
 
 #ifndef ARVORE_H
 #define ARVORE_H
+#include "../Lista/lista.h"
 
-typedef void* kd_tree;
-typedef void* kd_tree_valor;
-
-typedef struct no {
-    void* valor;
-    struct no* direita;
-    struct no* esquerda;
-} No;
-
-typedef struct kd {
-    int (*compare)(void*, void*, int);
-    int dim;
-    int tam;
-    No* nodulo;
-} Arvore;
+typedef void* Arvore;
+typedef void* No;
 
 //CRIA A ÁRVORE
 void* cria_arvore (int (*compare)(void*, void*, int), int dim);
 
 //INSERE UM NODULO NA ÁRVORE
-void* insere_nodulo (No* n, Arvore* arv, void* valor, int dim);
+void* insere_nodulo (No n, Arvore* arv, void* valor, int dim);
 
 //INSERE UM VALOR NA ÁRVORE
 void insere_arvore (void* arv, void* valor);

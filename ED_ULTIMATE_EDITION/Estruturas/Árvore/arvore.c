@@ -4,6 +4,19 @@
 #include <math.h>
 #include "../Lista/lista.h"
 
+typedef struct no {
+    void* valor;
+    struct no* direita;
+    struct no* esquerda;
+} No;
+
+typedef struct kd {
+    int (*compare)(void*, void*, int);
+    int dim;
+    int tam;
+    No* nodulo;
+} Arvore;
+
 //CRIA A ÁRVORE
 void* cria_arvore (int (*compare)(void*, void*, int), int dim)
 {
