@@ -9,8 +9,8 @@
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
-#include "../Estruturas/Árvore/arvore.h"
 #include "../Estruturas/Hash/hashtable.h"
+#include "../Estruturas/Árvore/arvore.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {
