@@ -2,7 +2,7 @@
 
 #ifndef FILA_H
 #define FILA_H
-#include "..\..\Estruturas\Item\item.h"
+#include "../Item/item.h"
 
 //DEFINE O TIPO DA FILA
 typedef void* Fila;

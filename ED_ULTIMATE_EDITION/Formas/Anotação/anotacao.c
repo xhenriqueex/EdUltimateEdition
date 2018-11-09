@@ -3,19 +3,19 @@
 #include <string.h>
 
 //INICIALIZANDO STRUCT ANOTAÇÃO
-typedef struct anotaçao{
+typedef struct anotacao{
     double w;
     double h;
     double x;
     double y;
     char* texto;
-}Anotaçao;
+} Anotacao;
 
 /*RETORNA UM PONTEIRO PARA VOID COM AS INFORMAÇÕES DA ANOTAÇÃO*/
 void* cria_anotacao (double w, double h, double x, double y, char* text)
 {
-    Anotaçao* anotacao;
-    anotacao = (Anotaçao*) calloc (1, sizeof (Anotaçao));
+    Anotacao* anotacao;
+    anotacao = (Anotacao*) calloc (1, sizeof (Anotacao));
     anotacao->w = w;
     anotacao->h = h;
     anotacao->x = x;
@@ -27,7 +27,7 @@ void* cria_anotacao (double w, double h, double x, double y, char* text)
 /*RETORNA UMA STRING COM AS INFORMAÇÕES PARA IMPRIMIR A ANOTAÇÃO NO SVG*/
 char* cria_svg_anotacao (void* anotation)
 {
-    Anotaçao* anotacao;
+    Anotacao* anotacao;
     char* result = (char*) calloc (355, sizeof(char));
     anotacao = anotation;
     if (anotacao->h == 0)

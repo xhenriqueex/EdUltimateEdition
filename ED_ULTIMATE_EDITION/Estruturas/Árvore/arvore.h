@@ -11,7 +11,7 @@ typedef void* No;
 void* cria_arvore (int (*compare)(void*, void*, int), int dim);
 
 //INSERE UM NODULO NA ÁRVORE
-void* insere_nodulo (No n, Arvore* arv, void* valor, int dim);
+void insere_nodulo (No n, Arvore* arv, void* valor, int dim);
 
 //INSERE UM VALOR NA ÁRVORE
 void insere_arvore (void* arv, void* valor);

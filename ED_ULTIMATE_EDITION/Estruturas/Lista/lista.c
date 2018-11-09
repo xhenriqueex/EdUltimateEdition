@@ -135,7 +135,7 @@ void insere_antes_lista (void* lista, void* posic, void* valor)
     verif = (Posic*) posic;
     if (aux->tamanho == 0)
     {
-        return insert_lista (lista, valor);
+        return insere_lista (lista, valor);
     }
     if (aux != verif->lista)
     {

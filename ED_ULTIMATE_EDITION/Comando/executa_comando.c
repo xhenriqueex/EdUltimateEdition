@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "../Parâmetros/parametros.h"
-#include "../Funções/funçoes.h"
+#include "../Funções/funcoes.h"
 #include "../Formas/Retângulo/retangulo.h"
 #include "../Formas/Círculo/circulo.h"
 #include "../Objetos/Quadra/quadra.h"
@@ -21,7 +21,52 @@
 
 #define C "circulo"
 #define R "retangulo"
-#define A "anotaçao"
+#define A "anotacao"
+
+void caso_nx (Parametros* par);
+void caso_c (Parametros* par);
+void caso_r (Parametros* par);
+void caso_q (Parametros* par);
+void caso_s (Parametros* par);
+void caso_t_geo (Parametros* par);
+void caso_h (Parametros* par);
+void caso_cq (Parametros* par);
+void caso_ch (Parametros* par);
+void caso_ct (Parametros* par);
+void caso_cs (Parametros* par);
+void caso_o (Parametros* par);
+void caso_i (Parametros* par);
+void caso_d (Parametros* par);
+void caso_a (Parametros* par);
+void caso_hashtag (Parametros* par);
+void caso_t_ec (Parametros* par);
+void caso_e (Parametros* par);
+void caso_p (Parametros* par);
+void caso_m (Parametros* par);
+void caso_q_pergunta (Parametros* par);
+void caso_Q_pergunta (Parametros* par);
+void caso_dq (Parametros* par);
+void caso_dle (Parametros* par);
+void caso_Dq (Parametros* par);
+void caso_Dle (Parametros* par);
+void caso_cc (Parametros* par);
+void caso_crd_pergunta (Parametros* par);
+void caso_crb_pergunta (Parametros* par);
+void caso_m_pergunta (Parametros* par);
+void caso_mr_pergunta (Parametros* par);
+void caso_dm_pergunta (Parametros* par);
+void caso_de_pergunta (Parametros* par);
+void caso_rip (Parametros* par);
+void caso_ecq_pergunta (Parametros* par);
+void caso_ecr_pergunta (Parametros* par);
+void caso_tecq_pergunta (Parametros* par);
+void caso_tecr_pergunta (Parametros* par);
+void caso_hmpe_pergunta (Parametros* par);
+void caso_hmp_pergunta (Parametros* par);
+void caso_fec (Parametros* par);
+void caso_mud (Parametros* par);
+void caso_mudec (Parametros* par);
+void caso_dpr (Parametros* par);
 
 void executa_comando (void* p)
 {
@@ -382,13 +427,13 @@ void caso_q (Parametros* par)
 
 void caso_h (Parametros* par)
 {
-    int id;
+    char* id;
     double x, y;
     Hidrante* hidrante;
-    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 1), "%s", id);
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
-    hidrante = create_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
+    hidrante = cria_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
     //REMOVER APÓS TESTES
     insere_lista (par->hidrantes, hidrante);
     //insere_arvore (par->tree_hidrantes, hidrante);
@@ -398,13 +443,13 @@ void caso_h (Parametros* par)
 
 void caso_s (Parametros* par)
 {
-    int id;
+    char* id;
     double x, y;
     Semaforo* semaforo;
-    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 1), "%s", id);
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
-    semaforo = cria_semaforo(id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
+    semaforo = cria_semaforo (id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
     //REMOVER APÓS TESTES
     insere_lista (par->semaforos, semaforo);
     //insere_arvore (par->tree_semaforos, semaforo);
@@ -415,10 +460,10 @@ void caso_s (Parametros* par)
 
 void caso_t_geo (Parametros* par)
 {
-    int id;
+    char* id;
     double x, y;
     Radiobase* radiobase;
-    sscanf (*(par->comando_vetor + 1), "%d", id);
+    sscanf (*(par->comando_vetor + 1), "%s", id);
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
@@ -462,14 +507,15 @@ void caso_o (Parametros* par)
     double* centro1;
     double* centro2;
     double valor1, valor2, valor3, valor4, dist;
-    int dentro, id1, id2, i;
+    long int id1, id2;
+    int dentro, i;
     char* string;
     Item fig1 = NULL;
     Item fig2 = NULL;
-    Anotaçao anotacao;
-    id1 = *(par->comando_vetor + 1);
-    id2 = *(par->comando_vetor + 2);
-    string = (char*) calloc (strlen(par->comando_vetor) + 1 + strlen(par->comando_vetor + 1) + 1 + strlen(par->comando_vetor + 2) + 1, sizeof(char));
+    Anotacao anotacao;
+    id1 = (long int) atoi (*(par->comando_vetor + 1));
+    id2 = (long int) atoi (*(par->comando_vetor + 2));
+    string = (char*) calloc (strlen (*par->comando_vetor) + 1 + strlen (*(par->comando_vetor + 1) + 1) + strlen (*(par->comando_vetor + 2)) + 1, sizeof (char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 1));
@@ -664,14 +710,14 @@ void caso_o (Parametros* par)
             insere_fila(par->anotacoes, (Valor*) anotacao);
             return;
         }
-        insert_fila (par->resultado, (Valor*) "\nNAO\n");
+        insere_fila (par->resultado, (Valor*) "\nNAO\n");
         return;
     }
     else if (!strcmp (get_tipo_item ((fig1)), C))
     {
         valor1 = maior (get_x_retangulo (get_valor_item (fig2)), menor (get_x_circulo (get_valor_item (fig1)), get_x_retangulo (get_valor_item (fig2)) + get_w_retangulo(get_valor_item(fig2))));
         valor2 = maior (get_y_retangulo (get_valor_item (fig2)), menor (get_y_circulo (get_valor_item (fig1)), get_y_retangulo (get_valor_item (fig2)) + get_h_retangulo(get_valor_item(fig2))));
-        dentro = dentro_borda_circle (get_valor_item (fig1), valor1, valor2);
+        dentro = dentro_borda_circulo (get_valor_item (fig1), valor1, valor2);
         if (dentro == 1)
         {
             insere_fila (par->resultado, (Valor*) "\nSIM\n");
@@ -705,9 +751,11 @@ void caso_o (Parametros* par)
 }
 void caso_i (Parametros* par)
 {
-    int id, x, y, i, in1, in2;
+    long int id;
+    float x, y;
+    int i, in1, in2;
     char* string;
-    string = (char*) calloc (strlen(par->comando_vetor) + 1 + strlen (par->comando_vetor + 1) + 1 + strlen (par->comando_vetor + 2) + 1 + strlen (par->comando_vetor + 3) + 1, sizeof(char));
+    string = (char*) calloc (strlen (*(par->comando_vetor)) + 1 + strlen (*(par->comando_vetor + 1)) + 1 + strlen (*(par->comando_vetor + 2)) + 1 + strlen (*(par->comando_vetor + 3)) + 1, sizeof (char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 1));
@@ -715,11 +763,11 @@ void caso_i (Parametros* par)
     strcat (string, *(par->comando_vetor + 2));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 3));
-    insert_fila (par->resultado, string);
+    insere_fila (par->resultado, string);
     Item fig = NULL;
-    id = *(par->comando_vetor + 1);
-    x = *(par->comando_vetor + 2);
-    y = *(par->comando_vetor + 3);
+    sscanf (*(par->comando_vetor + 1), "%ld", id);
+    sscanf (*(par->comando_vetor + 2), "%f", x);
+    sscanf (*(par->comando_vetor + 3), "%f", y);
     for (i=0; i<par->contador_figuras; i++)
     {
         if (fig != NULL)
@@ -764,10 +812,10 @@ void caso_i (Parametros* par)
         in1 = dentro_circulo (get_valor_item (fig), x, y);
         if (in1 == 1)
         {
-            insert_fila(par->resultado, (Valor*) "\nSIM\n");
+            insere_fila(par->resultado, (Valor*) "\nSIM\n");
             return;
         }
-        insert_fila(par->resultado, (Valor*) "\nNAO\n");
+        insere_fila(par->resultado, (Valor*) "\nNAO\n");
         return;
     }
 }
@@ -780,7 +828,7 @@ void caso_d (Parametros* par)
     double* centro1;
     double* centro2;
     double dx, dy, result;
-    string = (char*) calloc (strlen (par->comando_vetor) + 1 + strlen (par->comando_vetor + 1) + 1 + strlen (par->comando_vetor + 2) + 1, sizeof (char));
+    string = (char*) calloc (strlen (*(par->comando_vetor)) + 1 + strlen (*(par->comando_vetor + 1)) + 1 + strlen (*(par->comando_vetor + 2)) + 1, sizeof (char));
     strcpy (string, *(par->comando_vetor));
     strcat (string, " ");
     strcat (string, *(par->comando_vetor + 1));
@@ -874,12 +922,12 @@ void caso_d (Parametros* par)
 
 void caso_a (Parametros* par)
 {
-    int id, i;
+    long int id;
+    int i;
     char* percorre;
     char* conteudo_svg;
     char* sufixo;
     char* corB;
-    char* saida_svg;
     double* centro1;
     double* centro2;
     void* fila_linha;
@@ -887,7 +935,7 @@ void caso_a (Parametros* par)
     Fila aux;
     FILE* saida_SVG;
     Item fig;
-    id = *(par->comando_vetor + 1);
+    sscanf (*(par->comando_vetor + 1),"%ld", id);
     fig = NULL;
     for (i=0; i<=par->contador_figuras; i++)
     {
@@ -928,12 +976,12 @@ void caso_a (Parametros* par)
     {
         percorre--;
     }
-    strcpy(percorre, "-");
-    strcat(percorre, sufixo);
-    strcat(percorre, ".svg");
-    saida_svg = fopen (par->caminho_SVG, "w");
+    strcpy (percorre, "-");
+    strcat (percorre, sufixo);
+    strcat (percorre, ".svg");
+    saida_SVG = fopen (par->caminho_SVG, "w");
     free (par->caminho_SVG);
-    fprintf (saida_svg, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
+    fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
     for (i=0; i<=par->contador_figuras; i++)
     {
         if (par->figuras[i] == NULL)
@@ -943,13 +991,13 @@ void caso_a (Parametros* par)
         if (!strcmp (get_tipo_item (par->figuras[i]), R))
         {
             conteudo_svg = cria_svg_retangulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, conteudo_svg);
+            fprintf (saida_SVG, conteudo_svg);
             continue;
         }
         else
         {
             conteudo_svg = cria_svg_circulo (get_valor_item (par->figuras[i]));
-            fprintf (saida_svg, conteudo_svg);
+            fprintf (saida_SVG, conteudo_svg);
             continue;
         }
     }
@@ -957,8 +1005,8 @@ void caso_a (Parametros* par)
     while (!fila_vazia (par->anotacoes))
     {
         fila_linha = remove_fila (par->anotacoes);
-        conteudo_svg = cria_anotacao_svg (fila_linha);
-        fprintf (saida_svg, conteudo_svg);
+        conteudo_svg = cria_svg_anotacao (fila_linha);
+        fprintf (saida_SVG, conteudo_svg);
         insere_fila (aux, fila_linha);
         continue;
     }
@@ -970,12 +1018,12 @@ void caso_a (Parametros* par)
     if(!strcmp (get_tipo_item (fig), R))
     {
         centro1 = centro_massa_retangulo (get_valor_item (fig));
-        corB = get_radiobase1_retangulo (get_valor_item (fig));
+        corB = get_cor1_retangulo (get_valor_item (fig));
     }
     else
     {
         centro1 = centro_massa_circulo (get_valor_item (fig));
-        corB = get_radiobase1_circulo (get_valor_item (fig));
+        corB = get_cor1_circulo (get_valor_item (fig));
     }
     x1 = *centro1;
     y1 = *(centro1 + 1);
@@ -1000,8 +1048,8 @@ void caso_a (Parametros* par)
         dy = y2 - y1;
         free (centro2);
         result = sqrt ((dx*dx) + (dy*dy));
-        fprintf (saida_svg, "\n<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"%s\" stroke-width=\"2\"/>", x1, y1, x2, y2, corB);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%.2f</text>", (x1 + dx/2), (y1+dy/2), result);
+        fprintf (saida_SVG, "\n<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"%s\" stroke-width=\"2\"/>", x1, y1, x2, y2, corB);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%.2f</text>", (x1 + dx/2), (y1+dy/2), result);
     }
     //fprintf (saida_svg, "\n</svg>");
     //fclose (saida_svg);
@@ -1016,8 +1064,8 @@ void caso_a (Parametros* par)
             continue;
         }
         conteudo_svg = cria_svg_quadra (get_valor_lista (par->quadras, primeiro));
-        fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (par->quadras, primeiro)), get_y_quadra (get_valor_lista (par->quadras, primeiro)), get_cep_quadra (get_valor_lista (par->quadras, primeiro)));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (par->quadras, primeiro)), get_y_quadra (get_valor_lista (par->quadras, primeiro)), get_cep_quadra (get_valor_lista (par->quadras, primeiro)));
         primeiro = get_proximo_lista (par->quadras, primeiro);
     }
     while (primeiro != NULL);
@@ -1030,8 +1078,8 @@ void caso_a (Parametros* par)
             continue;
         }
         conteudo_svg = cria_svg_hidrante (get_valor_lista (par->hidrantes, primeiro));
-        fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (par->hidrantes, primeiro)), get_y_hidrante (get_valor_lista (par->hidrantes, primeiro)));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (par->hidrantes, primeiro)), get_y_hidrante (get_valor_lista (par->hidrantes, primeiro)));
         primeiro = get_proximo_lista (par->hidrantes, primeiro);
     }
     while (primeiro != NULL);
@@ -1044,8 +1092,8 @@ void caso_a (Parametros* par)
             continue;
         }
         conteudo_svg = cria_svg_semaforo (get_valor_lista (par->semaforos, primeiro));
-        fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (par->semaforos, primeiro)), get_y_semaforo (get_valor_lista (par->semaforos, primeiro)));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (par->semaforos, primeiro)), get_y_semaforo (get_valor_lista (par->semaforos, primeiro)));
         primeiro = get_proximo_lista (par->semaforos, primeiro);
     }
     while (primeiro != NULL);
@@ -1058,14 +1106,14 @@ void caso_a (Parametros* par)
             continue;
         }
         conteudo_svg = cria_svg_radiobase (get_valor_lista (par->radiobases, primeiro));
-        fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (par->radiobases, primeiro)), get_y_radiobase(get_valor_lista (par->radiobases, primeiro)));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (par->radiobases, primeiro)), get_y_radiobase(get_valor_lista (par->radiobases, primeiro)));
         primeiro = get_proximo_lista (par->radiobases, primeiro);
     }
     while (primeiro != NULL);
     free(conteudo_svg);
-    fprintf (saida_svg, "\n</svg>");
-    fclose (saida_svg);
+    fprintf (saida_SVG, "\n</svg>");
+    fclose (saida_SVG);
     return;
 }
 
@@ -1212,7 +1260,7 @@ void caso_q_pergunta (Parametros* par)
 {
     double w, h, x, y;
     char* aux;
-    Anotaçao anot;
+    Anotacao anot;
     sscanf (*par->comando_vetor, "%s", aux);
     sscanf (*(par->comando_vetor + 1), "%ld", x);
     sscanf (*(par->comando_vetor + 2), "%ld", y);
@@ -1229,7 +1277,7 @@ void caso_q_pergunta (Parametros* par)
 void caso_Q_pergunta (Parametros* par)
 {
     double r, x, y;
-    Anotaçao* anot;
+    Anotacao* anot;
     char* aux;
     sscanf (*par->comando_vetor, "%s", aux);
     sscanf (*(par->comando_vetor + 1), "%ld", r);
@@ -1247,7 +1295,7 @@ void caso_dq (Parametros* par)
 {
     double x, y, w, h;
     char* aux;
-    Anotaçao anot;
+    Anotacao anot;
     sscanf (*par->comando_vetor, "%s", aux);
     sscanf (*(par->comando_vetor + 1), "%ld", x);
     sscanf (*(par->comando_vetor + 2), "%ld", y);
@@ -1264,7 +1312,7 @@ void caso_dq (Parametros* par)
 void caso_dle (Parametros* par)
 {
     double w, h, x, y;
-    Anotaçao anot;
+    Anotacao anot;
     char* aux;
     char* tipo;
     sscanf (*par->comando_vetor, "%s", aux);
@@ -1285,7 +1333,7 @@ void caso_Dq (Parametros* par)
 {
     double r, x, y;
     char* aux;
-    Anotaçao* anot;
+    Anotacao* anot;
     sscanf (*par->comando_vetor, "%s", aux);
     sscanf (*(par->comando_vetor + 1), "%ld", r);
     sscanf (*(par->comando_vetor + 2), "%ld", x);
@@ -1303,7 +1351,7 @@ void caso_Dle (Parametros* par)
     double r, x, y;
     char* aux;
     char* tipo;
-    Anotaçao* anot;
+    Anotacao* anot;
     sscanf (*par->comando_vetor, "%s", aux);
     sscanf (*(par->comando_vetor + 1), "%s", tipo);
     sscanf (*(par->comando_vetor + 2), "%ld", r);
@@ -1333,7 +1381,7 @@ void caso_cc (Parametros* par)
         compare = get_valor_lista (par->quadras, primeiro);
         if (!strcmp (get_cep_quadra (compare), aux))
         {
-            compare = troca_cor_quadra (compare, cor_borda, cor_preenche);
+            compare = muda_cor_quadra (compare, cor_borda, cor_preenche);
             break;
         }
         primeiro = get_proximo_lista (par->quadras, primeiro);
@@ -1468,7 +1516,7 @@ void caso_crb_pergunta (Parametros* par)
     void* rb1 = NULL;
     void* rb2 = NULL;
     Ponto** vetor_lista;
-    sscanf (par->comando_vetor, "%s", aux);
+    sscanf (*(par->comando_vetor), "%s", aux);
     insere_fila (par->resultado, aux);
     vetor_lista = (Ponto**) calloc (largura_lista (par->radiobases), sizeof (Ponto*));
     primeiro = get_primeiro_lista (par->radiobases);
@@ -1506,7 +1554,7 @@ void caso_crb_pergunta (Parametros* par)
         primeiro = get_proximo_lista (par->radiobases, primeiro);
     }
     while (primeiro != NULL);
-    Anotaçao* anot;
+    Anotacao* anot;
     anot = cria_anotacao (10, 0, get_x_radiobase (rb1), get_y_radiobase (rb1), "");
     insere_fila (par->anotacoes, anot);
     anot = cria_anotacao (10, 0, get_x_radiobase (rb2), get_y_radiobase (rb2), "");

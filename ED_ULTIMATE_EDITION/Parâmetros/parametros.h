@@ -10,7 +10,7 @@
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Árvore/arvore.h"
-#include "../Hash/hashtable.h"
+#include "../Estruturas/Hash/hashtable.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {

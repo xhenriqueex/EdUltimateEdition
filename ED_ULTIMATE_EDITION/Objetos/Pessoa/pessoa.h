@@ -6,16 +6,16 @@
 
 //DEFINE O TIPO PESSOA
 typedef void* Pessoa;
-typedef void* Endereço;
+typedef void* Endereco;
 
 //CRIA E RETORNA UMA PESSOA COM OS VALORES PASSADOS
 Pessoa cria_pessoa (char* cpf, char* nome, char* sobrenome, char* sexo, char* nasc);
 
 //ATRIBUI UM ENDEREÇO A UMA DETERMINADA PESSOA
-Endereço set_endereco_pessoa (Pessoa pes, char* cep, char* face, char* num, char* comp);
+Endereco set_endereco_pessoa (Pessoa pes, char* cep, char* face, char* num, char* comp);
 
 //RETORNA O ENDEREÇO DE UMA PESSOA
-Endereço get_endereco_pessoa (Pessoa pes);
+Endereco get_endereco_pessoa (Pessoa pes);
 
 //LIBERA A MEMÓRIA ALOCADA A UMA PESSOA
 void free_pessoa (Pessoa pes);
@@ -27,13 +27,13 @@ int hashcode_pessoa (Pessoa pes, int modulo);
 int compare_cpf_pessoa (Pessoa pes, void* cpf);
 
 //RETORNA A PESSOA QUE MORA EM UM RESPECTIVO ENDEREÇO
-void* get_pessoa_endereco (Endereço endereço);
+void* get_pessoa_endereco (Endereco endereco);
 
 //FUNÇÃO QUE RETORNA O CÓDIGO HASH REFERENTE AO ENDEREÇO
-int hashcode_endereco_pessoa (Endereço endereço, int modulo);
+int hashcode_endereco_pessoa (Endereco endereco, int modulo);
 
 //COMPARADOR PARA HASHTABLE DE ENDEREÇO DA PESSOA
-int compare_cep_endereco_pessoa (Endereço endereço1, Endereço endereço2);
+int compare_cep_endereco_pessoa (Endereco endereco1, Endereco endereco2);
 
 //ESTRUTURA DE ENDEREÇO NECESSÁRIA PARA ENCONTRAR A PESSOA NA ÁRVORE
 void* identificador_endereco_pessoa (char* cep);
