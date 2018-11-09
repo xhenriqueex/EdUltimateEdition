@@ -127,7 +127,7 @@ void* get_valor_lista (void* lista, void* posic)
 }
 
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
-void insere_antes_lista (void* lista, void* posic, void* valor)
+void* insere_antes_lista (void* lista, void* posic, void* valor)
 {
     List* aux;
     aux = (List*) lista;
@@ -290,7 +290,7 @@ void concat_listas (void* lista1, void* lista2)
     if (list1->tamanho == 0)
     {
         list1->primeiro = list2->primeiro;
-        list1->ultimo = list2->tamanho;
+        list1->ultimo = list2->ultimo;
         list1->tamanho = list2->tamanho;
         return;
     }

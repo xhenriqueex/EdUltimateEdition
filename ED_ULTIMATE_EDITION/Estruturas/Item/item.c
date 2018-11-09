@@ -8,12 +8,6 @@ typedef struct it {
     char* tipo;
 } it;
 
-//DEFINE O TIPO DO ITEM
-typedef void* Item;
-
-//DEFINE O TIPO DO VALOR
-typedef void* Valor;
-
 //CRIA UM ITEM E O RETORNA
 Item cria_item (void* Valor, char* tipo)
 {

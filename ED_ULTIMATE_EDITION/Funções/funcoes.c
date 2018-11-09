@@ -93,7 +93,7 @@ char** trata_comando (char *leitura)
 		aux[n] = ' ';
 		aux += n + 1;
 		i++;
-	} 
+	}
     while (string[i-1] != NULL);
     free (auxR);
 	return string;

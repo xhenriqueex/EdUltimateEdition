@@ -60,13 +60,7 @@ void insere_fila (Fila f, Valor unidade)
     
     if (!fila_vazia(f))
     {
-        e0 = f0->comeco;
-
-        while(e0->proximo != NULL)
-        {
-            e0 = e0->proximo;
-        }
-
+        e0 = f0->fim;
         e0->proximo = e1;
     }
     else

@@ -353,7 +353,9 @@ void executa_comando (void* p)
 
 void caso_nx (Parametros* par)
 {
+    printf("aaaa");
     sscanf (*(par->comando_vetor + 1), "%ld", par->max_figuras);
+    printf("%s\n", *(par->comando_vetor + 1));
     return;
 }
 void caso_c (Parametros* par)

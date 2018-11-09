@@ -160,6 +160,29 @@ int main(int argc, char* argv[])
         }
         */
     }
+
+    
+    if (p->arquivo_entrada == NULL) {
+        p->arquivo_entrada = (char *) calloc(1, sizeof(char));
+        strcpy(p->arquivo_entrada, "");
+    }
+
+    if (p->arquivo_entrada_ec == NULL) {
+        p->arquivo_entrada_ec = (char *) calloc(1, sizeof(char));
+        strcpy(p->arquivo_entrada_ec, "");
+    }
+
+    if (p->arquivo_entrada_pm == NULL) {
+        p->arquivo_entrada_pm = (char *) calloc(1, sizeof(char));
+        strcpy(p->arquivo_entrada_pm, "");
+    }
+
+    if (p->arquivo_entrada_qry == NULL) {
+        p->arquivo_entrada_qry = (char *) calloc(1, sizeof(char));
+        strcpy(p->arquivo_entrada_qry, "");
+    }
+    
+
     if (p->diretorio_entrada != NULL)
     {
         p->caminho_GEO = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada) + 2, sizeof (char));
@@ -241,6 +264,7 @@ int main(int argc, char* argv[])
     {
         comando = (char*) remove_fila (comandos);
         p->comando_vetor = trata_comando (comando);
+        printf("aaaaaa\n");
         executa_comando (p);
         free (comando);
     }

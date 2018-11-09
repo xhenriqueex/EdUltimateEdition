@@ -28,7 +28,7 @@ void remove_lista (void* lista, void* posic);
 void* get_valor_lista (void* lista, void* posic);
 
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
-void insere_antes_lista (void* lista, void* posic, void* valor);
+void* insere_antes_lista (void* lista, void* posic, void* valor);
 
 //INSERE UM ITEM NA POSIÇÃO POSTERIOR AO INDICADO POR POSIC
 void* insere_depois_lista (void* lista, void* posic, void* valor);

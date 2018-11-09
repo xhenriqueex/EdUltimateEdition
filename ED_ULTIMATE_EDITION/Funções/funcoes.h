@@ -4,6 +4,7 @@
 #define FUNCTIONS_H
 #include <stdio.h>
 #include "../Estruturas/Fila/fila.h"
+#include "../Parâmetros/parametros.h"
 
 //TRATA OS CAMINHOS
 void altera_caminho (char** caminho);
@@ -58,5 +59,8 @@ void escreve_crd_semaforo (Fila* resultado, void* semaforo);
 
 //ESCREVE AS INFORMAÇÕES DO ID ESPECIFICADO (RÁDIO-BASE) NO .TXT
 void escreve_crd_radiobase (Fila* resultado, void* radiobase);
+
+//FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
+void fecha_qry (Parametros* par);
 
 #endif
