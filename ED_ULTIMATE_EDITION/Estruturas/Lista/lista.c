@@ -14,19 +14,19 @@ typedef struct list
     Item* primeiro;
     Item* ultimo;
     int tamanho;
-} Lista;
+} List;
 
 typedef struct pos
 {
-    Lista* lista;
+    List* lista;
     Item* item;
-} Posic;
+} Pos;
 
 //CRIA E RETORNA UMA LISTA VAZIA
 void* cria_lista ()
 {
-    Lista* aux;
-    aux = (Lista*) calloc (1, sizeof(Lista));
+    List* aux;
+    aux = (List*) calloc (1, sizeof(List));
     aux->primeiro = NULL;
     aux->ultimo = NULL;
     aux->tamanho = 0;
@@ -36,20 +36,20 @@ void* cria_lista ()
 //VERIFICA O TAMANHO DA LISTA E O RETORNA
 int largura_lista (void* lista)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     return aux->tamanho;
 }
 
 //INSERE UM ELEMENTO NA LISTA E RETORNA SUA POSIÇÃO
 void* insere_lista (void* lista, void* item)
 {
-    Lista* aux;
+    List* aux;
     Item* insert;
-    Posic* retorno;
-    aux = (Lista*) lista;
+    Pos* retorno;
+    aux = (List*) lista;
     insert = (Item*) calloc (1, sizeof(Item));
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     retorno->lista = aux;
     retorno->item = insert;
     insert->prox = NULL;
@@ -72,10 +72,10 @@ void* insere_lista (void* lista, void* item)
 //REMOVE UM ELEMENTO NA LISTA
 void remove_lista (void* lista, void* posic)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
-    Posic* verif;
-    verif = (Posic*) posic;
+    List* aux;
+    aux = (List*) lista;
+    Pos* verif;
+    verif = (Pos*) posic;
     if (aux->tamanho == 0)
     {
         return;
@@ -110,14 +110,14 @@ void remove_lista (void* lista, void* posic)
 //RETORNA O VALOR DE UM ELEMENTO DA LISTA
 void* get_valor_lista (void* lista, void* posic)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     if (aux->tamanho == 0)
     {
         return NULL;
     }
-    Posic* verif;
-    verif = (Posic*) posic;
+    Pos* verif;
+    verif = (Pos*) posic;
     if (aux != verif->lista)
     {
         printf ("\nERRO: LISTAS DIFERENTES!");
@@ -129,10 +129,10 @@ void* get_valor_lista (void* lista, void* posic)
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
 void insere_antes_lista (void* lista, void* posic, void* valor)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
-    Posic* verif;
-    verif = (Posic*) posic;
+    List* aux;
+    aux = (List*) lista;
+    Pos* verif;
+    verif = (Pos*) posic;
     if (aux->tamanho == 0)
     {
         return insere_lista (lista, valor);
@@ -142,8 +142,8 @@ void insere_antes_lista (void* lista, void* posic, void* valor)
         printf ("\nERRO: LISTAS DIFERENTES!");
         return NULL;
     }
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     Item* novo;
     novo = (Item*) calloc (1, sizeof(Item));
     novo->prox = verif->item;
@@ -163,10 +163,10 @@ void insere_antes_lista (void* lista, void* posic, void* valor)
 //INSERE UM ITEM NA POSIÇÃO POSTERIOR AO INDICADO POR POSIC
 void* insere_depois_lista (void* lista, void* posic, void* valor)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
-    Posic* verif;
-    verif = (Posic*) posic;
+    List* aux;
+    aux = (List*) lista;
+    Pos* verif;
+    verif = (Pos*) posic;
     if (aux->tamanho == 0)
     {
         return insere_lista (lista, valor);
@@ -176,8 +176,8 @@ void* insere_depois_lista (void* lista, void* posic, void* valor)
         printf ("\nERRO: LISTAS DIFERENTES!");
         return NULL;
     }
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     Item* novo;
     novo = (Item*) calloc (1, sizeof(Item));
     novo->prox = verif->item->prox;
@@ -197,14 +197,14 @@ void* insere_depois_lista (void* lista, void* posic, void* valor)
 //RETORNA O PRIMEIRO VALOR DA LISTA, CASO LENGTH = 0, RETORNA NULL
 void* get_primeiro_lista (void* lista)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     if (aux->tamanho == 0)
     {
         return NULL;
     }
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     retorno->item = aux->primeiro;
     retorno->lista = lista;
     return (void*) retorno;
@@ -213,16 +213,16 @@ void* get_primeiro_lista (void* lista)
 //RETORNA O PRÓXIMO ELEMENTO APONTADO POR POSIC
 void* get_proximo_lista (void* lista, void* posic)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     if (aux->tamanho == 0)
     {
         return NULL;
     }
-    Posic* verif;
-    verif = (Posic*) posic;
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* verif;
+    verif = (Pos*) posic;
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     if (verif->lista != aux)
     {
         printf ("\nERRO: LISTAS DIFERENTES!");
@@ -240,16 +240,16 @@ void* get_proximo_lista (void* lista, void* posic)
 //RETORNA O ELEMENTO ANTERIOR A POSIC
 void* get_anterior_lista (void* lista, void* posic)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     if (aux->tamanho == 0)
     {
         return NULL;
     }
-    Posic* verif;
-    verif = (Posic*) posic;
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* verif;
+    verif = (Pos*) posic;
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     if (verif->lista != aux)
     {
         printf ("\nERRO: LISTAS DIFERENTES!");
@@ -267,14 +267,14 @@ void* get_anterior_lista (void* lista, void* posic)
 //RETORNA O ÚLTIMO ELEMENTO DA LISTA
 void* get_ultimo_lista (void* lista)
 {
-    Lista* aux;
-    aux = (Lista*) lista;
+    List* aux;
+    aux = (List*) lista;
     if (aux->tamanho == 0)
     {
         return NULL;
     }
-    Posic* retorno;
-    retorno = (Posic*) calloc (1, sizeof(Posic));
+    Pos* retorno;
+    retorno = (Pos*) calloc (1, sizeof(Pos));
     retorno->item = aux->ultimo;
     retorno->lista = lista;
     return (void*) retorno;
@@ -283,10 +283,10 @@ void* get_ultimo_lista (void* lista)
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
 void concat_listas (void* lista1, void* lista2)
 {
-    Lista* list1;
-    list1 = (Lista*) lista1;
-    Lista* list2;
-    list2 = (Lista*) lista2;
+    List* list1;
+    list1 = (List*) lista1;
+    List* list2;
+    list2 = (List*) lista2;
     if (list1->tamanho == 0)
     {
         list1->primeiro = list2->primeiro;

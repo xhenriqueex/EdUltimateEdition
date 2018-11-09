@@ -300,7 +300,7 @@ void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double*
 }
 
 //RETORNA O VIZINHO MAIS PRÓXIMO À REFERÊNCIA NA ÁRVORE
-void vizinho_proximo_arvore (void* arv, void* ref)
+void* vizinho_proximo_arvore (void* arv, void* ref)
 {
     Arvore* arvore;
     arvore = (Arvore*) arv;
