@@ -34,6 +34,5 @@ radiobase.o: Objetos/Radiobase/radiobase.c
 	gcc -o radiobase.o -c Objetos/Radiobase/radiobase.c
 semaforo.o: Objetos/Semáforo/semaforo.c
 	gcc -o semaforo.o -c Objetos/Semáforo/semaforo.c
-
-#clean:
-#	rm -f $(obj) Principal $(svg)
+clean:
+	rm -rf main *.o

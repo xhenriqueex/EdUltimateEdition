@@ -6,7 +6,7 @@
 #include "../Lista/lista.h"
 
 //DEFINE O TIPO DA HASHTABLE
-typedef void* hash_table;
+typedef void* Hash_table;
 
 //CRIA UMA HASHTABLE DE MODULO N
 void* cria_hashtable (int modulo, int (*compare) (void*, void*), int (*hash) (void*, int));

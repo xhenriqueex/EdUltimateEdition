@@ -23,7 +23,7 @@ typedef struct kd {
 void* cria_arvore (int (*compare)(void*, void*, int), int dim);
 
 //INSERE UM NODULO NA ÁRVORE
-void* insere_nodulo (No* n, Arvore* arv, void* valor, int dim);
+void insere_nodulo (No* n, Arvore* arv, void* valor, int dim);
 
 //INSERE UM VALOR NA ÁRVORE
 void insere_arvore (void* arv, void* valor);
@@ -59,6 +59,6 @@ double dist_arvore (Arvore* arv, void* valor1, void* valor2);
 void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double* dist, int dim);
 
 //RETORNA O VIZINHO MAIS PRÓXIMO À REFERÊNCIA NA ÁRVORE
-void vizinho_proximo_arvore (void* arv, void* ref);
+void* vizinho_proximo_arvore (void* arv, void* ref);
 
 #endif

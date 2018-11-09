@@ -64,7 +64,7 @@ void* get_hashtable (void* hash, void* ident)
 {
     hash_table* table;
     table = (hash_table*) hash;
-    int hashcode = table->hash (ident, table->modulo);    
+    int hashcode = table->hash (ident, table->modulo);
     Lista list = *(table->hashtable + hashcode);
     Posic t;
     t = get_primeiro_lista (list);

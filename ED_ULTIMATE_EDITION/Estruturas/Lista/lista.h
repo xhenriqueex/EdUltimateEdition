@@ -19,7 +19,7 @@ Lista cria_lista ();
 int largura_lista (void* lista);
 
 //INSERE UM ELEMENTO NA LISTA E RETORNA SUA POSIÇÃO
-Posic insere_lista (void* lista, void* item);
+void* insere_lista (void* lista, void* item);
 
 //REMOVE UM ELEMENTO NA LISTA
 void remove_lista (void* lista, void* posic);
@@ -46,6 +46,6 @@ void* get_anterior_lista (void* lista, void* posic);
 void* get_ultimo_lista (void* lista);
 
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
-void concat_listas (void* list1, void* list2);
+void concat_listas (void* lista1, void* lista2);
 
 #endif

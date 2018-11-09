@@ -18,7 +18,7 @@ void* cria_arvore (int (*compare)(void*, void*, int), int dim)
 }
 
 //INSERE UM NODULO NA ÁRVORE
-void* insere_nodulo (No* n, Arvore* arv, void* valor, int dim)
+void insere_nodulo (No* n, Arvore* arv, void* valor, int dim)
 {
     if (n->valor == NULL)
     {
@@ -131,7 +131,7 @@ Lista get_todos_arvore (void* arv)
     arvore = (Arvore*) arv;
     Lista* list;
     list = cria_lista ();
-    return retorna_todos_nodulo (arvore->nodulo, list);
+    return get_todos_nodulo (arvore->nodulo, list);
 }
 
 //RETORNA UM VALOR DO NÓDULO, COMPARADO COM A REFERÊNCIA
@@ -288,7 +288,7 @@ void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double*
 }
 
 //RETORNA O VIZINHO MAIS PRÓXIMO À REFERÊNCIA NA ÁRVORE
-void vizinho_proximo_arvore (void* arv, void* ref)
+void* vizinho_proximo_arvore (void* arv, void* ref)
 {
     Arvore* arvore;
     arvore = (Arvore*) arv;
