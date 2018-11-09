@@ -96,3 +96,30 @@ void* troca_cor_radiobase (void* radiobase, char* cor_borda, char* cor_preenche)
     strcpy (aux->cor_preenche, cor_preenche);
     return (void*) aux;
 }
+
+//FUNÇÃO DE COMPARAÇÃO DE ID DE RÁDIOBASE
+int compare_radiobase (void* rb1, void* rb2, int dim)
+{
+    Radiobase* rbA;
+    Radiobase* rbB;    
+    rbA = (Radiobase*) rb1;
+    rbB = (Radiobase*) rb2;
+    return strcmp (rbA->id, rbB->id);
+}
+
+//RETORNA O CÓDIGO HASH DA RADIOBASE
+int hashcode_radiobase (void* rb, int modulo)
+{
+    Radiobase* result;
+    result = (Radiobase*) rb;
+    int x = strlen (result->id);
+    int hash = 0;
+    char* aux = result->id;
+    while (*aux != 0)
+    {
+        hash += x*(*aux);
+        aux++;
+        x--;
+    }
+    return modulo < 0 ? hash : hash % modulo;
+}

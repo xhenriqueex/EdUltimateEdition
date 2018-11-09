@@ -33,4 +33,10 @@ char* get_cor2_hidrante (void* hidrante);
 //ALTERA AS CORES DA BORDA E DO PREENCHIMENTO DO HIDRANTE
 void* muda_cor_hidrante (void* hidrante, char* cor_borda, char* cor_preenche);
 
+//FUNÇÃO DE COMPARAÇÃO DE ID DE HIDRANTE
+int compare_hidrante (void* hid1, void* hid2, int dim);
+
+//RETORNA O CÓDIGO HASH DO HIDRANTE
+int hashcode_hidrante (void* hid, int modulo);
+
 #endif

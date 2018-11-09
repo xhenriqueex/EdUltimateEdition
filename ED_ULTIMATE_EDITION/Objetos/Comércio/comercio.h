@@ -43,9 +43,6 @@ int compare_hash_tipo_comercio (void* tip, void* cod);
 //RETORNA O COMÉRCIO PRESENTE NO ENDEREÇO ESPECÍFICO
 void* get_comercio_endereco (void* endereco);
 
-//RETORNA A STRUCT DA PESSOA QUE MORA AQUI
-void* get_pessoa_comercio (void* endereco);
-
 //RETORNA O CÓDIGO HASH DO ENDEREÇO DO COMÉRCIO
 int hashcode_endereco_comercio (void* endereco, int modulo);
 

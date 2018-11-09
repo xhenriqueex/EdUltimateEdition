@@ -33,4 +33,10 @@ char* get_cor1_radiobase (void* radiobase);
 //PEGA A COR2 DA RÁDIO BASE
 char* get_cor2_radiobase (void* radiobase);
 
+//FUNÇÃO DE COMPARAÇÃO DE ID DE RÁDIOBASE
+int compare_radiobase (void* rb1, void* rb2, int dim);
+
+//RETORNA O CÓDIGO HASH DA RADIOBASE
+int hashcode_radiobase (void* rb, int modulo);
+
 #endif
