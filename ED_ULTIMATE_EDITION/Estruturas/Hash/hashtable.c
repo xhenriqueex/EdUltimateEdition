@@ -9,13 +9,13 @@ typedef struct hash {
     int (*compare) (void*, void*);
     int (*hash) (void*, int);
     void **hashtable;
-} Hashtable;
+} Hash_table;
 
 //CRIA UMA HASHTABLE DE MODULO N
 void* cria_hashtable (int modulo, int (*compare) (void*, void*), int (*hash) (void*, int))
 {
-    Hashtable* table;
-    table = (Hashtable*) calloc (1, sizeof (Hashtable));
+    Hash_table* table;
+    table = (Hash_table*) calloc (1, sizeof (Hash_table));
     table->modulo = modulo;
     table->compare = compare;
     table->hash = hash;
@@ -31,8 +31,8 @@ void* cria_hashtable (int modulo, int (*compare) (void*, void*), int (*hash) (vo
 //INSERE UM ITEM NA HASHTABLE
 void insere_hashtable (void* hash, void* item)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     int hashcode = table->hash (item, table->modulo);
     insere_lista (*(table->hashtable + hashcode), item);
 }
@@ -40,8 +40,8 @@ void insere_hashtable (void* hash, void* item)
 //REMOVE UM ITEM DA HASHTABLE
 void remove_hashtable (void* hash, void* item)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     int hashcode = table->hash (item, table->modulo);    
     Lista list = *(table->hashtable + hashcode);
     Posic t;
@@ -62,8 +62,8 @@ void remove_hashtable (void* hash, void* item)
 //RETORNA UM ITEM DA HASHTABLE
 void* get_hashtable (void* hash, void* ident)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     int hashcode = table->hash (ident, table->modulo);    
     Lista list = *(table->hashtable + hashcode);
     Posic t;
@@ -84,8 +84,8 @@ void* get_hashtable (void* hash, void* ident)
 //RETORNA UM LISTA DE ITENS DA HASHTABLE
 Lista get_lista_hashtable (void* hash, void* ident)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     int hashcode = table->hash (ident, table->modulo);    
     Lista list = *(table->hashtable + hashcode);
     Lista result = cria_lista();
@@ -107,8 +107,8 @@ Lista get_lista_hashtable (void* hash, void* ident)
 //RETORNA UMA LISTA COM TODOS OS ITENS DA HASHTABLE
 Lista get_todos_hashtable (void* hash)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     Lista list = cria_lista ();
     int i;
     for(i = 0; i < table->modulo; i++)
@@ -121,8 +121,8 @@ Lista get_todos_hashtable (void* hash)
 //APAGA A HASHTABLE (DEPENDE DO FREE DA LISTA -> NAO IMPLEMENTADO)
 void free_hashtable (void* hash)
 {
-    Hashtable* table;
-    table = (Hashtable*) hash;
+    Hash_table* table;
+    table = (Hash_table*) hash;
     Lista list = cria_lista();
     int i;
     for(i = 0; i < table->modulo; i++)

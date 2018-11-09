@@ -47,6 +47,6 @@ double dist_arvore (Arvore* arv, void* valor1, void* valor2);
 void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double* dist, int dim);
 
 //RETORNA O VIZINHO MAIS PRÓXIMO À REFERÊNCIA NA ÁRVORE
-void vizinho_proximo_arvore (void* arv, void* ref);
+void* vizinho_proximo_arvore (void* arv, void* ref);
 
 #endif
