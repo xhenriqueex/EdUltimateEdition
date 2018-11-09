@@ -95,3 +95,31 @@ char* get_cor2_hidrante (void* hidrante)
     hid = (Hidrante*) hidrante;
     return hid->cor_preenche;
 }
+
+//FUNÇÃO DE COMPARAÇÃO DE ID DE HIDRANTE
+int compare_hidrante (void* hid1, void* hid2, int dim)
+{
+    Hidrante* hidA;
+    Hidrante* hidB;    
+    hidA = (Hidrante*) hid1;
+    hidB = (Hidrante*) hid2;
+    return strcmp (hidA->id, hidB->id);
+}
+
+//RETORNA O CÓDIGO HASH DO HIDRANTE
+int hashcode_hidrante (void* hid, int modulo)
+{
+    Hidrante* result;
+    result = (Hidrante*) hid;
+    int x = strlen (result->id);
+    int hash = 0;
+    char* aux = result->id;
+    while (*aux != 0)
+    {
+        hash += x*(*aux);
+        aux++;
+        x--;
+    }
+    return modulo < 0 ? hash : hash % modulo;
+}
+

@@ -40,4 +40,10 @@ char* get_cor2_quadra (void* quadra);
 //RETORNA UM RETÂNGULO COM AS INFORMAÇÕES DA QUADRA
 Retangulo get_retangulo_quadra (void* quadra);
 
+//FUNÇÃO DE COMPARAÇÃO DE CEP DE QUADRA
+int compare_quadra (void* quad1, void* quad2, int dim);
+
+//RETORNA O CÓDIGO HASH DA QUADRA
+int hashcode_quadra (void* quad, int modulo);
+
 #endif

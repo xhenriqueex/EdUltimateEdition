@@ -114,3 +114,30 @@ Retangulo get_retangulo_quadra (void* quadra)
     quad = (Quadra*) quadra;
     return cria_retangulo (0, quad->cor_borda, quad->cor_preenche, quad->w, quad->h, quad->x, quad->y);
 }
+
+//FUNÇÃO DE COMPARAÇÃO DE CEP DE QUADRA
+int compare_quadra (void* quad1, void* quad2, int dim)
+{
+    Quadra* quadA;
+    Quadra* quadB;    
+    quadA = (Quadra*) quad1;
+    quadB = (Quadra*) quad2;
+    return strcmp (quadA->cep, quadB->cep);
+}
+
+//RETORNA O CÓDIGO HASH DA QUADRA
+int hashcode_quadra (void* quad, int modulo)
+{
+    Quadra* result;
+    result = (Quadra*) quad;
+    int x = strlen (result->cep);
+    int hash = 0;
+    char* aux = result->cep;
+    while (*aux != 0)
+    {
+        hash += x*(*aux);
+        aux++;
+        x--;
+    }
+    return modulo < 0 ? hash : hash % modulo;
+}

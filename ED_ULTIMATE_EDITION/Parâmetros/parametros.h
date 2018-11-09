@@ -10,6 +10,7 @@
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Hash/hashtable.h"
+#include "../Estruturas/Árvore/arvore.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {
@@ -39,12 +40,13 @@ typedef struct params {
     long int max_figuras;
     int contador_figuras;
     Item* figuras;
-    Fila* anotaçoes;
+    Fila* anotacoes;
     Fila* resultado;
     Lista quadras;
     Lista hidrantes;
     Lista semaforos;
     Lista radiobases;
+<<<<<<< HEAD
     //Arvore quadras;
     //Arvore hidrantes;
     //Arvore semaforos;
@@ -58,6 +60,21 @@ typedef struct params {
     Hash_table hash_pessoas;
     Hash_table hash_end_comercios;
     Hash_table hash_end_pessoas;
+=======
+    Arvore tree_quadras;
+    Arvore tree_hidrantes;
+    Arvore tree_semaforos;
+    Arvore tree_radiobases;
+    Hashtable hash_quadras;
+    Hashtable hash_hidrantes;
+    Hashtable hash_semaforos;
+    Hashtable hash_radiobases;
+    Hashtable hash_tipos;
+    Hashtable hash_comercios;
+    Hashtable hash_pessoas;
+    Hashtable hash_end_comercios;
+    Hashtable hash_end_pessoas;
+>>>>>>> 447c48e887160cd9e6c45535570bbc4ea18f507b
 } Parametros;
 
 #endif

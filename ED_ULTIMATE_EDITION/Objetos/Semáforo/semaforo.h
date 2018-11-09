@@ -33,4 +33,10 @@ char* get_cor1_semaforo (void* semaforo);
 //PEGA A COR2 DO SEMÁFORO
 char* get_cor2_semaforo (void* semaforo);
 
+//FUNÇÃO DE COMPARAÇÃO DE ID DE SEMÁFORO
+int compare_semaforo (void* sem1, void* sem2, int dim);
+
+//RETORNA O CÓDIGO HASH DO SEMÁFORO
+int hashcode_semaforo (void* sem, int modulo);
+
 #endif
