@@ -2,11 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Objetos/Item/item.h"
+#include "Estruturas/Item/item.h"
 #include "Estruturas/Lista/lista.h"
 #include "Funções/funçoes.h"
 #include "Comando/executa_comando.h"
-#include "./Parâmetros/parametros.h"
+#include "Parâmetros/parametros.h"
+#include "Objetos/Quadra/quadra.h"
+#include "Objetos/Hidrante/hidrante.h"
+#include "Objetos/Semáforo/semaforo.h"
+#include "Objetos/Rádiobase/radiobase.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -56,8 +60,14 @@ int main(int argc, char* argv[])
     p->hidrantes = cria_lista();
     p->semaforos = cria_lista();
     p->radiobases = cria_lista();
-
+    
     //INICIALIZANDO HASHTABLES
+
+    //INICIALIZANDO ÁRVORES
+    p->tree_quadras = cria_arvore (compare_quadra, 2);
+    p->tree_hidrantes = cria_arvore (compare_hidrante, 2);
+    p->tree_semaforos = cria_arvore (compare_semaforo, 2);
+    p->tree_radiobases = cria_arvore (compare_radiobase, 2);
 
     //INICIALIZANDO CORES PADRÃO
     p->cor_borda_quadra = (char*) calloc (155, sizeof(char));

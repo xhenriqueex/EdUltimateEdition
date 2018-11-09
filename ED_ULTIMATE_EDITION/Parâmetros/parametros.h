@@ -9,6 +9,7 @@
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
+#include "../Estruturas/Árvore/arvore.h"
 #include "../Hash/hashtable.h"
 
 //DEFINE A STRUCT DE PARAMETROS
@@ -39,16 +40,16 @@ typedef struct params {
     long int max_figuras;
     int contador_figuras;
     Item* figuras;
-    Fila* anotaçoes;
+    Fila* anotacoes;
     Fila* resultado;
     Lista quadras;
     Lista hidrantes;
     Lista semaforos;
     Lista radiobases;
-    //Arvore quadras;
-    //Arvore hidrantes;
-    //Arvore semaforos;
-    //Arvore radiobases;
+    Arvore tree_quadras;
+    Arvore tree_hidrantes;
+    Arvore tree_semaforos;
+    Arvore tree_radiobases;
     Hashtable hash_quadras;
     Hashtable hash_hidrantes;
     Hashtable hash_semaforos;

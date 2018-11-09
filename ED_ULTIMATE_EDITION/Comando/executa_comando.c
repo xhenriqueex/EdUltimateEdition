@@ -373,7 +373,10 @@ void caso_q (Parametros* par)
     sscanf (*(par->comando_vetor + 4), "%ld", w);
     sscanf (*(par->comando_vetor + 5), "%ld", h);
     quadra = cria_quadra (cep, x, y, w, h, par->cor_borda_quadra, par->cor_preenche_quadra);
+    //REMOVER APÓS TESTES
     insere_lista (par->quadras, quadra);
+    //insere_arvore (par->tree_quadras, quadra);
+    //insere_hash ();
     return;
 }
 
@@ -386,7 +389,10 @@ void caso_h (Parametros* par)
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     hidrante = create_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
+    //REMOVER APÓS TESTES
     insere_lista (par->hidrantes, hidrante);
+    //insere_arvore (par->tree_hidrantes, hidrante);
+    //insere_hash ();
     return;
 }
 
@@ -399,7 +405,10 @@ void caso_s (Parametros* par)
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     semaforo = cria_semaforo(id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
+    //REMOVER APÓS TESTES
     insere_lista (par->semaforos, semaforo);
+    //insere_arvore (par->tree_semaforos, semaforo);
+    //insere_hash ();
     return;
     
 }
@@ -413,7 +422,10 @@ void caso_t_geo (Parametros* par)
     sscanf (*(par->comando_vetor + 2), "%ld", x);
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
+    //REMOVER APÓS TESTES
     insere_lista (par->radiobases, radiobase);
+    //insere_arvore (par->tree_radiobases, radiobase);
+    //insere_hash ();
     return;
 }
 
@@ -545,7 +557,7 @@ void caso_o (Parametros* par)
                 valor4 = get_y_circulo (get_valor_item(fig2)) + get_r_circulo (get_valor_item(fig2));
             }
             anotacao = cria_anotacao (abs (valor1 - valor3), abs (valor2 - valor4), valor1, valor2, "SOBREPOE");
-            insere_fila(par->anotaçoes, (Valor*) anotacao);
+            insere_fila(par->anotacoes, (Valor*) anotacao);
             return;
         }
         insere_fila (par->resultado, (Valor*) "\nNAO\n");
@@ -614,7 +626,7 @@ void caso_o (Parametros* par)
                 valor4 = get_y_retangulo (get_valor_item (fig2)) + get_h_retangulo (get_valor_item (fig2));
             }
             anotacao = cria_anotacao (abs (valor1 - valor3), abs (valor2 - valor4), valor1, valor2, "SOBREPOE");
-            insere_fila (par->anotaçoes, anotacao);
+            insere_fila (par->anotacoes, anotacao);
             return;
         }
         insere_fila (par->resultado, (Valor*) "\nNAO\n");
@@ -649,7 +661,7 @@ void caso_o (Parametros* par)
                 valor4 = get_y_circulo (get_valor_item (fig2)) + get_r_circulo (get_valor_item (fig2));
             }
             anotacao = cria_anotacao (abs (valor1 - valor3), abs (valor2 - valor4), valor1, valor2, "SOBREPOE");
-            insere_fila(par->anotaçoes, (Valor*) anotacao);
+            insere_fila(par->anotacoes, (Valor*) anotacao);
             return;
         }
         insert_fila (par->resultado, (Valor*) "\nNAO\n");
@@ -684,7 +696,7 @@ void caso_o (Parametros* par)
                 valor4 = get_y_circulo (get_valor_item (fig1)) + get_r_circulo (get_valor_item (fig1));
             }
             anotacao = cria_anotacao(abs (valor1 - valor3), abs (valor2 - valor4), valor1, valor2, "SOBREPOE");
-            insere_fila(par->anotaçoes, (Valor*) anotacao);                   
+            insere_fila(par->anotacoes, (Valor*) anotacao);                   
             return;
         }
         insere_fila (par->resultado, (Valor*) "\nNAO\n");
@@ -942,9 +954,9 @@ void caso_a (Parametros* par)
         }
     }
     aux = cria_fila();
-    while (!fila_vazia (par->anotaçoes))
+    while (!fila_vazia (par->anotacoes))
     {
-        fila_linha = remove_fila (par->anotaçoes);
+        fila_linha = remove_fila (par->anotacoes);
         conteudo_svg = cria_anotacao_svg (fila_linha);
         fprintf (saida_svg, conteudo_svg);
         insere_fila (aux, fila_linha);
@@ -952,7 +964,7 @@ void caso_a (Parametros* par)
     }
     while (!fila_vazia(aux))
     {
-        insere_fila (par->anotaçoes, remove_fila(aux));
+        insere_fila (par->anotacoes, remove_fila(aux));
     }
     free (aux);
     if(!strcmp (get_tipo_item (fig), R))
@@ -1158,9 +1170,9 @@ void caso_hashtag (Parametros* par)
     while (primeiro != NULL);
     free(conteudo_svg);
     aux = cria_fila ();
-    while (!fila_vazia (par->anotaçoes))
+    while (!fila_vazia (par->anotacoes))
     {
-        fila_linha = remove_fila (par->anotaçoes);
+        fila_linha = remove_fila (par->anotacoes);
         conteudo_svg = cria_svg_anotacao (fila_linha);
         fprintf (saida_svg, conteudo_svg);
         insere_fila (aux, fila_linha);
@@ -1168,7 +1180,7 @@ void caso_hashtag (Parametros* par)
     }
     while(!fila_vazia (aux))
     {
-        insere_fila (par->anotaçoes, remove_fila (aux));
+        insere_fila (par->anotacoes, remove_fila (aux));
     }
     free (aux);
     fprintf (saida_svg, "\n</svg>");
@@ -1208,7 +1220,7 @@ void caso_q_pergunta (Parametros* par)
     sscanf (*(par->comando_vetor + 4), "%ld", h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     reporta_dentro_retangulo (par->resultado, par->quadras, par->hidrantes, par->semaforos, par->radiobases, x, y, w, h);
     insere_fila (par->resultado, "\n");
     return;
@@ -1225,7 +1237,7 @@ void caso_Q_pergunta (Parametros* par)
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     reporta_dentro_circulo (par->resultado, par->quadras, par->hidrantes, par->semaforos, par->radiobases, x, y, r);
     insere_fila (par->resultado, "\n");
     return;
@@ -1243,7 +1255,7 @@ void caso_dq (Parametros* par)
     sscanf (*(par->comando_vetor + 4), "%ld", h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     delete_quadra_dentro_retangulo (par->resultado, par->quadras, x, y, w, h);
     insere_fila (par->resultado, "\n");
     return;
@@ -1263,7 +1275,7 @@ void caso_dle (Parametros* par)
     sscanf (*(par->comando_vetor + 5), "%ld", h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     delete_equipamento_dentro_retangulo (par->resultado, tipo, par->hidrantes, par->semaforos, par->radiobases, x, y, w, h);
     insere_fila (par->resultado, "\n");
     return;
@@ -1280,7 +1292,7 @@ void caso_Dq (Parametros* par)
     sscanf (*(par->comando_vetor + 3), "%ld", y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     delete_quadra_dentro_circulo (par->resultado, par->quadras, x, y, r);
     insere_fila (par->resultado, "\n");
     return;
@@ -1299,7 +1311,7 @@ void caso_Dle (Parametros* par)
     sscanf (*(par->comando_vetor + 4), "%ld", y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
-    insere_fila (par->anotaçoes, (Valor*) anot);
+    insere_fila (par->anotacoes, (Valor*) anot);
     delete_equipamento_dentro_circulo (par->resultado, tipo, par->hidrantes, par->semaforos, par->radiobases, x, y, r);
     insere_fila (par->resultado, "\n");
     return;
@@ -1496,9 +1508,9 @@ void caso_crb_pergunta (Parametros* par)
     while (primeiro != NULL);
     Anotaçao* anot;
     anot = cria_anotacao (10, 0, get_x_radiobase (rb1), get_y_radiobase (rb1), "");
-    insere_fila (par->anotaçoes, anot);
+    insere_fila (par->anotacoes, anot);
     anot = cria_anotacao (10, 0, get_x_radiobase (rb2), get_y_radiobase (rb2), "");
-    insere_fila (par->anotaçoes, anot);
+    insere_fila (par->anotacoes, anot);
     return;
 }
 
