@@ -9,7 +9,7 @@
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
-#include "../Hash/hashtable.h"
+#include "../Estruturas/Hash/hashtable.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {
@@ -49,15 +49,15 @@ typedef struct params {
     //Arvore hidrantes;
     //Arvore semaforos;
     //Arvore radiobases;
-    Hashtable hash_quadras;
-    Hashtable hash_hidrantes;
-    Hashtable hash_semaforos;
-    Hashtable hash_radiobases;
-    Hashtable hash_tipos;
-    Hashtable hash_comercios;
-    Hashtable hash_pessoas;
-    Hashtable hash_end_comercios;
-    Hashtable hash_end_pessoas;
+    Hash_table hash_quadras;
+    Hash_table hash_hidrantes;
+    Hash_table hash_semaforos;
+    Hash_table hash_radiobases;
+    Hash_table hash_tipos;
+    Hash_table hash_comercios;
+    Hash_table hash_pessoas;
+    Hash_table hash_end_comercios;
+    Hash_table hash_end_pessoas;
 } Parametros;
 
 #endif
