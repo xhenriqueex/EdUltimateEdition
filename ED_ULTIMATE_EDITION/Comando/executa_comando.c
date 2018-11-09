@@ -72,102 +72,118 @@ void executa_comando (void* p)
 {
     Parametros* par;
     par = (Parametros*) p;
+    char* comando;
+    comando = (char*) calloc (10, sizeof (char));
+    sscanf (par->comando, "%s ", comando);
 
     //COMANDOS DO ARQUIVO .GEO
 
     //ALTERA O NÚMERO MÁXIMO DE FIGURAS
-    if (!strcmp (*(par->comando_vetor), "nx"))
+    if (!strcmp (comando, "nx"))
     {
+        par->comando += 3;
         caso_nx (par);
         return;
     }
     //CRIAR UM CÍRCULO
-    if (!strcmp (*(par->comando_vetor), "c"))
+    if (!strcmp (comando, "c"))
     {
+        par->comando += 2;
         caso_c (par);
         return;
     }
     //CRIAR UM RETÂNGULO
-    if (!strcmp (*(par->comando_vetor), "r"))
+    if (!strcmp (comando, "r"))
     {
+        par->comando += 2;
         caso_r (par);
         return;
     }
     //CRIA UMA QUADRA
-    if (!strcmp (*(par->comando_vetor), "q"))
+    if (!strcmp (comando, "q"))
     {
+        par->comando += 2;
         caso_q (par);
         return;
     }
     //CRIA UM HIDRANTE
-    if (!strcmp (*(par->comando_vetor), "h"))
+    if (!strcmp (comando, "h"))
     {
+        par->comando += 2;
         caso_h (par);
         return;
     }
     //CRIA UM SEMÁFORO
-    if (!strcmp (*(par->comando_vetor), "s"))
+    if (!strcmp (comando, "s"))
     {
+        par->comando += 2;
         caso_s (par);
         return;
     }
     //CRIA UMA RADIOBASE
-    if (!strcmp (*(par->comando_vetor), "t"))
+    if (!strcmp (comando, "t"))
     {
+        par->comando += 2;
         caso_t_geo (par);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA QUADRA
-    if (!strcmp (*(par->comando_vetor), "cq"))
+    if (!strcmp (comando, "cq"))
     {
+        par->comando += 3;
         caso_cq (par);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO HIDRANTE
-    if (!strcmp (*(par->comando_vetor), "ch"))
+    if (!strcmp (comando, "ch"))
     {
+        par->comando += 3;
         caso_ch (par);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA RADIO-BASE
-    if (!strcmp (*(par->comando_vetor), "ct"))
+    if (!strcmp (comando, "ct"))
     {
+        par->comando += 3;
         caso_ct (par);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO SEMAFORO
-    if (!strcmp (*(par->comando_vetor), "cs"))
+    if (!strcmp (comando, "cs"))
     {
+        par->comando += 3;
         caso_cs (par);
         return;
     }
     //VERIFICAR SE DUAS FIGURAS SE SOBREPOEM
-    if (!strcmp (*(par->comando_vetor), "o"))
+    if (!strcmp (comando, "o"))
     {
         caso_o (par);
         return;
     }
     //VERIFICAR SE UM PONTO É INTERNO A FIGURA
-    if (!strcmp (*(par->comando_vetor), "i"))
+    if (!strcmp (comando, "i"))
     {
         caso_i (par);
         return;
     }
     //CALCULAR A DISTÂNCIA ENTRE OS CENTROS DE MASSA DE DUAS FIGURAS
-    if (!strcmp (*(par->comando_vetor), "d"))
+    if (!strcmp (comando, "d"))
     {
         caso_d (par);
         return;
     }
     //CRIA O ARQUIVO SVG COM O SUFIXO
-    if (!strcmp (*(par->comando_vetor), "a"))
+    if (!strcmp (comando, "a"))
     {
+        par->comando += 2;
         caso_a (par);
         return;
     }
     //FINALIZA O ARQUIVO
-    if (!strcmp (*(par->comando_vetor), "#"))
+    if (!strcmp (comando, "#"))
     {
+        par->comando += 2;
         caso_hashtag (par);
         return;
     }
@@ -175,28 +191,32 @@ void executa_comando (void* p)
     //COMANDOS DO ARQUIVO .EC
     
     //DEFINE O TIPO DO ESTABELECIMENTO COMERCIAL
-    if (!strcmp (*(par->comando_vetor), "t"))
+    if (!strcmp (comando, "t"))
     {
+        par->comando += 2;
         caso_t_ec (par);
         return;
     }
     //INSERE UM NOVO ESTABELECIMENTO COMERCIAL DE UM DETERMINADO TIPO
-    if (!strcmp (*(par->comando_vetor), "e"))
+    if (!strcmp (comando, "e"))
     {
+        par->comando += 2;
         caso_e (par);
         return;
     }
 
     //COMANDOS DO ARQUIVO .PM
     //INSERE UMA PESSOA IDENTIFICADA POR UM CPF
-    if (!strcmp (*(par->comando_vetor), "p"))
+    if (!strcmp (comando, "p"))
     {
+        par->comando += 2;
         caso_p (par);
         return;
     }
     //INFORMA O ENDEREÇO ONDE UMA PESSOA MORA
-    if (!strcmp (*(par->comando_vetor), "m"))
+    if (!strcmp (comando, "m"))
     {
+        par->comando += 2;
         caso_m (par);
         return;
     }
@@ -204,146 +224,162 @@ void executa_comando (void* p)
     //COMANDOS DO ARQUIVOS .QRY 
 
     //REPORTA O QUE ESTIVER DENTRO DO RETÂNGULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "q?"))
+    if (!strcmp (comando, "q?"))
     {
         caso_q_pergunta (par);
         return;
     }
     //REPORTA O QUE ESTIVER DENTRO DO CÍRCULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "Q?"))
+    if (!strcmp (comando, "Q?"))
     {
         caso_Q_pergunta (par);
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO RETÂNGULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "dq"))
+    if (!strcmp (comando, "dq"))
     {
         caso_dq (par);
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO RETÂNGULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "dle"))
+    if (!strcmp (comando, "dle"))
     {
         caso_dle (par);
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO CÍRCULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "Dq"))
+    if (!strcmp (comando, "Dq"))
     {
         caso_Dq (par);
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO CÍRCULO ESPECIFICADO
-    if (!strcmp (*(par->comando_vetor), "Dle"))
+    if (!strcmp (comando, "Dle"))
     {
         caso_Dle (par);
         return;
     }
     //MUDA AS CORES DA QUADRA IDENTIFICADA PELO CEP
-    if (!strcmp (*(par->comando_vetor), "cc"))
+    if (!strcmp (comando, "cc"))
     {
+        par->comando += 3;
         caso_cc (par);
         return;
     }
     //IMPRIME NO .TXT AS COORDENADAS DE UMA DETERMINADA QUADRA OU EQUIPAMENTO
-    if (!strcmp (*(par->comando_vetor), "crd?"))
+    if (!strcmp (comando, "crd?"))
     {
         caso_crd_pergunta (par);
         return;
     }
     //DETERMINA AS RADIOBASES MAIS PRÓXIMAS
-    if (!strcmp (*(par->comando_vetor), "crb?"))
+    if (!strcmp (comando, "crb?"))
     {
         caso_crb_pergunta (par);
         return;
     }
     //MORADORES DA QUADRA DEFINIDA PELO CEP
-    if (!strcmp (*(par->comando_vetor), "m?"))
+    if (!strcmp (comando, "m?"))
     {
+        par->comando += 3;
         caso_m_pergunta (par);
         return;
     }
     //MORADORES DAS QUADRAS DENTRO DO RETÂNGULO
-    if (!strcmp (*(par->comando_vetor), "mr?"))
+    if (!strcmp (comando, "mr?"))
     {
+        par->comando += 4;
         caso_mr_pergunta (par);
         return;
     }
     //IMPRIME OS DADOS DO MORADOR IDENTIFICADO PELO CPF
-    if (!strcmp (*(par->comando_vetor), "dm?"))
+    if (!strcmp (comando, "dm?"))
     {
+        par->comando += 4;
         caso_dm_pergunta (par);
         return;
     }
     //IMPRIME OS DADOS DO ESTABELECIMENTO IDENTIFICADO PELO CNPJ
-    if (!strcmp (*(par->comando_vetor), "de?"))
+    if (!strcmp (comando, "de?"))
     {
+        par->comando += 4;
         caso_de_pergunta (par);
         return;
     }
     //APAGA TODOS OS DADOS DE UMA PESSOA
-    if (!strcmp (*(par->comando_vetor), "rip"))
+    if (!strcmp (comando, "rip"))
     {
+        par->comando += 4;
         caso_rip (par);
         return;
     }
     //LISTA OS ESTABELECIMENTOS DE UMA QUADRA
-    if (!strcmp (*(par->comando_vetor), "ecq?"))
+    if (!strcmp (comando, "ecq?"))
     {
+        par->comando += 5;
         caso_ecq_pergunta (par);
         return;
     }
     //LISTA OS ESTABELECIMeNTOS DE UM DETERMINADO TIPO EM UM RETÂNGULO
-    if (!strcmp (*(par->comando_vetor), "ecr?"))
+    if (!strcmp (comando, "ecr?"))
     {
+        par->comando += 5;
         caso_ecr_pergunta (par);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS DE UMA QUADRA ESPECÍFICA
-    if (!strcmp (*(par->comando_vetor), "tecq?"))
+    if (!strcmp (comando, "tecq?"))
     {
+        par->comando += 6;
         caso_tecq_pergunta (par);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS COMERCIAIS EM UM RETÂNGULO
-    if (!strcmp (*(par->comando_vetor), "tecr?"))
+    if (!strcmp (comando, "tecr?"))
     {
+        par->comando += 6;
         caso_tecr_pergunta (par);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UM ENDEREÇO ESPECÍFICO
-    if (!strcmp (*(par->comando_vetor), "hmpe?"))
+    if (!strcmp (comando, "hmpe?"))
     {
+        par->comando += 6;
         caso_hmpe_pergunta (par);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UMA RADIOBASE ESPECÍFICA
-    if (!strcmp (*(par->comando_vetor), "hmp?"))
+    if (!strcmp (comando, "hmp?"))
     {
+        par->comando += 5;
         caso_hmp_pergunta (par);
         return;
     }
     //APAGA TODOS OS DADOS DE UM ESTABELECIMENTO
-    if (!strcmp (*(par->comando_vetor), "fec"))
+    if (!strcmp (comando, "fec"))
     {
+        par->comando += 4;
         caso_fec (par);
         return;
     }
     //MUDA O ENDEREÇO DA PESSOA E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
-    if (!strcmp (*(par->comando_vetor), "mud"))
+    if (!strcmp (comando, "mud"))
     {
+        par->comando += 4;
         caso_mud (par);
         return;
     }
     //MUDA O ESTABELECIMENTO DE ENDEREÇO E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
-    if (!strcmp (*(par->comando_vetor), "mudec"))
+    if (!strcmp (comando, "mudec"))
     {
+        par->comando += 6;
         caso_mudec (par);
         return;
     }
     //DESAPROPRIA UMA REGIÃO (DELETA TUDO DENTRO DELA, MAS A PESSOA NÃO MORRE, SÓ DEIXA DE MORAR LÁ)
-    if (!strcmp (*(par->comando_vetor), "dpr"))
+    if (!strcmp (comando, "dpr"))
     {
+        par->comando += 4;
         caso_dpr (par);
         return;
     }
@@ -353,17 +389,15 @@ void executa_comando (void* p)
 
 void caso_nx (Parametros* par)
 {
-    printf("aaaa");
-    sscanf (*(par->comando_vetor + 1), "%ld", par->max_figuras);
-    printf("%s\n", *(par->comando_vetor + 1));
+    sscanf (par->comando, "%ld ", &par->max_figuras);
     return;
 }
 void caso_c (Parametros* par)
 {
     long int id;
     double r, x, y;
-    char* radiobase1;
-    char* radiobase2;
+    char* cor1;
+    char* cor2;
     void* fig;
     Item it;
     if (par->contador_figuras >= par->max_figuras)
@@ -371,13 +405,10 @@ void caso_c (Parametros* par)
         printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
         return;
     }
-    sscanf (*(par->comando_vetor + 1), "%ld", id);
-    sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
-    sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
-    sscanf (*(par->comando_vetor + 4), "%ld", r);
-    sscanf (*(par->comando_vetor + 5), "%ld", x);
-    sscanf (*(par->comando_vetor + 6), "%ld", y);
-    fig = cria_circulo (id, radiobase1, radiobase2, r, x, y);
+    cor1 = (char*) calloc (55, sizeof (char));
+    cor2 = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%ld %s %s %ld %ld %ld", &id, cor1, cor2, &r, &x, &y);
+    fig = cria_circulo (id, cor1, cor2, r, x, y);
     it = cria_item (fig, C);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
@@ -387,8 +418,8 @@ void caso_r (Parametros* par)
 {
     long int id;
     double w, h, x, y;
-    char* radiobase1;
-    char* radiobase2;
+    char* cor1;
+    char* cor2;
     void* fig;
     Item it;
     if (par->contador_figuras >= par->max_figuras)
@@ -396,15 +427,10 @@ void caso_r (Parametros* par)
         printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
         return;
     }
-    
-    sscanf (*(par->comando_vetor + 1), "%ld", id);
-    sscanf (*(par->comando_vetor + 2), "%s", radiobase1);
-    sscanf (*(par->comando_vetor + 3), "%s", radiobase2);
-    sscanf (*(par->comando_vetor + 4), "%ld", w);
-    sscanf (*(par->comando_vetor + 5), "%ld", h);
-    sscanf (*(par->comando_vetor + 6), "%ld", x);
-    sscanf (*(par->comando_vetor + 7), "%ld", y);
-    fig = cria_retangulo (id, radiobase1, radiobase2, w, h, x, y);
+    cor1 = (char*) calloc (55, sizeof (char));
+    cor2 = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%ld %s %s %ld %ld %ld %ld", &id, cor1, cor2, &w, &h, &x, &y);
+    fig = cria_retangulo (id, cor1, cor2, w, h, x, y);
     it = cria_item (fig, R);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
@@ -416,11 +442,8 @@ void caso_q (Parametros* par)
     double w, h, x, y;
     char* cep;
     Quadra* quadra;
-    sscanf (*(par->comando_vetor + 1), "%s", cep);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
-    sscanf (*(par->comando_vetor + 4), "%ld", w);
-    sscanf (*(par->comando_vetor + 5), "%ld", h);
+    cep = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s %ld %ld %ld %ld", cep, &x, &y, &w, &h);
     quadra = cria_quadra (cep, x, y, w, h, par->cor_borda_quadra, par->cor_preenche_quadra);
     //REMOVER APÓS TESTES
     insere_lista (par->quadras, quadra);
@@ -434,9 +457,8 @@ void caso_h (Parametros* par)
     char* id;
     double x, y;
     Hidrante* hidrante;
-    sscanf (*(par->comando_vetor + 1), "%s", id);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    id = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
     hidrante = cria_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
     //REMOVER APÓS TESTES
     insere_lista (par->hidrantes, hidrante);
@@ -450,9 +472,8 @@ void caso_s (Parametros* par)
     char* id;
     double x, y;
     Semaforo* semaforo;
-    sscanf (*(par->comando_vetor + 1), "%s", id);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    id = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
     semaforo = cria_semaforo (id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
     //REMOVER APÓS TESTES
     insere_lista (par->semaforos, semaforo);
@@ -467,9 +488,8 @@ void caso_t_geo (Parametros* par)
     char* id;
     double x, y;
     Radiobase* radiobase;
-    sscanf (*(par->comando_vetor + 1), "%s", id);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    id = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
     radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
     //REMOVER APÓS TESTES
     insere_lista (par->radiobases, radiobase);
@@ -480,29 +500,25 @@ void caso_t_geo (Parametros* par)
 
 void caso_cq (Parametros* par)
 {
-    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_quadra);
-    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_quadra);
+    sscanf (par->comando, "%s %s", par->cor_borda_quadra, par->cor_preenche_quadra);
     return;
 }
 
 void caso_ch (Parametros* par)
 {
-    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_hidrante);
-    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_hidrante);
+    sscanf (par->comando, "%s %s", par->cor_borda_hidrante, par->cor_preenche_hidrante);
     return;
 }
 
 void caso_ct (Parametros* par)
 {
-    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_radiobase);
-    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_radiobase);
+    sscanf (par->comando, "%s %s", par->cor_borda_radiobase, par->cor_preenche_radiobase);
     return;
 }
 
 void caso_cs (Parametros* par)
 {
-    sscanf (*(par->comando_vetor + 1), "%s", par->cor_borda_semaforo);
-    sscanf (*(par->comando_vetor + 2), "%s", par->cor_preenche_semaforo);
+    sscanf (par->comando, "%s %s", par->cor_borda_semaforo, par->cor_preenche_semaforo);
     return;
 }
 
@@ -517,15 +533,11 @@ void caso_o (Parametros* par)
     Item fig1 = NULL;
     Item fig2 = NULL;
     Anotacao anotacao;
-    sscanf (*(par->comando_vetor + 1), "%ld", id1);
-    sscanf (*(par->comando_vetor + 2), "%ld", id2);
-    string = (char*) calloc (strlen (*par->comando_vetor) + 1 + strlen (*(par->comando_vetor + 1) + 1) + strlen (*(par->comando_vetor + 2)) + 1, sizeof (char));
-    strcpy (string, *(par->comando_vetor));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 1));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 2));
-    insere_fila(par->resultado, string);
+    string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
+    sscanf (par->comando, "%s", string);
+    insere_fila (par->resultado, string);
+    par->comando += 2;
+    sscanf (par->comando, "%ld %ld", &id1, &id2);
     for (i=0; i<par->contador_figuras; i++)
     {
         if (fig1 && fig2 != NULL)
@@ -759,19 +771,12 @@ void caso_i (Parametros* par)
     float x, y;
     int i, in1, in2;
     char* string;
-    string = (char*) calloc (strlen (*(par->comando_vetor)) + 1 + strlen (*(par->comando_vetor + 1)) + 1 + strlen (*(par->comando_vetor + 2)) + 1 + strlen (*(par->comando_vetor + 3)) + 1, sizeof (char));
-    strcpy (string, *(par->comando_vetor));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 1));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 2));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 3));
+    string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
+    sscanf (par->comando, "%s", string);
     insere_fila (par->resultado, string);
+    par->comando += 2;
     Item fig = NULL;
-    sscanf (*(par->comando_vetor + 1), "%ld", id);
-    sscanf (*(par->comando_vetor + 2), "%f", x);
-    sscanf (*(par->comando_vetor + 3), "%f", y);
+    sscanf (par->comando, "%ld %f %f", &id, &x, &y);
     for (i=0; i<par->contador_figuras; i++)
     {
         if (fig != NULL)
@@ -832,13 +837,11 @@ void caso_d (Parametros* par)
     double* centro1;
     double* centro2;
     double dx, dy, result;
-    string = (char*) calloc (strlen (*(par->comando_vetor)) + 1 + strlen (*(par->comando_vetor + 1)) + 1 + strlen (*(par->comando_vetor + 2)) + 1, sizeof (char));
-    strcpy (string, *(par->comando_vetor));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 1));
-    strcat (string, " ");
-    strcat (string, *(par->comando_vetor + 2));
+    string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
+    sscanf (par->comando, "%s", string);
     insere_fila (par->resultado, string);
+    par->comando += 2;
+    sscanf (par->comando, "%ld %ld", &id1, &id2);
     Item fig1 = NULL;
     Item fig2 = NULL;
     for (i=0; i<=par->contador_figuras; i++)
@@ -939,7 +942,8 @@ void caso_a (Parametros* par)
     Fila aux;
     FILE* saida_SVG;
     Item fig;
-    sscanf (*(par->comando_vetor + 1),"%ld", id);
+    sufixo = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando,"%ld %s", &id, sufixo);
     fig = NULL;
     for (i=0; i<=par->contador_figuras; i++)
     {
@@ -969,8 +973,6 @@ void caso_a (Parametros* par)
         printf ("\nERRO: FIGURA NAO ENCONTRADA!");
         return;
     }
-    sufixo = (char*) calloc (255, sizeof(char));
-    strcpy (sufixo, *(par->comando_vetor + 2));
     par->caminho_SVG = (char*) calloc (255, sizeof(char));
     strcpy(par->caminho_SVG, par->diretorio_saida);
     strcat(par->caminho_SVG, "/");
@@ -1265,11 +1267,10 @@ void caso_q_pergunta (Parametros* par)
     double w, h, x, y;
     char* aux;
     Anotacao anot;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%ld", x);
-    sscanf (*(par->comando_vetor + 2), "%ld", y);
-    sscanf (*(par->comando_vetor + 3), "%ld", w);
-    sscanf (*(par->comando_vetor + 4), "%ld", h);
+    aux = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 3;
+    sscanf (par->comando, "%ld %ld %ld %ld", &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1281,12 +1282,12 @@ void caso_q_pergunta (Parametros* par)
 void caso_Q_pergunta (Parametros* par)
 {
     double r, x, y;
-    Anotacao* anot;
     char* aux;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%ld", r);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    Anotacao* anot;
+    aux = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 3;
+    sscanf (par->comando, "%ld %ld %ld", &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1300,11 +1301,10 @@ void caso_dq (Parametros* par)
     double x, y, w, h;
     char* aux;
     Anotacao anot;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%ld", x);
-    sscanf (*(par->comando_vetor + 2), "%ld", y);
-    sscanf (*(par->comando_vetor + 3), "%ld", w);
-    sscanf (*(par->comando_vetor + 4), "%ld", h);
+    aux = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 3;
+    sscanf (par->comando, "%ld %ld %ld %ld", &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1319,12 +1319,11 @@ void caso_dle (Parametros* par)
     Anotacao anot;
     char* aux;
     char* tipo;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%s", tipo);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
-    sscanf (*(par->comando_vetor + 4), "%ld", w);
-    sscanf (*(par->comando_vetor + 5), "%ld", h);
+    aux = (char*) calloc (155, sizeof (char));
+    tipo = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 4;
+    sscanf (par->comando, "%s %ld %ld %ld %ld", tipo, &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1338,10 +1337,10 @@ void caso_Dq (Parametros* par)
     double r, x, y;
     char* aux;
     Anotacao* anot;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%ld", r);
-    sscanf (*(par->comando_vetor + 2), "%ld", x);
-    sscanf (*(par->comando_vetor + 3), "%ld", y);
+    aux = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 3;
+    sscanf (par->comando, "%ld %ld %ld", &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1356,11 +1355,11 @@ void caso_Dle (Parametros* par)
     char* aux;
     char* tipo;
     Anotacao* anot;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%s", tipo);
-    sscanf (*(par->comando_vetor + 2), "%ld", r);
-    sscanf (*(par->comando_vetor + 3), "%ld", x);
-    sscanf (*(par->comando_vetor + 4), "%ld", y);
+    aux = (char*) calloc (155, sizeof (char));
+    tipo = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s", aux);
+    par->comando += 4;
+    sscanf (par->comando, "%s %ld %ld %ld", tipo, &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1374,9 +1373,11 @@ void caso_cc (Parametros* par)
     char* aux;
     char* cor_borda;
     char* cor_preenche;
-    sscanf (*par->comando_vetor, "%s", aux);
-    sscanf (*(par->comando_vetor + 1), "%s", cor_borda);
-    sscanf (*(par->comando_vetor + 2), "%s", cor_preenche);
+    aux = (char*) calloc (155, sizeof (char));
+    cor_borda = (char*) calloc (55, sizeof (char));
+    cor_preenche = (char*) calloc (55, sizeof (char));
+    par->comando += 3;
+    sscanf (par->comando, "%s %s %s", aux, cor_borda, cor_preenche);
     void* primeiro;
     Quadra *compare;
     primeiro = get_primeiro_lista (par->quadras);
@@ -1433,9 +1434,10 @@ void caso_cc (Parametros* par)
 void caso_crd_pergunta (Parametros* par)
 {
     char* aux;
-    sscanf (*par->comando_vetor, "%s", aux);
-    insere_fila(par->resultado, "crd? ");
-    insere_fila(par->resultado, aux);
+    insere_fila (par->resultado, par->comando);
+    par->comando += 4;
+    aux = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s", aux);
     void* primeiro;
     Quadra *compare;
     primeiro = get_primeiro_lista (par->quadras);
@@ -1509,8 +1511,8 @@ void caso_crb_pergunta (Parametros* par)
 {
     int i;
     double dist;
-    char* radiobase1;
-    char* radiobase2;
+    char* cor1;
+    char* cor2;
     char* cor_preenche;
     char* aux;
     char* saida;
@@ -1520,7 +1522,10 @@ void caso_crb_pergunta (Parametros* par)
     void* rb1 = NULL;
     void* rb2 = NULL;
     Ponto** vetor_lista;
-    sscanf (*(par->comando_vetor), "%s", aux);
+    aux = (char*) calloc (155, sizeof (char));
+    cor1 = (char*) calloc (55, sizeof (char));
+    cor2 = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s", aux);
     insere_fila (par->resultado, aux);
     vetor_lista = (Ponto**) calloc (largura_lista (par->radiobases), sizeof (Ponto*));
     primeiro = get_primeiro_lista (par->radiobases);
@@ -1536,18 +1541,18 @@ void caso_crb_pergunta (Parametros* par)
     saida_crb = (char*) calloc (155, sizeof(char));
     //CHAMA A FUNÇÃO CLOSEST_PAIR
     dist = closest_pair (vetor_lista, largura_lista (par->radiobases), saida_crb);
-    sscanf (saida_crb, "%s %s", radiobase1, radiobase2);
+    sscanf (saida_crb, "%s %s", cor1, cor2);
     saida = (char*) calloc (155, sizeof(char));
-    sprintf (saida, "\nRbs - ID = %s \nRbs - ID = %s \nDISTÂNCIA = %f\n", radiobase1, radiobase2, dist); 
+    sprintf (saida, "\nRbs - ID = %s \nRbs - ID = %s \nDISTÂNCIA = %f\n", cor1, cor2, dist); 
     insere_fila (par->resultado, saida);
     primeiro = get_primeiro_lista (par->radiobases);
     do
     {
-        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), radiobase1))
+        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), cor1))
         {
             rb1 = get_valor_lista (par->radiobases, primeiro);
         }
-        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), radiobase2))
+        if (!strcmp (get_id_radiobase (get_valor_lista (par->radiobases, primeiro)), cor2))
         {
             rb2 = get_valor_lista(par->radiobases, primeiro);
         }
@@ -1644,8 +1649,9 @@ void caso_t_ec (Parametros* par)
 {
     char* cod;
     char* info;
-    sscanf (*(par->comando_vetor + 1), "%s", cod);
-    sscanf (*(par->comando_vetor + 2), "%s", info);
+    cod = (char*) calloc (155, sizeof (char));
+    info = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s %s", cod, info);
     void* tipo = cria_tipo_comercio (cod, info);
     insere_hashtable (par->hash_tipos, tipo);
     return;
@@ -1661,12 +1667,13 @@ void caso_e (Parametros* par)
     char* nome;
     void* comercio;
     void* end;
-    sscanf (*(par->comando_vetor + 1), "%s", cnpj);
-    sscanf (*(par->comando_vetor + 2), "%s", cod);
-    sscanf (*(par->comando_vetor + 3), "%s", cep);
-    sscanf (*(par->comando_vetor + 4), "%s", face);
-    sscanf (*(par->comando_vetor + 5), "%s", num);
-    sscanf (*(par->comando_vetor + 6), "%s", nome);
+    cnpj = (char*) calloc (155, sizeof (char));
+    cod = (char*) calloc (155, sizeof (char));
+    cep = (char*) calloc (155, sizeof (char));
+    face = (char*) calloc (155, sizeof (char));
+    num = (char*) calloc (155, sizeof (char));
+    nome = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s %s %s %s %s %s", cnpj, cod, cep, face, num, nome);
     comercio = cria_comercio (cnpj, cod, cep, face, num, nome);
     insere_hashtable (par->hash_comercios, comercio);
     end = get_endereco_comercio (comercio);
@@ -1684,11 +1691,12 @@ void caso_p (Parametros* par)
     char* sexo;
     char* nascimento;
     void* pessoa;
-    sscanf (*(par->comando_vetor + 1), "%s", cpf);
-    sscanf (*(par->comando_vetor + 2), "%s", nome);
-    sscanf (*(par->comando_vetor + 3), "%s", sobrenome);
-    sscanf (*(par->comando_vetor + 4), "%s", sexo);
-    sscanf (*(par->comando_vetor + 5), "%s", nascimento);
+    cpf = (char*) calloc (155, sizeof (char));
+    nome = (char*) calloc (155, sizeof (char));
+    sobrenome = (char*) calloc (155, sizeof (char));
+    sexo = (char*) calloc (155, sizeof (char));
+    nascimento = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s %s %s %s %s", cpf, nome, sobrenome, sexo, nascimento);
     pessoa = cria_pessoa (cpf, nome, sobrenome, sexo, nascimento);
     insere_hashtable (par->hash_pessoas, pessoa);
     return;
@@ -1703,11 +1711,12 @@ void caso_m (Parametros* par)
     char* comp;
     void* end;
     void* pessoa;
-    sscanf (*(par->comando_vetor + 1), "%s", cpf);
-    sscanf (*(par->comando_vetor + 2), "%s", cep);
-    sscanf (*(par->comando_vetor + 3), "%s", face);
-    sscanf (*(par->comando_vetor + 4), "%s", num);
-    sscanf (*(par->comando_vetor + 5), "%s", comp);
+    cpf = (char*) calloc (155, sizeof (char));
+    cep = (char*) calloc (155, sizeof (char));
+    face = (char*) calloc (155, sizeof (char));
+    num = (char*) calloc (155, sizeof (char));
+    comp = (char*) calloc (155, sizeof (char));
+    sscanf (par->comando, "%s %s %s %s %s", cpf, cep, face, num, comp);
     pessoa = get_hashtable (par->hash_pessoas, cpf);
     set_endereco_pessoa (pessoa, cep, face, num, comp);
     insere_hashtable (par->hash_end_pessoas, end);
