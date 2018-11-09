@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     int i;
 
     //DECLARANDO CHAR POINTERS
-    char* comando;
+    //char* comando;
 
     //ALOCANDO STRUCT
     p = (Parametros*) calloc (1, sizeof (Parametros));
@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
     //p->caminho_VIA = NULL;
 
     //INICIALIZANDO VETOR DE COMANDOS
-    p->comando_vetor = NULL;
+    p->comando = NULL;
+    //p->comando_vetor = NULL;
 
     //INICIALIZANDO NÚMERO MÁXIMO DE FIGURAS
     p->max_figuras = 1000;
@@ -239,10 +240,10 @@ int main(int argc, char* argv[])
     //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
     while (!fila_vazia (comandos))
     {
-        comando = (char*) remove_fila (comandos);
-        p->comando_vetor = trata_comando (comando);
+        p->comando = (char*) remove_fila (comandos);
+        //p->comando_vetor = trata_comando (comando);
         executa_comando (p);
-        free (comando);
+        p->comando = NULL;
     }
     //FECHANDO O ARQUIVO
     fclose (arquivo);
@@ -262,11 +263,10 @@ int main(int argc, char* argv[])
     //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
     while (!fila_vazia (comandos))
     {
-        comando = (char*) remove_fila (comandos);
-        p->comando_vetor = trata_comando (comando);
-        printf("aaaaaa\n");
+        p->comando = (char*) remove_fila (comandos);
+        //p->comando_vetor = trata_comando (comando);
         executa_comando (p);
-        free (comando);
+        p->comando = NULL;
     }
 
     //FECHANDO O ARQUIVO .QRY
@@ -290,10 +290,10 @@ int main(int argc, char* argv[])
     //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
     while (!fila_vazia (comandos))
     {
-        comando = (char*) remove_fila (comandos);
-        p->comando_vetor = trata_comando (comando);
+        p->comando = (char*) remove_fila (comandos);
+        //p->comando_vetor = trata_comando (comando);
         executa_comando (p);
-        free (comando);
+        p->comando = NULL;
     }
 
     //FECHANDO O ARQUIVO .EC
@@ -317,10 +317,10 @@ int main(int argc, char* argv[])
     //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
     while (!fila_vazia (comandos))
     {
-        comando = (char*) remove_fila (comandos);
-        p->comando_vetor = trata_comando (comando);
+        p->comando = (char*) remove_fila (comandos);
+        //p->comando_vetor = trata_comando (comando);
         executa_comando (p);
-        free (comando);
+        p->comando = NULL;
     }
 
     //FECHANDO O ARQUIVO .PM
