@@ -9,8 +9,12 @@
         "anotaçoes",
         "brute",
         "caso",
+        "codigo",
+        "comercio",
         "diretorio",
+        "endereco",
         "force",
+        "get",
         "hmpe",
         "inic",
         "insere",
@@ -22,6 +26,7 @@
         "saida",
         "tecq",
         "tecr",
+        "tipo",
         "variáves"
     ],
     "files.associations": {

@@ -114,7 +114,7 @@ int compare_comercio (void* com1, void* com2, int dim)
     Comercio* comB;    
     comA = (Comercio*) com1;
     comB = (Comercio*) com2;
-    return strcmp(comA->cnpj, comB->cnpj);
+    return strcmp (comA->cnpj, comB->cnpj);
 }
 
 //RETORNA O CÓDIGO HASH DO COMÉRCIO
@@ -190,11 +190,6 @@ void* get_comercio_endereco (void* endereco)
         return NULL;
     } 
     return end->comercio;
-}
-//RETORNA A STRUCT DA PESSOA QUE MORA AQUI
-void* get_pessoa_comercio (void* endereco)
-{
-
 }
 
 //RETORNA O CÓDIGO HASH DO ENDEREÇO DO COMÉRCIO

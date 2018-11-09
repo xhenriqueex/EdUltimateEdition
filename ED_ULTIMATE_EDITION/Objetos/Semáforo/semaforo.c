@@ -96,3 +96,30 @@ void* troca_cor_semaforo (void* semaforo, char* cor_borda, char* cor_preenche)
     strcpy (aux->cor_preenche, cor_preenche);
     return (void*) aux;
 }
+
+//FUNÇÃO DE COMPARAÇÃO DE ID DE SEMÁFORO
+int compare_semaforo (void* sem1, void* sem2, int dim)
+{
+    Semaforo* semA;
+    Semaforo* semB;    
+    semA = (Semaforo*) sem1;
+    semB = (Semaforo*) sem2;
+    return strcmp (semA->id, semB->id);
+}
+
+//RETORNA O CÓDIGO HASH DO SEMÁFORO
+int hashcode_semaforo (void* sem, int modulo)
+{
+    Semaforo* result;
+    result = (Semaforo*) sem;
+    int x = strlen (result->id);
+    int hash = 0;
+    char* aux = result->id;
+    while (*aux != 0)
+    {
+        hash += x*(*aux);
+        aux++;
+        x--;
+    }
+    return modulo < 0 ? hash : hash % modulo;
+}
