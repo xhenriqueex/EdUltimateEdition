@@ -2,6 +2,7 @@
 
 #ifndef QUADRA_H
 #define QUADRA_H
+#include "../../Formas/Retângulo/retangulo.h"
 
 //DEFINE O TIPO QUADRA
 typedef void* Quadra;
@@ -35,5 +36,8 @@ char* get_cor1_quadra (void* quadra);
 
 //PEGA A COR2 DA QUADRA
 char* get_cor2_quadra (void* quadra);
+
+//RETORNA UM RETÂNGULO COM AS INFORMAÇÕES DA QUADRA
+Retangulo get_retangulo_quadra (void* quadra);
 
 #endif

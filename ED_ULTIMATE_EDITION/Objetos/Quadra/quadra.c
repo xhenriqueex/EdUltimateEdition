@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../Formas/Retângulo/retangulo.h"
-#include "quadra.h"
 
 //DEFINE A STRUCT QUADRA
 typedef struct quadra{
@@ -107,4 +106,11 @@ char* get_cor2_quadra (void* quadra)
     Quadra* aux;
     aux = (Quadra*) quadra;
     return aux->cor_preenche;
+}
+
+Retangulo get_retangulo_quadra (void* quadra)
+{
+    Quadra* quad;
+    quad = (Quadra*) quadra;
+    return cria_retangulo (0, quad->cor_borda, quad->cor_preenche, quad->w, quad->h, quad->x, quad->y);
 }

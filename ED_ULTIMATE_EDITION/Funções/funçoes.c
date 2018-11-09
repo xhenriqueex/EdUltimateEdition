@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../Parâmetros/parametros.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Formas/Círculo/circulo.h"
@@ -9,45 +10,10 @@
 #include "../Objetos/Hidrante/hidrante.h"
 #include "../Objetos/Semáforo/semaforo.h"
 #include "../Objetos/Rádiobase/radiobase.h"
-#include "funçoes.h"
 
 #define C "circulo"
 #define R "retangulo"
 #define A "anotaçao"
-
-//DECLARAÇÃO DA STRUCT DE VARIÁVEIS
-typedef struct params {
-    char* caminho_GEO;
-    char* caminho_TXT;
-    char* caminho_SVG;
-    char* caminho_QRY;
-    char* caminho_EC;
-    char* caminho_PM;
-    char* diretorio_entrada;
-    char* arquivo_entrada;
-    char* diretorio_saida;
-    char* arquivo_entrada_qry;
-    char* arquivo_entrada_ec;
-    char* arquivo_entrada_pm;
-    char* cor_borda_quadra;
-    char* cor_preenche_quadra;
-    char* cor_borda_hidrante;
-    char* cor_preenche_hidrante;
-    char* cor_borda_semaforo;
-    char* cor_preenche_semaforo;
-    char* cor_borda_radiobase;
-    char* cor_preenche_radiobase;
-    char** comando_vetor;
-    long int max_figuras;
-    int contador_figuras;
-    Item* figuras;
-    Fila* anotaçoes;
-    Fila* resultado;
-    Lista quadras;
-    Lista hidrantes;
-    Lista semaforos;
-    Lista radiobases;
-} Parametros;
 
 //TRATA OS CAMINHOS
 void altera_caminho (char** caminho)

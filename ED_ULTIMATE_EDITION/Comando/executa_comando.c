@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "../Parâmetros/parametros.h"
 #include "../Funções/funçoes.h"
 #include "../Formas/Retângulo/retangulo.h"
 #include "../Formas/Círculo/circulo.h"
@@ -9,13 +10,14 @@
 #include "../Objetos/Hidrante/hidrante.h"
 #include "../Objetos/Semáforo/semaforo.h"
 #include "../Objetos/Rádiobase/radiobase.h"
-#include "../Formas/Anotação/anotaçao.h"
-#include "../Objetos/Item/item.h"
+#include "../Objetos/Pessoa/pessoa.h"
+#include "../Objetos/Comércio/comercio.h"
+#include "../Formas/Anotação/anotacao.h"
+#include "../Estruturas/Item/item.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Merge/mergesort.h"
 #include "../Funções/parproximo.h"
-#include "executa_comando.h"
 
 #define C "circulo"
 #define R "retangulo"
@@ -1576,11 +1578,35 @@ void caso_dpr (Parametros* par)
 
 void caso_t_ec (Parametros* par)
 {
+    char* cod;
+    char* info;
+    sscanf (*(par->comando_vetor + 1), "%s", cod);
+    sscanf (*(par->comando_vetor + 2), "%s", info);
+    void* tipo = cria_tipo_comercio (cod, info);
+    insere_hashtable (par->hash_tipos, tipo);
     return;
 }
 
 void caso_e (Parametros* par)
 {
+    char* cnpj;
+    char* cod;
+    char* cep;
+    char* face;
+    char* num;
+    char* nome;
+    void* comercio;
+    void* end;
+    sscanf (*(par->comando_vetor + 1), "%s", cnpj);
+    sscanf (*(par->comando_vetor + 2), "%s", cod);
+    sscanf (*(par->comando_vetor + 3), "%s", cep);
+    sscanf (*(par->comando_vetor + 4), "%s", face);
+    sscanf (*(par->comando_vetor + 5), "%s", num);
+    sscanf (*(par->comando_vetor + 6), "%s", nome);
+    comercio = cria_comercio (cnpj, cod, cep, face, num, nome);
+    insere_hashtable (par->hash_comercios, comercio);
+    end = get_endereco_comercio (comercio);
+    insere_hashtable (par->hash_end_comercios, end);
     return;
 }
 
@@ -1588,10 +1614,38 @@ void caso_e (Parametros* par)
 
 void caso_p (Parametros* par)
 {
+    char* cpf;
+    char* nome;
+    char* sobrenome;
+    char* sexo;
+    char* nascimento;
+    void* pessoa;
+    sscanf (*(par->comando_vetor + 1), "%s", cpf);
+    sscanf (*(par->comando_vetor + 2), "%s", nome);
+    sscanf (*(par->comando_vetor + 3), "%s", sobrenome);
+    sscanf (*(par->comando_vetor + 4), "%s", sexo);
+    sscanf (*(par->comando_vetor + 5), "%s", nascimento);
+    pessoa = cria_pessoa (cpf, nome, sobrenome, sexo, nascimento);
+    insere_hashtable (par->hash_pessoas, pessoa);
     return;
 }
 
 void caso_m (Parametros* par)
 {
+    char* cpf;
+    char* cep;
+    char* face;
+    char* num;
+    char* comp;
+    void* end;
+    void* pessoa;
+    sscanf (*(par->comando_vetor + 1), "%s", cpf);
+    sscanf (*(par->comando_vetor + 2), "%s", cep);
+    sscanf (*(par->comando_vetor + 3), "%s", face);
+    sscanf (*(par->comando_vetor + 4), "%s", num);
+    sscanf (*(par->comando_vetor + 5), "%s", comp);
+    pessoa = get_hashtable (par->hash_pessoas, cpf);
+    set_endereco_pessoa (pessoa, cep, face, num, comp);
+    insere_hashtable (par->hash_end_pessoas, end);
     return;
 }

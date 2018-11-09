@@ -3,7 +3,6 @@
 #include <string.h>
 #include <math.h>
 #include "../Lista/lista.h"
-#include "arvore.h"
 
 //CRIA A ÁRVORE
 void* cria_arvore (int (*compare)(void*, void*, int), int dim)
