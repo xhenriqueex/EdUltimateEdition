@@ -102,4 +102,4 @@ main.o: main.c
 	gcc -c main.c -lm -o main.o -g -pedantic -fstack-protector-all -std=c99
 
 clean: 
-	rm Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o siguel
+	rm Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o siguel vgcore.*

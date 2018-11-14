@@ -58,6 +58,8 @@ void insere_fila (Fila f, Valor unidade)
     e1->valor = unidade;
     e1->proximo = NULL;
     
+    printf("%d\n", !fila_vazia(f));
+    
     if (!fila_vazia(f))
     {
         e0 = f0->fim;

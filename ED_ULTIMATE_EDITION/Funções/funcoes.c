@@ -32,15 +32,15 @@ void altera_caminho (char** caminho)
 Fila coloca_comandos_arquivo_fila (FILE* entrada)
 {
     Fila aux;
-    char* linha;
+    char* linha = NULL;
     int i;
     aux = cria_fila ();
-    for (i=0; !feof (entrada); i++)
+    while (!feof (entrada))
     {
         linha = (char*) calloc (200, sizeof(char));
         if (fgets(linha, 200, entrada) == NULL)
         {
-            continue;
+            break;
         }
         if (linha[strlen(linha)-1] == '\n')
         {
@@ -50,9 +50,11 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
         {
             linha[strlen(linha)-2] = '\0';
         }
-        linha[strlen(linha)] = '\0';
         insere_fila (aux, (void*) linha);
-        continue;
+        if(linha[0] == '#')
+        {
+            break;
+        }
     }
     return aux;
 }
@@ -93,7 +95,7 @@ char** trata_comando (char *leitura)
 		aux[n] = ' ';
 		aux += n + 1;
 		i++;
-	}
+	} 
     while (string[i-1] != NULL);
     free (auxR);
 	return string;
