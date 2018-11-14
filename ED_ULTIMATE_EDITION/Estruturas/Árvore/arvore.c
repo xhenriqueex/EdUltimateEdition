@@ -319,3 +319,5 @@ void* vizinho_proximo_arvore (void* arv, void* ref)
     vizinho_proximo_nodulo (n, arvore, ref, item, dist, 0);
     return *item;
 }
+
+//FUNÇÃO PARA RETORNAR TODOS OS ITENS EM UMA ÁREA
