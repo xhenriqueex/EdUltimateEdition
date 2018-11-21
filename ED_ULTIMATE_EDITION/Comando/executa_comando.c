@@ -389,7 +389,29 @@ void executa_comando (void* p)
 
 void caso_nx (Parametros* par)
 {
+    int i;
+    Valor aux;
     sscanf (par->comando, "%ld ", &par->max_figuras);
+    Fila fila;
+    fila = cria_fila ();
+    for (i=0; i<par->contador_figuras; i++)
+    {
+        if (par->figuras[i] != NULL)
+        {
+            aux = (Valor) get_valor_item (par->figuras[i]);
+            insere_fila (fila, aux);
+        }
+    }
+    free (par->figuras);
+    par->figuras = (Item*) calloc (par->max_figuras, sizeof (Item));
+    i = 0;
+    par->contador_figuras = 0;
+    while (!fila_vazia (fila))
+    {
+        par->figuras[i] = remove_fila (fila);
+        i++;
+        par->contador_figuras++;
+    }
     return;
 }
 void caso_c (Parametros* par)
@@ -434,6 +456,8 @@ void caso_r (Parametros* par)
     it = cria_item (fig, R);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
+    free (cor1);
+    free (cor2);
     return;
 }
 
@@ -534,7 +558,7 @@ void caso_o (Parametros* par)
     Item fig2 = NULL;
     Anotacao anotacao;
     string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
-    sscanf (par->comando, "%s", string);
+    strcpy (string, par->comando);
     insere_fila (par->resultado, string);
     par->comando += 2;
     sscanf (par->comando, "%ld %ld", &id1, &id2);
@@ -772,7 +796,7 @@ void caso_i (Parametros* par)
     int i, in1, in2;
     char* string;
     string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
-    sscanf (par->comando, "%s", string);
+    strcpy (string, par->comando);
     insere_fila (par->resultado, string);
     par->comando += 2;
     Item fig = NULL;
@@ -783,7 +807,7 @@ void caso_i (Parametros* par)
         {
             break;
         }
-        if (!strcmp (get_valor_item (par->figuras[i]), R))
+        if (!strcmp (get_tipo_item (par->figuras[i]), R))
         {
             if (get_id_retangulo (get_valor_item (par->figuras[i])) == id)
             {
@@ -838,15 +862,15 @@ void caso_d (Parametros* par)
     double* centro2;
     double dx, dy, result;
     string = (char*) calloc (strlen (par->comando) + 1, sizeof (char));
-    sscanf (par->comando, "%s", string);
+    strcpy (string, par->comando);
     insere_fila (par->resultado, string);
     par->comando += 2;
     sscanf (par->comando, "%ld %ld", &id1, &id2);
     Item fig1 = NULL;
     Item fig2 = NULL;
-    for (i=0; i<=par->contador_figuras; i++)
+    for (i=0; i<par->contador_figuras; i++)
     {
-        if (fig2 && fig2 != NULL)
+        if (fig1 && fig2 != NULL)
         {
             break;
         }
@@ -855,12 +879,10 @@ void caso_d (Parametros* par)
             if (get_id_retangulo (get_valor_item (par->figuras[i])) == id1)
             {
                 fig1 = par->figuras[i];
-                continue;
             }
             if (get_id_retangulo (get_valor_item (par->figuras[i])) == id2)
             {
                 fig2 = par->figuras[i];
-                continue;
             }
         }
         if (!strcmp (get_tipo_item (par->figuras[i]), C))
@@ -868,12 +890,10 @@ void caso_d (Parametros* par)
             if (get_id_circulo (get_valor_item (par->figuras[i])) == id1)
             {
                 fig1 = par->figuras[i];
-                continue;
             }
             if (get_id_circulo (get_valor_item (par->figuras[i])) == id2)
             {
                 fig2 = par->figuras[i];
-                continue;
             }
         }
     }
@@ -882,14 +902,23 @@ void caso_d (Parametros* par)
         if ((fig2) == NULL)
         {
             printf ("\nERRO: AS FIGURAS NAO FORAM ENCONTRADAS!");
+            result_string = (char*) calloc (55, sizeof (char));
+            sprintf (result_string, "\nAS FIGURAS NÃO FORAM ENCONTRADAS!");
+            insere_fila (par->resultado, (Valor*) result_string);
             return;
         }
         printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        result_string = (char*) calloc (55, sizeof (char));
+        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FOI ENCONTRADA!");
+        insere_fila (par->resultado, (Valor*) result_string);    
         return;
     }
     if ((fig2) == NULL)
     {
         printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        result_string = (char*) calloc (55, sizeof (char));
+        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FORAM ENCONTRADAS!");
+        insere_fila (par->resultado, (Valor*) result_string);
         return;
     }
     if(!strcmp(get_tipo_item (fig1), R))
@@ -945,7 +974,7 @@ void caso_a (Parametros* par)
     sufixo = (char*) calloc (55, sizeof (char));
     sscanf (par->comando,"%ld %s", &id, sufixo);
     fig = NULL;
-    for (i=0; i<=par->contador_figuras; i++)
+    for (i=0; i<par->contador_figuras; i++)
     {
         if (fig != NULL)
         {
@@ -996,7 +1025,7 @@ void caso_a (Parametros* par)
     free (par->caminho_SVG);
     
     fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
-    for (i=0; i<=par->contador_figuras; i++)
+    for (i=0; i<par->contador_figuras; i++)
     {
         if (par->figuras[i] == NULL)
         {
@@ -1042,7 +1071,7 @@ void caso_a (Parametros* par)
     x1 = *centro1;
     y1 = *(centro1 + 1);
     free (centro1);
-    for (i=0; i<=par->contador_figuras; i++)
+    for (i=0; i<par->contador_figuras; i++)
     {
         if (par->figuras[i] == NULL || i == id)
         {
@@ -1144,7 +1173,7 @@ void caso_hashtag (Parametros* par)
     strcpy(par->caminho_SVG, par->diretorio_saida);
     strcat(par->caminho_SVG, "/");
     strcat (par->caminho_SVG, par->arquivo_entrada);
-    percorre = par->caminho_SVG + strlen(par->caminho_SVG)-1;
+    percorre = par->caminho_SVG + strlen (par->caminho_SVG) - 1;
     while (*percorre != '.')
     {
         percorre--;
@@ -1152,7 +1181,7 @@ void caso_hashtag (Parametros* par)
     strcpy (percorre, ".svg");
     saida_svg = fopen (par->caminho_SVG, "w");
     fprintf (saida_svg, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
-    for (i=0; i<=par->contador_figuras; i++)
+    for (i=0; i<par->contador_figuras; i++)
     {
         if (par->figuras[i] == NULL)
         {
@@ -1257,7 +1286,7 @@ void caso_hashtag (Parametros* par)
     strcpy (percorre, ".txt");
     saida_txt = fopen (par->caminho_TXT, "a");
     free (par->caminho_TXT);
-    fprintf (saida_txt, "\nARQUIVO: %s\n\n", par->arquivo_entrada);
+    fprintf (saida_txt, "ARQUIVO: %s\n\n", par->arquivo_entrada);
     while (!fila_vazia (par->resultado))
     {
         conteudo_svg = remove_fila (par->resultado);
