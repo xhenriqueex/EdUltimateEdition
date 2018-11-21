@@ -250,10 +250,12 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
+            //free(p->comando);
             p->comando = NULL;
         }
         //FECHANDO O ARQUIVO
         fclose (arquivo);
+        free(comandos);
     }
     
     if (p->caminho_QRY != NULL)
@@ -285,6 +287,7 @@ int main(int argc, char* argv[])
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
+        free(comandos);
     }
 
     if (p->caminho_EC != NULL)
@@ -315,6 +318,7 @@ int main(int argc, char* argv[])
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
+        free(comandos);
     }
 
     if (p->caminho_PM != NULL)
@@ -346,7 +350,9 @@ int main(int argc, char* argv[])
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
+        free(comandos);
     }
+
 
     /*
     if (p->caminho_VIA != NULL)
@@ -380,6 +386,11 @@ int main(int argc, char* argv[])
     }
     */
 
+    free(p->diretorio_entrada);
+    free(p->arquivo_entrada);
+    free(p->diretorio_saida);
+    free(p->anotacoes);
+    free(p->resultado);
     //FINALIZANDO O PROGRAMA
     return 1;
 }

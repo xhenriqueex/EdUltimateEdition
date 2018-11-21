@@ -83,6 +83,7 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_nx (par);
+        free(comando);
         return;
     }
     //CRIAR UM CÍRCULO
@@ -90,6 +91,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_c (par);
+        free(comando);
         return;
     }
     //CRIAR UM RETÂNGULO
@@ -97,6 +99,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_r (par);
+        free(comando);
         return;
     }
     //CRIA UMA QUADRA
@@ -104,6 +107,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_q (par);
+        free(comando);
         return;
     }
     //CRIA UM HIDRANTE
@@ -111,6 +115,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_h (par);
+        free(comando);
         return;
     }
     //CRIA UM SEMÁFORO
@@ -118,6 +123,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_s (par);
+        free(comando);
         return;
     }
     //CRIA UMA RADIOBASE
@@ -125,6 +131,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_t_geo (par);
+        free(comando);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA QUADRA
@@ -132,6 +139,7 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_cq (par);
+        free(comando);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO HIDRANTE
@@ -139,6 +147,7 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_ch (par);
+        free(comando);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA RADIO-BASE
@@ -146,6 +155,7 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_ct (par);
+        free(comando);
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO SEMAFORO
@@ -153,24 +163,28 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_cs (par);
+        free(comando);
         return;
     }
     //VERIFICAR SE DUAS FIGURAS SE SOBREPOEM
     if (!strcmp (comando, "o"))
     {
         caso_o (par);
+        free(comando);
         return;
     }
     //VERIFICAR SE UM PONTO É INTERNO A FIGURA
     if (!strcmp (comando, "i"))
     {
         caso_i (par);
+        free(comando);
         return;
     }
     //CALCULAR A DISTÂNCIA ENTRE OS CENTROS DE MASSA DE DUAS FIGURAS
     if (!strcmp (comando, "d"))
     {
         caso_d (par);
+        free(comando);
         return;
     }
     //CRIA O ARQUIVO SVG COM O SUFIXO
@@ -178,6 +192,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_a (par);
+        free(comando);
         return;
     }
     //FINALIZA O ARQUIVO
@@ -185,6 +200,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_hashtag (par);
+        free(comando);
         return;
     }
 
@@ -195,6 +211,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_t_ec (par);
+        free(comando);
         return;
     }
     //INSERE UM NOVO ESTABELECIMENTO COMERCIAL DE UM DETERMINADO TIPO
@@ -202,6 +219,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_e (par);
+        free(comando);
         return;
     }
 
@@ -211,6 +229,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_p (par);
+        free(comando);
         return;
     }
     //INFORMA O ENDEREÇO ONDE UMA PESSOA MORA
@@ -218,6 +237,7 @@ void executa_comando (void* p)
     {
         par->comando += 2;
         caso_m (par);
+        free(comando);
         return;
     }
     
@@ -227,36 +247,42 @@ void executa_comando (void* p)
     if (!strcmp (comando, "q?"))
     {
         caso_q_pergunta (par);
+        free(comando);
         return;
     }
     //REPORTA O QUE ESTIVER DENTRO DO CÍRCULO ESPECIFICADO
     if (!strcmp (comando, "Q?"))
     {
         caso_Q_pergunta (par);
+        free(comando);
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO RETÂNGULO ESPECIFICADO
     if (!strcmp (comando, "dq"))
     {
         caso_dq (par);
+        free(comando);
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO RETÂNGULO ESPECIFICADO
     if (!strcmp (comando, "dle"))
     {
         caso_dle (par);
+        free(comando);
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO CÍRCULO ESPECIFICADO
     if (!strcmp (comando, "Dq"))
     {
         caso_Dq (par);
+        free(comando);
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO CÍRCULO ESPECIFICADO
     if (!strcmp (comando, "Dle"))
     {
         caso_Dle (par);
+        free(comando);
         return;
     }
     //MUDA AS CORES DA QUADRA IDENTIFICADA PELO CEP
@@ -264,18 +290,21 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_cc (par);
+        free(comando);
         return;
     }
     //IMPRIME NO .TXT AS COORDENADAS DE UMA DETERMINADA QUADRA OU EQUIPAMENTO
     if (!strcmp (comando, "crd?"))
     {
         caso_crd_pergunta (par);
+        free(comando);
         return;
     }
     //DETERMINA AS RADIOBASES MAIS PRÓXIMAS
     if (!strcmp (comando, "crb?"))
     {
         caso_crb_pergunta (par);
+        free(comando);
         return;
     }
     //MORADORES DA QUADRA DEFINIDA PELO CEP
@@ -283,6 +312,7 @@ void executa_comando (void* p)
     {
         par->comando += 3;
         caso_m_pergunta (par);
+        free(comando);
         return;
     }
     //MORADORES DAS QUADRAS DENTRO DO RETÂNGULO
@@ -290,6 +320,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_mr_pergunta (par);
+        free(comando);
         return;
     }
     //IMPRIME OS DADOS DO MORADOR IDENTIFICADO PELO CPF
@@ -297,6 +328,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_dm_pergunta (par);
+        free(comando);
         return;
     }
     //IMPRIME OS DADOS DO ESTABELECIMENTO IDENTIFICADO PELO CNPJ
@@ -304,6 +336,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_de_pergunta (par);
+        free(comando);
         return;
     }
     //APAGA TODOS OS DADOS DE UMA PESSOA
@@ -311,6 +344,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_rip (par);
+        free(comando);
         return;
     }
     //LISTA OS ESTABELECIMENTOS DE UMA QUADRA
@@ -318,6 +352,7 @@ void executa_comando (void* p)
     {
         par->comando += 5;
         caso_ecq_pergunta (par);
+        free(comando);
         return;
     }
     //LISTA OS ESTABELECIMeNTOS DE UM DETERMINADO TIPO EM UM RETÂNGULO
@@ -325,6 +360,7 @@ void executa_comando (void* p)
     {
         par->comando += 5;
         caso_ecr_pergunta (par);
+        free(comando);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS DE UMA QUADRA ESPECÍFICA
@@ -332,6 +368,7 @@ void executa_comando (void* p)
     {
         par->comando += 6;
         caso_tecq_pergunta (par);
+        free(comando);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS COMERCIAIS EM UM RETÂNGULO
@@ -339,6 +376,7 @@ void executa_comando (void* p)
     {
         par->comando += 6;
         caso_tecr_pergunta (par);
+        free(comando);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UM ENDEREÇO ESPECÍFICO
@@ -346,6 +384,7 @@ void executa_comando (void* p)
     {
         par->comando += 6;
         caso_hmpe_pergunta (par);
+        free(comando);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UMA RADIOBASE ESPECÍFICA
@@ -353,6 +392,7 @@ void executa_comando (void* p)
     {
         par->comando += 5;
         caso_hmp_pergunta (par);
+        free(comando);
         return;
     }
     //APAGA TODOS OS DADOS DE UM ESTABELECIMENTO
@@ -360,6 +400,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_fec (par);
+        free(comando);
         return;
     }
     //MUDA O ENDEREÇO DA PESSOA E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
@@ -367,6 +408,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_mud (par);
+        free(comando);
         return;
     }
     //MUDA O ESTABELECIMENTO DE ENDEREÇO E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
@@ -374,6 +416,7 @@ void executa_comando (void* p)
     {
         par->comando += 6;
         caso_mudec (par);
+        free(comando);
         return;
     }
     //DESAPROPRIA UMA REGIÃO (DELETA TUDO DENTRO DELA, MAS A PESSOA NÃO MORRE, SÓ DEIXA DE MORAR LÁ)
@@ -381,6 +424,7 @@ void executa_comando (void* p)
     {
         par->comando += 4;
         caso_dpr (par);
+        free(comando);
         return;
     }
 }
