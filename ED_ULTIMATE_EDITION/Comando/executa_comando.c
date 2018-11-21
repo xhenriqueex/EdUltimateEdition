@@ -467,7 +467,7 @@ void caso_q (Parametros* par)
     char* cep;
     Quadra* quadra;
     cep = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s %ld %ld %ld %ld", cep, &x, &y, &w, &h);
+    sscanf (par->comando, "%s %lf %lf %lf %lf", cep, &x, &y, &w, &h);
     quadra = cria_quadra (cep, x, y, w, h, par->cor_borda_quadra, par->cor_preenche_quadra);
     //REMOVER APÓS TESTES
     insere_lista (par->quadras, quadra);
@@ -482,7 +482,7 @@ void caso_h (Parametros* par)
     double x, y;
     Hidrante* hidrante;
     id = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
+    sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     hidrante = cria_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
     //REMOVER APÓS TESTES
     insere_lista (par->hidrantes, hidrante);
@@ -497,7 +497,7 @@ void caso_s (Parametros* par)
     double x, y;
     Semaforo* semaforo;
     id = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
+    sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     semaforo = cria_semaforo (id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
     //REMOVER APÓS TESTES
     insere_lista (par->semaforos, semaforo);
@@ -513,7 +513,7 @@ void caso_t_geo (Parametros* par)
     double x, y;
     Radiobase* radiobase;
     id = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s %ld %ld", id, &x, &y);
+    sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
     //REMOVER APÓS TESTES
     insere_lista (par->radiobases, radiobase);
@@ -855,7 +855,8 @@ void caso_i (Parametros* par)
 
 void caso_d (Parametros* par)
 {
-    int i, id1, id2;
+    int i;
+    long int id1, id2;
     char* string;
     char* result_string;
     double* centro1;
@@ -1286,7 +1287,7 @@ void caso_hashtag (Parametros* par)
     strcpy (percorre, ".txt");
     saida_txt = fopen (par->caminho_TXT, "a");
     free (par->caminho_TXT);
-    fprintf (saida_txt, "ARQUIVO: %s\n\n", par->arquivo_entrada);
+    fprintf (saida_txt, "\nARQUIVO: %s\n\n", par->arquivo_entrada);
     while (!fila_vazia (par->resultado))
     {
         conteudo_svg = remove_fila (par->resultado);
@@ -1306,9 +1307,9 @@ void caso_q_pergunta (Parametros* par)
     char* aux;
     Anotacao anot;
     aux = (char*) calloc (155, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     par->comando += 3;
-    sscanf (par->comando, "%ld %ld %ld %ld", &x, &y, &w, &h);
+    sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1323,9 +1324,9 @@ void caso_Q_pergunta (Parametros* par)
     char* aux;
     Anotacao* anot;
     aux = (char*) calloc (155, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux,par->comando);
     par->comando += 3;
-    sscanf (par->comando, "%ld %ld %ld", &r, &x, &y);
+    sscanf (par->comando, "%lf %lf %lf", &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1340,9 +1341,9 @@ void caso_dq (Parametros* par)
     char* aux;
     Anotacao anot;
     aux = (char*) calloc (155, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     par->comando += 3;
-    sscanf (par->comando, "%ld %ld %ld %ld", &x, &y, &w, &h);
+    sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1359,9 +1360,9 @@ void caso_dle (Parametros* par)
     char* tipo;
     aux = (char*) calloc (155, sizeof (char));
     tipo = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     par->comando += 4;
-    sscanf (par->comando, "%s %ld %ld %ld %ld", tipo, &x, &y, &w, &h);
+    sscanf (par->comando, "%s %lf %lf %lf %lf", tipo, &x, &y, &w, &h);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (w, h, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1376,9 +1377,9 @@ void caso_Dq (Parametros* par)
     char* aux;
     Anotacao* anot;
     aux = (char*) calloc (155, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     par->comando += 3;
-    sscanf (par->comando, "%ld %ld %ld", &r, &x, &y);
+    sscanf (par->comando, "%lf %lf %lf", &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1395,9 +1396,9 @@ void caso_Dle (Parametros* par)
     Anotacao* anot;
     aux = (char*) calloc (155, sizeof (char));
     tipo = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     par->comando += 4;
-    sscanf (par->comando, "%s %ld %ld %ld", tipo, &r, &x, &y);
+    sscanf (par->comando, "%s %lf %lf %lf", tipo, &r, &x, &y);
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (r, 0, x, y, "");
     insere_fila (par->anotacoes, (Valor*) anot);
@@ -1414,10 +1415,9 @@ void caso_cc (Parametros* par)
     aux = (char*) calloc (155, sizeof (char));
     cor_borda = (char*) calloc (55, sizeof (char));
     cor_preenche = (char*) calloc (55, sizeof (char));
-    par->comando += 3;
     sscanf (par->comando, "%s %s %s", aux, cor_borda, cor_preenche);
     void* primeiro;
-    Quadra *compare;
+    Quadra* compare;
     primeiro = get_primeiro_lista (par->quadras);
     do
     {
@@ -1475,7 +1475,7 @@ void caso_crd_pergunta (Parametros* par)
     insere_fila (par->resultado, par->comando);
     par->comando += 4;
     aux = (char*) calloc (155, sizeof (char));
-    sscanf (par->comando, "%s", aux);
+    strcpy (aux, par->comando);
     void* primeiro;
     Quadra *compare;
     primeiro = get_primeiro_lista (par->quadras);

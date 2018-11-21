@@ -1,4 +1,0 @@
-ARQUIVO: t-2-bsc-005.geo
-
-o 1 2
-SIM
