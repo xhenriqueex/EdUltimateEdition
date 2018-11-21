@@ -1,8 +1,0 @@
-ARQUIVO: t-51-mrs-002.geo
-
-o 19 1
-NAO
-o 43 9
-NAO
-o 51 52
-SIM
