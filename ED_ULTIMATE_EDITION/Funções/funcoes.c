@@ -37,7 +37,7 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
     aux = cria_fila ();
     while (!feof (entrada))
     {
-        linha = (char*) calloc (200, sizeof(char));
+        linha = (char*) calloc (200, sizeof (char));
         if (fgets(linha, 200, entrada) == NULL)
         {
             break;
@@ -48,6 +48,7 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
         }
         if(linha[0] == '#')
         {
+            insere_fila (aux, (void*) linha);
             break;
         }
         if (linha[strlen(linha)-2] == '\n')
@@ -57,48 +58,6 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
         insere_fila (aux, (void*) linha);
     }
     return aux;
-}
-
-//IDENTIFICA TODOS OS PARAMETROS DO COMANDO LIDO E RETORNA UM VETOR DE PARAMETROS
-char** trata_comando (char *leitura)
-{
-    char** string = NULL;
-	char* aux = NULL;
-    char* aux2 = NULL;
-    char* auxR = NULL;
-	int i = 0;
-	int n = 0;
-	aux = (char *) calloc (strlen (leitura) + 1, sizeof (char));
-	string = (char**) calloc (1, sizeof (char*));
-	strcpy (aux, leitura);
-	auxR = aux;
-	if (aux[0] == 32) 
-    {
-		aux++;
-	}
-	if (aux[strlen (aux) - 1] == '\n') 
-    {
-		aux[strlen (aux) - 1] = '\0';
-	}
-    do 
-    {
-		string = (char**) realloc (string, (1 + i) * sizeof (char*));
-		string[i] = NULL;
-		n = strcspn (aux, " ");
-		aux2 = strtok (aux, " ");
-		if (aux2 == NULL) 
-        {
-            break;
-		}
-		string[i] = (char*) calloc (strlen (aux2) + 1, sizeof (char));
-		strcpy (string[i], aux2);
-		aux[n] = ' ';
-		aux += n + 1;
-		i++;
-	} 
-    while (string[i-1] != NULL);
-    free (auxR);
-	return string;
 }
 
 //RETORNA O TAMANHO DO VETOR DE COMANDOS
