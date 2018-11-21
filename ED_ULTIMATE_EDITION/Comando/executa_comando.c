@@ -407,7 +407,7 @@ void caso_c (Parametros* par)
     }
     cor1 = (char*) calloc (55, sizeof (char));
     cor2 = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%ld %s %s %ld %ld %ld", &id, cor1, cor2, &r, &x, &y);
+    sscanf (par->comando, "%ld %s %s %lf %lf %lf", &id, cor1, cor2, &r, &x, &y);
     fig = cria_circulo (id, cor1, cor2, r, x, y);
     it = cria_item (fig, C);
     par->figuras[par->contador_figuras] = it;
@@ -429,7 +429,7 @@ void caso_r (Parametros* par)
     }
     cor1 = (char*) calloc (55, sizeof (char));
     cor2 = (char*) calloc (55, sizeof (char));
-    sscanf (par->comando, "%ld %s %s %ld %ld %ld %ld", &id, cor1, cor2, &w, &h, &x, &y);
+    sscanf (par->comando, "%ld %s %s %lf %lf %lf %lf", &id, cor1, cor2, &w, &h, &x, &y);
     fig = cria_retangulo (id, cor1, cor2, w, h, x, y);
     it = cria_item (fig, R);
     par->figuras[par->contador_figuras] = it;
@@ -979,29 +979,20 @@ void caso_a (Parametros* par)
     strcat (par->caminho_SVG, par->arquivo_entrada);
     //percorre = par->caminho_SVG + strlen (par->caminho_SVG) - 1;
     percorre = par->caminho_SVG;
-    printf("%s\n", par->caminho_SVG);
     percorre = percorre + strlen (percorre) - 1;
     while (*percorre != '.')
     {
         percorre--;
     }
     *percorre = '\0';
-    printf("%s\n", par->caminho_SVG);
     percorre = par->caminho_SVG;
     par->caminho_SVG = (char*) calloc (255, sizeof(char));
     sprintf(par->caminho_SVG, "%s-%s.svg", percorre, sufixo);
     //strcpy (percorre, "-");
     //strcat (percorre, sufixo);
     //strcat (percorre, ".svg");
-    printf("%s\n", par->caminho_SVG);
     saida_SVG = fopen (par->caminho_SVG, "w");
     
-    if (saida_SVG == NULL) {
-        printf("NULL\n");
-    }
-    else {
-        printf("NOT NULL\n");
-    }
     free (par->caminho_SVG);
     
     fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
@@ -1256,6 +1247,7 @@ void caso_hashtag (Parametros* par)
     free (aux);
     fprintf (saida_svg, "\n</svg>");
     fclose (saida_svg);
+    par->caminho_TXT = (char *) calloc(strlen(par->caminho_SVG)+1, sizeof(char));
     strcpy (par->caminho_TXT, par->caminho_SVG);
     percorre = par->caminho_TXT + strlen(par->caminho_TXT) - 1;
     while (*percorre != '.')

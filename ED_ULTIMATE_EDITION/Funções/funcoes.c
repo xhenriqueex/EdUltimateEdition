@@ -46,15 +46,15 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
         {
             linha[strlen(linha)-1] = '\0';
         }
+        if(linha[0] == '#')
+        {
+            break;
+        }
         if (linha[strlen(linha)-2] == '\n')
         {
             linha[strlen(linha)-2] = '\0';
         }
         insere_fila (aux, (void*) linha);
-        if(linha[0] == '#')
-        {
-            break;
-        }
     }
     return aux;
 }

@@ -242,7 +242,6 @@ int main(int argc, char* argv[])
     {
         p->comando = (char*) remove_fila (comandos);
         //p->comando_vetor = trata_comando (comando);
-        printf("COMANDO %s\n", p->comando);
         executa_comando (p);
         p->comando = NULL;
     }
