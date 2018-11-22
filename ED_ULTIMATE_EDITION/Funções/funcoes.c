@@ -12,6 +12,7 @@
 #include "../Objetos/Hidrante/hidrante.h"
 #include "../Objetos/Semáforo/semaforo.h"
 #include "../Objetos/Rádiobase/radiobase.h"
+#include "../Objetos/Comércio/comercio.h"
 
 #define C "circulo"
 #define R "retangulo"
@@ -209,6 +210,36 @@ void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, v
     }
     while (primeiro != NULL);
     return;
+}
+
+Lista reporta_quadra_dentro_retangulo (Lista quadras, double w, double h, double x, double y)
+{
+    double xi, xf, yi, yf;
+    char* info;
+    char* id;
+    Lista reporta_retangulo;
+    reporta_retangulo = cria_lista ();
+    void* primeiro;
+    primeiro = get_primeiro_lista (quadras);
+    do
+    {     
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        Quadra* aux;
+        aux = get_valor_lista (quadras, primeiro);
+        xi = get_x_quadra (aux);
+        xf = xi + get_w_quadra (aux);
+        yi = get_y_quadra (aux);
+        yf = yi + get_h_quadra (aux);
+        if (xi >= x && xf <= (x + w) && yi >= y && yf <= (y + h))
+        {
+            insere_lista (reporta_retangulo, aux);
+        }
+        primeiro = get_proximo_lista (quadras, primeiro);
+    }
+    while(primeiro != NULL);
 }
 
 void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double r)
@@ -752,6 +783,93 @@ void escreve_crd_radiobase (Fila* resultado, void* radiobase)
     return;
 }
 
+//IMPRIME POR TIPO TODOS OS ESTABELECIMENTOS NAQUELA QUADRA
+char* imprime_tipos_comercios_quadra (Lista comercios)
+{
+    char* result;
+    char* tipo;
+    char* aux;
+    char* nome;
+    char* charAux;
+    void* primeiro;
+    void* prox;
+    void* comercio;
+    result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
+    tipo = (char*) calloc (155, sizeof (char));
+    aux = (char*) calloc (155, sizeof (char));
+    nome = (char*) calloc (155, sizeof (char));
+    while (largura_lista (comercios) != 0)
+    {
+        primeiro = get_primeiro_lista (comercios);
+        comercio = get_valor_lista (comercios, primeiro);
+        tipo = get_tipo_comercio (comercio);
+        do
+        {
+            aux = get_tipo_comercio (comercio);
+            if (!strcmp (tipo, aux))
+            {
+                nome = get_nome_comercio (comercio);
+                charAux = (char*) calloc (55, sizeof (char));
+                sprintf (charAux, "\n   Nome: %s", nome);
+                strcat (result, charAux);
+                free (charAux);
+                prox = get_proximo_lista (comercios, primeiro);
+                remove_lista (comercios, primeiro);
+                primeiro = prox;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (comercios, primeiro);
+            }
+        }
+        while (primeiro != NULL);
+    }
+    return result;
+}
+
+//IMPRIME TODOS OS TIPOS NAQUELA QUADRA
+char* imprime_tipos_quadra (Lista comercios)
+{
+    char* result;
+    char* tipo;
+    char* aux;
+    char* nome;
+    char* charAux;
+    void* primeiro;
+    void* prox;
+    void* comercio;
+    result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
+    tipo = (char*) calloc (155, sizeof (char));
+    aux = (char*) calloc (155, sizeof (char));
+    nome = (char*) calloc (155, sizeof (char));
+    while (largura_lista (comercios) != 0)
+    {
+        primeiro = get_primeiro_lista (comercios);
+        comercio = get_valor_lista (comercios, primeiro);
+        tipo = get_tipo_comercio (comercio);
+        charAux = (char*) calloc (55, sizeof (char));
+        sprintf (charAux, "\n   Tipo: %s", tipo);
+        strcat (result, charAux);
+        free (charAux);
+        do
+        {
+            aux = get_tipo_comercio (comercio);
+            if (!strcmp (tipo, aux))
+            {
+                prox = get_proximo_lista (comercios, primeiro);
+                remove_lista (comercios, primeiro);
+                primeiro = prox;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (comercios, primeiro);
+            }
+        }
+        while (primeiro != NULL);
+    }
+    return result;
+}
+
 //FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
 void fecha_qry (Parametros* par)
 {
@@ -762,6 +880,10 @@ void fecha_qry (Parametros* par)
     char* remove_ext;
     FILE* saida_SVG;
     FILE* saida_QRY;
+    Lista quadras;
+    Lista hidrantes;
+    Lista semaforos;
+    Lista radiobases;
     remove_ext = par->arquivo_entrada;
     percorre = remove_ext;
     while (*percorre != '.')
@@ -816,60 +938,65 @@ void fecha_qry (Parametros* par)
         free (conteudo_svg);
     }
     void* primeiro;
-    primeiro = get_primeiro_lista (par->quadras);
+    quadras = get_todos_arvore (par->tree_quadras);
+    primeiro = get_primeiro_lista (quadras);
     do
     {
-        if (get_valor_lista (par->quadras, primeiro) == NULL)
+        if (get_valor_lista (quadras, primeiro) == NULL)
         {
-            primeiro = get_proximo_lista (par->quadras, primeiro);
+            primeiro = get_proximo_lista (quadras, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_quadra (get_valor_lista (par->quadras, primeiro));
+        conteudo_svg = cria_svg_quadra (get_valor_lista (quadras, primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (par->quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (par->quadras, primeiro)) + get_h_quadra (get_valor_lista (par->quadras, primeiro)) - 3, get_cep_quadra (get_valor_lista (par->quadras, primeiro)));
-        primeiro = get_proximo_lista (par->quadras, primeiro);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (quadras, primeiro)) + get_h_quadra (get_valor_lista (quadras, primeiro)) - 3, get_cep_quadra (get_valor_lista (quadras, primeiro)));
+        primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
-    primeiro = get_primeiro_lista (par->hidrantes);
+    
+    hidrantes = get_todos_arvore (par->tree_hidrantes);
+    primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        if (get_valor_lista (par->hidrantes, primeiro) == NULL)
+        if (get_valor_lista (hidrantes, primeiro) == NULL)
         {
-            primeiro = get_proximo_lista (par->hidrantes, primeiro);
+            primeiro = get_proximo_lista (hidrantes, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_hidrante(get_valor_lista(par->hidrantes, primeiro));
+        conteudo_svg = cria_svg_hidrante(get_valor_lista(hidrantes, primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(par->hidrantes, primeiro)), get_y_hidrante(get_valor_lista(par->hidrantes, primeiro)));
-        primeiro = get_proximo_lista (par->hidrantes, primeiro);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(hidrantes, primeiro)), get_y_hidrante(get_valor_lista(hidrantes, primeiro)));
+        primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
-    primeiro = get_primeiro_lista (par->semaforos);
+    semaforos = get_todos_arvore (par->tree_semaforos);
+    primeiro = get_primeiro_lista (semaforos);
     do
     {
-        if (get_valor_lista(par->semaforos, primeiro) == NULL)
+        if (get_valor_lista(semaforos, primeiro) == NULL)
         {
-            primeiro = get_proximo_lista (par->semaforos, primeiro);
+            primeiro = get_proximo_lista (semaforos, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_semaforo (get_valor_lista (par->semaforos, primeiro));
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (semaforos, primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (par->semaforos, primeiro)), get_y_semaforo (get_valor_lista (par->semaforos, primeiro)));
-        primeiro = get_proximo_lista (par->semaforos, primeiro);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (semaforos, primeiro)), get_y_semaforo (get_valor_lista (semaforos, primeiro)));
+        primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
-    primeiro = get_primeiro_lista (par->radiobases);
+    radiobases = get_todos_arvore (par->tree_radiobases);
+    primeiro = get_primeiro_lista (radiobases);
     do
     {
-        if (get_valor_lista (par->radiobases, primeiro) == NULL)
+        if (get_valor_lista (radiobases, primeiro) == NULL)
         {
-            primeiro = get_proximo_lista (par->radiobases, primeiro);
+            primeiro = get_proximo_lista (radiobases, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_radiobase (get_valor_lista (par->radiobases, primeiro));
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (radiobases, primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (par->radiobases, primeiro)), get_y_radiobase (get_valor_lista (par->radiobases, primeiro)));
-        primeiro = get_proximo_lista (par->radiobases, primeiro);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (radiobases, primeiro)), get_y_radiobase (get_valor_lista (radiobases, primeiro)));
+        primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
     free(conteudo_svg);

@@ -271,7 +271,7 @@ double dist_arvore (Arvore* arv, void* valor1, void* valor2)
 //RETORNA O ITEM MAIS PRÓXIMO À REFERÊNCIA NO NÓDULO
 void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double* dist, int dim)
 {
-    if (n = NULL)
+    if (n == NULL)
     {
         return;
     }
@@ -306,7 +306,7 @@ void* vizinho_proximo_arvore (void* arv, void* ref)
     arvore = (Arvore*) arv;
     No* n;
     n = (No*) arvore->nodulo;
-    if (n = NULL)
+    if (n == NULL)
     {
         return NULL;
     }

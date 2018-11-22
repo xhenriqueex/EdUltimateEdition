@@ -44,4 +44,10 @@ char* relatorio_endereco_pessoa (Pessoa pessoa);
 //RETORNA AS COORDENADAS DA PESSOA
 double* get_xy_pessoa (Pessoa pessoa, Parametros* par);
 
+//GERA UMA STRING COM O RELATÓRIO DA MORTE DA PESSOA
+char* relatorio_morte_pessoa (Pessoa pessoa);
+
+//GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
+char* relatorio_mud_pessoa (Pessoa pessoa, void* end1, void* end2);
+
 #endif

@@ -122,7 +122,19 @@ int compare_quadra (void* quad1, void* quad2, int dim)
     Quadra* quadB;    
     quadA = (Quadra*) quad1;
     quadB = (Quadra*) quad2;
-    return strcmp (quadA->cep, quadB->cep);
+    dim = dim % 2;
+    if (!strcmp(quadA->cep, quadB->cep))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (quadA->x - quadB->x);
+    }
+    else
+    {
+        return (quadA->y - quadB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DA QUADRA

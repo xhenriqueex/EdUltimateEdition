@@ -103,7 +103,19 @@ int compare_hidrante (void* hid1, void* hid2, int dim)
     Hidrante* hidB;    
     hidA = (Hidrante*) hid1;
     hidB = (Hidrante*) hid2;
-    return strcmp (hidA->id, hidB->id);
+    dim = dim % 2;
+    if (!strcmp(hidA->id, hidB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (hidA->x - hidB->x);
+    }
+    else
+    {
+        return (hidA->y - hidB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DO HIDRANTE
