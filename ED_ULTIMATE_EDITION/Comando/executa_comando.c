@@ -283,105 +283,90 @@ void executa_comando (void* p)
     //MORADORES DA QUADRA DEFINIDA PELO CEP
     if (!strcmp (comando, "m?"))
     {
-        par->comando += 3;
         caso_m_pergunta (par);
         return;
     }
     //MORADORES DAS QUADRAS DENTRO DO RETÂNGULO
     if (!strcmp (comando, "mr?"))
     {
-        par->comando += 4;
         caso_mr_pergunta (par);
         return;
     }
     //IMPRIME OS DADOS DO MORADOR IDENTIFICADO PELO CPF
     if (!strcmp (comando, "dm?"))
     {
-        par->comando += 4;
         caso_dm_pergunta (par);
         return;
     }
     //IMPRIME OS DADOS DO ESTABELECIMENTO IDENTIFICADO PELO CNPJ
     if (!strcmp (comando, "de?"))
     {
-        par->comando += 4;
         caso_de_pergunta (par);
         return;
     }
     //APAGA TODOS OS DADOS DE UMA PESSOA
     if (!strcmp (comando, "rip"))
     {
-        par->comando += 4;
         caso_rip (par);
         return;
     }
     //LISTA OS ESTABELECIMENTOS DE UMA QUADRA
     if (!strcmp (comando, "ecq?"))
     {
-        par->comando += 5;
         caso_ecq_pergunta (par);
         return;
     }
     //LISTA OS ESTABELECIMeNTOS DE UM DETERMINADO TIPO EM UM RETÂNGULO
     if (!strcmp (comando, "ecr?"))
     {
-        par->comando += 5;
         caso_ecr_pergunta (par);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS DE UMA QUADRA ESPECÍFICA
     if (!strcmp (comando, "tecq?"))
     {
-        par->comando += 6;
         caso_tecq_pergunta (par);
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS COMERCIAIS EM UM RETÂNGULO
     if (!strcmp (comando, "tecr?"))
     {
-        par->comando += 6;
         caso_tecr_pergunta (par);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UM ENDEREÇO ESPECÍFICO
     if (!strcmp (comando, "hmpe?"))
     {
-        par->comando += 6;
         caso_hmpe_pergunta (par);
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UMA RADIOBASE ESPECÍFICA
     if (!strcmp (comando, "hmp?"))
     {
-        par->comando += 5;
         caso_hmp_pergunta (par);
         return;
     }
     //APAGA TODOS OS DADOS DE UM ESTABELECIMENTO
     if (!strcmp (comando, "fec"))
     {
-        par->comando += 4;
         caso_fec (par);
         return;
     }
     //MUDA O ENDEREÇO DA PESSOA E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
     if (!strcmp (comando, "mud"))
     {
-        par->comando += 4;
         caso_mud (par);
         return;
     }
     //MUDA O ESTABELECIMENTO DE ENDEREÇO E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
     if (!strcmp (comando, "mudec"))
     {
-        par->comando += 6;
         caso_mudec (par);
         return;
     }
     //DESAPROPRIA UMA REGIÃO (DELETA TUDO DENTRO DELA, MAS A PESSOA NÃO MORRE, SÓ DEIXA DE MORAR LÁ)
     if (!strcmp (comando, "dpr"))
     {
-        par->comando += 4;
         caso_dpr (par);
         return;
     }
