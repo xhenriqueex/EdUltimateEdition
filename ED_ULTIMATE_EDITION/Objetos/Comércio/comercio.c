@@ -10,7 +10,7 @@
 typedef struct {
     char* cod;
     char* info;
-} Tipo;
+} Tip;
 
 //DEFINE A STRUCT ENDEREÇO
 typedef struct {
@@ -25,16 +25,16 @@ typedef struct {
 //DEFINE A STRUCT COMÉRCIO
 typedef struct {
     char* cnpj;
-    Tipo* tipo;
+    Tip* tipo;
     Endereco* endereco;
     char* nome;
-} Comercio;
+} Com;
 
 //CRIA UM COMÉRCIO
 void* cria_comercio (char* cnpj, void* tip, char* cep, char* face, char* num, char* nome)
 {
-    Comercio* result;
-    result = (Comercio*) calloc (1, sizeof (Comercio));
+    Com* result;
+    result = (Com*) calloc (1, sizeof (Com));
 
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof (Endereco));
@@ -43,8 +43,8 @@ void* cria_comercio (char* cnpj, void* tip, char* cep, char* face, char* num, ch
     end->face = (char*) calloc (strlen (face) + 2, sizeof (char*));
     end->num = (char*) calloc (strlen (num) + 2, sizeof (char*));
     end->comp = NULL;
-    Tipo* tipo;
-    tipo = (Tipo*) tip;
+    Tip* tipo;
+    tipo = (Tip*) tip;
     result->cnpj = (char*) calloc (strlen (cnpj) + 2, sizeof (char*));
     result->nome = (char*) calloc (strlen (nome) + 2, sizeof (char*));
     strcpy(result->cnpj, cnpj);
@@ -61,18 +61,18 @@ void* cria_comercio (char* cnpj, void* tip, char* cep, char* face, char* num, ch
 //DEFINE O TIPO DO COMÉRCIO
 void* cria_tipo_comercio (char* cod, char* info)
 {
-    Tipo* tipo;
-    tipo = (Tipo*) calloc (1, sizeof (Tipo));
+    Tip* tipo;
+    tipo = (Tip*) calloc (1, sizeof (Tip));
     tipo->cod = cod;
     tipo->info = info;
     return (void*) tipo;
 }
 
-//RETORNA UM SVG CORRESPONDENTE À UMA MUDANÇA DE ENDEREÇO
-void* muda_endereco_comercio (void* com,  char* cep, char* face, char* num)
+//RETORNA UM ENDEREÇO CORRESPONDENTE À UMA MUDANÇA DE ENDEREÇO
+void* set_endereco_comercio (void* com,  char* cep, char* face, char* num)
 {
-    Comercio* result;
-    result = (Comercio*) com;
+    Com* result;
+    result = (Com*) com;
     free (result->endereco->cep);
     free (result->endereco->face);
     free (result->endereco->num);
@@ -88,16 +88,16 @@ void* muda_endereco_comercio (void* com,  char* cep, char* face, char* num)
 //RETORNA O ENDEREÇO DO COMÉRCIO
 void* get_endereco_comercio (void* com)
 {
-    Comercio* result;
-    result = (Comercio*) com;
+    Com* result;
+    result = (Com*) com;
     return (void*) result->endereco;
 }
 
 //LIBERA A MEMÓRIA ALOCADA DO COMÉRCIO
 void free_comercio (void* com)
 {
-    Comercio* result;
-    result = (Comercio*) com;
+    Com* result;
+    result = (Com*) com;
     free (result->nome);
     free (result->cnpj);
     free (result->endereco->cep);
@@ -110,18 +110,18 @@ void free_comercio (void* com)
 //FUNÇÃO DE COMPARAÇÃO DE CNPJ DE COMÉRCIO
 int compare_comercio (void* com1, void* com2, int dim)
 {
-    Comercio* comA;
-    Comercio* comB;    
-    comA = (Comercio*) com1;
-    comB = (Comercio*) com2;
+    Com* comA;
+    Com* comB;    
+    comA = (Com*) com1;
+    comB = (Com*) com2;
     return strcmp (comA->cnpj, comB->cnpj);
 }
 
 //RETORNA O CÓDIGO HASH DO COMÉRCIO
 int hashcode_comercio (void* com, int modulo)
 {
-    Comercio* result;
-    result = (Comercio*) com;
+    Com* result;
+    result = (Com*) com;
     int x = strlen (result->cnpj);
     int hash = 0;
     char* aux = result->cnpj;
@@ -137,10 +137,10 @@ int hashcode_comercio (void* com, int modulo)
 //COMPARADOR DE CNPJ DO COMÉRCIO
 int compare_cnpj_comercio (void* com, void* cnpj)
 {
-    Comercio* com1;
-    Comercio* com2;
-    com1 = (Comercio*) com;
-    com2 = (Comercio*) cnpj;
+    Com* com1;
+    Com* com2;
+    com1 = (Com*) com;
+    com2 = (Com*) cnpj;
     return strcmp (com1->cnpj, com2->cnpj);
 }
 
@@ -157,8 +157,8 @@ int compare_endereco_comercio (void* end1, void* end2, int dim)
 //RETORNA O CÓDIGO HASH DO TIPO DO COMÉRCIO
 int hashcode_tipo_comercio (void* tip, int modulo)
 {
-    Tipo *tipo;
-    tipo = (Tipo*) tip;
+    Tip *tipo;
+    tipo = (Tip*) tip;
     int x = strlen (tipo->cod);
     int hash = 0;
     char *aux = tipo->cod;
@@ -174,9 +174,9 @@ int hashcode_tipo_comercio (void* tip, int modulo)
 //COMPARADOR DE HASH DO TIPO DO COMÉRCIO
 int compare_hash_tipo_comercio (void* tip, void* cod)
 {
-    Tipo *tp, *id;
-    tp = (Tipo*) tip;
-    id = (Tipo*) cod;
+    Tip *tp, *id;
+    tp = (Tip*) tip;
+    id = (Tip*) cod;
     return strcmp (tp->cod, id->cod);
 }
 
@@ -222,9 +222,9 @@ int compare_hash_endereco_comercio (void* endereco1, void* endereco2)
 //RETORNA AS COORDENADAS DO COMÉRCIO
 double* get_xy_comercio (void* comercio, Parametros* par)
 {
-    Comercio* com;
+    Com* com;
     double num;
-    com = (Comercio*) comercio;
+    com = (Com*) comercio;
     double* result;
     if(com->endereco == NULL)
     {
@@ -260,17 +260,17 @@ double* get_xy_comercio (void* comercio, Parametros* par)
 //GERA UMA STRING COM AS INFORMAÇÕES DO COMÉRCIO 
 char* relatorio_comercio (void* comercio)
 {
-    Comercio* com;
-    com = (Comercio*) comercio;
+    Com* com;
+    com = (Com*) comercio;
     char* result;
     result = (char*) calloc (555, sizeof (char));
     if(com->endereco == NULL)
     {
-        sprintf (result, "%s - %s", com->nome, com->tipo->info);
+        sprintf (result, "\nNome: %s Tipo: %s", com->nome, com->tipo->info);
     }
     else
     {
-        sprintf (result, "%s - %s, %s %s, nº %s", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num);
+        sprintf (result, "\nNome: %s Tipo: %s \nEndereço: CEP: %s Face: %s Número: %s Complemento: %s", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num, com->endereco->comp);
     }
     return result;
 }
@@ -291,23 +291,46 @@ void* identificador_endereco_comercio (char* cep)
 //RETORNA O CÓDIGO DO TIPO DO COMÉRCIO
 char* get_codigo_tipo_comercio (void* comercio)
 {
-    Comercio* com;
-    com = (Comercio*) comercio;
+    Com* com;
+    com = (Com*) comercio;
     return com->tipo->cod;
 }
 
 //RETORNA O TIPO DO COMÉRCIO
-char* get_tipo_comercio (Comercio* comercio)
+char* get_tipo_comercio (Com* comercio)
 {
-    Comercio* com;
-    com = (Comercio*) comercio;
+    Com* com;
+    com = (Com*) comercio;
     return com->tipo->info;
 }
 
 //RETORNA O NOME DO COMÉRCIO
-char* get_nome_comercio(Comercio* comercio)
+char* get_nome_comercio (Com* comercio)
 {
-    Comercio* com;
-    com = (Comercio*) comercio;
+    Com* com;
+    com = (Com*) comercio;
     return com->nome;
+}
+
+//RETORNA O CNPJ DO COMÉRCIO
+char* get_cnpj_comercio (Com* comercio)
+{
+    Com* com;
+    com = (Com*) comercio;
+    return com->cnpj;
+}
+
+//GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
+char* relatorio_mud_comercio (void* comercio, void* end1, void* end2)
+{
+    char* relatorio;
+    Com* com;
+    Endereco* endA;
+    Endereco* endB;
+    com = (Com*) comercio;
+    endA = (Endereco*) end1;
+    endB = (Endereco*) end2;
+    relatorio = (char*) calloc (555, sizeof (char));
+    sprintf (relatorio, "\nNome: %s Tipo: %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s", com->nome, com->tipo->info, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    return relatorio;
 }

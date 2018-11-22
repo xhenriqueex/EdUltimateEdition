@@ -11,6 +11,8 @@
 #include "Objetos/Hidrante/hidrante.h"
 #include "Objetos/Semáforo/semaforo.h"
 #include "Objetos/Rádiobase/radiobase.h"
+#include "Objetos/Comércio/comercio.h"
+#include "Objetos/Pessoa/pessoa.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -27,9 +29,6 @@ int main(int argc, char* argv[])
     //DECLARANDO INTS
     int i;
 
-    //DECLARANDO CHAR POINTERS
-    //char* comando;
-
     //ALOCANDO STRUCT
     p = (Parametros*) calloc (1, sizeof (Parametros));
 
@@ -42,10 +41,9 @@ int main(int argc, char* argv[])
     p->caminho_PM = NULL;
     //p->caminho_VIA = NULL;
 
-    //INICIALIZANDO VETOR DE COMANDOS
+    //INICIALIZANDO STRING DE COMANDO
     p->comando = NULL;
-    //p->comando_vetor = NULL;
-
+    
     //INICIALIZANDO NÚMERO MÁXIMO DE FIGURAS
     p->max_figuras = 1000;
 
@@ -55,14 +53,17 @@ int main(int argc, char* argv[])
     //INICIALIZANDO FILAS
     p->anotacoes = cria_fila();
     p->resultado = cria_fila();
-
-    //INICIALIZANDO LISTAS
-    p->quadras = cria_lista();
-    p->hidrantes = cria_lista();
-    p->semaforos = cria_lista();
-    p->radiobases = cria_lista();
     
     //INICIALIZANDO HASHTABLES
+    p->hash_comercios = cria_hashtable (100, compare_cnpj_comercio, hashcode_comercio);
+    p->hash_pessoas = cria_hashtable (100, compare_cpf_pessoa, hashcode_pessoa);
+    p->hash_quadras = cria_hashtable (100, compare_quadra, hashcode_quadra);
+    p->hash_hidrantes = cria_hashtable (100, compare_hidrante, hashcode_hidrante);
+    p->hash_semaforos = cria_hashtable (100, compare_semaforo, hashcode_semaforo);
+    p->hash_radiobases = cria_hashtable (100, compare_radiobase, hashcode_radiobase);
+    p->hash_end_comercios = cria_hashtable (100, compare_hash_endereco_comercio, hashcode_endereco_comercio);
+    p->hash_end_pessoas = cria_hashtable (100, compare_cep_endereco_pessoa, hashcode_endereco_pessoa);
+    p->hash_tipos = cria_hashtable (100, compare_hash_tipo_comercio, hashcode_tipo_comercio);
 
     //INICIALIZANDO ÁRVORES
     p->tree_quadras = cria_arvore (compare_quadra, 2);

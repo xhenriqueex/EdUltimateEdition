@@ -36,10 +36,6 @@ typedef struct params {
     Item* figuras;
     Fila* anotacoes;
     Fila* resultado;
-    Lista quadras;
-    Lista hidrantes;
-    Lista semaforos;
-    Lista radiobases;
     Arvore tree_quadras;
     Arvore tree_hidrantes;
     Arvore tree_semaforos;

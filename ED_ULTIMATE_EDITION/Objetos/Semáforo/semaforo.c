@@ -104,7 +104,19 @@ int compare_semaforo (void* sem1, void* sem2, int dim)
     Semaforo* semB;    
     semA = (Semaforo*) sem1;
     semB = (Semaforo*) sem2;
-    return strcmp (semA->id, semB->id);
+    dim = dim % 2;
+    if (!strcmp(semA->id, semB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (semA->x - semB->x);
+    }
+    else
+    {
+        return (semA->y - semB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DO SEMÁFORO

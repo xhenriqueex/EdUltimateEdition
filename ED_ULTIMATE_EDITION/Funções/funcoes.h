@@ -4,6 +4,7 @@
 #define FUNCTIONS_H
 #include <stdio.h>
 #include "../Estruturas/Fila/fila.h"
+#include "../Estruturas/Lista/lista.h"
 #include "../Parâmetros/parametros.h"
 
 //TRATA OS CAMINHOS
@@ -33,6 +34,9 @@ double menor_overlap (double x1, double x2);
 //REPORTA TODOS OS ITENS DENTRO DO RETÂNGULO
 void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double w, double h);
 
+//REPORTA TODAS AS QUADRAS DENTRO DO RETÂNGULO
+Lista reporta_quadra_dentro_retangulo (void* quadras, double w, double h, double x, double y);
+
 //REPORTA TODOS OS ITENS DENTRO DO CÍRCULO
 void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double r);
 
@@ -59,6 +63,12 @@ void escreve_crd_semaforo (Fila* resultado, void* semaforo);
 
 //ESCREVE AS INFORMAÇÕES DO ID ESPECIFICADO (RÁDIO-BASE) NO .TXT
 void escreve_crd_radiobase (Fila* resultado, void* radiobase);
+
+//IMPRIME POR TIPO TODOS OS ESTABELECIMENTOS NAQUELA QUADRA
+char* imprime_tipos_comercios_quadra (Lista comercios);
+
+//IMPRIME TODOS OS TIPOS NAQUELA QUADRA
+char* imprime_tipos_quadra (Lista comercios);
 
 //FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
 void fecha_qry (Parametros* par);

@@ -16,7 +16,7 @@ typedef struct{
 } Endereco;
 
 //DEFINE A STRUCT PESSOA
-typedef struct{
+typedef struct {
     char* nome;
     char* sobrenome;
     char* cpf;
@@ -187,7 +187,7 @@ void* identificador_endereco_pessoa (char* cep)
     end->pessoa = NULL;
 }
 
-//GERA UMA STRING COM AS INFORMAÇÕES DA PESSOA
+//GERA UMA STRING COM AS INFORMAÇÕES DO ENDEREÇO DA PESSOA
 char* relatorio_endereco_pessoa (void* pessoa)
 {
     Pessoa* pes;
@@ -196,11 +196,11 @@ char* relatorio_endereco_pessoa (void* pessoa)
     pes = (Pessoa*) pessoa;
     if (pes->endereco == NULL)
     {
-        sprintf (result, "%s", pes->nome);
+        sprintf (result, "\nNome: %s %s", pes->nome, pes->sobrenome);
     }
     else
     {
-        sprintf(result, "%s, %s %s, nº %s - %s", pes->nome, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
+        sprintf (result, "\nNome: %s %s \nEndereço: Cep - %s, Face - %s Número - %s Complemento - %s", pes->nome, pes->sobrenome, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
     }
     return result;
 }
@@ -242,4 +242,30 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
         result[0] += get_w_retangulo (get_retangulo_quadra (quad));
     }
     return result;
+}
+
+//GERA UMA STRING COM O RELATÓRIO DA MORTE DA PESSOA
+char* relatorio_morte_pessoa (void* pessoa)
+{
+    char* relatorio;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    relatorio = (char*) calloc (555, sizeof (char));
+    sprintf (relatorio, "\n%s %s, portador do CPF %s, do sexo %s, nascido em %s, residia no endereço %s/%s/%s/%s, falecido!", pes->nome, pes->sobrenome, pes->cpf, pes->sexo, pes->nascimento, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
+    return relatorio;
+}
+
+//GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
+char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
+{
+    char* relatorio;
+    Pessoa* pes;
+    Endereco* endA;
+    Endereco* endB;
+    pes = (Pessoa*) pessoa;
+    endA = (Endereco*) end1;
+    endB = (Endereco*) end2;
+    relatorio = (char*) calloc (555, sizeof (char));
+    sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    return relatorio;
 }

@@ -13,8 +13,8 @@ Comercio cria_comercio (char* cnpj, Tipo tipo, char* cep, char* face, char* num,
 //DEFINE O TIPO DO COMÉRCIO
 Tipo cria_tipo_comercio (char* cod, char* info);
 
-//RETORNA UM SVG CORRESPONDENTE À UMA MUDANÇA DE ENDEREÇO
-void* muda_endereco_comercio (Comercio com,  char* cep, char* face, char* num);
+//RETORNA UM ENDEREÇO CORRESPONDENTE À UMA MUDANÇA DE ENDEREÇO
+void* set_endereco_comercio (Comercio com,  char* cep, char* face, char* num);
 
 //RETORNA O ENDEREÇO DO COMÉRCIO
 void* get_endereco_comercio (void* com);
@@ -66,5 +66,11 @@ char* get_tipo_comercio (Comercio* comercio);
 
 //RETORNA O NOME DO COMÉRCIO
 char* get_nome_comercio(Comercio* comercio);
+
+//RETORNA O CNPJ DO COMÉRCIO
+char* get_cnpj_comercio (Comercio* comercio);
+
+//GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
+char* relatorio_mud_comercio (Comercio comercio, void* end1, void* end2);
 
 #endif

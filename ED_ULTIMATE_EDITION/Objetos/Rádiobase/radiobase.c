@@ -104,7 +104,19 @@ int compare_radiobase (void* rb1, void* rb2, int dim)
     Radiobase* rbB;    
     rbA = (Radiobase*) rb1;
     rbB = (Radiobase*) rb2;
-    return strcmp (rbA->id, rbB->id);
+    dim = dim % 2;
+    if (!strcmp(rbA->id, rbB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (rbA->x - rbB->x);
+    }
+    else
+    {
+        return (rbA->y - rbB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DA RADIOBASE
