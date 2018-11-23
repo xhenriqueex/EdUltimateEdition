@@ -381,7 +381,7 @@ int main(int argc, char* argv[])
         //FECHANDO O ARQUIVO .VIA
         fecha_via (arquivo, p);
 
-        //FECHANDO O ARQUIVO
+        //FECHANDO O ARQUIVOf
         fclose (arquivo);
     }
     */
@@ -391,6 +391,7 @@ int main(int argc, char* argv[])
     free(p->diretorio_saida);
     free(p->anotacoes);
     free(p->resultado);
+    free(p);
     //FINALIZANDO O PROGRAMA
     return 1;
 }
