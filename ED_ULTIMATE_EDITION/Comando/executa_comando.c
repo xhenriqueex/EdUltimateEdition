@@ -2217,7 +2217,7 @@ void caso_dpr (Parametros* par)
                     {
                         com = get_comercio_endereco (temp);
                         tempChar = (char*) calloc (155, sizeof (char));
-                        sprintf (tempChar, "\n%s", relatorio_comerio (temp));
+                        sprintf (tempChar, "\n%s", relatorio_comercio (temp));
                         insere_fila (par->resultado, tempChar);
                         temp2 = get_proximo_lista (enderecos, auxA);
                         remove_hashtable (par->hash_comercios, com);
@@ -2240,7 +2240,7 @@ void caso_dpr (Parametros* par)
                     {
                         pes = get_pessoa_endereco (temp);
                         tempChar = (char*) calloc (155, sizeof (char));
-                        sprintf (tempChar, "\n%s", relatorio_pessoa (temp));
+                        sprintf (tempChar, "\n%s", relatorio_endereco_pessoa (temp));
                         insere_fila (par->resultado, tempChar);
                         temp2 = get_proximo_lista (enderecos, auxA);
                         remove_hashtable (par->hash_end_pessoas, pes);
