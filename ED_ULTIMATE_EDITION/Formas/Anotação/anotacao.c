@@ -40,6 +40,16 @@ char* cria_svg_anotacao (void* anotation)
         sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"10\" height=\"20\" fill=\"BLACK\"/>\n<rect x=\"%f\" y=\"%f\" width=\"2\" height=\"12\" fill=\"WHITE\"/>\n<rect x=\"%f\" y=\"%f\" width=\"6\" height=\"2\" fill=\"WHITE\"/>\n", anotacao->x, anotacao->y, anotacao->x + 4, anotacao->y + 4, anotacao->x + 2, anotacao->y + 8);
         return result;
     }
+    if (!strcmp (anotacao->texto, "dm"))
+    {
+        sprintf (result, "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"transparent\" stroke=\"lightred\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n", anotacao->x, anotacao->y, anotacao->w);
+        return result;
+    }
+    if (!strcmp (anotacao->texto, "de"))
+    {
+        sprintf (result, "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"transparent\" stroke=\"darkred\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n", anotacao->x, anotacao->y, anotacao->w);
+        return result;
+    }
     if (!strcmp (anotacao->texto, "mud"))
     {
         sprintf (result, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"lightblue\" stroke-width=\"4\"/>", anotacao->w, anotacao->h, anotacao->x, anotacao->y);

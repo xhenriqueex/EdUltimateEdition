@@ -231,7 +231,7 @@ double* get_xy_comercio (void* comercio, Parametros* par)
         return NULL;
     }
     Quadra temp = cria_quadra (com->endereco->cep, 0, 0, 0, 0, "", "");
-    Quadra quad = get_hashtable (par->hash_comercios, temp);
+    Quadra quad = get_hashtable (par->hash_quadras, temp);
     sscanf (com->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
     result[0] = get_x_retangulo (get_retangulo_quadra (quad));
@@ -266,11 +266,11 @@ char* relatorio_comercio (void* comercio)
     result = (char*) calloc (555, sizeof (char));
     if(com->endereco == NULL)
     {
-        sprintf (result, "\nNome: %s Tipo: %s", com->nome, com->tipo->info);
+        sprintf (result, "\nNome: %s \nTipo: %s\n", com->nome, com->tipo->info);
     }
     else
     {
-        sprintf (result, "\nNome: %s Tipo: %s \nEndereço: CEP: %s Face: %s Número: %s Complemento: %s", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num, com->endereco->comp);
+        sprintf (result, "\nNome: %s \nTipo: %s \nEndereço: CEP = %s,   Face = %s   Número = %s\n", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num);
     }
     return result;
 }

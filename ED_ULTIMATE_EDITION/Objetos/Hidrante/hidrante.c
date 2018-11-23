@@ -136,10 +136,21 @@ int hashcode_hidrante (void* hid, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//COMPARADOR DE CEP DO HIDRANTE PARA HASHTABLE
+int compare_hash_hidrante (void* hid, void* id)
+{
+    Hidrante* hidA;
+    Hidrante* hidB;
+    hidA = (Hidrante*) hid;
+    hidB = (Hidrante*) id;
+    return strcmp (hidA->id, hidB->id);
+}
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO HIDRANTE
 void* get_circulo_hidrante (void* hidrante)
 {
+    long int id;
     Hidrante* hid;
     hid = (Hidrante*) hidrante;
-    return cria_circulo (hid->id, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
+    return cria_circulo (0, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
 }

@@ -874,10 +874,12 @@ char* imprime_tipos_quadra (Lista comercios)
 void fecha_qry (Parametros* par)
 {
     int i;
+    double* coord;
     char* caminho;
     char* percorre;
     char* conteudo_svg;
     char* remove_ext;
+    void* primeiro;
     FILE* saida_SVG;
     FILE* saida_QRY;
     Lista quadras;
@@ -927,7 +929,7 @@ void fecha_qry (Parametros* par)
             free_retangulo (get_valor_item (*(par->figuras + i)));
             continue;
         }
-        else
+        if (!strcmp (get_tipo_item (*(par->figuras + i)), C))
         {
             conteudo_svg = cria_svg_circulo (get_valor_item (*(par->figuras + i)));
             fprintf (saida_SVG, conteudo_svg);
@@ -937,7 +939,6 @@ void fecha_qry (Parametros* par)
         free_item (*(par->figuras + i));
         free (conteudo_svg);
     }
-    void* primeiro;
     quadras = get_todos_arvore (par->tree_quadras);
     primeiro = get_primeiro_lista (quadras);
     do
@@ -953,7 +954,6 @@ void fecha_qry (Parametros* par)
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
-    
     hidrantes = get_todos_arvore (par->tree_hidrantes);
     primeiro = get_primeiro_lista (hidrantes);
     do

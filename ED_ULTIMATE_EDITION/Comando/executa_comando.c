@@ -131,10 +131,13 @@ void executa_comando (void* p)
     //CRIA UMA RADIOBASE
     if (!strcmp (comando, "t"))
     {
-        par->comando += 2;
-        caso_t_geo (par);
-        free(comando);
-        return;
+        if (!strcmp (par->controle, ".qry"))
+        {
+            par->comando += 2;
+            caso_t_geo (par);
+            free(comando);
+            return;    
+        }
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA QUADRA
     if (!strcmp (comando, "cq"))
@@ -211,10 +214,13 @@ void executa_comando (void* p)
     //DEFINE O TIPO DO ESTABELECIMENTO COMERCIAL
     if (!strcmp (comando, "t"))
     {
-        par->comando += 2;
-        caso_t_ec (par);
-        free(comando);
-        return;
+        if (!strcmp (par->controle, ".ec"))
+        {
+            par->comando += 2;
+            caso_t_ec (par);
+            free(comando);
+            return;
+        }
     }
     //INSERE UM NOVO ESTABELECIMENTO COMERCIAL DE UM DETERMINADO TIPO
     if (!strcmp (comando, "e"))
@@ -1677,10 +1683,13 @@ void caso_m_pergunta (Parametros* par)
     char* aux;
     char* cep;
     char* relatorio;
+    char* result;
     void* endereco;
     void* primeiro;
     void* morador;
+    void* valor;
     Lista enderecos;
+    result = (char*) calloc (5, sizeof (char));
     aux = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
@@ -1693,12 +1702,20 @@ void caso_m_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (enderecos);
     do
     {
-        morador = get_pessoa_endereco (get_valor_lista (enderecos, primeiro));
+        valor = get_valor_lista (enderecos, primeiro);
+        if (valor == NULL)
+        {
+            primeiro = get_proximo_lista (enderecos, primeiro);
+            continue;
+        }
+        morador = get_pessoa_endereco (valor);
         relatorio = relatorio_endereco_pessoa (morador);
         insere_lista (par->resultado, relatorio);
         primeiro = get_proximo_lista (enderecos, primeiro);
     }
     while (primeiro != NULL);
+    sprintf (result, "\n");
+    insere_fila (par->resultado, result);
     return;
 }
 
@@ -1751,20 +1768,35 @@ void caso_dm_pergunta (Parametros* par)
     char* aux;
     char* result;
     char* cpf;
+    char* relatorio;
     Pessoa* pessoa;
+    Pessoa* auxPes;
+    Anotacao* anot;
     aux = (char*) calloc (strlen (par->comando) + 2, sizeof(char));
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
     par->comando += 4;
     cpf = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cpf);
-    pessoa = get_hashtable (par->hash_pessoas, cpf);
-    result = (char*) calloc (555, sizeof (char));
-    result = relatorio_endereco_pessoa (pessoa);
+    auxPes = cria_pessoa ("", "", cpf, "", "");
+    pessoa = get_hashtable (par->hash_pessoas, auxPes);
+    free (auxPes);
+    if (pessoa == NULL)
+    {
+        printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        result = (char*) calloc (155, sizeof (char));
+        sprintf (result, "\nMORADOR NÃO ENCONTRADO!");
+        insere_fila (par->resultado, result);
+        return;
+    }
+    result = (char*) calloc (55, sizeof (char));
+    relatorio = relatorio_endereco_pessoa (pessoa);
     coord = get_xy_pessoa (pessoa, par);
-    insere_fila (par->resultado, result);
+    insere_fila (par->resultado, relatorio);
     sprintf (result, "\nX - %lf Y - %lf", *coord, *(coord + 1));
+    anot = cria_anotacao (10, 0, *coord, *(coord + 1), "dm");
     insere_fila (par->resultado, result);
+    insere_fila (par->anotacoes, anot);
     return;
 }
 
@@ -1772,22 +1804,37 @@ void caso_de_pergunta (Parametros* par)
 {
     double* coord;
     char* aux;
+    char* relatorio;
     char* result;
     char* cnpj;
     Comercio* comercio;
+    Comercio* auxCom;
+    Anotacao* anot;
     aux = (char*) calloc (strlen (par->comando) + 2, sizeof(char));
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
     par->comando += 4;
     cnpj = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cnpj);
-    comercio = get_hashtable (par->hash_comercios, cnpj);
-    result = (char*) calloc (555, sizeof (char));
-    result = relatorio_comercio (comercio);
+    auxCom = cria_comercio (cnpj, "", "", "", "", "");
+    comercio = get_hashtable (par->hash_comercios, auxCom);
+    free (auxCom);
+    if (comercio == NULL)
+    {
+        printf ("\nERRO: COMÉRCIO NAO ENCONTRADO!");
+        result = (char*) calloc (155, sizeof (char));
+        sprintf (result, "\nCOMÉRCIO NÃO ENCONTRADO!\n");
+        insere_fila (par->resultado, result);
+        return;
+    }
+    result = (char*) calloc (55, sizeof (char));
+    relatorio = relatorio_comercio (comercio);
     coord = get_xy_comercio (comercio, par);
+    insere_fila (par->resultado, relatorio);
+    sprintf (result, "X - %lf Y - %lf\n", *coord, *(coord + 1));
+    anot = cria_anotacao (10, 0, *coord, *(coord + 1), "de");
     insere_fila (par->resultado, result);
-    sprintf (result, "\nX - %lf Y - %lf", *coord, *(coord + 1));
-    insere_fila (par->resultado, result);
+    insere_fila (par->anotacoes, anot);
     return;
 }
 
@@ -1798,6 +1845,7 @@ void caso_rip (Parametros* par)
     char* cpf;
     char* relatorio;
     Pessoa* pessoa;
+    Pessoa* auxPes;
     Endereco* end;
     Anotacao anot;
     aux = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
@@ -1806,7 +1854,17 @@ void caso_rip (Parametros* par)
     par->comando += 4;
     cpf = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cpf);
-    pessoa = get_hashtable (par->hash_pessoas, cpf);
+    auxPes = cria_pessoa ("", "", cpf, "", "");
+    pessoa = get_hashtable (par->hash_pessoas, auxPes);
+    free (auxPes);
+    if (pessoa == NULL)
+    {
+        printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        relatorio = (char*) calloc (155, sizeof (char));
+        sprintf (relatorio, "\nMORADOR NÃO ENCONTRADO!");
+        insere_fila (par->resultado, relatorio);
+        return;
+    }
     relatorio = (char*) calloc (555, sizeof (char));
     relatorio = relatorio_morte_pessoa (pessoa);
     coord = get_xy_pessoa (pessoa, par);
@@ -1825,6 +1883,7 @@ void caso_ecq_pergunta (Parametros* par)
     char* aux;
     char* cep;
     char* relatorio;
+    char* result;
     void* endereco;
     void* primeiro;
     void* comercio;
@@ -1835,17 +1894,17 @@ void caso_ecq_pergunta (Parametros* par)
     par->comando += 5;
     cep = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cep);
-    relatorio = (char*) calloc (555, sizeof (char));
+    result = (char*) calloc (55, sizeof (char));
     endereco = identificador_endereco_comercio (cep);
     enderecos = get_lista_hashtable (par->hash_end_comercios, endereco);
     primeiro = get_primeiro_lista (enderecos);
     do
     {
         comercio = get_comercio_endereco (get_valor_lista (enderecos, primeiro));
-        sprintf (relatorio, "\nCNPJ: %s", get_cnpj_comercio (comercio));
-        insere_fila (par->resultado, relatorio);
+        sprintf (result, "\nCNPJ: %s", get_cnpj_comercio (comercio));
+        insere_fila (par->resultado, result);
         relatorio = relatorio_comercio (comercio);
-        insere_lista (par->resultado, relatorio);
+        insere_fila (par->resultado, relatorio);
         primeiro = get_proximo_lista (enderecos, primeiro);
     }
     while (primeiro != NULL);
@@ -1911,6 +1970,7 @@ void caso_tecq_pergunta (Parametros* par)
     void* auxA;
     Comercio* comercio;
     Quadra* quadra;
+    Quadra* quadraAux;
     Endereco* end;
     Lista comercios;
     Lista enderecos;
@@ -1921,10 +1981,12 @@ void caso_tecq_pergunta (Parametros* par)
     cep = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     strcpy (cep, par->comando);
     relatorio = (char*) calloc (155, sizeof (char));
-    quadra = get_hashtable (par->hash_quadras, cep);
+    quadraAux = cria_quadra (cep, 0, 0, 0, 0, "", "");
+    quadra = get_hashtable (par->hash_quadras, quadraAux);
+    free (quadraAux);
     if (quadra == NULL)
     {
-        sprintf (relatorio, "\nERRO: QUADRA NÃO ENCONTRADA!");
+        sprintf (relatorio, "\nERRO: QUADRA NÃO ENCONTRADA!\n");
         insere_lista (par->resultado, relatorio);
         printf ("\nERRO: QUADRA NÃO ENCONTRADA!");
         free (quadra);
@@ -2015,7 +2077,7 @@ void caso_hmpe_pergunta (Parametros* par)
     strcpy (aux, par->comando);
     par->comando += 6;
     sscanf (par->comando, "%s %s %s", cep, face, num);
-    pes = cria_pessoa ("-1", "", "", "", "");
+    pes = cria_pessoa ("", "", "", "", "");
     set_endereco_pessoa (pes, cep, face, num, "");
     coord = get_xy_pessoa (pes, par);
     free_pessoa (pes);
@@ -2046,7 +2108,7 @@ void caso_hmp_pergunta (Parametros* par)
     rb = get_valor_arvore (par->hash_radiobases, id);
     if (rb == NULL)
     {
-        sprintf (aux, "\nRÁDIOBASE NÃO ENCONTRADA!");
+        sprintf (aux, "\nRÁDIOBASE NÃO ENCONTRADA!\n");
         insere_fila (par->resultado, aux);
         printf ("\nERRO: RADIOBASE NAO ENCONTRADA!");
         return;
@@ -2072,6 +2134,7 @@ void caso_fec (Parametros* par)
     char* cnpj;
     char* relatorio;
     Comercio* comercio;
+    Comercio* comercioAux;
     Endereco* end;
     aux = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     strcpy (aux, par->comando);
@@ -2079,7 +2142,17 @@ void caso_fec (Parametros* par)
     par->comando += 4;
     cnpj = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cnpj);
-    comercio = get_hashtable (par->hash_comercios, cnpj);
+    comercioAux = cria_comercio (cnpj, "", "", "", "", "");
+    comercio = get_hashtable (par->hash_comercios, comercioAux);
+    free (comercioAux);
+    if (comercio == NULL)
+    {
+        printf ("\nERRO: COMERCIO NAO ENCONTRADO!");
+        relatorio = (char*) calloc (155, sizeof (char));
+        sprintf (relatorio, "\nCOMÉRCIO NÃO ENCONTRADO!\n");
+        insere_fila (par->resultado, relatorio);
+        return;
+    }
     relatorio = (char*) calloc (555, sizeof (char));
     relatorio = relatorio_comercio (comercio);
     coord = get_xy_comercio (comercio, par);
@@ -2101,17 +2174,34 @@ void caso_mud (Parametros* par)
     char* num;
     char* comp;
     char* linha;
+    char* result;
     Pessoa* pes;
+    Pessoa* pesAux;
     Endereco* endAntigo;
     Endereco* endNovo;
     Anotacao* anot;
     aux = (char*) calloc (55, sizeof (char));
     linha = (char*) calloc (55, sizeof (char));
+    cpf = (char*) calloc (25, sizeof (char));
+    cep = (char*) calloc (25, sizeof (char));
+    face = (char*) calloc (25, sizeof (char));
+    num = (char*) calloc (25, sizeof (char));
+    comp = (char*) calloc (25, sizeof (char)); 
+    result = (char*) calloc (55, sizeof (char));
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
     par->comando += 4;
     sscanf (par->comando, "%s %s %s %s %s", cpf, cep, face, num, comp);
-    pes = get_hashtable (par->hash_pessoas, cpf);
+    pesAux = cria_pessoa ("", "", cpf, "", "");
+    pes = get_hashtable (par->hash_pessoas, pesAux);
+    free (pesAux);
+    if (pes == NULL)
+    {
+        printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        sprintf (result, "\nMORADOR NÃO ENCONTRADO!\n");
+        insere_fila (par->resultado, result);
+        return;
+    }
     endAntigo = get_endereco_pessoa (pes);
     coordAntiga = get_xy_pessoa (pes, par);
     remove_hashtable (par->hash_end_pessoas, endAntigo);
@@ -2122,6 +2212,8 @@ void caso_mud (Parametros* par)
     insere_fila (par->resultado, aux);
     anot = cria_anotacao (*coordAntiga, *(coordAntiga + 1), *coordNova, *(coordNova + 1), "mud");
     insere_fila (par->anotacoes, anot);
+    sprintf (result, "\n");
+    insere_fila (par->resultado, result);
     return;
 }
 
@@ -2135,7 +2227,9 @@ void caso_mudec (Parametros* par)
     char* face;
     char* num;
     char* linha;
+    char* result;
     Comercio* com;
+    Comercio* comAux;
     Endereco* endAntigo;
     Endereco* endNovo;
     Anotacao* anot;
@@ -2145,7 +2239,17 @@ void caso_mudec (Parametros* par)
     insere_fila (par->resultado, aux);
     par->comando += 4;
     sscanf (par->comando, "%s %s %s %s", cnpj, cep, face, num);
-    com = get_hashtable (par->hash_comercios, cnpj);
+    comAux = cria_comercio (cnpj, "", "", "", "", "");
+    com = get_hashtable (par->hash_comercios, comAux);
+    free (comAux);
+    if (com == NULL)
+    {
+        printf ("\nERRO: COMERCIO NAO ENCONTRADO!");
+        result = (char*) calloc (155, sizeof (char));
+        sprintf (result, "\nCOMÉRCIO NÃO ENCONTRADO!\n");
+        insere_fila (par->resultado, result);
+        return;
+    }
     endAntigo = get_endereco_comercio (com);
     coordAntiga = get_xy_comercio (com, par);
     remove_hashtable (par->hash_end_comercios, endAntigo);
@@ -2184,7 +2288,7 @@ void caso_dpr (Parametros* par)
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
     par->comando += 4;
-    sscanf (par->comando, "%lf %lf %lf %lf", x, y, w, h);
+    sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     anot = cria_anotacao (w, h, x, y, "dpr");
     insere_fila (par->anotacoes, anot);
     quadras = get_todos_arvore (par->tree_quadras);
@@ -2217,7 +2321,7 @@ void caso_dpr (Parametros* par)
                     {
                         com = get_comercio_endereco (temp);
                         tempChar = (char*) calloc (155, sizeof (char));
-                        sprintf (tempChar, "\n%s", relatorio_comercio (temp));
+                        sprintf (tempChar, "%s", relatorio_comercio (com));
                         insere_fila (par->resultado, tempChar);
                         temp2 = get_proximo_lista (enderecos, auxA);
                         remove_hashtable (par->hash_comercios, com);
@@ -2240,7 +2344,7 @@ void caso_dpr (Parametros* par)
                     {
                         pes = get_pessoa_endereco (temp);
                         tempChar = (char*) calloc (155, sizeof (char));
-                        sprintf (tempChar, "\n%s", relatorio_endereco_pessoa (temp));
+                        sprintf (tempChar, "%s", relatorio_endereco_pessoa (pes));
                         insere_fila (par->resultado, tempChar);
                         temp2 = get_proximo_lista (enderecos, auxA);
                         remove_hashtable (par->hash_end_pessoas, pes);
@@ -2284,7 +2388,7 @@ void caso_dpr (Parametros* par)
             if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
             {
                 tempChar = (char*) calloc (155, sizeof (char));
-                sprintf (tempChar, "\nHid - ID = %s X - %s Y - %s", get_id_hidrante (it), get_x_hidrante (it), get_y_hidrante (it));
+                sprintf (tempChar, "\nHid - ID = %s   X - %lf   Y - %lf", get_id_hidrante (it), get_x_hidrante (it), get_y_hidrante (it));
                 insere_fila (par->resultado, tempChar);
                 temp2 = get_proximo_lista (hidrantes, primeiro);
                 remove_lista (hidrantes, primeiro);
@@ -2321,7 +2425,7 @@ void caso_dpr (Parametros* par)
             if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
             {
                 tempChar = (char*) calloc (155, sizeof (char));
-                sprintf (tempChar, "\nSem - ID = %s X - %s Y - %s", get_id_semaforo (it), get_x_semaforo (it), get_y_semaforo (it));
+                sprintf (tempChar, "\nSem - ID = %s   X - %lf   Y - %lf", get_id_semaforo (it), get_x_semaforo (it), get_y_semaforo (it));
                 insere_fila (par->resultado, tempChar);
                 temp2 = get_proximo_lista (semaforos, primeiro);
                 remove_lista (semaforos, primeiro);
@@ -2358,7 +2462,7 @@ void caso_dpr (Parametros* par)
             if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
             {
                 tempChar = (char*) calloc (155, sizeof (char));
-                sprintf (tempChar, "\nRbs - ID = %s X - %s Y - %s", get_id_radiobase (it), get_x_radiobase (it), get_y_radiobase (it));
+                sprintf (tempChar, "\nRbs - ID = %s   X - %lf   Y - %lf", get_id_radiobase (it), get_x_radiobase (it), get_y_radiobase (it));
                 insere_fila (par->resultado, tempChar);
                 temp2 = get_proximo_lista (radiobases, primeiro);
                 remove_lista (radiobases, primeiro);
@@ -2405,6 +2509,8 @@ void caso_e (Parametros* par)
     char* nome;
     void* comercio;
     void* end;
+    Tipo t;
+    Tipo tAux;
     cnpj = (char*) calloc (155, sizeof (char));
     cod = (char*) calloc (155, sizeof (char));
     cep = (char*) calloc (155, sizeof (char));
@@ -2412,7 +2518,10 @@ void caso_e (Parametros* par)
     num = (char*) calloc (155, sizeof (char));
     nome = (char*) calloc (155, sizeof (char));
     sscanf (par->comando, "%s %s %s %s %s %s", cnpj, cod, cep, face, num, nome);
-    comercio = cria_comercio (cnpj, cod, cep, face, num, nome);
+    tAux = cria_tipo_comercio (cod, "");
+    t = get_hashtable (par->hash_tipos, tAux);
+    free (tAux);
+    comercio = cria_comercio (cnpj, t, cep, face, num, nome);
     insere_hashtable (par->hash_comercios, comercio);
     end = get_endereco_comercio (comercio);
     insere_hashtable (par->hash_end_comercios, end);
@@ -2435,7 +2544,7 @@ void caso_p (Parametros* par)
     sexo = (char*) calloc (155, sizeof (char));
     nascimento = (char*) calloc (155, sizeof (char));
     sscanf (par->comando, "%s %s %s %s %s", cpf, nome, sobrenome, sexo, nascimento);
-    pessoa = cria_pessoa (cpf, nome, sobrenome, sexo, nascimento);
+    pessoa = cria_pessoa (nome, sobrenome, cpf, sexo, nascimento);
     insere_hashtable (par->hash_pessoas, pessoa);
     return;
 }
@@ -2449,14 +2558,22 @@ void caso_m (Parametros* par)
     char* comp;
     void* end;
     void* pessoa;
+    void* auxPes;
     cpf = (char*) calloc (155, sizeof (char));
     cep = (char*) calloc (155, sizeof (char));
     face = (char*) calloc (155, sizeof (char));
     num = (char*) calloc (155, sizeof (char));
     comp = (char*) calloc (155, sizeof (char));
     sscanf (par->comando, "%s %s %s %s %s", cpf, cep, face, num, comp);
-    pessoa = get_hashtable (par->hash_pessoas, cpf);
-    set_endereco_pessoa (pessoa, cep, face, num, comp);
+    auxPes = cria_pessoa ("", "", cpf, "", "");
+    pessoa = get_hashtable (par->hash_pessoas, auxPes);
+    free (auxPes);
+    if (pessoa == NULL)
+    {
+        printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        return;
+    }
+    end = set_endereco_pessoa (pessoa, cep, face, num, comp);
     insere_hashtable (par->hash_end_pessoas, end);
     return;
 }

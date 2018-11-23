@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../Formas/Círculo/circulo.h"
 
 //INICIA A STRUCT RÁDIO-BASE
 typedef struct radiobase {
@@ -136,10 +137,20 @@ int hashcode_radiobase (void* rb, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//COMPARADOR DE CEP DA RÁDIOBASE PARA HASHTABLE
+int compare_hash_radiobase (void* rb, void* id)
+{
+    Radiobase* rbA;
+    Radiobase* rbB;
+    rbA = (Radiobase*) rb;
+    rbB = (Radiobase*) id;
+    return strcmp (rbA->id, rbB->id);
+}
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
 void* get_circulo_radiobase (void* radiobase)
 {
     Radiobase* rb;
     rb = (Radiobase*) radiobase;
-    return cria_circulo (rb->id, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
+    return cria_circulo (0, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
 }

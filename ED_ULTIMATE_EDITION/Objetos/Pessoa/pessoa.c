@@ -196,11 +196,11 @@ char* relatorio_endereco_pessoa (void* pessoa)
     pes = (Pessoa*) pessoa;
     if (pes->endereco == NULL)
     {
-        sprintf (result, "\nNome: %s %s", pes->nome, pes->sobrenome);
+        sprintf (result, "\nNome: %s %s\n", pes->nome, pes->sobrenome);
     }
     else
     {
-        sprintf (result, "\nNome: %s %s \nEndereço: Cep - %s, Face - %s Número - %s Complemento - %s", pes->nome, pes->sobrenome, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
+        sprintf (result, "\nNome: %s %s \nEndereço: CEP = %s, Face = %s   Número = %s   Complemento = %s\n", pes->nome, pes->sobrenome, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
     }
     return result;
 }
@@ -217,7 +217,7 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
         return NULL;
     }
     Quadra temp = cria_quadra (pes->endereco->cep, 0, 0, 0, 0, "", "");
-    Quadra quad = get_hashtable (par->hash_pessoas, temp);
+    Quadra quad = get_hashtable (par->hash_quadras, temp);
     sscanf (pes->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
     result[0] = get_x_retangulo (get_retangulo_quadra (quad));
@@ -251,7 +251,7 @@ char* relatorio_morte_pessoa (void* pessoa)
     Pessoa* pes;
     pes = (Pessoa*) pessoa;
     relatorio = (char*) calloc (555, sizeof (char));
-    sprintf (relatorio, "\n%s %s, portador do CPF %s, do sexo %s, nascido em %s, residia no endereço %s/%s/%s/%s, falecido!", pes->nome, pes->sobrenome, pes->cpf, pes->sexo, pes->nascimento, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
+    sprintf (relatorio, "\n%s %s, portador do CPF %s, do sexo %s, nascido em %s, residia no endereço %s/%s/%s/%s, falecido!\n", pes->nome, pes->sobrenome, pes->cpf, pes->sexo, pes->nascimento, pes->endereco->cep, pes->endereco->face, pes->endereco->num, pes->endereco->comp);
     return relatorio;
 }
 
@@ -266,6 +266,6 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
     endA = (Endereco*) end1;
     endB = (Endereco*) end2;
     relatorio = (char*) calloc (555, sizeof (char));
-    sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s\n", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
     return relatorio;
 }

@@ -153,3 +153,13 @@ int hashcode_quadra (void* quad, int modulo)
     }
     return modulo < 0 ? hash : hash % modulo;
 }
+
+//COMPARADOR DE CEP DA QUADRA PARA HASHTABLE
+int compare_hash_quadra (void* quad, void* cep)
+{
+    Quadra* quadA;
+    Quadra* quadB;
+    quadA = (Quadra*) quad;
+    quadB = (Quadra*) cep;
+    return strcmp (quadA->cep, quadB->cep);
+}

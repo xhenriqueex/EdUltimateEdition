@@ -39,6 +39,9 @@ int compare_hidrante (void* hid1, void* hid2, int dim);
 //RETORNA O CÓDIGO HASH DO HIDRANTE
 int hashcode_hidrante (void* hid, int modulo);
 
+//COMPARADOR DE CEP DO HIDRANTE PARA HASHTABLE
+int compare_hash_hidrante (void* hid, void* id);
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO HIDRANTE
 void* get_circulo_hidrante (void* hidrante);
 
