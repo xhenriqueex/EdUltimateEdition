@@ -12,47 +12,34 @@ struct _vertice
     struct _aresta *arestas;
 };
 
-struct _grafo
-{
-    struct _vertice *vertices;
-};
-
 typedef struct _aresta aresta;
 typedef struct _vertice vertice;
-typedef struct _grafo grafo;
 
 Grafo cria_grafo(int n)
 {
-    grafo *g = NULL;
-    vertice *v = NULL;
+    vertice *vertices = NULL;
     int i = 0;
     
-    g = (grafo *) calloc(1, sizeof(grafo));
-    v = (vertice *) calloc(n, sizeof(vertice));
+    vertices = (vertice *) calloc(n, sizeof(vertice));
     
     for(i = 0; i < n; i++)
     {
-        v[i].arestas = NULL;
+        vertices[i].arestas = NULL;
     }
-    
-    g->vertices = v;
 
-    return (void *) g;
+    return (void *) vertices;
 }
 
 void insere_aresta(Grafo G, int v1, int v2)
 {
-    grafo *g = NULL;
-    vertice *v = NULL;
+    vertice *vertices = NULL;
     aresta *a = NULL;
 
-    g = (grafo *) G;
+    vertices = (vertice *) G;
 
-    v = g->vertices;
-
-    if(v[v1].arestas == NULL)
+    if(vertices[v1].arestas == NULL)
     {
-        v[v1].arestas = cria_lista();
+        vertices[v1].arestas = cria_lista();
     }
 
     a = (aresta *) calloc(1, sizeof(aresta));
@@ -60,19 +47,17 @@ void insere_aresta(Grafo G, int v1, int v2)
     a->ligado_a = v2;
     a->direcao = NULL;
 
-    insere_lista(v[v1].arestas, (void *) a);
+    insere_lista(vertices[v1].arestas, (void *) a);
 }
 
 int qtd_vertices(Grafo G)
 {
-    grafo *g = NULL;
+    vertice *vertices = NULL;
     int qtd = 0;
 
-    g = (grafo *) G;
+    vertices = (vertice *) G;
 
-    qtd = (int) sizeof(g->vertices)/sizeof(g->vertices[0]);
-
-    g = (grafo *) G;
+    qtd = (int) sizeof(vertices)/sizeof(vertices[0]);
     
     return qtd;
 }
@@ -189,8 +174,7 @@ int adjacente(Grafo G, int v1, int v2)
 
 Lista adjacentes(Grafo G, int v1)
 {
-    grafo *g = NULL;
-    vertice *v = NULL;
+    vertice *vertices = NULL;
     int qtd = 0;
 
     qtd = qtd_vertices(G);
@@ -198,8 +182,5 @@ Lista adjacentes(Grafo G, int v1)
         return NULL;
     }
 
-    g = (grafo *) G;
-    v = g->vertices;
-
-    return v[v1].arestas;
+    return vertices[v1].arestas;
 }
