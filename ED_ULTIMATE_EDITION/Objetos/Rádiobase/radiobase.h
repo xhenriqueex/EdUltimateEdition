@@ -39,4 +39,7 @@ int compare_radiobase (void* rb1, void* rb2, int dim);
 //RETORNA O CÓDIGO HASH DA RADIOBASE
 int hashcode_radiobase (void* rb, int modulo);
 
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
+void* get_circulo_radiobase (void* radiobase);
+
 #endif

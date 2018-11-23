@@ -135,3 +135,11 @@ int hashcode_semaforo (void* sem, int modulo)
     }
     return modulo < 0 ? hash : hash % modulo;
 }
+
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
+void* get_circulo_semaforo (void* semaforo)
+{
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    return cria_circulo (sem->id, sem->cor_borda, sem->cor_preenche, sem->r, sem->x, sem->y);
+}
