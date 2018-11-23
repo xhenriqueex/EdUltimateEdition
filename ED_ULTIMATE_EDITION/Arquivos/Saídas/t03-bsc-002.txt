@@ -21,39 +21,39 @@ SIM
 ARQUIVO: Dcq-9.qry
 
 Dq 640.000000 8010.000000 13610.000000
-Quad - CEP = b2164.78
-Quad - CEP = b2164.79
 Quad - CEP = b2164.80
-Quad - CEP = b2165.77
-Quad - CEP = b2165.78
-Quad - CEP = b2165.79
-Quad - CEP = b2165.80
-Quad - CEP = b2166.77
-Quad - CEP = b2166.78
-Quad - CEP = b2166.79
 Quad - CEP = b2166.80
-Quad - CEP = b2167.76
-Quad - CEP = b2167.77
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.76
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.75
-Quad - CEP = b2169.76
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.75
-Quad - CEP = b2170.76
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2165.80
+Quad - CEP = b2165.79
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2164.79
+Quad - CEP = b2164.78
+Quad - CEP = b2166.78
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2165.78
+Quad - CEP = b2165.77
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
+Quad - CEP = b2166.77
+Quad - CEP = b2168.76
+Quad - CEP = b2170.76
+Quad - CEP = b2169.76
+Quad - CEP = b2167.76
+Quad - CEP = b2169.75
+Quad - CEP = b2170.75
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -63,145 +63,145 @@ SIM
 ARQUIVO: Dle-8.qry
 
 Dle h 640.000000 4010.000000 6810.000000
-Hid - ID = hnb278.38
-Hid - ID = hnb278.42
-Hid - ID = hob278.42
-Hid - ID = hnb278.43
-Hid - ID = hnb279.37
-Hid - ID = hob279.37
-Hid - ID = hnb279.40
-Hid - ID = hob279.40
-Hid - ID = hnb279.42
-Hid - ID = hob279.42
-Hid - ID = hnb279.44
-Hid - ID = hnb280.37
-Hid - ID = hob280.37
-Hid - ID = hnb280.39
-Hid - ID = hob280.39
-Hid - ID = hnb280.40
-Hid - ID = hob280.40
-Hid - ID = hnb280.45
-Hid - ID = hob281.35
-Hid - ID = hnb281.36
-Hid - ID = hob281.36
-Hid - ID = hnb281.39
-Hid - ID = hob281.39
-Hid - ID = hnb281.40
-Hid - ID = hob281.40
-Hid - ID = hnb281.41
-Hid - ID = hob281.41
-Hid - ID = hnb281.45
-Hid - ID = hob281.45
-Hid - ID = hnb282.35
-Hid - ID = hob282.35
-Hid - ID = hnb282.36
-Hid - ID = hob282.36
-Hid - ID = hnb282.37
-Hid - ID = hob282.37
-Hid - ID = hnb282.38
-Hid - ID = hob282.38
-Hid - ID = hnb282.39
-Hid - ID = hob282.39
-Hid - ID = hnb282.42
-Hid - ID = hob282.42
-Hid - ID = hnb282.43
-Hid - ID = hob282.43
-Hid - ID = hnb282.44
-Hid - ID = hob282.44
-Hid - ID = hnb282.45
-Hid - ID = hob282.45
-Hid - ID = hnb282.46
-Hid - ID = hnb283.36
-Hid - ID = hob283.36
-Hid - ID = hnb283.37
-Hid - ID = hob283.37
-Hid - ID = hnb283.38
-Hid - ID = hob283.38
-Hid - ID = hnb283.40
-Hid - ID = hob283.40
-Hid - ID = hnb283.44
-Hid - ID = hob283.44
-Hid - ID = hob284.34
-Hid - ID = hnb284.36
-Hid - ID = hob284.36
-Hid - ID = hnb284.37
-Hid - ID = hob284.37
-Hid - ID = hnb284.42
-Hid - ID = hob284.42
-Hid - ID = hnb284.44
-Hid - ID = hob284.44
-Hid - ID = hnb285.35
-Hid - ID = hob285.35
-Hid - ID = hnb285.37
-Hid - ID = hob285.37
-Hid - ID = hnb285.38
-Hid - ID = hob285.38
-Hid - ID = hnb285.40
-Hid - ID = hob285.40
-Hid - ID = hnb285.43
-Hid - ID = hob285.43
-Hid - ID = hnb285.44
-Hid - ID = hob285.44
-Hid - ID = hnb285.45
-Hid - ID = hob285.45
-Hid - ID = hnb286.43
-Hid - ID = hob286.43
-Hid - ID = hnb286.44
-Hid - ID = hob286.44
-Hid - ID = hob287.34
-Hid - ID = hnb287.36
-Hid - ID = hob287.36
-Hid - ID = hnb287.37
-Hid - ID = hob287.37
-Hid - ID = hnb287.38
-Hid - ID = hob287.38
-Hid - ID = hnb287.40
-Hid - ID = hob287.40
-Hid - ID = hnb287.45
-Hid - ID = hob287.45
-Hid - ID = hnb287.46
 Hid - ID = hob287.46
-Hid - ID = hnb288.35
-Hid - ID = hob288.35
-Hid - ID = hnb288.38
-Hid - ID = hob288.38
-Hid - ID = hnb288.40
-Hid - ID = hob288.40
-Hid - ID = hob289.35
-Hid - ID = hnb289.37
-Hid - ID = hob289.37
-Hid - ID = hnb289.40
-Hid - ID = hob289.40
-Hid - ID = hnb289.41
-Hid - ID = hob289.41
-Hid - ID = hnb289.43
-Hid - ID = hob289.43
-Hid - ID = hnb289.44
-Hid - ID = hob289.44
-Hid - ID = hob290.35
-Hid - ID = hnb290.39
-Hid - ID = hob290.39
-Hid - ID = hnb290.45
+Hid - ID = hnb282.46
+Hid - ID = hnb287.46
+Hid - ID = hob281.45
+Hid - ID = hob285.45
 Hid - ID = hob290.45
-Hid - ID = hob291.36
-Hid - ID = hnb291.38
-Hid - ID = hob291.38
-Hid - ID = hnb291.39
-Hid - ID = hob291.39
-Hid - ID = hnb291.40
-Hid - ID = hob291.40
-Hid - ID = hnb291.44
+Hid - ID = hob287.45
+Hid - ID = hob282.45
+Hid - ID = hnb280.45
+Hid - ID = hnb282.45
+Hid - ID = hnb287.45
+Hid - ID = hnb290.45
+Hid - ID = hnb285.45
+Hid - ID = hnb281.45
+Hid - ID = hob282.44
+Hid - ID = hob284.44
+Hid - ID = hob286.44
 Hid - ID = hob291.44
-Hid - ID = hnb292.41
-Hid - ID = hob292.41
-Hid - ID = hnb292.43
+Hid - ID = hob289.44
+Hid - ID = hob285.44
+Hid - ID = hob283.44
+Hid - ID = hnb282.44
+Hid - ID = hnb284.44
+Hid - ID = hnb286.44
+Hid - ID = hnb291.44
+Hid - ID = hnb289.44
+Hid - ID = hnb285.44
+Hid - ID = hnb283.44
+Hid - ID = hnb279.44
+Hid - ID = hob285.43
+Hid - ID = hob289.43
 Hid - ID = hob292.43
-Hid - ID = hob293.39
-Hid - ID = hnb293.40
-Hid - ID = hob293.40
-Hid - ID = hnb293.41
-Hid - ID = hob293.41
+Hid - ID = hob286.43
+Hid - ID = hob282.43
+Hid - ID = hnb278.43
+Hid - ID = hnb285.43
+Hid - ID = hnb289.43
+Hid - ID = hnb292.43
+Hid - ID = hnb286.43
+Hid - ID = hnb282.43
+Hid - ID = hob279.42
+Hid - ID = hob284.42
 Hid - ID = hob293.42
+Hid - ID = hob282.42
+Hid - ID = hob278.42
+Hid - ID = hnb279.42
+Hid - ID = hnb284.42
+Hid - ID = hnb282.42
+Hid - ID = hnb278.42
+Hid - ID = hob289.41
+Hid - ID = hob293.41
+Hid - ID = hob292.41
+Hid - ID = hob281.41
+Hid - ID = hnb281.41
+Hid - ID = hnb292.41
+Hid - ID = hnb293.41
+Hid - ID = hnb289.41
+Hid - ID = hob280.40
+Hid - ID = hob283.40
+Hid - ID = hob287.40
+Hid - ID = hob289.40
+Hid - ID = hob293.40
+Hid - ID = hob291.40
+Hid - ID = hob288.40
+Hid - ID = hob285.40
+Hid - ID = hob281.40
+Hid - ID = hob279.40
+Hid - ID = hnb280.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb289.40
+Hid - ID = hnb293.40
+Hid - ID = hnb291.40
+Hid - ID = hnb288.40
+Hid - ID = hnb285.40
+Hid - ID = hnb281.40
+Hid - ID = hnb279.40
+Hid - ID = hob280.39
+Hid - ID = hob282.39
+Hid - ID = hob291.39
+Hid - ID = hob293.39
+Hid - ID = hob290.39
+Hid - ID = hob281.39
+Hid - ID = hnb281.39
+Hid - ID = hnb290.39
+Hid - ID = hnb291.39
+Hid - ID = hnb282.39
+Hid - ID = hnb280.39
+Hid - ID = hob282.38
+Hid - ID = hob285.38
+Hid - ID = hob288.38
+Hid - ID = hob291.38
+Hid - ID = hob287.38
+Hid - ID = hob283.38
+Hid - ID = hnb278.38
+Hid - ID = hnb283.38
+Hid - ID = hnb287.38
+Hid - ID = hnb291.38
+Hid - ID = hnb288.38
+Hid - ID = hnb285.38
+Hid - ID = hnb282.38
+Hid - ID = hob280.37
+Hid - ID = hob283.37
+Hid - ID = hob285.37
+Hid - ID = hob289.37
+Hid - ID = hob287.37
+Hid - ID = hob284.37
+Hid - ID = hob282.37
+Hid - ID = hob279.37
+Hid - ID = hnb280.37
+Hid - ID = hnb283.37
+Hid - ID = hnb285.37
+Hid - ID = hnb289.37
+Hid - ID = hnb287.37
+Hid - ID = hnb284.37
+Hid - ID = hnb282.37
+Hid - ID = hnb279.37
+Hid - ID = hob281.36
+Hid - ID = hob283.36
+Hid - ID = hob287.36
+Hid - ID = hob291.36
+Hid - ID = hob284.36
+Hid - ID = hob282.36
+Hid - ID = hnb282.36
+Hid - ID = hnb284.36
+Hid - ID = hnb287.36
+Hid - ID = hnb283.36
+Hid - ID = hnb281.36
+Hid - ID = hob281.35
+Hid - ID = hob285.35
+Hid - ID = hob289.35
+Hid - ID = hob290.35
+Hid - ID = hob288.35
+Hid - ID = hob282.35
+Hid - ID = hnb285.35
+Hid - ID = hnb288.35
+Hid - ID = hnb282.35
+Hid - ID = hob284.34
+Hid - ID = hob287.34
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -211,18 +211,18 @@ SIM
 ARQUIVO: dle-4.qry
 
 dle sh 9.000000 9.000000 450.000000 350.000000
-Hid - ID = hnb21.1
-Hid - ID = hob21.1
-Hid - ID = hnb22.2
-Hid - ID = hob22.2
-Hid - ID = hnb22.4
-Hid - ID = hob22.4
 Hid - ID = hnb24.3
 Hid - ID = hob24.3
-Sem - ID = sfb22.3
-Sem - ID = sfb23.5
+Hid - ID = hnb22.2
+Hid - ID = hnb22.4
+Hid - ID = hob22.4
+Hid - ID = hob22.2
+Hid - ID = hob21.1
+Hid - ID = hnb21.1
 Sem - ID = sfb25.2
 Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb22.3
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -232,13 +232,13 @@ SIM
 ARQUIVO: Dcq-4.qry
 
 Dq 320.000000 10.000000 10.000000
-Quad - CEP = b21.1
+Quad - CEP = b22.2
+Quad - CEP = b23.2
 Quad - CEP = b21.2
 Quad - CEP = b21.3
-Quad - CEP = b22.1
-Quad - CEP = b22.2
+Quad - CEP = b21.1
 Quad - CEP = b23.1
-Quad - CEP = b23.2
+Quad - CEP = b22.1
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -248,8 +248,8 @@ SIM
 ARQUIVO: crb.qry
 
 crb?
-Rbs - ID = rbb2151.1 
-Rbs - ID = rbb2150.1 
+Rbs - ID = rbb222.79 
+Rbs - ID = rbb223.79 
 DISTÂNCIA = 80.000000
 
 ARQUIVO: t03-bsc-002.geo
@@ -261,226 +261,226 @@ ARQUIVO: q.qry
 
 q? 9.000000 9.000000 112.500000 87.500000
 Quad - CEP = b21.1 X = 10.000000 Y = 10.000000
-Hid - ID = hnb21.1 X = 55.000000 Y = 80.000000
 Hid - ID = hob21.1 X = 100.000000 Y = 45.000000
+Hid - ID = hnb21.1 X = 55.000000 Y = 80.000000
 q? 3943.750000 6756.250000 112.500000 87.500000
-Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
 Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
+Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
 Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
 q? 7887.500000 13512.500000 112.500000 87.500000
 Quad - CEP = b2170.80 X = 7910.000000 Y = 13530.000000
 Hid - ID = hob2170.79 X = 7900.000000 Y = 13565.000000
 dq 9.000000 9.000000 900.000000 700.000000
-Quad - CEP = b21.1
-Quad - CEP = b21.2
-Quad - CEP = b21.3
-Quad - CEP = b21.4
-Quad - CEP = b21.5
-Quad - CEP = b21.6
-Quad - CEP = b21.7
-Quad - CEP = b21.8
-Quad - CEP = b21.9
-Quad - CEP = b22.1
-Quad - CEP = b22.2
-Quad - CEP = b22.3
-Quad - CEP = b22.4
-Quad - CEP = b22.5
-Quad - CEP = b22.6
-Quad - CEP = b22.7
-Quad - CEP = b22.8
-Quad - CEP = b22.9
-Quad - CEP = b23.1
-Quad - CEP = b23.2
-Quad - CEP = b23.3
-Quad - CEP = b23.4
-Quad - CEP = b23.5
-Quad - CEP = b23.6
-Quad - CEP = b23.7
-Quad - CEP = b23.8
-Quad - CEP = b23.9
-Quad - CEP = b24.1
-Quad - CEP = b24.2
-Quad - CEP = b24.3
-Quad - CEP = b24.4
-Quad - CEP = b24.5
-Quad - CEP = b24.6
-Quad - CEP = b24.7
-Quad - CEP = b24.8
-Quad - CEP = b24.9
-Quad - CEP = b25.1
-Quad - CEP = b25.2
-Quad - CEP = b25.3
-Quad - CEP = b25.4
-Quad - CEP = b25.5
-Quad - CEP = b25.6
-Quad - CEP = b25.7
-Quad - CEP = b25.8
-Quad - CEP = b25.9
-Quad - CEP = b26.1
-Quad - CEP = b26.2
-Quad - CEP = b26.3
-Quad - CEP = b26.4
-Quad - CEP = b26.5
-Quad - CEP = b26.6
-Quad - CEP = b26.7
-Quad - CEP = b26.8
-Quad - CEP = b26.9
-Quad - CEP = b27.1
-Quad - CEP = b27.2
-Quad - CEP = b27.3
-Quad - CEP = b27.4
-Quad - CEP = b27.5
-Quad - CEP = b27.6
-Quad - CEP = b27.7
+Quad - CEP = b28.9
+Quad - CEP = b28.8
 Quad - CEP = b27.8
 Quad - CEP = b27.9
-Quad - CEP = b28.1
-Quad - CEP = b28.2
-Quad - CEP = b28.3
-Quad - CEP = b28.4
-Quad - CEP = b28.5
-Quad - CEP = b28.6
+Quad - CEP = b27.7
 Quad - CEP = b28.7
-Quad - CEP = b28.8
-Quad - CEP = b28.9
+Quad - CEP = b26.7
+Quad - CEP = b26.9
+Quad - CEP = b26.8
+Quad - CEP = b26.6
+Quad - CEP = b28.6
+Quad - CEP = b27.6
+Quad - CEP = b25.6
+Quad - CEP = b25.8
+Quad - CEP = b25.9
+Quad - CEP = b25.7
+Quad - CEP = b25.5
+Quad - CEP = b27.5
+Quad - CEP = b28.5
+Quad - CEP = b26.5
+Quad - CEP = b24.5
+Quad - CEP = b24.7
+Quad - CEP = b24.9
+Quad - CEP = b24.8
+Quad - CEP = b24.6
+Quad - CEP = b24.4
+Quad - CEP = b26.4
+Quad - CEP = b28.4
+Quad - CEP = b27.4
+Quad - CEP = b25.4
+Quad - CEP = b23.4
+Quad - CEP = b23.6
+Quad - CEP = b23.8
+Quad - CEP = b23.9
+Quad - CEP = b23.7
+Quad - CEP = b23.5
+Quad - CEP = b23.3
+Quad - CEP = b25.3
+Quad - CEP = b27.3
+Quad - CEP = b28.3
+Quad - CEP = b26.3
+Quad - CEP = b24.3
+Quad - CEP = b22.3
+Quad - CEP = b22.5
+Quad - CEP = b22.7
+Quad - CEP = b22.9
+Quad - CEP = b22.8
+Quad - CEP = b22.6
+Quad - CEP = b22.4
+Quad - CEP = b22.2
+Quad - CEP = b24.2
+Quad - CEP = b26.2
+Quad - CEP = b28.2
+Quad - CEP = b27.2
+Quad - CEP = b25.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.6
+Quad - CEP = b21.8
+Quad - CEP = b21.9
+Quad - CEP = b21.7
+Quad - CEP = b21.5
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b25.1
+Quad - CEP = b27.1
+Quad - CEP = b28.1
+Quad - CEP = b26.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 dq 3550.000000 6450.000000 900.000000 700.000000
-Quad - CEP = b282.37
-Quad - CEP = b282.38
-Quad - CEP = b282.39
-Quad - CEP = b282.40
-Quad - CEP = b282.41
-Quad - CEP = b282.42
-Quad - CEP = b282.43
 Quad - CEP = b282.44
-Quad - CEP = b283.37
-Quad - CEP = b283.38
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b283.43
-Quad - CEP = b283.44
-Quad - CEP = b284.37
-Quad - CEP = b284.38
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
-Quad - CEP = b284.42
-Quad - CEP = b284.43
 Quad - CEP = b284.44
-Quad - CEP = b285.37
-Quad - CEP = b285.38
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b285.43
-Quad - CEP = b285.44
-Quad - CEP = b286.37
-Quad - CEP = b286.38
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
-Quad - CEP = b286.42
-Quad - CEP = b286.43
 Quad - CEP = b286.44
-Quad - CEP = b287.37
-Quad - CEP = b287.38
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
-Quad - CEP = b287.42
-Quad - CEP = b287.43
-Quad - CEP = b287.44
-Quad - CEP = b288.37
-Quad - CEP = b288.38
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
-Quad - CEP = b288.42
-Quad - CEP = b288.43
 Quad - CEP = b288.44
-Quad - CEP = b289.37
-Quad - CEP = b289.38
-Quad - CEP = b289.39
-Quad - CEP = b289.40
-Quad - CEP = b289.41
-Quad - CEP = b289.42
-Quad - CEP = b289.43
 Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
 dq 7100.000000 12900.000000 900.000000 700.000000
-Quad - CEP = b2163.72
-Quad - CEP = b2163.73
-Quad - CEP = b2163.74
-Quad - CEP = b2163.75
-Quad - CEP = b2163.76
-Quad - CEP = b2163.77
-Quad - CEP = b2163.78
-Quad - CEP = b2163.79
-Quad - CEP = b2163.80
-Quad - CEP = b2164.72
-Quad - CEP = b2164.73
-Quad - CEP = b2164.74
-Quad - CEP = b2164.75
-Quad - CEP = b2164.76
-Quad - CEP = b2164.77
-Quad - CEP = b2164.78
-Quad - CEP = b2164.79
 Quad - CEP = b2164.80
-Quad - CEP = b2165.72
-Quad - CEP = b2165.73
-Quad - CEP = b2165.74
-Quad - CEP = b2165.75
-Quad - CEP = b2165.76
-Quad - CEP = b2165.77
-Quad - CEP = b2165.78
-Quad - CEP = b2165.79
-Quad - CEP = b2165.80
-Quad - CEP = b2166.72
-Quad - CEP = b2166.73
-Quad - CEP = b2166.74
-Quad - CEP = b2166.75
-Quad - CEP = b2166.76
-Quad - CEP = b2166.77
-Quad - CEP = b2166.78
-Quad - CEP = b2166.79
 Quad - CEP = b2166.80
-Quad - CEP = b2167.72
-Quad - CEP = b2167.73
-Quad - CEP = b2167.74
-Quad - CEP = b2167.75
-Quad - CEP = b2167.76
-Quad - CEP = b2167.77
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.72
-Quad - CEP = b2168.73
-Quad - CEP = b2168.74
-Quad - CEP = b2168.75
-Quad - CEP = b2168.76
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.72
-Quad - CEP = b2169.73
-Quad - CEP = b2169.74
-Quad - CEP = b2169.75
-Quad - CEP = b2169.76
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.72
-Quad - CEP = b2170.73
-Quad - CEP = b2170.74
-Quad - CEP = b2170.75
-Quad - CEP = b2170.76
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2165.80
+Quad - CEP = b2163.80
+Quad - CEP = b2163.79
+Quad - CEP = b2165.79
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2164.79
+Quad - CEP = b2164.78
+Quad - CEP = b2166.78
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2165.78
+Quad - CEP = b2163.78
+Quad - CEP = b2163.77
+Quad - CEP = b2165.77
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
+Quad - CEP = b2166.77
+Quad - CEP = b2164.77
+Quad - CEP = b2164.76
+Quad - CEP = b2166.76
+Quad - CEP = b2168.76
+Quad - CEP = b2170.76
+Quad - CEP = b2169.76
+Quad - CEP = b2167.76
+Quad - CEP = b2165.76
+Quad - CEP = b2163.76
+Quad - CEP = b2163.75
+Quad - CEP = b2165.75
+Quad - CEP = b2167.75
+Quad - CEP = b2169.75
+Quad - CEP = b2170.75
+Quad - CEP = b2168.75
+Quad - CEP = b2166.75
+Quad - CEP = b2164.75
+Quad - CEP = b2164.74
+Quad - CEP = b2166.74
+Quad - CEP = b2168.74
+Quad - CEP = b2170.74
+Quad - CEP = b2169.74
+Quad - CEP = b2167.74
+Quad - CEP = b2165.74
+Quad - CEP = b2163.74
+Quad - CEP = b2163.73
+Quad - CEP = b2165.73
+Quad - CEP = b2167.73
+Quad - CEP = b2169.73
+Quad - CEP = b2170.73
+Quad - CEP = b2168.73
+Quad - CEP = b2166.73
+Quad - CEP = b2164.73
+Quad - CEP = b2164.72
+Quad - CEP = b2166.72
+Quad - CEP = b2168.72
+Quad - CEP = b2170.72
+Quad - CEP = b2169.72
+Quad - CEP = b2167.72
+Quad - CEP = b2165.72
+Quad - CEP = b2163.72
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -490,12 +490,12 @@ SIM
 ARQUIVO: Dle-4.qry
 
 Dle sh 320.000000 10.000000 10.000000
-Hid - ID = hnb21.1
-Hid - ID = hob21.1
 Hid - ID = hnb22.2
 Hid - ID = hob22.2
-Sem - ID = sfb22.3
+Hid - ID = hob21.1
+Hid - ID = hnb21.1
 Sem - ID = sfb23.1
+Sem - ID = sfb22.3
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -515,16 +515,16 @@ SIM
 ARQUIVO: Dle-7.qry
 
 Dle s 640.000000 10.000000 10.000000
-Sem - ID = sfb22.3
-Sem - ID = sfb22.7
-Sem - ID = sfb23.1
-Sem - ID = sfb23.5
-Sem - ID = sfb25.2
-Sem - ID = sfb25.5
-Sem - ID = sfb26.1
 Sem - ID = sfb26.4
 Sem - ID = sfb27.2
 Sem - ID = sfb27.4
+Sem - ID = sfb25.2
+Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb23.1
+Sem - ID = sfb26.1
+Sem - ID = sfb22.3
+Sem - ID = sfb22.7
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -562,13 +562,13 @@ SIM
 ARQUIVO: Dcq-6.qry
 
 Dq 320.000000 8010.000000 13610.000000
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2170.78
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -578,78 +578,78 @@ SIM
 ARQUIVO: dq-7.qry
 
 dq 9.000000 9.000000 900.000000 700.000000
-Quad - CEP = b21.1
-Quad - CEP = b21.2
-Quad - CEP = b21.3
-Quad - CEP = b21.4
-Quad - CEP = b21.5
-Quad - CEP = b21.6
-Quad - CEP = b21.7
-Quad - CEP = b21.8
-Quad - CEP = b21.9
-Quad - CEP = b22.1
-Quad - CEP = b22.2
-Quad - CEP = b22.3
-Quad - CEP = b22.4
-Quad - CEP = b22.5
-Quad - CEP = b22.6
-Quad - CEP = b22.7
-Quad - CEP = b22.8
-Quad - CEP = b22.9
-Quad - CEP = b23.1
-Quad - CEP = b23.2
-Quad - CEP = b23.3
-Quad - CEP = b23.4
-Quad - CEP = b23.5
-Quad - CEP = b23.6
-Quad - CEP = b23.7
-Quad - CEP = b23.8
-Quad - CEP = b23.9
-Quad - CEP = b24.1
-Quad - CEP = b24.2
-Quad - CEP = b24.3
-Quad - CEP = b24.4
-Quad - CEP = b24.5
-Quad - CEP = b24.6
-Quad - CEP = b24.7
-Quad - CEP = b24.8
-Quad - CEP = b24.9
-Quad - CEP = b25.1
-Quad - CEP = b25.2
-Quad - CEP = b25.3
-Quad - CEP = b25.4
-Quad - CEP = b25.5
-Quad - CEP = b25.6
-Quad - CEP = b25.7
-Quad - CEP = b25.8
-Quad - CEP = b25.9
-Quad - CEP = b26.1
-Quad - CEP = b26.2
-Quad - CEP = b26.3
-Quad - CEP = b26.4
-Quad - CEP = b26.5
-Quad - CEP = b26.6
-Quad - CEP = b26.7
-Quad - CEP = b26.8
-Quad - CEP = b26.9
-Quad - CEP = b27.1
-Quad - CEP = b27.2
-Quad - CEP = b27.3
-Quad - CEP = b27.4
-Quad - CEP = b27.5
-Quad - CEP = b27.6
-Quad - CEP = b27.7
+Quad - CEP = b28.9
+Quad - CEP = b28.8
 Quad - CEP = b27.8
 Quad - CEP = b27.9
-Quad - CEP = b28.1
-Quad - CEP = b28.2
-Quad - CEP = b28.3
-Quad - CEP = b28.4
-Quad - CEP = b28.5
-Quad - CEP = b28.6
+Quad - CEP = b27.7
 Quad - CEP = b28.7
-Quad - CEP = b28.8
-Quad - CEP = b28.9
+Quad - CEP = b26.7
+Quad - CEP = b26.9
+Quad - CEP = b26.8
+Quad - CEP = b26.6
+Quad - CEP = b28.6
+Quad - CEP = b27.6
+Quad - CEP = b25.6
+Quad - CEP = b25.8
+Quad - CEP = b25.9
+Quad - CEP = b25.7
+Quad - CEP = b25.5
+Quad - CEP = b27.5
+Quad - CEP = b28.5
+Quad - CEP = b26.5
+Quad - CEP = b24.5
+Quad - CEP = b24.7
+Quad - CEP = b24.9
+Quad - CEP = b24.8
+Quad - CEP = b24.6
+Quad - CEP = b24.4
+Quad - CEP = b26.4
+Quad - CEP = b28.4
+Quad - CEP = b27.4
+Quad - CEP = b25.4
+Quad - CEP = b23.4
+Quad - CEP = b23.6
+Quad - CEP = b23.8
+Quad - CEP = b23.9
+Quad - CEP = b23.7
+Quad - CEP = b23.5
+Quad - CEP = b23.3
+Quad - CEP = b25.3
+Quad - CEP = b27.3
+Quad - CEP = b28.3
+Quad - CEP = b26.3
+Quad - CEP = b24.3
+Quad - CEP = b22.3
+Quad - CEP = b22.5
+Quad - CEP = b22.7
+Quad - CEP = b22.9
+Quad - CEP = b22.8
+Quad - CEP = b22.6
+Quad - CEP = b22.4
+Quad - CEP = b22.2
+Quad - CEP = b24.2
+Quad - CEP = b26.2
+Quad - CEP = b28.2
+Quad - CEP = b27.2
+Quad - CEP = b25.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.6
+Quad - CEP = b21.8
+Quad - CEP = b21.9
+Quad - CEP = b21.7
+Quad - CEP = b21.5
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b25.1
+Quad - CEP = b27.1
+Quad - CEP = b28.1
+Quad - CEP = b26.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -659,474 +659,674 @@ SIM
 ARQUIVO: q-dq-dle.qry
 
 q? 3550.000000 6450.000000 900.000000 700.000000
-Quad - CEP = b282.37 X = 3610.000000 Y = 6490.000000
-Quad - CEP = b282.38 X = 3710.000000 Y = 6490.000000
-Quad - CEP = b282.39 X = 3810.000000 Y = 6490.000000
-Quad - CEP = b282.40 X = 3910.000000 Y = 6490.000000
-Quad - CEP = b282.41 X = 4010.000000 Y = 6490.000000
-Quad - CEP = b282.42 X = 4110.000000 Y = 6490.000000
-Quad - CEP = b282.43 X = 4210.000000 Y = 6490.000000
 Quad - CEP = b282.44 X = 4310.000000 Y = 6490.000000
-Quad - CEP = b283.37 X = 3610.000000 Y = 6570.000000
-Quad - CEP = b283.38 X = 3710.000000 Y = 6570.000000
-Quad - CEP = b283.39 X = 3810.000000 Y = 6570.000000
-Quad - CEP = b283.40 X = 3910.000000 Y = 6570.000000
-Quad - CEP = b283.41 X = 4010.000000 Y = 6570.000000
-Quad - CEP = b283.42 X = 4110.000000 Y = 6570.000000
-Quad - CEP = b283.43 X = 4210.000000 Y = 6570.000000
-Quad - CEP = b283.44 X = 4310.000000 Y = 6570.000000
-Quad - CEP = b284.37 X = 3610.000000 Y = 6650.000000
-Quad - CEP = b284.38 X = 3710.000000 Y = 6650.000000
-Quad - CEP = b284.39 X = 3810.000000 Y = 6650.000000
-Quad - CEP = b284.40 X = 3910.000000 Y = 6650.000000
-Quad - CEP = b284.41 X = 4010.000000 Y = 6650.000000
-Quad - CEP = b284.42 X = 4110.000000 Y = 6650.000000
-Quad - CEP = b284.43 X = 4210.000000 Y = 6650.000000
 Quad - CEP = b284.44 X = 4310.000000 Y = 6650.000000
-Quad - CEP = b285.37 X = 3610.000000 Y = 6730.000000
-Quad - CEP = b285.38 X = 3710.000000 Y = 6730.000000
-Quad - CEP = b285.39 X = 3810.000000 Y = 6730.000000
-Quad - CEP = b285.40 X = 3910.000000 Y = 6730.000000
-Quad - CEP = b285.41 X = 4010.000000 Y = 6730.000000
-Quad - CEP = b285.42 X = 4110.000000 Y = 6730.000000
-Quad - CEP = b285.43 X = 4210.000000 Y = 6730.000000
-Quad - CEP = b285.44 X = 4310.000000 Y = 6730.000000
-Quad - CEP = b286.37 X = 3610.000000 Y = 6810.000000
-Quad - CEP = b286.38 X = 3710.000000 Y = 6810.000000
-Quad - CEP = b286.39 X = 3810.000000 Y = 6810.000000
-Quad - CEP = b286.40 X = 3910.000000 Y = 6810.000000
-Quad - CEP = b286.41 X = 4010.000000 Y = 6810.000000
-Quad - CEP = b286.42 X = 4110.000000 Y = 6810.000000
-Quad - CEP = b286.43 X = 4210.000000 Y = 6810.000000
 Quad - CEP = b286.44 X = 4310.000000 Y = 6810.000000
-Quad - CEP = b287.37 X = 3610.000000 Y = 6890.000000
-Quad - CEP = b287.38 X = 3710.000000 Y = 6890.000000
-Quad - CEP = b287.39 X = 3810.000000 Y = 6890.000000
-Quad - CEP = b287.40 X = 3910.000000 Y = 6890.000000
-Quad - CEP = b287.41 X = 4010.000000 Y = 6890.000000
-Quad - CEP = b287.42 X = 4110.000000 Y = 6890.000000
-Quad - CEP = b287.43 X = 4210.000000 Y = 6890.000000
-Quad - CEP = b287.44 X = 4310.000000 Y = 6890.000000
-Quad - CEP = b288.37 X = 3610.000000 Y = 6970.000000
-Quad - CEP = b288.38 X = 3710.000000 Y = 6970.000000
-Quad - CEP = b288.39 X = 3810.000000 Y = 6970.000000
-Quad - CEP = b288.40 X = 3910.000000 Y = 6970.000000
-Quad - CEP = b288.41 X = 4010.000000 Y = 6970.000000
-Quad - CEP = b288.42 X = 4110.000000 Y = 6970.000000
-Quad - CEP = b288.43 X = 4210.000000 Y = 6970.000000
 Quad - CEP = b288.44 X = 4310.000000 Y = 6970.000000
-Quad - CEP = b289.37 X = 3610.000000 Y = 7050.000000
-Quad - CEP = b289.38 X = 3710.000000 Y = 7050.000000
-Quad - CEP = b289.39 X = 3810.000000 Y = 7050.000000
-Quad - CEP = b289.40 X = 3910.000000 Y = 7050.000000
-Quad - CEP = b289.41 X = 4010.000000 Y = 7050.000000
-Quad - CEP = b289.42 X = 4110.000000 Y = 7050.000000
-Quad - CEP = b289.43 X = 4210.000000 Y = 7050.000000
 Quad - CEP = b289.44 X = 4310.000000 Y = 7050.000000
-Hid - ID = hnb281.36 X = 3555.000000 Y = 6480.000000
-Hid - ID = hnb281.39 X = 3855.000000 Y = 6480.000000
-Hid - ID = hnb281.40 X = 3955.000000 Y = 6480.000000
-Hid - ID = hnb281.41 X = 4055.000000 Y = 6480.000000
-Hid - ID = hnb282.36 X = 3555.000000 Y = 6560.000000
-Hid - ID = hob282.36 X = 3600.000000 Y = 6525.000000
-Hid - ID = hnb282.37 X = 3655.000000 Y = 6560.000000
-Hid - ID = hob282.37 X = 3700.000000 Y = 6525.000000
-Hid - ID = hnb282.38 X = 3755.000000 Y = 6560.000000
-Hid - ID = hob282.38 X = 3800.000000 Y = 6525.000000
-Hid - ID = hnb282.39 X = 3855.000000 Y = 6560.000000
-Hid - ID = hob282.39 X = 3900.000000 Y = 6525.000000
-Hid - ID = hnb282.42 X = 4155.000000 Y = 6560.000000
-Hid - ID = hob282.42 X = 4200.000000 Y = 6525.000000
-Hid - ID = hnb282.43 X = 4255.000000 Y = 6560.000000
-Hid - ID = hob282.43 X = 4300.000000 Y = 6525.000000
-Hid - ID = hnb282.44 X = 4355.000000 Y = 6560.000000
+Quad - CEP = b287.44 X = 4310.000000 Y = 6890.000000
+Quad - CEP = b285.44 X = 4310.000000 Y = 6730.000000
+Quad - CEP = b283.44 X = 4310.000000 Y = 6570.000000
+Quad - CEP = b283.43 X = 4210.000000 Y = 6570.000000
+Quad - CEP = b285.43 X = 4210.000000 Y = 6730.000000
+Quad - CEP = b287.43 X = 4210.000000 Y = 6890.000000
+Quad - CEP = b289.43 X = 4210.000000 Y = 7050.000000
+Quad - CEP = b288.43 X = 4210.000000 Y = 6970.000000
+Quad - CEP = b286.43 X = 4210.000000 Y = 6810.000000
+Quad - CEP = b284.43 X = 4210.000000 Y = 6650.000000
+Quad - CEP = b282.43 X = 4210.000000 Y = 6490.000000
+Quad - CEP = b282.42 X = 4110.000000 Y = 6490.000000
+Quad - CEP = b284.42 X = 4110.000000 Y = 6650.000000
+Quad - CEP = b286.42 X = 4110.000000 Y = 6810.000000
+Quad - CEP = b288.42 X = 4110.000000 Y = 6970.000000
+Quad - CEP = b289.42 X = 4110.000000 Y = 7050.000000
+Quad - CEP = b287.42 X = 4110.000000 Y = 6890.000000
+Quad - CEP = b285.42 X = 4110.000000 Y = 6730.000000
+Quad - CEP = b283.42 X = 4110.000000 Y = 6570.000000
+Quad - CEP = b283.41 X = 4010.000000 Y = 6570.000000
+Quad - CEP = b285.41 X = 4010.000000 Y = 6730.000000
+Quad - CEP = b287.41 X = 4010.000000 Y = 6890.000000
+Quad - CEP = b289.41 X = 4010.000000 Y = 7050.000000
+Quad - CEP = b288.41 X = 4010.000000 Y = 6970.000000
+Quad - CEP = b286.41 X = 4010.000000 Y = 6810.000000
+Quad - CEP = b284.41 X = 4010.000000 Y = 6650.000000
+Quad - CEP = b282.41 X = 4010.000000 Y = 6490.000000
+Quad - CEP = b282.40 X = 3910.000000 Y = 6490.000000
+Quad - CEP = b284.40 X = 3910.000000 Y = 6650.000000
+Quad - CEP = b286.40 X = 3910.000000 Y = 6810.000000
+Quad - CEP = b288.40 X = 3910.000000 Y = 6970.000000
+Quad - CEP = b289.40 X = 3910.000000 Y = 7050.000000
+Quad - CEP = b287.40 X = 3910.000000 Y = 6890.000000
+Quad - CEP = b285.40 X = 3910.000000 Y = 6730.000000
+Quad - CEP = b283.40 X = 3910.000000 Y = 6570.000000
+Quad - CEP = b283.39 X = 3810.000000 Y = 6570.000000
+Quad - CEP = b285.39 X = 3810.000000 Y = 6730.000000
+Quad - CEP = b287.39 X = 3810.000000 Y = 6890.000000
+Quad - CEP = b289.39 X = 3810.000000 Y = 7050.000000
+Quad - CEP = b288.39 X = 3810.000000 Y = 6970.000000
+Quad - CEP = b286.39 X = 3810.000000 Y = 6810.000000
+Quad - CEP = b284.39 X = 3810.000000 Y = 6650.000000
+Quad - CEP = b282.39 X = 3810.000000 Y = 6490.000000
+Quad - CEP = b282.38 X = 3710.000000 Y = 6490.000000
+Quad - CEP = b284.38 X = 3710.000000 Y = 6650.000000
+Quad - CEP = b286.38 X = 3710.000000 Y = 6810.000000
+Quad - CEP = b288.38 X = 3710.000000 Y = 6970.000000
+Quad - CEP = b289.38 X = 3710.000000 Y = 7050.000000
+Quad - CEP = b287.38 X = 3710.000000 Y = 6890.000000
+Quad - CEP = b285.38 X = 3710.000000 Y = 6730.000000
+Quad - CEP = b283.38 X = 3710.000000 Y = 6570.000000
+Quad - CEP = b283.37 X = 3610.000000 Y = 6570.000000
+Quad - CEP = b285.37 X = 3610.000000 Y = 6730.000000
+Quad - CEP = b287.37 X = 3610.000000 Y = 6890.000000
+Quad - CEP = b289.37 X = 3610.000000 Y = 7050.000000
+Quad - CEP = b288.37 X = 3610.000000 Y = 6970.000000
+Quad - CEP = b286.37 X = 3610.000000 Y = 6810.000000
+Quad - CEP = b284.37 X = 3610.000000 Y = 6650.000000
+Quad - CEP = b282.37 X = 3610.000000 Y = 6490.000000
 Hid - ID = hob282.44 X = 4400.000000 Y = 6525.000000
-Hid - ID = hnb283.36 X = 3555.000000 Y = 6640.000000
-Hid - ID = hob283.36 X = 3600.000000 Y = 6605.000000
-Hid - ID = hnb283.37 X = 3655.000000 Y = 6640.000000
-Hid - ID = hob283.37 X = 3700.000000 Y = 6605.000000
-Hid - ID = hnb283.38 X = 3755.000000 Y = 6640.000000
-Hid - ID = hob283.38 X = 3800.000000 Y = 6605.000000
-Hid - ID = hnb283.40 X = 3955.000000 Y = 6640.000000
-Hid - ID = hob283.40 X = 4000.000000 Y = 6605.000000
-Hid - ID = hnb283.44 X = 4355.000000 Y = 6640.000000
-Hid - ID = hob283.44 X = 4400.000000 Y = 6605.000000
-Hid - ID = hnb284.36 X = 3555.000000 Y = 6720.000000
-Hid - ID = hob284.36 X = 3600.000000 Y = 6685.000000
-Hid - ID = hnb284.37 X = 3655.000000 Y = 6720.000000
-Hid - ID = hob284.37 X = 3700.000000 Y = 6685.000000
-Hid - ID = hnb284.42 X = 4155.000000 Y = 6720.000000
-Hid - ID = hob284.42 X = 4200.000000 Y = 6685.000000
-Hid - ID = hnb284.44 X = 4355.000000 Y = 6720.000000
 Hid - ID = hob284.44 X = 4400.000000 Y = 6685.000000
-Hid - ID = hnb285.37 X = 3655.000000 Y = 6800.000000
-Hid - ID = hob285.37 X = 3700.000000 Y = 6765.000000
-Hid - ID = hnb285.38 X = 3755.000000 Y = 6800.000000
-Hid - ID = hob285.38 X = 3800.000000 Y = 6765.000000
-Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
-Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
-Hid - ID = hnb285.43 X = 4255.000000 Y = 6800.000000
-Hid - ID = hob285.43 X = 4300.000000 Y = 6765.000000
-Hid - ID = hnb285.44 X = 4355.000000 Y = 6800.000000
-Hid - ID = hob285.44 X = 4400.000000 Y = 6765.000000
-Hid - ID = hnb286.43 X = 4255.000000 Y = 6880.000000
-Hid - ID = hob286.43 X = 4300.000000 Y = 6845.000000
-Hid - ID = hnb286.44 X = 4355.000000 Y = 6880.000000
 Hid - ID = hob286.44 X = 4400.000000 Y = 6845.000000
-Hid - ID = hnb287.36 X = 3555.000000 Y = 6960.000000
-Hid - ID = hob287.36 X = 3600.000000 Y = 6925.000000
-Hid - ID = hnb287.37 X = 3655.000000 Y = 6960.000000
-Hid - ID = hob287.37 X = 3700.000000 Y = 6925.000000
-Hid - ID = hnb287.38 X = 3755.000000 Y = 6960.000000
-Hid - ID = hob287.38 X = 3800.000000 Y = 6925.000000
-Hid - ID = hnb287.40 X = 3955.000000 Y = 6960.000000
-Hid - ID = hob287.40 X = 4000.000000 Y = 6925.000000
-Hid - ID = hnb288.38 X = 3755.000000 Y = 7040.000000
-Hid - ID = hob288.38 X = 3800.000000 Y = 7005.000000
-Hid - ID = hnb288.40 X = 3955.000000 Y = 7040.000000
-Hid - ID = hob288.40 X = 4000.000000 Y = 7005.000000
-Hid - ID = hnb289.37 X = 3655.000000 Y = 7120.000000
-Hid - ID = hob289.37 X = 3700.000000 Y = 7085.000000
-Hid - ID = hnb289.40 X = 3955.000000 Y = 7120.000000
-Hid - ID = hob289.40 X = 4000.000000 Y = 7085.000000
-Hid - ID = hnb289.41 X = 4055.000000 Y = 7120.000000
-Hid - ID = hob289.41 X = 4100.000000 Y = 7085.000000
-Hid - ID = hnb289.43 X = 4255.000000 Y = 7120.000000
-Hid - ID = hob289.43 X = 4300.000000 Y = 7085.000000
-Hid - ID = hnb289.44 X = 4355.000000 Y = 7120.000000
 Hid - ID = hob289.44 X = 4400.000000 Y = 7085.000000
-Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
-Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
+Hid - ID = hob285.44 X = 4400.000000 Y = 6765.000000
+Hid - ID = hob283.44 X = 4400.000000 Y = 6605.000000
+Hid - ID = hnb282.44 X = 4355.000000 Y = 6560.000000
+Hid - ID = hnb284.44 X = 4355.000000 Y = 6720.000000
+Hid - ID = hnb286.44 X = 4355.000000 Y = 6880.000000
+Hid - ID = hnb289.44 X = 4355.000000 Y = 7120.000000
+Hid - ID = hnb285.44 X = 4355.000000 Y = 6800.000000
+Hid - ID = hnb283.44 X = 4355.000000 Y = 6640.000000
+Hid - ID = hob285.43 X = 4300.000000 Y = 6765.000000
+Hid - ID = hob289.43 X = 4300.000000 Y = 7085.000000
+Hid - ID = hob286.43 X = 4300.000000 Y = 6845.000000
+Hid - ID = hob282.43 X = 4300.000000 Y = 6525.000000
+Hid - ID = hnb285.43 X = 4255.000000 Y = 6800.000000
+Hid - ID = hnb289.43 X = 4255.000000 Y = 7120.000000
+Hid - ID = hnb286.43 X = 4255.000000 Y = 6880.000000
+Hid - ID = hnb282.43 X = 4255.000000 Y = 6560.000000
+Hid - ID = hob284.42 X = 4200.000000 Y = 6685.000000
+Hid - ID = hob282.42 X = 4200.000000 Y = 6525.000000
+Hid - ID = hnb284.42 X = 4155.000000 Y = 6720.000000
+Hid - ID = hnb282.42 X = 4155.000000 Y = 6560.000000
+Hid - ID = hob289.41 X = 4100.000000 Y = 7085.000000
+Hid - ID = hnb281.41 X = 4055.000000 Y = 6480.000000
+Hid - ID = hnb289.41 X = 4055.000000 Y = 7120.000000
+Hid - ID = hob283.40 X = 4000.000000 Y = 6605.000000
+Hid - ID = hob287.40 X = 4000.000000 Y = 6925.000000
+Hid - ID = hob289.40 X = 4000.000000 Y = 7085.000000
+Hid - ID = hob288.40 X = 4000.000000 Y = 7005.000000
+Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
+Hid - ID = hnb283.40 X = 3955.000000 Y = 6640.000000
+Hid - ID = hnb287.40 X = 3955.000000 Y = 6960.000000
+Hid - ID = hnb289.40 X = 3955.000000 Y = 7120.000000
+Hid - ID = hnb288.40 X = 3955.000000 Y = 7040.000000
+Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
+Hid - ID = hnb281.40 X = 3955.000000 Y = 6480.000000
+Hid - ID = hob282.39 X = 3900.000000 Y = 6525.000000
+Hid - ID = hnb281.39 X = 3855.000000 Y = 6480.000000
+Hid - ID = hnb282.39 X = 3855.000000 Y = 6560.000000
+Hid - ID = hob282.38 X = 3800.000000 Y = 6525.000000
+Hid - ID = hob285.38 X = 3800.000000 Y = 6765.000000
+Hid - ID = hob288.38 X = 3800.000000 Y = 7005.000000
+Hid - ID = hob287.38 X = 3800.000000 Y = 6925.000000
+Hid - ID = hob283.38 X = 3800.000000 Y = 6605.000000
+Hid - ID = hnb283.38 X = 3755.000000 Y = 6640.000000
+Hid - ID = hnb287.38 X = 3755.000000 Y = 6960.000000
+Hid - ID = hnb288.38 X = 3755.000000 Y = 7040.000000
+Hid - ID = hnb285.38 X = 3755.000000 Y = 6800.000000
+Hid - ID = hnb282.38 X = 3755.000000 Y = 6560.000000
+Hid - ID = hob283.37 X = 3700.000000 Y = 6605.000000
+Hid - ID = hob285.37 X = 3700.000000 Y = 6765.000000
+Hid - ID = hob289.37 X = 3700.000000 Y = 7085.000000
+Hid - ID = hob287.37 X = 3700.000000 Y = 6925.000000
+Hid - ID = hob284.37 X = 3700.000000 Y = 6685.000000
+Hid - ID = hob282.37 X = 3700.000000 Y = 6525.000000
+Hid - ID = hnb283.37 X = 3655.000000 Y = 6640.000000
+Hid - ID = hnb285.37 X = 3655.000000 Y = 6800.000000
+Hid - ID = hnb289.37 X = 3655.000000 Y = 7120.000000
+Hid - ID = hnb287.37 X = 3655.000000 Y = 6960.000000
+Hid - ID = hnb284.37 X = 3655.000000 Y = 6720.000000
+Hid - ID = hnb282.37 X = 3655.000000 Y = 6560.000000
+Hid - ID = hob283.36 X = 3600.000000 Y = 6605.000000
+Hid - ID = hob287.36 X = 3600.000000 Y = 6925.000000
+Hid - ID = hob284.36 X = 3600.000000 Y = 6685.000000
+Hid - ID = hob282.36 X = 3600.000000 Y = 6525.000000
+Hid - ID = hnb282.36 X = 3555.000000 Y = 6560.000000
+Hid - ID = hnb284.36 X = 3555.000000 Y = 6720.000000
+Hid - ID = hnb287.36 X = 3555.000000 Y = 6960.000000
+Hid - ID = hnb283.36 X = 3555.000000 Y = 6640.000000
+Hid - ID = hnb281.36 X = 3555.000000 Y = 6480.000000
 Sem - ID = sfb283.45 X = 4405.000000 Y = 6565.000000
-Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
-Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
-Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
-Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
-Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
-Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
-Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
-Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
-Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
-Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
-Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
-Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
-Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
 Sem - ID = sfb288.45 X = 4405.000000 Y = 6965.000000
-Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
-Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
+Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
 Sem - ID = sfb289.44 X = 4305.000000 Y = 7045.000000
-Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
-Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
-Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
-Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
+Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
+Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
+Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
+Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
+Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
+Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
+Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
+Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
+Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
+Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
+Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
+Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
+Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
 Rbs - ID = rbb282.44 X = 4355.000000 Y = 6525.000000
-Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
-Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
-Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
-Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
-Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
-Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
-Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
-Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
-Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
-Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
-Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
-Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
-Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
-Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
 Rbs - ID = rbb289.44 X = 4355.000000 Y = 7085.000000
+Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
+Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
+Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
+Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
+Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
+Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
+Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
+Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
+Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
+Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
+Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
+Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
+Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
+Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
+Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
+Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
+Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
 dq 3550.000000 6450.000000 900.000000 700.000000
-Quad - CEP = b282.37
-Quad - CEP = b282.38
-Quad - CEP = b282.39
-Quad - CEP = b282.40
-Quad - CEP = b282.41
-Quad - CEP = b282.42
-Quad - CEP = b282.43
 Quad - CEP = b282.44
-Quad - CEP = b283.37
-Quad - CEP = b283.38
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b283.43
-Quad - CEP = b283.44
-Quad - CEP = b284.37
-Quad - CEP = b284.38
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
-Quad - CEP = b284.42
-Quad - CEP = b284.43
 Quad - CEP = b284.44
-Quad - CEP = b285.37
-Quad - CEP = b285.38
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b285.43
-Quad - CEP = b285.44
-Quad - CEP = b286.37
-Quad - CEP = b286.38
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
-Quad - CEP = b286.42
-Quad - CEP = b286.43
 Quad - CEP = b286.44
-Quad - CEP = b287.37
-Quad - CEP = b287.38
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
-Quad - CEP = b287.42
-Quad - CEP = b287.43
-Quad - CEP = b287.44
-Quad - CEP = b288.37
-Quad - CEP = b288.38
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
-Quad - CEP = b288.42
-Quad - CEP = b288.43
 Quad - CEP = b288.44
-Quad - CEP = b289.37
-Quad - CEP = b289.38
-Quad - CEP = b289.39
-Quad - CEP = b289.40
-Quad - CEP = b289.41
-Quad - CEP = b289.42
-Quad - CEP = b289.43
 Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
 q? 3550.000000 6450.000000 900.000000 700.000000
-Hid - ID = hnb281.36 X = 3555.000000 Y = 6480.000000
-Hid - ID = hnb281.39 X = 3855.000000 Y = 6480.000000
-Hid - ID = hnb281.40 X = 3955.000000 Y = 6480.000000
-Hid - ID = hnb281.41 X = 4055.000000 Y = 6480.000000
-Hid - ID = hnb282.36 X = 3555.000000 Y = 6560.000000
-Hid - ID = hob282.36 X = 3600.000000 Y = 6525.000000
-Hid - ID = hnb282.37 X = 3655.000000 Y = 6560.000000
-Hid - ID = hob282.37 X = 3700.000000 Y = 6525.000000
-Hid - ID = hnb282.38 X = 3755.000000 Y = 6560.000000
-Hid - ID = hob282.38 X = 3800.000000 Y = 6525.000000
-Hid - ID = hnb282.39 X = 3855.000000 Y = 6560.000000
-Hid - ID = hob282.39 X = 3900.000000 Y = 6525.000000
-Hid - ID = hnb282.42 X = 4155.000000 Y = 6560.000000
-Hid - ID = hob282.42 X = 4200.000000 Y = 6525.000000
-Hid - ID = hnb282.43 X = 4255.000000 Y = 6560.000000
-Hid - ID = hob282.43 X = 4300.000000 Y = 6525.000000
-Hid - ID = hnb282.44 X = 4355.000000 Y = 6560.000000
+Quad - CEP = b282.44 X = 4310.000000 Y = 6490.000000
+Quad - CEP = b284.44 X = 4310.000000 Y = 6650.000000
+Quad - CEP = b286.44 X = 4310.000000 Y = 6810.000000
+Quad - CEP = b288.44 X = 4310.000000 Y = 6970.000000
+Quad - CEP = b289.44 X = 4310.000000 Y = 7050.000000
+Quad - CEP = b287.44 X = 4310.000000 Y = 6890.000000
+Quad - CEP = b285.44 X = 4310.000000 Y = 6730.000000
+Quad - CEP = b283.44 X = 4310.000000 Y = 6570.000000
+Quad - CEP = b283.43 X = 4210.000000 Y = 6570.000000
+Quad - CEP = b285.43 X = 4210.000000 Y = 6730.000000
+Quad - CEP = b287.43 X = 4210.000000 Y = 6890.000000
+Quad - CEP = b289.43 X = 4210.000000 Y = 7050.000000
+Quad - CEP = b288.43 X = 4210.000000 Y = 6970.000000
+Quad - CEP = b286.43 X = 4210.000000 Y = 6810.000000
+Quad - CEP = b284.43 X = 4210.000000 Y = 6650.000000
+Quad - CEP = b282.43 X = 4210.000000 Y = 6490.000000
+Quad - CEP = b282.42 X = 4110.000000 Y = 6490.000000
+Quad - CEP = b284.42 X = 4110.000000 Y = 6650.000000
+Quad - CEP = b286.42 X = 4110.000000 Y = 6810.000000
+Quad - CEP = b288.42 X = 4110.000000 Y = 6970.000000
+Quad - CEP = b289.42 X = 4110.000000 Y = 7050.000000
+Quad - CEP = b287.42 X = 4110.000000 Y = 6890.000000
+Quad - CEP = b285.42 X = 4110.000000 Y = 6730.000000
+Quad - CEP = b283.42 X = 4110.000000 Y = 6570.000000
+Quad - CEP = b283.41 X = 4010.000000 Y = 6570.000000
+Quad - CEP = b285.41 X = 4010.000000 Y = 6730.000000
+Quad - CEP = b287.41 X = 4010.000000 Y = 6890.000000
+Quad - CEP = b289.41 X = 4010.000000 Y = 7050.000000
+Quad - CEP = b288.41 X = 4010.000000 Y = 6970.000000
+Quad - CEP = b286.41 X = 4010.000000 Y = 6810.000000
+Quad - CEP = b284.41 X = 4010.000000 Y = 6650.000000
+Quad - CEP = b282.41 X = 4010.000000 Y = 6490.000000
+Quad - CEP = b282.40 X = 3910.000000 Y = 6490.000000
+Quad - CEP = b284.40 X = 3910.000000 Y = 6650.000000
+Quad - CEP = b286.40 X = 3910.000000 Y = 6810.000000
+Quad - CEP = b288.40 X = 3910.000000 Y = 6970.000000
+Quad - CEP = b289.40 X = 3910.000000 Y = 7050.000000
+Quad - CEP = b287.40 X = 3910.000000 Y = 6890.000000
+Quad - CEP = b285.40 X = 3910.000000 Y = 6730.000000
+Quad - CEP = b283.40 X = 3910.000000 Y = 6570.000000
+Quad - CEP = b283.39 X = 3810.000000 Y = 6570.000000
+Quad - CEP = b285.39 X = 3810.000000 Y = 6730.000000
+Quad - CEP = b287.39 X = 3810.000000 Y = 6890.000000
+Quad - CEP = b289.39 X = 3810.000000 Y = 7050.000000
+Quad - CEP = b288.39 X = 3810.000000 Y = 6970.000000
+Quad - CEP = b286.39 X = 3810.000000 Y = 6810.000000
+Quad - CEP = b284.39 X = 3810.000000 Y = 6650.000000
+Quad - CEP = b282.39 X = 3810.000000 Y = 6490.000000
+Quad - CEP = b282.38 X = 3710.000000 Y = 6490.000000
+Quad - CEP = b284.38 X = 3710.000000 Y = 6650.000000
+Quad - CEP = b286.38 X = 3710.000000 Y = 6810.000000
+Quad - CEP = b288.38 X = 3710.000000 Y = 6970.000000
+Quad - CEP = b289.38 X = 3710.000000 Y = 7050.000000
+Quad - CEP = b287.38 X = 3710.000000 Y = 6890.000000
+Quad - CEP = b285.38 X = 3710.000000 Y = 6730.000000
+Quad - CEP = b283.38 X = 3710.000000 Y = 6570.000000
+Quad - CEP = b283.37 X = 3610.000000 Y = 6570.000000
+Quad - CEP = b285.37 X = 3610.000000 Y = 6730.000000
+Quad - CEP = b287.37 X = 3610.000000 Y = 6890.000000
+Quad - CEP = b289.37 X = 3610.000000 Y = 7050.000000
+Quad - CEP = b288.37 X = 3610.000000 Y = 6970.000000
+Quad - CEP = b286.37 X = 3610.000000 Y = 6810.000000
+Quad - CEP = b284.37 X = 3610.000000 Y = 6650.000000
+Quad - CEP = b282.37 X = 3610.000000 Y = 6490.000000
 Hid - ID = hob282.44 X = 4400.000000 Y = 6525.000000
-Hid - ID = hnb283.36 X = 3555.000000 Y = 6640.000000
-Hid - ID = hob283.36 X = 3600.000000 Y = 6605.000000
-Hid - ID = hnb283.37 X = 3655.000000 Y = 6640.000000
-Hid - ID = hob283.37 X = 3700.000000 Y = 6605.000000
-Hid - ID = hnb283.38 X = 3755.000000 Y = 6640.000000
-Hid - ID = hob283.38 X = 3800.000000 Y = 6605.000000
-Hid - ID = hnb283.40 X = 3955.000000 Y = 6640.000000
-Hid - ID = hob283.40 X = 4000.000000 Y = 6605.000000
-Hid - ID = hnb283.44 X = 4355.000000 Y = 6640.000000
-Hid - ID = hob283.44 X = 4400.000000 Y = 6605.000000
-Hid - ID = hnb284.36 X = 3555.000000 Y = 6720.000000
-Hid - ID = hob284.36 X = 3600.000000 Y = 6685.000000
-Hid - ID = hnb284.37 X = 3655.000000 Y = 6720.000000
-Hid - ID = hob284.37 X = 3700.000000 Y = 6685.000000
-Hid - ID = hnb284.42 X = 4155.000000 Y = 6720.000000
-Hid - ID = hob284.42 X = 4200.000000 Y = 6685.000000
-Hid - ID = hnb284.44 X = 4355.000000 Y = 6720.000000
 Hid - ID = hob284.44 X = 4400.000000 Y = 6685.000000
-Hid - ID = hnb285.37 X = 3655.000000 Y = 6800.000000
-Hid - ID = hob285.37 X = 3700.000000 Y = 6765.000000
-Hid - ID = hnb285.38 X = 3755.000000 Y = 6800.000000
-Hid - ID = hob285.38 X = 3800.000000 Y = 6765.000000
-Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
-Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
-Hid - ID = hnb285.43 X = 4255.000000 Y = 6800.000000
-Hid - ID = hob285.43 X = 4300.000000 Y = 6765.000000
-Hid - ID = hnb285.44 X = 4355.000000 Y = 6800.000000
-Hid - ID = hob285.44 X = 4400.000000 Y = 6765.000000
-Hid - ID = hnb286.43 X = 4255.000000 Y = 6880.000000
-Hid - ID = hob286.43 X = 4300.000000 Y = 6845.000000
-Hid - ID = hnb286.44 X = 4355.000000 Y = 6880.000000
 Hid - ID = hob286.44 X = 4400.000000 Y = 6845.000000
-Hid - ID = hnb287.36 X = 3555.000000 Y = 6960.000000
-Hid - ID = hob287.36 X = 3600.000000 Y = 6925.000000
-Hid - ID = hnb287.37 X = 3655.000000 Y = 6960.000000
-Hid - ID = hob287.37 X = 3700.000000 Y = 6925.000000
-Hid - ID = hnb287.38 X = 3755.000000 Y = 6960.000000
-Hid - ID = hob287.38 X = 3800.000000 Y = 6925.000000
-Hid - ID = hnb287.40 X = 3955.000000 Y = 6960.000000
-Hid - ID = hob287.40 X = 4000.000000 Y = 6925.000000
-Hid - ID = hnb288.38 X = 3755.000000 Y = 7040.000000
-Hid - ID = hob288.38 X = 3800.000000 Y = 7005.000000
-Hid - ID = hnb288.40 X = 3955.000000 Y = 7040.000000
-Hid - ID = hob288.40 X = 4000.000000 Y = 7005.000000
-Hid - ID = hnb289.37 X = 3655.000000 Y = 7120.000000
-Hid - ID = hob289.37 X = 3700.000000 Y = 7085.000000
-Hid - ID = hnb289.40 X = 3955.000000 Y = 7120.000000
-Hid - ID = hob289.40 X = 4000.000000 Y = 7085.000000
-Hid - ID = hnb289.41 X = 4055.000000 Y = 7120.000000
-Hid - ID = hob289.41 X = 4100.000000 Y = 7085.000000
-Hid - ID = hnb289.43 X = 4255.000000 Y = 7120.000000
-Hid - ID = hob289.43 X = 4300.000000 Y = 7085.000000
-Hid - ID = hnb289.44 X = 4355.000000 Y = 7120.000000
 Hid - ID = hob289.44 X = 4400.000000 Y = 7085.000000
-Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
-Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
+Hid - ID = hob285.44 X = 4400.000000 Y = 6765.000000
+Hid - ID = hob283.44 X = 4400.000000 Y = 6605.000000
+Hid - ID = hnb282.44 X = 4355.000000 Y = 6560.000000
+Hid - ID = hnb284.44 X = 4355.000000 Y = 6720.000000
+Hid - ID = hnb286.44 X = 4355.000000 Y = 6880.000000
+Hid - ID = hnb289.44 X = 4355.000000 Y = 7120.000000
+Hid - ID = hnb285.44 X = 4355.000000 Y = 6800.000000
+Hid - ID = hnb283.44 X = 4355.000000 Y = 6640.000000
+Hid - ID = hob285.43 X = 4300.000000 Y = 6765.000000
+Hid - ID = hob289.43 X = 4300.000000 Y = 7085.000000
+Hid - ID = hob286.43 X = 4300.000000 Y = 6845.000000
+Hid - ID = hob282.43 X = 4300.000000 Y = 6525.000000
+Hid - ID = hnb285.43 X = 4255.000000 Y = 6800.000000
+Hid - ID = hnb289.43 X = 4255.000000 Y = 7120.000000
+Hid - ID = hnb286.43 X = 4255.000000 Y = 6880.000000
+Hid - ID = hnb282.43 X = 4255.000000 Y = 6560.000000
+Hid - ID = hob284.42 X = 4200.000000 Y = 6685.000000
+Hid - ID = hob282.42 X = 4200.000000 Y = 6525.000000
+Hid - ID = hnb284.42 X = 4155.000000 Y = 6720.000000
+Hid - ID = hnb282.42 X = 4155.000000 Y = 6560.000000
+Hid - ID = hob289.41 X = 4100.000000 Y = 7085.000000
+Hid - ID = hnb281.41 X = 4055.000000 Y = 6480.000000
+Hid - ID = hnb289.41 X = 4055.000000 Y = 7120.000000
+Hid - ID = hob283.40 X = 4000.000000 Y = 6605.000000
+Hid - ID = hob287.40 X = 4000.000000 Y = 6925.000000
+Hid - ID = hob289.40 X = 4000.000000 Y = 7085.000000
+Hid - ID = hob288.40 X = 4000.000000 Y = 7005.000000
+Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
+Hid - ID = hnb283.40 X = 3955.000000 Y = 6640.000000
+Hid - ID = hnb287.40 X = 3955.000000 Y = 6960.000000
+Hid - ID = hnb289.40 X = 3955.000000 Y = 7120.000000
+Hid - ID = hnb288.40 X = 3955.000000 Y = 7040.000000
+Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
+Hid - ID = hnb281.40 X = 3955.000000 Y = 6480.000000
+Hid - ID = hob282.39 X = 3900.000000 Y = 6525.000000
+Hid - ID = hnb281.39 X = 3855.000000 Y = 6480.000000
+Hid - ID = hnb282.39 X = 3855.000000 Y = 6560.000000
+Hid - ID = hob282.38 X = 3800.000000 Y = 6525.000000
+Hid - ID = hob285.38 X = 3800.000000 Y = 6765.000000
+Hid - ID = hob288.38 X = 3800.000000 Y = 7005.000000
+Hid - ID = hob287.38 X = 3800.000000 Y = 6925.000000
+Hid - ID = hob283.38 X = 3800.000000 Y = 6605.000000
+Hid - ID = hnb283.38 X = 3755.000000 Y = 6640.000000
+Hid - ID = hnb287.38 X = 3755.000000 Y = 6960.000000
+Hid - ID = hnb288.38 X = 3755.000000 Y = 7040.000000
+Hid - ID = hnb285.38 X = 3755.000000 Y = 6800.000000
+Hid - ID = hnb282.38 X = 3755.000000 Y = 6560.000000
+Hid - ID = hob283.37 X = 3700.000000 Y = 6605.000000
+Hid - ID = hob285.37 X = 3700.000000 Y = 6765.000000
+Hid - ID = hob289.37 X = 3700.000000 Y = 7085.000000
+Hid - ID = hob287.37 X = 3700.000000 Y = 6925.000000
+Hid - ID = hob284.37 X = 3700.000000 Y = 6685.000000
+Hid - ID = hob282.37 X = 3700.000000 Y = 6525.000000
+Hid - ID = hnb283.37 X = 3655.000000 Y = 6640.000000
+Hid - ID = hnb285.37 X = 3655.000000 Y = 6800.000000
+Hid - ID = hnb289.37 X = 3655.000000 Y = 7120.000000
+Hid - ID = hnb287.37 X = 3655.000000 Y = 6960.000000
+Hid - ID = hnb284.37 X = 3655.000000 Y = 6720.000000
+Hid - ID = hnb282.37 X = 3655.000000 Y = 6560.000000
+Hid - ID = hob283.36 X = 3600.000000 Y = 6605.000000
+Hid - ID = hob287.36 X = 3600.000000 Y = 6925.000000
+Hid - ID = hob284.36 X = 3600.000000 Y = 6685.000000
+Hid - ID = hob282.36 X = 3600.000000 Y = 6525.000000
+Hid - ID = hnb282.36 X = 3555.000000 Y = 6560.000000
+Hid - ID = hnb284.36 X = 3555.000000 Y = 6720.000000
+Hid - ID = hnb287.36 X = 3555.000000 Y = 6960.000000
+Hid - ID = hnb283.36 X = 3555.000000 Y = 6640.000000
+Hid - ID = hnb281.36 X = 3555.000000 Y = 6480.000000
 Sem - ID = sfb283.45 X = 4405.000000 Y = 6565.000000
-Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
-Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
-Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
-Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
-Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
-Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
-Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
-Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
-Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
-Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
-Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
-Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
-Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
 Sem - ID = sfb288.45 X = 4405.000000 Y = 6965.000000
-Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
-Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
+Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
 Sem - ID = sfb289.44 X = 4305.000000 Y = 7045.000000
-Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
-Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
-Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
-Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
+Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
+Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
+Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
+Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
+Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
+Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
+Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
+Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
+Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
+Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
+Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
+Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
+Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
 Rbs - ID = rbb282.44 X = 4355.000000 Y = 6525.000000
-Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
-Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
-Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
-Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
-Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
-Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
-Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
-Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
-Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
-Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
-Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
-Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
-Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
-Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
 Rbs - ID = rbb289.44 X = 4355.000000 Y = 7085.000000
+Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
+Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
+Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
+Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
+Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
+Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
+Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
+Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
+Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
+Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
+Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
+Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
+Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
+Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
+Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
+Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
+Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
 dle h 3550.000000 6450.000000 900.000000 700.000000
-Hid - ID = hnb281.36
-Hid - ID = hnb281.39
-Hid - ID = hnb281.40
-Hid - ID = hnb281.41
-Hid - ID = hnb282.36
-Hid - ID = hob282.36
-Hid - ID = hnb282.37
-Hid - ID = hob282.37
-Hid - ID = hnb282.38
-Hid - ID = hob282.38
-Hid - ID = hnb282.39
-Hid - ID = hob282.39
-Hid - ID = hnb282.42
-Hid - ID = hob282.42
-Hid - ID = hnb282.43
-Hid - ID = hob282.43
-Hid - ID = hnb282.44
 Hid - ID = hob282.44
-Hid - ID = hnb283.36
-Hid - ID = hob283.36
-Hid - ID = hnb283.37
-Hid - ID = hob283.37
-Hid - ID = hnb283.38
-Hid - ID = hob283.38
-Hid - ID = hnb283.40
-Hid - ID = hob283.40
-Hid - ID = hnb283.44
-Hid - ID = hob283.44
-Hid - ID = hnb284.36
-Hid - ID = hob284.36
-Hid - ID = hnb284.37
-Hid - ID = hob284.37
-Hid - ID = hnb284.42
-Hid - ID = hob284.42
-Hid - ID = hnb284.44
 Hid - ID = hob284.44
-Hid - ID = hnb285.37
-Hid - ID = hob285.37
-Hid - ID = hnb285.38
-Hid - ID = hob285.38
-Hid - ID = hnb285.40
-Hid - ID = hob285.40
-Hid - ID = hnb285.43
-Hid - ID = hob285.43
-Hid - ID = hnb285.44
-Hid - ID = hob285.44
-Hid - ID = hnb286.43
-Hid - ID = hob286.43
-Hid - ID = hnb286.44
 Hid - ID = hob286.44
-Hid - ID = hnb287.36
-Hid - ID = hob287.36
-Hid - ID = hnb287.37
-Hid - ID = hob287.37
-Hid - ID = hnb287.38
-Hid - ID = hob287.38
-Hid - ID = hnb287.40
-Hid - ID = hob287.40
-Hid - ID = hnb288.38
-Hid - ID = hob288.38
-Hid - ID = hnb288.40
-Hid - ID = hob288.40
-Hid - ID = hnb289.37
-Hid - ID = hob289.37
-Hid - ID = hnb289.40
-Hid - ID = hob289.40
-Hid - ID = hnb289.41
-Hid - ID = hob289.41
-Hid - ID = hnb289.43
-Hid - ID = hob289.43
-Hid - ID = hnb289.44
 Hid - ID = hob289.44
+Hid - ID = hob285.44
+Hid - ID = hob283.44
+Hid - ID = hnb282.44
+Hid - ID = hnb284.44
+Hid - ID = hnb286.44
+Hid - ID = hnb289.44
+Hid - ID = hnb285.44
+Hid - ID = hnb283.44
+Hid - ID = hob285.43
+Hid - ID = hob289.43
+Hid - ID = hob286.43
+Hid - ID = hob282.43
+Hid - ID = hnb285.43
+Hid - ID = hnb289.43
+Hid - ID = hnb286.43
+Hid - ID = hnb282.43
+Hid - ID = hob284.42
+Hid - ID = hob282.42
+Hid - ID = hnb284.42
+Hid - ID = hnb282.42
+Hid - ID = hob289.41
+Hid - ID = hnb281.41
+Hid - ID = hnb289.41
+Hid - ID = hob283.40
+Hid - ID = hob287.40
+Hid - ID = hob289.40
+Hid - ID = hob288.40
+Hid - ID = hob285.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb289.40
+Hid - ID = hnb288.40
+Hid - ID = hnb285.40
+Hid - ID = hnb281.40
+Hid - ID = hob282.39
+Hid - ID = hnb281.39
+Hid - ID = hnb282.39
+Hid - ID = hob282.38
+Hid - ID = hob285.38
+Hid - ID = hob288.38
+Hid - ID = hob287.38
+Hid - ID = hob283.38
+Hid - ID = hnb283.38
+Hid - ID = hnb287.38
+Hid - ID = hnb288.38
+Hid - ID = hnb285.38
+Hid - ID = hnb282.38
+Hid - ID = hob283.37
+Hid - ID = hob285.37
+Hid - ID = hob289.37
+Hid - ID = hob287.37
+Hid - ID = hob284.37
+Hid - ID = hob282.37
+Hid - ID = hnb283.37
+Hid - ID = hnb285.37
+Hid - ID = hnb289.37
+Hid - ID = hnb287.37
+Hid - ID = hnb284.37
+Hid - ID = hnb282.37
+Hid - ID = hob283.36
+Hid - ID = hob287.36
+Hid - ID = hob284.36
+Hid - ID = hob282.36
+Hid - ID = hnb282.36
+Hid - ID = hnb284.36
+Hid - ID = hnb287.36
+Hid - ID = hnb283.36
+Hid - ID = hnb281.36
 q? 3550.000000 6450.000000 900.000000 700.000000
-Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
-Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
+Quad - CEP = b282.44 X = 4310.000000 Y = 6490.000000
+Quad - CEP = b284.44 X = 4310.000000 Y = 6650.000000
+Quad - CEP = b286.44 X = 4310.000000 Y = 6810.000000
+Quad - CEP = b288.44 X = 4310.000000 Y = 6970.000000
+Quad - CEP = b289.44 X = 4310.000000 Y = 7050.000000
+Quad - CEP = b287.44 X = 4310.000000 Y = 6890.000000
+Quad - CEP = b285.44 X = 4310.000000 Y = 6730.000000
+Quad - CEP = b283.44 X = 4310.000000 Y = 6570.000000
+Quad - CEP = b283.43 X = 4210.000000 Y = 6570.000000
+Quad - CEP = b285.43 X = 4210.000000 Y = 6730.000000
+Quad - CEP = b287.43 X = 4210.000000 Y = 6890.000000
+Quad - CEP = b289.43 X = 4210.000000 Y = 7050.000000
+Quad - CEP = b288.43 X = 4210.000000 Y = 6970.000000
+Quad - CEP = b286.43 X = 4210.000000 Y = 6810.000000
+Quad - CEP = b284.43 X = 4210.000000 Y = 6650.000000
+Quad - CEP = b282.43 X = 4210.000000 Y = 6490.000000
+Quad - CEP = b282.42 X = 4110.000000 Y = 6490.000000
+Quad - CEP = b284.42 X = 4110.000000 Y = 6650.000000
+Quad - CEP = b286.42 X = 4110.000000 Y = 6810.000000
+Quad - CEP = b288.42 X = 4110.000000 Y = 6970.000000
+Quad - CEP = b289.42 X = 4110.000000 Y = 7050.000000
+Quad - CEP = b287.42 X = 4110.000000 Y = 6890.000000
+Quad - CEP = b285.42 X = 4110.000000 Y = 6730.000000
+Quad - CEP = b283.42 X = 4110.000000 Y = 6570.000000
+Quad - CEP = b283.41 X = 4010.000000 Y = 6570.000000
+Quad - CEP = b285.41 X = 4010.000000 Y = 6730.000000
+Quad - CEP = b287.41 X = 4010.000000 Y = 6890.000000
+Quad - CEP = b289.41 X = 4010.000000 Y = 7050.000000
+Quad - CEP = b288.41 X = 4010.000000 Y = 6970.000000
+Quad - CEP = b286.41 X = 4010.000000 Y = 6810.000000
+Quad - CEP = b284.41 X = 4010.000000 Y = 6650.000000
+Quad - CEP = b282.41 X = 4010.000000 Y = 6490.000000
+Quad - CEP = b282.40 X = 3910.000000 Y = 6490.000000
+Quad - CEP = b284.40 X = 3910.000000 Y = 6650.000000
+Quad - CEP = b286.40 X = 3910.000000 Y = 6810.000000
+Quad - CEP = b288.40 X = 3910.000000 Y = 6970.000000
+Quad - CEP = b289.40 X = 3910.000000 Y = 7050.000000
+Quad - CEP = b287.40 X = 3910.000000 Y = 6890.000000
+Quad - CEP = b285.40 X = 3910.000000 Y = 6730.000000
+Quad - CEP = b283.40 X = 3910.000000 Y = 6570.000000
+Quad - CEP = b283.39 X = 3810.000000 Y = 6570.000000
+Quad - CEP = b285.39 X = 3810.000000 Y = 6730.000000
+Quad - CEP = b287.39 X = 3810.000000 Y = 6890.000000
+Quad - CEP = b289.39 X = 3810.000000 Y = 7050.000000
+Quad - CEP = b288.39 X = 3810.000000 Y = 6970.000000
+Quad - CEP = b286.39 X = 3810.000000 Y = 6810.000000
+Quad - CEP = b284.39 X = 3810.000000 Y = 6650.000000
+Quad - CEP = b282.39 X = 3810.000000 Y = 6490.000000
+Quad - CEP = b282.38 X = 3710.000000 Y = 6490.000000
+Quad - CEP = b284.38 X = 3710.000000 Y = 6650.000000
+Quad - CEP = b286.38 X = 3710.000000 Y = 6810.000000
+Quad - CEP = b288.38 X = 3710.000000 Y = 6970.000000
+Quad - CEP = b289.38 X = 3710.000000 Y = 7050.000000
+Quad - CEP = b287.38 X = 3710.000000 Y = 6890.000000
+Quad - CEP = b285.38 X = 3710.000000 Y = 6730.000000
+Quad - CEP = b283.38 X = 3710.000000 Y = 6570.000000
+Quad - CEP = b283.37 X = 3610.000000 Y = 6570.000000
+Quad - CEP = b285.37 X = 3610.000000 Y = 6730.000000
+Quad - CEP = b287.37 X = 3610.000000 Y = 6890.000000
+Quad - CEP = b289.37 X = 3610.000000 Y = 7050.000000
+Quad - CEP = b288.37 X = 3610.000000 Y = 6970.000000
+Quad - CEP = b286.37 X = 3610.000000 Y = 6810.000000
+Quad - CEP = b284.37 X = 3610.000000 Y = 6650.000000
+Quad - CEP = b282.37 X = 3610.000000 Y = 6490.000000
+Hid - ID = hob282.44 X = 4400.000000 Y = 6525.000000
+Hid - ID = hob284.44 X = 4400.000000 Y = 6685.000000
+Hid - ID = hob286.44 X = 4400.000000 Y = 6845.000000
+Hid - ID = hob289.44 X = 4400.000000 Y = 7085.000000
+Hid - ID = hob285.44 X = 4400.000000 Y = 6765.000000
+Hid - ID = hob283.44 X = 4400.000000 Y = 6605.000000
+Hid - ID = hnb282.44 X = 4355.000000 Y = 6560.000000
+Hid - ID = hnb284.44 X = 4355.000000 Y = 6720.000000
+Hid - ID = hnb286.44 X = 4355.000000 Y = 6880.000000
+Hid - ID = hnb289.44 X = 4355.000000 Y = 7120.000000
+Hid - ID = hnb285.44 X = 4355.000000 Y = 6800.000000
+Hid - ID = hnb283.44 X = 4355.000000 Y = 6640.000000
+Hid - ID = hob285.43 X = 4300.000000 Y = 6765.000000
+Hid - ID = hob289.43 X = 4300.000000 Y = 7085.000000
+Hid - ID = hob286.43 X = 4300.000000 Y = 6845.000000
+Hid - ID = hob282.43 X = 4300.000000 Y = 6525.000000
+Hid - ID = hnb285.43 X = 4255.000000 Y = 6800.000000
+Hid - ID = hnb289.43 X = 4255.000000 Y = 7120.000000
+Hid - ID = hnb286.43 X = 4255.000000 Y = 6880.000000
+Hid - ID = hnb282.43 X = 4255.000000 Y = 6560.000000
+Hid - ID = hob284.42 X = 4200.000000 Y = 6685.000000
+Hid - ID = hob282.42 X = 4200.000000 Y = 6525.000000
+Hid - ID = hnb284.42 X = 4155.000000 Y = 6720.000000
+Hid - ID = hnb282.42 X = 4155.000000 Y = 6560.000000
+Hid - ID = hob289.41 X = 4100.000000 Y = 7085.000000
+Hid - ID = hnb281.41 X = 4055.000000 Y = 6480.000000
+Hid - ID = hnb289.41 X = 4055.000000 Y = 7120.000000
+Hid - ID = hob283.40 X = 4000.000000 Y = 6605.000000
+Hid - ID = hob287.40 X = 4000.000000 Y = 6925.000000
+Hid - ID = hob289.40 X = 4000.000000 Y = 7085.000000
+Hid - ID = hob288.40 X = 4000.000000 Y = 7005.000000
+Hid - ID = hob285.40 X = 4000.000000 Y = 6765.000000
+Hid - ID = hnb283.40 X = 3955.000000 Y = 6640.000000
+Hid - ID = hnb287.40 X = 3955.000000 Y = 6960.000000
+Hid - ID = hnb289.40 X = 3955.000000 Y = 7120.000000
+Hid - ID = hnb288.40 X = 3955.000000 Y = 7040.000000
+Hid - ID = hnb285.40 X = 3955.000000 Y = 6800.000000
+Hid - ID = hnb281.40 X = 3955.000000 Y = 6480.000000
+Hid - ID = hob282.39 X = 3900.000000 Y = 6525.000000
+Hid - ID = hnb281.39 X = 3855.000000 Y = 6480.000000
+Hid - ID = hnb282.39 X = 3855.000000 Y = 6560.000000
+Hid - ID = hob282.38 X = 3800.000000 Y = 6525.000000
+Hid - ID = hob285.38 X = 3800.000000 Y = 6765.000000
+Hid - ID = hob288.38 X = 3800.000000 Y = 7005.000000
+Hid - ID = hob287.38 X = 3800.000000 Y = 6925.000000
+Hid - ID = hob283.38 X = 3800.000000 Y = 6605.000000
+Hid - ID = hnb283.38 X = 3755.000000 Y = 6640.000000
+Hid - ID = hnb287.38 X = 3755.000000 Y = 6960.000000
+Hid - ID = hnb288.38 X = 3755.000000 Y = 7040.000000
+Hid - ID = hnb285.38 X = 3755.000000 Y = 6800.000000
+Hid - ID = hnb282.38 X = 3755.000000 Y = 6560.000000
+Hid - ID = hob283.37 X = 3700.000000 Y = 6605.000000
+Hid - ID = hob285.37 X = 3700.000000 Y = 6765.000000
+Hid - ID = hob289.37 X = 3700.000000 Y = 7085.000000
+Hid - ID = hob287.37 X = 3700.000000 Y = 6925.000000
+Hid - ID = hob284.37 X = 3700.000000 Y = 6685.000000
+Hid - ID = hob282.37 X = 3700.000000 Y = 6525.000000
+Hid - ID = hnb283.37 X = 3655.000000 Y = 6640.000000
+Hid - ID = hnb285.37 X = 3655.000000 Y = 6800.000000
+Hid - ID = hnb289.37 X = 3655.000000 Y = 7120.000000
+Hid - ID = hnb287.37 X = 3655.000000 Y = 6960.000000
+Hid - ID = hnb284.37 X = 3655.000000 Y = 6720.000000
+Hid - ID = hnb282.37 X = 3655.000000 Y = 6560.000000
+Hid - ID = hob283.36 X = 3600.000000 Y = 6605.000000
+Hid - ID = hob287.36 X = 3600.000000 Y = 6925.000000
+Hid - ID = hob284.36 X = 3600.000000 Y = 6685.000000
+Hid - ID = hob282.36 X = 3600.000000 Y = 6525.000000
+Hid - ID = hnb282.36 X = 3555.000000 Y = 6560.000000
+Hid - ID = hnb284.36 X = 3555.000000 Y = 6720.000000
+Hid - ID = hnb287.36 X = 3555.000000 Y = 6960.000000
+Hid - ID = hnb283.36 X = 3555.000000 Y = 6640.000000
+Hid - ID = hnb281.36 X = 3555.000000 Y = 6480.000000
 Sem - ID = sfb283.45 X = 4405.000000 Y = 6565.000000
-Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
-Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
-Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
-Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
-Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
-Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
-Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
-Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
-Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
-Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
-Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
-Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
-Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
 Sem - ID = sfb288.45 X = 4405.000000 Y = 6965.000000
-Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
-Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.45 X = 4405.000000 Y = 6645.000000
+Sem - ID = sfb282.45 X = 4405.000000 Y = 6485.000000
 Sem - ID = sfb289.44 X = 4305.000000 Y = 7045.000000
-Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
-Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
-Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
-Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Sem - ID = sfb288.44 X = 4305.000000 Y = 6965.000000
+Sem - ID = sfb285.43 X = 4205.000000 Y = 6725.000000
+Sem - ID = sfb288.42 X = 4105.000000 Y = 6965.000000
+Sem - ID = sfb289.42 X = 4105.000000 Y = 7045.000000
+Sem - ID = sfb284.41 X = 4005.000000 Y = 6645.000000
+Sem - ID = sfb287.41 X = 4005.000000 Y = 6885.000000
+Sem - ID = sfb286.41 X = 4005.000000 Y = 6805.000000
+Sem - ID = sfb289.40 X = 3905.000000 Y = 7045.000000
+Sem - ID = sfb287.40 X = 3905.000000 Y = 6885.000000
+Sem - ID = sfb284.39 X = 3805.000000 Y = 6645.000000
+Sem - ID = sfb287.39 X = 3805.000000 Y = 6885.000000
+Sem - ID = sfb282.37 X = 3605.000000 Y = 6485.000000
+Sem - ID = sfb287.37 X = 3605.000000 Y = 6885.000000
+Sem - ID = sfb288.37 X = 3605.000000 Y = 6965.000000
+Sem - ID = sfb286.37 X = 3605.000000 Y = 6805.000000
 Rbs - ID = rbb282.44 X = 4355.000000 Y = 6525.000000
-Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
-Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
-Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
-Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
-Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
-Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
-Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
-Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
-Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
-Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
-Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
-Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
-Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
-Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
 Rbs - ID = rbb289.44 X = 4355.000000 Y = 7085.000000
+Rbs - ID = rbb284.44 X = 4355.000000 Y = 6685.000000
+Rbs - ID = rbb287.43 X = 4255.000000 Y = 6925.000000
+Rbs - ID = rbb282.43 X = 4255.000000 Y = 6525.000000
+Rbs - ID = rbb288.42 X = 4155.000000 Y = 7005.000000
+Rbs - ID = rbb282.42 X = 4155.000000 Y = 6525.000000
+Rbs - ID = rbb283.41 X = 4055.000000 Y = 6605.000000
+Rbs - ID = rbb289.41 X = 4055.000000 Y = 7085.000000
+Rbs - ID = rbb287.41 X = 4055.000000 Y = 6925.000000
+Rbs - ID = rbb282.41 X = 4055.000000 Y = 6525.000000
+Rbs - ID = rbb284.40 X = 3955.000000 Y = 6685.000000
+Rbs - ID = rbb288.39 X = 3855.000000 Y = 7005.000000
+Rbs - ID = rbb286.39 X = 3855.000000 Y = 6845.000000
+Rbs - ID = rbb288.38 X = 3755.000000 Y = 7005.000000
+Rbs - ID = rbb289.38 X = 3755.000000 Y = 7085.000000
+Rbs - ID = rbb282.38 X = 3755.000000 Y = 6525.000000
+Rbs - ID = rbb284.37 X = 3655.000000 Y = 6685.000000
+Rbs - ID = rbb287.37 X = 3655.000000 Y = 6925.000000
+Rbs - ID = rbb285.37 X = 3655.000000 Y = 6765.000000
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1145,12 +1345,12 @@ SIM
 ARQUIVO: dle-6.qry
 
 dle rs 7550.000000 13250.000000 450.000000 350.000000
+Sem - ID = sfb2169.79
 Sem - ID = sfb2167.78
 Sem - ID = sfb2169.77
-Sem - ID = sfb2169.79
 Sem - ID = sfb2170.77
-Rbs - ID = rbb2167.76
 Rbs - ID = rbb2168.77
+Rbs - ID = rbb2167.76
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1169,8 +1369,8 @@ SIM
 ARQUIVO: dle-2.qry
 
 dle h 3943.750000 6756.250000 112.500000 87.500000
-Hid - ID = hnb285.40
 Hid - ID = hob285.40
+Hid - ID = hnb285.40
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1180,42 +1380,42 @@ SIM
 ARQUIVO: Dcq-7.qry
 
 Dq 640.000000 10.000000 10.000000
-Quad - CEP = b21.1
-Quad - CEP = b21.2
-Quad - CEP = b21.3
-Quad - CEP = b21.4
-Quad - CEP = b21.5
-Quad - CEP = b21.6
-Quad - CEP = b22.1
-Quad - CEP = b22.2
+Quad - CEP = b25.5
+Quad - CEP = b24.5
+Quad - CEP = b24.4
+Quad - CEP = b26.4
+Quad - CEP = b25.4
+Quad - CEP = b23.4
+Quad - CEP = b23.6
+Quad - CEP = b23.5
+Quad - CEP = b23.3
+Quad - CEP = b25.3
+Quad - CEP = b27.3
+Quad - CEP = b26.3
+Quad - CEP = b24.3
 Quad - CEP = b22.3
-Quad - CEP = b22.4
 Quad - CEP = b22.5
 Quad - CEP = b22.6
-Quad - CEP = b23.1
-Quad - CEP = b23.2
-Quad - CEP = b23.3
-Quad - CEP = b23.4
-Quad - CEP = b23.5
-Quad - CEP = b23.6
-Quad - CEP = b24.1
+Quad - CEP = b22.4
+Quad - CEP = b22.2
 Quad - CEP = b24.2
-Quad - CEP = b24.3
-Quad - CEP = b24.4
-Quad - CEP = b24.5
-Quad - CEP = b25.1
-Quad - CEP = b25.2
-Quad - CEP = b25.3
-Quad - CEP = b25.4
-Quad - CEP = b25.5
-Quad - CEP = b26.1
 Quad - CEP = b26.2
-Quad - CEP = b26.3
-Quad - CEP = b26.4
-Quad - CEP = b27.1
 Quad - CEP = b27.2
-Quad - CEP = b27.3
+Quad - CEP = b25.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.6
+Quad - CEP = b21.5
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b25.1
+Quad - CEP = b27.1
 Quad - CEP = b28.1
+Quad - CEP = b26.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1225,18 +1425,18 @@ SIM
 ARQUIVO: dle-5.qry
 
 dle hr 3775.000000 6625.000000 450.000000 350.000000
-Hid - ID = hnb283.40
-Hid - ID = hnb284.42
 Hid - ID = hob284.42
-Hid - ID = hob285.38
-Hid - ID = hnb285.40
-Hid - ID = hob285.40
-Hid - ID = hob287.38
-Hid - ID = hnb287.40
+Hid - ID = hnb284.42
 Hid - ID = hob287.40
+Hid - ID = hob285.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb285.40
+Hid - ID = hob285.38
+Hid - ID = hob287.38
+Rbs - ID = rbb287.41
 Rbs - ID = rbb284.40
 Rbs - ID = rbb286.39
-Rbs - ID = rbb287.41
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1246,145 +1446,145 @@ SIM
 ARQUIVO: Dcq-8.qry
 
 Dq 640.000000 4010.000000 6810.000000
-Quad - CEP = b279.38
-Quad - CEP = b279.39
-Quad - CEP = b279.40
-Quad - CEP = b279.41
-Quad - CEP = b279.42
-Quad - CEP = b279.43
-Quad - CEP = b280.37
-Quad - CEP = b280.38
-Quad - CEP = b280.39
-Quad - CEP = b280.40
-Quad - CEP = b280.41
-Quad - CEP = b280.42
-Quad - CEP = b280.43
-Quad - CEP = b280.44
-Quad - CEP = b281.37
-Quad - CEP = b281.38
-Quad - CEP = b281.39
-Quad - CEP = b281.40
-Quad - CEP = b281.41
-Quad - CEP = b281.42
-Quad - CEP = b281.43
-Quad - CEP = b281.44
-Quad - CEP = b281.45
-Quad - CEP = b282.36
-Quad - CEP = b282.37
-Quad - CEP = b282.38
-Quad - CEP = b282.39
-Quad - CEP = b282.40
-Quad - CEP = b282.41
-Quad - CEP = b282.42
-Quad - CEP = b282.43
-Quad - CEP = b282.44
-Quad - CEP = b282.45
-Quad - CEP = b283.36
-Quad - CEP = b283.37
-Quad - CEP = b283.38
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b283.43
-Quad - CEP = b283.44
-Quad - CEP = b283.45
-Quad - CEP = b283.46
-Quad - CEP = b284.35
-Quad - CEP = b284.36
-Quad - CEP = b284.37
-Quad - CEP = b284.38
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
-Quad - CEP = b284.42
-Quad - CEP = b284.43
-Quad - CEP = b284.44
-Quad - CEP = b284.45
 Quad - CEP = b284.46
-Quad - CEP = b285.35
-Quad - CEP = b285.36
-Quad - CEP = b285.37
-Quad - CEP = b285.38
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b285.43
-Quad - CEP = b285.44
-Quad - CEP = b285.45
-Quad - CEP = b285.46
-Quad - CEP = b286.35
-Quad - CEP = b286.36
-Quad - CEP = b286.37
-Quad - CEP = b286.38
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
-Quad - CEP = b286.42
-Quad - CEP = b286.43
-Quad - CEP = b286.44
-Quad - CEP = b286.45
 Quad - CEP = b286.46
-Quad - CEP = b287.35
-Quad - CEP = b287.36
-Quad - CEP = b287.37
-Quad - CEP = b287.38
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
-Quad - CEP = b287.42
-Quad - CEP = b287.43
-Quad - CEP = b287.44
-Quad - CEP = b287.45
-Quad - CEP = b287.46
-Quad - CEP = b288.36
-Quad - CEP = b288.37
-Quad - CEP = b288.38
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
-Quad - CEP = b288.42
-Quad - CEP = b288.43
-Quad - CEP = b288.44
-Quad - CEP = b288.45
 Quad - CEP = b288.46
-Quad - CEP = b289.36
-Quad - CEP = b289.37
-Quad - CEP = b289.38
-Quad - CEP = b289.39
-Quad - CEP = b289.40
-Quad - CEP = b289.41
-Quad - CEP = b289.42
-Quad - CEP = b289.43
-Quad - CEP = b289.44
+Quad - CEP = b287.46
+Quad - CEP = b285.46
+Quad - CEP = b283.46
+Quad - CEP = b281.45
+Quad - CEP = b283.45
+Quad - CEP = b285.45
+Quad - CEP = b287.45
 Quad - CEP = b289.45
-Quad - CEP = b290.36
-Quad - CEP = b290.37
-Quad - CEP = b290.38
-Quad - CEP = b290.39
-Quad - CEP = b290.40
-Quad - CEP = b290.41
-Quad - CEP = b290.42
-Quad - CEP = b290.43
-Quad - CEP = b290.44
 Quad - CEP = b290.45
-Quad - CEP = b291.37
-Quad - CEP = b291.38
-Quad - CEP = b291.39
-Quad - CEP = b291.40
-Quad - CEP = b291.41
-Quad - CEP = b291.42
-Quad - CEP = b291.43
+Quad - CEP = b288.45
+Quad - CEP = b286.45
+Quad - CEP = b284.45
+Quad - CEP = b282.45
+Quad - CEP = b280.44
+Quad - CEP = b282.44
+Quad - CEP = b284.44
+Quad - CEP = b286.44
+Quad - CEP = b288.44
+Quad - CEP = b290.44
 Quad - CEP = b291.44
-Quad - CEP = b292.38
-Quad - CEP = b292.39
-Quad - CEP = b292.40
-Quad - CEP = b292.41
-Quad - CEP = b292.42
+Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b281.44
+Quad - CEP = b279.43
+Quad - CEP = b281.43
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b291.43
 Quad - CEP = b292.43
-Quad - CEP = b293.40
+Quad - CEP = b290.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b280.43
+Quad - CEP = b280.42
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b290.42
+Quad - CEP = b292.42
+Quad - CEP = b291.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b281.42
+Quad - CEP = b279.42
+Quad - CEP = b279.41
+Quad - CEP = b281.41
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b291.41
 Quad - CEP = b293.41
+Quad - CEP = b292.41
+Quad - CEP = b290.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b280.41
+Quad - CEP = b280.40
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b290.40
+Quad - CEP = b292.40
+Quad - CEP = b293.40
+Quad - CEP = b291.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b281.40
+Quad - CEP = b279.40
+Quad - CEP = b279.39
+Quad - CEP = b281.39
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b291.39
+Quad - CEP = b292.39
+Quad - CEP = b290.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b280.39
+Quad - CEP = b280.38
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b290.38
+Quad - CEP = b292.38
+Quad - CEP = b291.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b281.38
+Quad - CEP = b279.38
+Quad - CEP = b281.37
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b291.37
+Quad - CEP = b290.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
+Quad - CEP = b280.37
+Quad - CEP = b282.36
+Quad - CEP = b284.36
+Quad - CEP = b286.36
+Quad - CEP = b288.36
+Quad - CEP = b290.36
+Quad - CEP = b289.36
+Quad - CEP = b287.36
+Quad - CEP = b285.36
+Quad - CEP = b283.36
+Quad - CEP = b285.35
+Quad - CEP = b287.35
+Quad - CEP = b286.35
+Quad - CEP = b284.35
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1399,302 +1599,544 @@ dq 3943.750000 6756.250000 112.500000 87.500000
 dq 7887.500000 13512.500000 112.500000 87.500000
 Quad - CEP = b2170.80
 dq 9.000000 9.000000 450.000000 350.000000
-Quad - CEP = b21.2
-Quad - CEP = b21.3
-Quad - CEP = b21.4
-Quad - CEP = b22.1
-Quad - CEP = b22.2
+Quad - CEP = b24.4
+Quad - CEP = b23.4
+Quad - CEP = b23.3
+Quad - CEP = b24.3
 Quad - CEP = b22.3
 Quad - CEP = b22.4
-Quad - CEP = b23.1
-Quad - CEP = b23.2
-Quad - CEP = b23.3
-Quad - CEP = b23.4
-Quad - CEP = b24.1
+Quad - CEP = b22.2
 Quad - CEP = b24.2
-Quad - CEP = b24.3
-Quad - CEP = b24.4
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 dq 3775.000000 6625.000000 450.000000 350.000000
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
 Quad - CEP = b284.42
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
 Quad - CEP = b286.42
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
 Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
 dq 7550.000000 13250.000000 450.000000 350.000000
-Quad - CEP = b2167.77
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
+Quad - CEP = b2170.80
 Quad - CEP = b2169.80
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
+Quad - CEP = b2167.80
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
 Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
 dq 9.000000 9.000000 900.000000 700.000000
-Quad - CEP = b21.5
-Quad - CEP = b21.6
-Quad - CEP = b21.7
-Quad - CEP = b21.8
-Quad - CEP = b21.9
-Quad - CEP = b22.5
-Quad - CEP = b22.6
-Quad - CEP = b22.7
-Quad - CEP = b22.8
-Quad - CEP = b22.9
-Quad - CEP = b23.5
-Quad - CEP = b23.6
-Quad - CEP = b23.7
-Quad - CEP = b23.8
-Quad - CEP = b23.9
-Quad - CEP = b24.5
-Quad - CEP = b24.6
-Quad - CEP = b24.7
-Quad - CEP = b24.8
-Quad - CEP = b24.9
-Quad - CEP = b25.1
-Quad - CEP = b25.2
-Quad - CEP = b25.3
-Quad - CEP = b25.4
-Quad - CEP = b25.5
-Quad - CEP = b25.6
-Quad - CEP = b25.7
-Quad - CEP = b25.8
-Quad - CEP = b25.9
-Quad - CEP = b26.1
-Quad - CEP = b26.2
-Quad - CEP = b26.3
-Quad - CEP = b26.4
-Quad - CEP = b26.5
-Quad - CEP = b26.6
-Quad - CEP = b26.7
-Quad - CEP = b26.8
-Quad - CEP = b26.9
-Quad - CEP = b27.1
-Quad - CEP = b27.2
-Quad - CEP = b27.3
-Quad - CEP = b27.4
-Quad - CEP = b27.5
-Quad - CEP = b27.6
-Quad - CEP = b27.7
+Quad - CEP = b28.9
+Quad - CEP = b28.8
 Quad - CEP = b27.8
 Quad - CEP = b27.9
-Quad - CEP = b28.1
-Quad - CEP = b28.2
-Quad - CEP = b28.3
-Quad - CEP = b28.4
-Quad - CEP = b28.5
-Quad - CEP = b28.6
+Quad - CEP = b27.7
 Quad - CEP = b28.7
-Quad - CEP = b28.8
-Quad - CEP = b28.9
+Quad - CEP = b26.7
+Quad - CEP = b26.9
+Quad - CEP = b26.8
+Quad - CEP = b26.6
+Quad - CEP = b28.6
+Quad - CEP = b27.6
+Quad - CEP = b25.6
+Quad - CEP = b25.8
+Quad - CEP = b25.9
+Quad - CEP = b25.7
+Quad - CEP = b25.5
+Quad - CEP = b27.5
+Quad - CEP = b28.5
+Quad - CEP = b26.5
+Quad - CEP = b24.5
+Quad - CEP = b24.7
+Quad - CEP = b24.9
+Quad - CEP = b24.8
+Quad - CEP = b24.6
+Quad - CEP = b24.4
+Quad - CEP = b26.4
+Quad - CEP = b28.4
+Quad - CEP = b27.4
+Quad - CEP = b25.4
+Quad - CEP = b23.4
+Quad - CEP = b23.6
+Quad - CEP = b23.8
+Quad - CEP = b23.9
+Quad - CEP = b23.7
+Quad - CEP = b23.5
+Quad - CEP = b23.3
+Quad - CEP = b25.3
+Quad - CEP = b27.3
+Quad - CEP = b28.3
+Quad - CEP = b26.3
+Quad - CEP = b24.3
+Quad - CEP = b22.3
+Quad - CEP = b22.5
+Quad - CEP = b22.7
+Quad - CEP = b22.9
+Quad - CEP = b22.8
+Quad - CEP = b22.6
+Quad - CEP = b22.4
+Quad - CEP = b22.2
+Quad - CEP = b24.2
+Quad - CEP = b26.2
+Quad - CEP = b28.2
+Quad - CEP = b27.2
+Quad - CEP = b25.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.6
+Quad - CEP = b21.8
+Quad - CEP = b21.9
+Quad - CEP = b21.7
+Quad - CEP = b21.5
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b25.1
+Quad - CEP = b27.1
+Quad - CEP = b28.1
+Quad - CEP = b26.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 dq 3550.000000 6450.000000 900.000000 700.000000
-Quad - CEP = b282.37
-Quad - CEP = b282.38
-Quad - CEP = b282.39
-Quad - CEP = b282.40
-Quad - CEP = b282.41
-Quad - CEP = b282.42
-Quad - CEP = b282.43
 Quad - CEP = b282.44
-Quad - CEP = b283.37
-Quad - CEP = b283.38
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b283.43
-Quad - CEP = b283.44
-Quad - CEP = b284.37
-Quad - CEP = b284.38
-Quad - CEP = b284.43
 Quad - CEP = b284.44
-Quad - CEP = b285.37
-Quad - CEP = b285.38
-Quad - CEP = b285.43
-Quad - CEP = b285.44
-Quad - CEP = b286.37
-Quad - CEP = b286.38
-Quad - CEP = b286.43
 Quad - CEP = b286.44
-Quad - CEP = b287.37
-Quad - CEP = b287.38
-Quad - CEP = b287.43
-Quad - CEP = b287.44
-Quad - CEP = b288.37
-Quad - CEP = b288.38
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
-Quad - CEP = b288.42
-Quad - CEP = b288.43
 Quad - CEP = b288.44
-Quad - CEP = b289.37
-Quad - CEP = b289.38
-Quad - CEP = b289.39
-Quad - CEP = b289.40
-Quad - CEP = b289.41
-Quad - CEP = b289.42
-Quad - CEP = b289.43
 Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
 dq 7100.000000 12900.000000 900.000000 700.000000
-Quad - CEP = b2163.72
-Quad - CEP = b2163.73
-Quad - CEP = b2163.74
-Quad - CEP = b2163.75
-Quad - CEP = b2163.76
-Quad - CEP = b2163.77
-Quad - CEP = b2163.78
-Quad - CEP = b2163.79
-Quad - CEP = b2163.80
-Quad - CEP = b2164.72
-Quad - CEP = b2164.73
-Quad - CEP = b2164.74
-Quad - CEP = b2164.75
-Quad - CEP = b2164.76
-Quad - CEP = b2164.77
-Quad - CEP = b2164.78
-Quad - CEP = b2164.79
 Quad - CEP = b2164.80
-Quad - CEP = b2165.72
-Quad - CEP = b2165.73
-Quad - CEP = b2165.74
-Quad - CEP = b2165.75
-Quad - CEP = b2165.76
-Quad - CEP = b2165.77
-Quad - CEP = b2165.78
-Quad - CEP = b2165.79
-Quad - CEP = b2165.80
-Quad - CEP = b2166.72
-Quad - CEP = b2166.73
-Quad - CEP = b2166.74
-Quad - CEP = b2166.75
-Quad - CEP = b2166.76
-Quad - CEP = b2166.77
-Quad - CEP = b2166.78
-Quad - CEP = b2166.79
 Quad - CEP = b2166.80
-Quad - CEP = b2167.72
-Quad - CEP = b2167.73
-Quad - CEP = b2167.74
-Quad - CEP = b2167.75
-Quad - CEP = b2167.76
-Quad - CEP = b2168.72
-Quad - CEP = b2168.73
-Quad - CEP = b2168.74
-Quad - CEP = b2168.75
+Quad - CEP = b2168.80
+Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2165.80
+Quad - CEP = b2163.80
+Quad - CEP = b2163.79
+Quad - CEP = b2165.79
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2164.79
+Quad - CEP = b2164.78
+Quad - CEP = b2166.78
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2165.78
+Quad - CEP = b2163.78
+Quad - CEP = b2163.77
+Quad - CEP = b2165.77
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
+Quad - CEP = b2166.77
+Quad - CEP = b2164.77
+Quad - CEP = b2164.76
+Quad - CEP = b2166.76
 Quad - CEP = b2168.76
-Quad - CEP = b2169.72
-Quad - CEP = b2169.73
-Quad - CEP = b2169.74
-Quad - CEP = b2169.75
-Quad - CEP = b2169.76
-Quad - CEP = b2170.72
-Quad - CEP = b2170.73
-Quad - CEP = b2170.74
-Quad - CEP = b2170.75
 Quad - CEP = b2170.76
+Quad - CEP = b2169.76
+Quad - CEP = b2167.76
+Quad - CEP = b2165.76
+Quad - CEP = b2163.76
+Quad - CEP = b2163.75
+Quad - CEP = b2165.75
+Quad - CEP = b2167.75
+Quad - CEP = b2169.75
+Quad - CEP = b2170.75
+Quad - CEP = b2168.75
+Quad - CEP = b2166.75
+Quad - CEP = b2164.75
+Quad - CEP = b2164.74
+Quad - CEP = b2166.74
+Quad - CEP = b2168.74
+Quad - CEP = b2170.74
+Quad - CEP = b2169.74
+Quad - CEP = b2167.74
+Quad - CEP = b2165.74
+Quad - CEP = b2163.74
+Quad - CEP = b2163.73
+Quad - CEP = b2165.73
+Quad - CEP = b2167.73
+Quad - CEP = b2169.73
+Quad - CEP = b2170.73
+Quad - CEP = b2168.73
+Quad - CEP = b2166.73
+Quad - CEP = b2164.73
+Quad - CEP = b2164.72
+Quad - CEP = b2166.72
+Quad - CEP = b2168.72
+Quad - CEP = b2170.72
+Quad - CEP = b2169.72
+Quad - CEP = b2167.72
+Quad - CEP = b2165.72
+Quad - CEP = b2163.72
 Dq 96.000000 10.000000 10.000000
 Dq 96.000000 4010.000000 6810.000000
 Dq 96.000000 8010.000000 13610.000000
 Dq 320.000000 10.000000 10.000000
+Quad - CEP = b22.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b22.1
 Dq 320.000000 4010.000000 6810.000000
+Quad - CEP = b285.43
+Quad - CEP = b286.43
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b286.38
+Quad - CEP = b285.38
 Dq 320.000000 8010.000000 13610.000000
+Quad - CEP = b2168.80
+Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2170.78
 Dq 640.000000 10.000000 10.000000
+Quad - CEP = b25.5
+Quad - CEP = b24.5
+Quad - CEP = b24.4
+Quad - CEP = b26.4
+Quad - CEP = b25.4
+Quad - CEP = b23.4
+Quad - CEP = b23.6
+Quad - CEP = b23.5
+Quad - CEP = b23.3
+Quad - CEP = b25.3
+Quad - CEP = b27.3
+Quad - CEP = b26.3
+Quad - CEP = b24.3
+Quad - CEP = b22.3
+Quad - CEP = b22.5
+Quad - CEP = b22.6
+Quad - CEP = b22.4
+Quad - CEP = b22.2
+Quad - CEP = b24.2
+Quad - CEP = b26.2
+Quad - CEP = b27.2
+Quad - CEP = b25.2
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.6
+Quad - CEP = b21.5
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b25.1
+Quad - CEP = b27.1
+Quad - CEP = b28.1
+Quad - CEP = b26.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 Dq 640.000000 4010.000000 6810.000000
-Quad - CEP = b279.38
-Quad - CEP = b279.39
-Quad - CEP = b279.40
-Quad - CEP = b279.41
-Quad - CEP = b279.42
-Quad - CEP = b279.43
-Quad - CEP = b280.37
-Quad - CEP = b280.38
-Quad - CEP = b280.39
-Quad - CEP = b280.40
-Quad - CEP = b280.41
-Quad - CEP = b280.42
-Quad - CEP = b280.43
-Quad - CEP = b280.44
-Quad - CEP = b281.37
-Quad - CEP = b281.38
-Quad - CEP = b281.39
-Quad - CEP = b281.40
-Quad - CEP = b281.41
-Quad - CEP = b281.42
-Quad - CEP = b281.43
-Quad - CEP = b281.44
-Quad - CEP = b281.45
-Quad - CEP = b282.36
-Quad - CEP = b282.45
-Quad - CEP = b283.36
-Quad - CEP = b283.45
-Quad - CEP = b283.46
-Quad - CEP = b284.35
-Quad - CEP = b284.36
-Quad - CEP = b284.45
 Quad - CEP = b284.46
-Quad - CEP = b285.35
-Quad - CEP = b285.36
-Quad - CEP = b285.45
-Quad - CEP = b285.46
-Quad - CEP = b286.35
-Quad - CEP = b286.36
-Quad - CEP = b286.45
 Quad - CEP = b286.46
-Quad - CEP = b287.35
-Quad - CEP = b287.36
-Quad - CEP = b287.45
-Quad - CEP = b287.46
-Quad - CEP = b288.36
-Quad - CEP = b288.45
 Quad - CEP = b288.46
-Quad - CEP = b289.36
+Quad - CEP = b287.46
+Quad - CEP = b285.46
+Quad - CEP = b283.46
+Quad - CEP = b281.45
+Quad - CEP = b283.45
+Quad - CEP = b285.45
+Quad - CEP = b287.45
 Quad - CEP = b289.45
-Quad - CEP = b290.36
-Quad - CEP = b290.37
-Quad - CEP = b290.38
-Quad - CEP = b290.39
-Quad - CEP = b290.40
-Quad - CEP = b290.41
-Quad - CEP = b290.42
-Quad - CEP = b290.43
-Quad - CEP = b290.44
 Quad - CEP = b290.45
-Quad - CEP = b291.37
-Quad - CEP = b291.38
-Quad - CEP = b291.39
-Quad - CEP = b291.40
-Quad - CEP = b291.41
-Quad - CEP = b291.42
-Quad - CEP = b291.43
+Quad - CEP = b288.45
+Quad - CEP = b286.45
+Quad - CEP = b284.45
+Quad - CEP = b282.45
+Quad - CEP = b280.44
+Quad - CEP = b282.44
+Quad - CEP = b284.44
+Quad - CEP = b286.44
+Quad - CEP = b288.44
+Quad - CEP = b290.44
 Quad - CEP = b291.44
-Quad - CEP = b292.38
-Quad - CEP = b292.39
-Quad - CEP = b292.40
-Quad - CEP = b292.41
-Quad - CEP = b292.42
+Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b281.44
+Quad - CEP = b279.43
+Quad - CEP = b281.43
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b291.43
 Quad - CEP = b292.43
-Quad - CEP = b293.40
+Quad - CEP = b290.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b280.43
+Quad - CEP = b280.42
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b290.42
+Quad - CEP = b292.42
+Quad - CEP = b291.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b281.42
+Quad - CEP = b279.42
+Quad - CEP = b279.41
+Quad - CEP = b281.41
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b291.41
 Quad - CEP = b293.41
+Quad - CEP = b292.41
+Quad - CEP = b290.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b280.41
+Quad - CEP = b280.40
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b290.40
+Quad - CEP = b292.40
+Quad - CEP = b293.40
+Quad - CEP = b291.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b281.40
+Quad - CEP = b279.40
+Quad - CEP = b279.39
+Quad - CEP = b281.39
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b291.39
+Quad - CEP = b292.39
+Quad - CEP = b290.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b280.39
+Quad - CEP = b280.38
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b290.38
+Quad - CEP = b292.38
+Quad - CEP = b291.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b281.38
+Quad - CEP = b279.38
+Quad - CEP = b281.37
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b291.37
+Quad - CEP = b290.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
+Quad - CEP = b280.37
+Quad - CEP = b282.36
+Quad - CEP = b284.36
+Quad - CEP = b286.36
+Quad - CEP = b288.36
+Quad - CEP = b290.36
+Quad - CEP = b289.36
+Quad - CEP = b287.36
+Quad - CEP = b285.36
+Quad - CEP = b283.36
+Quad - CEP = b285.35
+Quad - CEP = b287.35
+Quad - CEP = b286.35
+Quad - CEP = b284.35
 Dq 640.000000 8010.000000 13610.000000
+Quad - CEP = b2164.80
+Quad - CEP = b2166.80
+Quad - CEP = b2168.80
+Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2165.80
+Quad - CEP = b2165.79
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2164.79
+Quad - CEP = b2164.78
+Quad - CEP = b2166.78
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2165.78
+Quad - CEP = b2165.77
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
+Quad - CEP = b2166.77
+Quad - CEP = b2168.76
+Quad - CEP = b2170.76
+Quad - CEP = b2169.76
+Quad - CEP = b2167.76
+Quad - CEP = b2169.75
+Quad - CEP = b2170.75
 Dq 480.000000 8010.000000 13610.000000
+Quad - CEP = b2166.80
+Quad - CEP = b2168.80
+Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -1705,386 +2147,488 @@ ARQUIVO: equs.qry
 
 dle s 9.000000 9.000000 112.500000 87.500000
 dle h 3943.750000 6756.250000 112.500000 87.500000
-Hid - ID = hnb285.40
 Hid - ID = hob285.40
+Hid - ID = hnb285.40
 dle r 7887.500000 13512.500000 112.500000 87.500000
 dle sh 9.000000 9.000000 450.000000 350.000000
-Hid - ID = hnb21.1
-Hid - ID = hob21.1
-Hid - ID = hnb22.2
-Hid - ID = hob22.2
-Hid - ID = hnb22.4
-Hid - ID = hob22.4
 Hid - ID = hnb24.3
 Hid - ID = hob24.3
-Sem - ID = sfb22.3
-Sem - ID = sfb23.5
+Hid - ID = hnb22.2
+Hid - ID = hnb22.4
+Hid - ID = hob22.4
+Hid - ID = hob22.2
+Hid - ID = hob21.1
+Hid - ID = hnb21.1
 Sem - ID = sfb25.2
 Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb22.3
 dle hr 3775.000000 6625.000000 450.000000 350.000000
-Hid - ID = hnb283.40
-Hid - ID = hnb284.42
 Hid - ID = hob284.42
+Hid - ID = hnb284.42
+Hid - ID = hob287.40
+Hid - ID = hob285.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb285.40
 Hid - ID = hob285.38
 Hid - ID = hob287.38
-Hid - ID = hnb287.40
-Hid - ID = hob287.40
+Rbs - ID = rbb287.41
 Rbs - ID = rbb284.40
 Rbs - ID = rbb286.39
-Rbs - ID = rbb287.41
 dle rs 7550.000000 13250.000000 450.000000 350.000000
+Sem - ID = sfb2169.79
 Sem - ID = sfb2167.78
 Sem - ID = sfb2169.77
-Sem - ID = sfb2169.79
 Sem - ID = sfb2170.77
-Rbs - ID = rbb2167.76
 Rbs - ID = rbb2168.77
+Rbs - ID = rbb2167.76
 dle shr 9.000000 9.000000 900.000000 700.000000
-Hid - ID = hnb21.8
-Hid - ID = hob21.8
-Hid - ID = hnb21.9
-Hid - ID = hob21.9
-Hid - ID = hnb22.5
-Hid - ID = hob22.5
-Hid - ID = hnb22.6
-Hid - ID = hob22.6
-Hid - ID = hnb22.7
-Hid - ID = hob22.7
-Hid - ID = hnb22.9
-Hid - ID = hob22.9
-Hid - ID = hnb23.5
-Hid - ID = hob23.5
-Hid - ID = hnb23.7
-Hid - ID = hob23.7
-Hid - ID = hnb23.8
-Hid - ID = hob23.8
-Hid - ID = hnb24.5
-Hid - ID = hob24.5
-Hid - ID = hnb24.7
-Hid - ID = hob24.7
-Hid - ID = hnb24.8
-Hid - ID = hob24.8
-Hid - ID = hnb24.9
 Hid - ID = hob24.9
-Hid - ID = hnb25.2
-Hid - ID = hob25.2
-Hid - ID = hnb25.3
-Hid - ID = hob25.3
-Hid - ID = hnb25.4
-Hid - ID = hob25.4
-Hid - ID = hnb25.8
+Hid - ID = hob26.9
+Hid - ID = hob22.9
+Hid - ID = hnb22.9
+Hid - ID = hnb26.9
+Hid - ID = hnb24.9
+Hid - ID = hob24.8
+Hid - ID = hob27.8
+Hid - ID = hob29.8
+Hid - ID = hob28.8
 Hid - ID = hob25.8
-Hid - ID = hnb26.1
-Hid - ID = hob26.1
-Hid - ID = hnb26.3
-Hid - ID = hob26.3
+Hid - ID = hob23.8
+Hid - ID = hnb21.9
+Hid - ID = hnb21.8
+Hid - ID = hnb25.8
+Hid - ID = hnb28.8
+Hid - ID = hnb27.8
+Hid - ID = hnb24.8
+Hid - ID = hob24.7
+Hid - ID = hob27.7
+Hid - ID = hob26.7
+Hid - ID = hnb23.8
+Hid - ID = hnb23.7
+Hid - ID = hnb24.7
+Hid - ID = hob28.6
+Hid - ID = hnb28.6
+Hid - ID = hnb27.7
+Hid - ID = hob27.5
+Hid - ID = hob29.5
+Hid - ID = hnb26.6
+Hid - ID = hnb26.7
+Hid - ID = hob26.6
+Hid - ID = hob24.5
+Hid - ID = hob23.5
+Hid - ID = hob23.7
+Hid - ID = hnb23.5
+Hid - ID = hnb27.5
+Hid - ID = hob29.4
 Hid - ID = hnb26.4
 Hid - ID = hob26.4
-Hid - ID = hnb26.6
-Hid - ID = hob26.6
-Hid - ID = hnb26.7
-Hid - ID = hob26.7
-Hid - ID = hnb26.9
-Hid - ID = hob26.9
-Hid - ID = hnb27.1
-Hid - ID = hob27.1
-Hid - ID = hnb27.2
-Hid - ID = hob27.2
-Hid - ID = hnb27.3
-Hid - ID = hob27.3
-Hid - ID = hnb27.5
-Hid - ID = hob27.5
-Hid - ID = hnb27.7
-Hid - ID = hob27.7
-Hid - ID = hnb27.8
-Hid - ID = hob27.8
-Hid - ID = hnb28.3
+Hid - ID = hob26.3
 Hid - ID = hob28.3
-Hid - ID = hnb28.6
-Hid - ID = hob28.6
-Hid - ID = hnb28.8
-Hid - ID = hob28.8
-Hid - ID = hob29.1
 Hid - ID = hob29.3
-Hid - ID = hob29.4
-Hid - ID = hob29.5
-Hid - ID = hob29.8
-Sem - ID = sfb22.7
-Sem - ID = sfb25.9
-Sem - ID = sfb26.4
+Hid - ID = hob27.3
+Hid - ID = hnb25.4
+Hid - ID = hnb25.3
+Hid - ID = hnb28.3
+Hid - ID = hnb27.3
+Hid - ID = hob27.2
+Hid - ID = hnb26.3
+Hid - ID = hob25.2
+Hid - ID = hob25.4
+Hid - ID = hob25.3
+Hid - ID = hnb25.2
+Hid - ID = hnb27.2
+Hid - ID = hob27.1
+Hid - ID = hob29.1
+Hid - ID = hob26.1
+Hid - ID = hnb24.3
+Hid - ID = hnb24.5
+Hid - ID = hob24.3
+Hid - ID = hnb22.2
+Hid - ID = hnb22.4
+Hid - ID = hnb22.5
+Hid - ID = hnb22.6
+Hid - ID = hnb22.7
+Hid - ID = hob22.7
+Hid - ID = hob22.6
+Hid - ID = hob22.5
+Hid - ID = hob22.4
+Hid - ID = hob22.2
+Hid - ID = hob21.1
+Hid - ID = hob21.9
+Hid - ID = hob21.8
+Hid - ID = hnb21.1
+Hid - ID = hnb27.1
+Hid - ID = hnb26.1
+Sem - ID = sfb29.5
+Sem - ID = sfb28.7
 Sem - ID = sfb26.7
+Sem - ID = sfb26.4
 Sem - ID = sfb27.2
 Sem - ID = sfb27.4
-Sem - ID = sfb28.7
-Sem - ID = sfb29.5
-Rbs - ID = rbb21.3
-Rbs - ID = rbb21.5
-Rbs - ID = rbb21.9
-Rbs - ID = rbb22.1
-Rbs - ID = rbb22.3
+Sem - ID = sfb25.2
+Sem - ID = sfb25.9
+Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb22.3
+Sem - ID = sfb22.7
+Rbs - ID = rbb26.9
+Rbs - ID = rbb29.9
+Rbs - ID = rbb27.9
+Rbs - ID = rbb25.7
+Rbs - ID = rbb24.9
 Rbs - ID = rbb22.6
-Rbs - ID = rbb23.2
-Rbs - ID = rbb23.3
-Rbs - ID = rbb24.1
+Rbs - ID = rbb29.5
+Rbs - ID = rbb28.4
 Rbs - ID = rbb24.4
 Rbs - ID = rbb24.6
-Rbs - ID = rbb24.9
-Rbs - ID = rbb25.1
-Rbs - ID = rbb25.7
-Rbs - ID = rbb26.9
-Rbs - ID = rbb27.9
+Rbs - ID = rbb21.5
+Rbs - ID = rbb21.9
+Rbs - ID = rbb21.3
 Rbs - ID = rbb28.3
-Rbs - ID = rbb28.4
-Rbs - ID = rbb29.5
-Rbs - ID = rbb29.9
+Rbs - ID = rbb23.3
+Rbs - ID = rbb23.2
+Rbs - ID = rbb25.1
+Rbs - ID = rbb24.1
+Rbs - ID = rbb22.1
+Rbs - ID = rbb22.3
 dle s 3550.000000 6450.000000 900.000000 700.000000
-Sem - ID = sfb282.37
-Sem - ID = sfb282.45
 Sem - ID = sfb283.45
-Sem - ID = sfb284.39
-Sem - ID = sfb284.41
-Sem - ID = sfb284.45
-Sem - ID = sfb285.43
-Sem - ID = sfb286.37
-Sem - ID = sfb286.41
-Sem - ID = sfb287.37
-Sem - ID = sfb287.39
-Sem - ID = sfb287.40
-Sem - ID = sfb287.41
-Sem - ID = sfb288.37
-Sem - ID = sfb288.42
-Sem - ID = sfb288.44
 Sem - ID = sfb288.45
-Sem - ID = sfb289.40
-Sem - ID = sfb289.42
+Sem - ID = sfb284.45
+Sem - ID = sfb282.45
 Sem - ID = sfb289.44
+Sem - ID = sfb288.44
+Sem - ID = sfb285.43
+Sem - ID = sfb288.42
+Sem - ID = sfb289.42
+Sem - ID = sfb284.41
+Sem - ID = sfb287.41
+Sem - ID = sfb286.41
+Sem - ID = sfb289.40
+Sem - ID = sfb287.40
+Sem - ID = sfb284.39
+Sem - ID = sfb287.39
+Sem - ID = sfb282.37
+Sem - ID = sfb287.37
+Sem - ID = sfb288.37
+Sem - ID = sfb286.37
 dle h 7100.000000 12900.000000 900.000000 700.000000
-Hid - ID = hnb2162.74
-Hid - ID = hob2162.74
-Hid - ID = hnb2162.75
-Hid - ID = hob2162.75
-Hid - ID = hnb2162.76
-Hid - ID = hob2162.76
-Hid - ID = hnb2162.79
-Hid - ID = hob2162.79
-Hid - ID = hnb2163.73
-Hid - ID = hob2163.73
-Hid - ID = hnb2163.74
-Hid - ID = hob2163.74
-Hid - ID = hnb2163.76
-Hid - ID = hob2163.76
-Hid - ID = hnb2163.77
-Hid - ID = hob2163.77
-Hid - ID = hnb2163.78
-Hid - ID = hob2163.78
-Hid - ID = hnb2164.78
-Hid - ID = hob2164.78
-Hid - ID = hnb2164.79
-Hid - ID = hob2164.79
-Hid - ID = hnb2165.72
-Hid - ID = hob2165.72
-Hid - ID = hnb2165.73
-Hid - ID = hob2165.73
-Hid - ID = hnb2165.74
-Hid - ID = hob2165.74
-Hid - ID = hnb2165.75
-Hid - ID = hob2165.75
-Hid - ID = hnb2165.77
-Hid - ID = hob2165.77
-Hid - ID = hnb2165.78
-Hid - ID = hob2165.78
-Hid - ID = hnb2165.80
-Hid - ID = hnb2166.73
-Hid - ID = hob2166.73
-Hid - ID = hnb2166.74
-Hid - ID = hob2166.74
-Hid - ID = hnb2166.77
-Hid - ID = hob2166.77
 Hid - ID = hnb2166.80
-Hid - ID = hnb2167.72
-Hid - ID = hob2167.72
-Hid - ID = hnb2167.77
-Hid - ID = hob2167.77
-Hid - ID = hnb2167.79
-Hid - ID = hob2167.79
-Hid - ID = hnb2167.80
-Hid - ID = hnb2168.75
-Hid - ID = hob2168.75
-Hid - ID = hnb2168.77
-Hid - ID = hob2168.77
-Hid - ID = hnb2168.79
-Hid - ID = hob2168.79
 Hid - ID = hnb2168.80
-Hid - ID = hnb2169.72
-Hid - ID = hob2169.72
-Hid - ID = hnb2169.73
-Hid - ID = hob2169.73
-Hid - ID = hnb2169.75
-Hid - ID = hob2169.75
-Hid - ID = hnb2169.77
-Hid - ID = hob2169.77
-Hid - ID = hnb2169.79
+Hid - ID = hnb2167.80
+Hid - ID = hnb2165.80
+Hid - ID = hob2162.79
+Hid - ID = hob2167.79
 Hid - ID = hob2169.79
-Hid - ID = hob2170.72
-Hid - ID = hob2170.73
-Hid - ID = hob2170.74
 Hid - ID = hob2170.79
+Hid - ID = hob2168.79
+Hid - ID = hob2164.79
+Hid - ID = hnb2162.79
+Hid - ID = hnb2167.79
+Hid - ID = hnb2169.79
+Hid - ID = hnb2168.79
+Hid - ID = hnb2164.79
+Hid - ID = hob2163.78
+Hid - ID = hob2165.78
+Hid - ID = hob2164.78
+Hid - ID = hnb2163.78
+Hid - ID = hnb2165.78
+Hid - ID = hnb2164.78
+Hid - ID = hob2163.77
+Hid - ID = hob2166.77
+Hid - ID = hob2168.77
+Hid - ID = hob2169.77
+Hid - ID = hob2167.77
+Hid - ID = hob2165.77
+Hid - ID = hnb2165.77
+Hid - ID = hnb2167.77
+Hid - ID = hnb2169.77
+Hid - ID = hnb2168.77
+Hid - ID = hnb2166.77
+Hid - ID = hnb2163.77
+Hid - ID = hob2162.76
+Hid - ID = hob2163.76
+Hid - ID = hnb2163.76
+Hid - ID = hnb2162.76
+Hid - ID = hob2162.75
+Hid - ID = hob2168.75
+Hid - ID = hob2169.75
+Hid - ID = hob2165.75
+Hid - ID = hnb2165.75
+Hid - ID = hnb2169.75
+Hid - ID = hnb2168.75
+Hid - ID = hnb2162.75
+Hid - ID = hob2163.74
+Hid - ID = hob2166.74
+Hid - ID = hob2170.74
+Hid - ID = hob2165.74
+Hid - ID = hob2162.74
+Hid - ID = hnb2162.74
+Hid - ID = hnb2165.74
+Hid - ID = hnb2166.74
+Hid - ID = hnb2163.74
+Hid - ID = hob2163.73
+Hid - ID = hob2166.73
+Hid - ID = hob2170.73
+Hid - ID = hob2169.73
+Hid - ID = hob2165.73
+Hid - ID = hnb2165.73
+Hid - ID = hnb2169.73
+Hid - ID = hnb2166.73
+Hid - ID = hnb2163.73
+Hid - ID = hob2167.72
+Hid - ID = hob2170.72
+Hid - ID = hob2169.72
+Hid - ID = hob2165.72
+Hid - ID = hnb2167.72
+Hid - ID = hnb2169.72
+Hid - ID = hnb2165.72
 Dle shr 96.000000 10.000000 10.000000
+Hid - ID = hnb21.1
 Dle shr 96.000000 4010.000000 6810.000000
+Hid - ID = hob285.40
+Hid - ID = hnb285.40
+Sem - ID = sfb287.41
+Sem - ID = sfb286.41
 Dle shr 96.000000 8010.000000 13610.000000
-Hid - ID = hnb2170.80
 Hid - ID = hob2170.80
+Hid - ID = hnb2170.80
 Dle sh 320.000000 10.000000 10.000000
+Hid - ID = hnb22.2
+Hid - ID = hob22.2
+Hid - ID = hob21.1
+Hid - ID = hnb21.1
 Sem - ID = sfb23.1
+Sem - ID = sfb22.3
 Dle hr 320.000000 4010.000000 6810.000000
-Hid - ID = hnb282.39
-Hid - ID = hob282.39
-Hid - ID = hnb282.42
-Hid - ID = hnb283.38
-Hid - ID = hob283.38
-Hid - ID = hob283.40
-Hid - ID = hob285.37
-Hid - ID = hnb285.38
-Hid - ID = hnb285.43
 Hid - ID = hob285.43
-Hid - ID = hnb286.43
 Hid - ID = hob286.43
-Hid - ID = hnb287.38
-Hid - ID = hob288.38
-Hid - ID = hnb288.40
-Hid - ID = hob288.40
-Hid - ID = hnb289.40
-Hid - ID = hob289.40
-Hid - ID = hnb289.41
+Hid - ID = hnb285.43
+Hid - ID = hnb286.43
+Hid - ID = hob284.42
+Hid - ID = hnb284.42
+Hid - ID = hnb282.42
 Hid - ID = hob289.41
-Rbs - ID = rbb282.41
-Rbs - ID = rbb283.41
+Hid - ID = hnb289.41
+Hid - ID = hob283.40
+Hid - ID = hob287.40
+Hid - ID = hob289.40
+Hid - ID = hob288.40
+Hid - ID = hob285.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb289.40
+Hid - ID = hnb288.40
+Hid - ID = hnb285.40
+Hid - ID = hob282.39
+Hid - ID = hnb282.39
+Hid - ID = hob285.38
+Hid - ID = hob288.38
+Hid - ID = hob287.38
+Hid - ID = hob283.38
+Hid - ID = hnb283.38
+Hid - ID = hnb287.38
+Hid - ID = hnb285.38
+Hid - ID = hob285.37
 Rbs - ID = rbb287.43
-Rbs - ID = rbb288.39
 Rbs - ID = rbb288.42
+Rbs - ID = rbb283.41
 Rbs - ID = rbb289.41
+Rbs - ID = rbb287.41
+Rbs - ID = rbb282.41
+Rbs - ID = rbb284.40
+Rbs - ID = rbb288.39
+Rbs - ID = rbb286.39
 Dle sr 320.000000 8010.000000 13610.000000
+Sem - ID = sfb2169.79
 Dle s 640.000000 10.000000 10.000000
+Sem - ID = sfb26.4
+Sem - ID = sfb27.2
+Sem - ID = sfb27.4
+Sem - ID = sfb25.2
+Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb23.1
 Sem - ID = sfb26.1
+Sem - ID = sfb22.3
+Sem - ID = sfb22.7
 Dle h 640.000000 4010.000000 6810.000000
-Hid - ID = hnb278.38
-Hid - ID = hnb278.42
-Hid - ID = hob278.42
-Hid - ID = hnb278.43
-Hid - ID = hnb279.37
-Hid - ID = hob279.37
-Hid - ID = hnb279.40
-Hid - ID = hob279.40
-Hid - ID = hnb279.42
-Hid - ID = hob279.42
-Hid - ID = hnb279.44
-Hid - ID = hnb280.37
-Hid - ID = hob280.37
-Hid - ID = hnb280.39
-Hid - ID = hob280.39
-Hid - ID = hnb280.40
-Hid - ID = hob280.40
-Hid - ID = hnb280.45
-Hid - ID = hob281.35
-Hid - ID = hnb281.36
-Hid - ID = hob281.36
-Hid - ID = hnb281.39
-Hid - ID = hob281.39
-Hid - ID = hnb281.40
-Hid - ID = hob281.40
-Hid - ID = hnb281.41
-Hid - ID = hob281.41
-Hid - ID = hnb281.45
-Hid - ID = hob281.45
-Hid - ID = hnb282.35
-Hid - ID = hob282.35
-Hid - ID = hnb282.36
-Hid - ID = hob282.36
-Hid - ID = hnb282.37
-Hid - ID = hob282.37
-Hid - ID = hnb282.38
-Hid - ID = hob282.38
-Hid - ID = hob282.42
-Hid - ID = hnb282.43
-Hid - ID = hob282.43
-Hid - ID = hnb282.44
-Hid - ID = hob282.44
-Hid - ID = hnb282.45
-Hid - ID = hob282.45
-Hid - ID = hnb282.46
-Hid - ID = hnb283.36
-Hid - ID = hob283.36
-Hid - ID = hnb283.37
-Hid - ID = hob283.37
-Hid - ID = hnb283.44
-Hid - ID = hob283.44
-Hid - ID = hob284.34
-Hid - ID = hnb284.36
-Hid - ID = hob284.36
-Hid - ID = hnb284.37
-Hid - ID = hob284.37
-Hid - ID = hnb284.44
-Hid - ID = hob284.44
-Hid - ID = hnb285.35
-Hid - ID = hob285.35
-Hid - ID = hnb285.37
-Hid - ID = hnb285.44
-Hid - ID = hob285.44
-Hid - ID = hnb285.45
-Hid - ID = hob285.45
-Hid - ID = hnb286.44
-Hid - ID = hob286.44
-Hid - ID = hob287.34
-Hid - ID = hnb287.36
-Hid - ID = hob287.36
-Hid - ID = hnb287.37
-Hid - ID = hob287.37
-Hid - ID = hnb287.45
-Hid - ID = hob287.45
-Hid - ID = hnb287.46
 Hid - ID = hob287.46
-Hid - ID = hnb288.35
-Hid - ID = hob288.35
-Hid - ID = hnb288.38
-Hid - ID = hob289.35
-Hid - ID = hnb289.37
-Hid - ID = hob289.37
-Hid - ID = hnb289.43
-Hid - ID = hob289.43
-Hid - ID = hnb289.44
-Hid - ID = hob289.44
-Hid - ID = hob290.35
-Hid - ID = hnb290.39
-Hid - ID = hob290.39
-Hid - ID = hnb290.45
+Hid - ID = hnb282.46
+Hid - ID = hnb287.46
+Hid - ID = hob281.45
+Hid - ID = hob285.45
 Hid - ID = hob290.45
-Hid - ID = hob291.36
-Hid - ID = hnb291.38
-Hid - ID = hob291.38
-Hid - ID = hnb291.39
-Hid - ID = hob291.39
-Hid - ID = hnb291.40
-Hid - ID = hob291.40
-Hid - ID = hnb291.44
+Hid - ID = hob287.45
+Hid - ID = hob282.45
+Hid - ID = hnb280.45
+Hid - ID = hnb282.45
+Hid - ID = hnb287.45
+Hid - ID = hnb290.45
+Hid - ID = hnb285.45
+Hid - ID = hnb281.45
+Hid - ID = hob282.44
+Hid - ID = hob284.44
+Hid - ID = hob286.44
 Hid - ID = hob291.44
-Hid - ID = hnb292.41
-Hid - ID = hob292.41
-Hid - ID = hnb292.43
+Hid - ID = hob289.44
+Hid - ID = hob285.44
+Hid - ID = hob283.44
+Hid - ID = hnb282.44
+Hid - ID = hnb284.44
+Hid - ID = hnb286.44
+Hid - ID = hnb291.44
+Hid - ID = hnb289.44
+Hid - ID = hnb285.44
+Hid - ID = hnb283.44
+Hid - ID = hnb279.44
+Hid - ID = hob285.43
+Hid - ID = hob289.43
 Hid - ID = hob292.43
-Hid - ID = hob293.39
-Hid - ID = hnb293.40
-Hid - ID = hob293.40
-Hid - ID = hnb293.41
-Hid - ID = hob293.41
+Hid - ID = hob286.43
+Hid - ID = hob282.43
+Hid - ID = hnb278.43
+Hid - ID = hnb285.43
+Hid - ID = hnb289.43
+Hid - ID = hnb292.43
+Hid - ID = hnb286.43
+Hid - ID = hnb282.43
+Hid - ID = hob279.42
+Hid - ID = hob284.42
 Hid - ID = hob293.42
+Hid - ID = hob282.42
+Hid - ID = hob278.42
+Hid - ID = hnb279.42
+Hid - ID = hnb284.42
+Hid - ID = hnb282.42
+Hid - ID = hnb278.42
+Hid - ID = hob289.41
+Hid - ID = hob293.41
+Hid - ID = hob292.41
+Hid - ID = hob281.41
+Hid - ID = hnb281.41
+Hid - ID = hnb292.41
+Hid - ID = hnb293.41
+Hid - ID = hnb289.41
+Hid - ID = hob280.40
+Hid - ID = hob283.40
+Hid - ID = hob287.40
+Hid - ID = hob289.40
+Hid - ID = hob293.40
+Hid - ID = hob291.40
+Hid - ID = hob288.40
+Hid - ID = hob285.40
+Hid - ID = hob281.40
+Hid - ID = hob279.40
+Hid - ID = hnb280.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb289.40
+Hid - ID = hnb293.40
+Hid - ID = hnb291.40
+Hid - ID = hnb288.40
+Hid - ID = hnb285.40
+Hid - ID = hnb281.40
+Hid - ID = hnb279.40
+Hid - ID = hob280.39
+Hid - ID = hob282.39
+Hid - ID = hob291.39
+Hid - ID = hob293.39
+Hid - ID = hob290.39
+Hid - ID = hob281.39
+Hid - ID = hnb281.39
+Hid - ID = hnb290.39
+Hid - ID = hnb291.39
+Hid - ID = hnb282.39
+Hid - ID = hnb280.39
+Hid - ID = hob282.38
+Hid - ID = hob285.38
+Hid - ID = hob288.38
+Hid - ID = hob291.38
+Hid - ID = hob287.38
+Hid - ID = hob283.38
+Hid - ID = hnb278.38
+Hid - ID = hnb283.38
+Hid - ID = hnb287.38
+Hid - ID = hnb291.38
+Hid - ID = hnb288.38
+Hid - ID = hnb285.38
+Hid - ID = hnb282.38
+Hid - ID = hob280.37
+Hid - ID = hob283.37
+Hid - ID = hob285.37
+Hid - ID = hob289.37
+Hid - ID = hob287.37
+Hid - ID = hob284.37
+Hid - ID = hob282.37
+Hid - ID = hob279.37
+Hid - ID = hnb280.37
+Hid - ID = hnb283.37
+Hid - ID = hnb285.37
+Hid - ID = hnb289.37
+Hid - ID = hnb287.37
+Hid - ID = hnb284.37
+Hid - ID = hnb282.37
+Hid - ID = hnb279.37
+Hid - ID = hob281.36
+Hid - ID = hob283.36
+Hid - ID = hob287.36
+Hid - ID = hob291.36
+Hid - ID = hob284.36
+Hid - ID = hob282.36
+Hid - ID = hnb282.36
+Hid - ID = hnb284.36
+Hid - ID = hnb287.36
+Hid - ID = hnb283.36
+Hid - ID = hnb281.36
+Hid - ID = hob281.35
+Hid - ID = hob285.35
+Hid - ID = hob289.35
+Hid - ID = hob290.35
+Hid - ID = hob288.35
+Hid - ID = hob282.35
+Hid - ID = hnb285.35
+Hid - ID = hnb288.35
+Hid - ID = hnb282.35
+Hid - ID = hob284.34
+Hid - ID = hob287.34
 Dle r 640.000000 8010.000000 13610.000000
 Rbs - ID = rbb2166.80
+Rbs - ID = rbb2168.77
+Rbs - ID = rbb2167.76
 Dle shr 480.000000 8010.000000 13610.000000
 Hid - ID = hob2165.80
-Hid - ID = hob2166.80
 Hid - ID = hob2167.80
+Hid - ID = hob2170.80
 Hid - ID = hob2168.80
+Hid - ID = hob2166.80
+Hid - ID = hnb2166.80
+Hid - ID = hnb2168.80
+Hid - ID = hnb2170.80
+Hid - ID = hnb2167.80
+Hid - ID = hnb2165.80
+Hid - ID = hob2167.79
+Hid - ID = hob2169.79
+Hid - ID = hob2170.79
+Hid - ID = hob2168.79
+Hid - ID = hnb2167.79
+Hid - ID = hnb2169.79
 Hid - ID = hnb2170.79
+Hid - ID = hnb2168.79
+Hid - ID = hob2168.77
+Hid - ID = hob2169.77
+Hid - ID = hob2167.77
+Hid - ID = hnb2167.77
+Hid - ID = hnb2169.77
+Hid - ID = hnb2168.77
+Sem - ID = sfb2169.79
+Sem - ID = sfb2167.78
+Sem - ID = sfb2169.77
+Sem - ID = sfb2170.77
+Rbs - ID = rbb2166.80
+Rbs - ID = rbb2168.77
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2121,76 +2665,76 @@ SIM
 ARQUIVO: dle-9.qry
 
 dle h 7100.000000 12900.000000 900.000000 700.000000
-Hid - ID = hnb2162.74
-Hid - ID = hob2162.74
-Hid - ID = hnb2162.75
-Hid - ID = hob2162.75
-Hid - ID = hnb2162.76
-Hid - ID = hob2162.76
-Hid - ID = hnb2162.79
-Hid - ID = hob2162.79
-Hid - ID = hnb2163.73
-Hid - ID = hob2163.73
-Hid - ID = hnb2163.74
-Hid - ID = hob2163.74
-Hid - ID = hnb2163.76
-Hid - ID = hob2163.76
-Hid - ID = hnb2163.77
-Hid - ID = hob2163.77
-Hid - ID = hnb2163.78
-Hid - ID = hob2163.78
-Hid - ID = hnb2164.78
-Hid - ID = hob2164.78
-Hid - ID = hnb2164.79
-Hid - ID = hob2164.79
-Hid - ID = hnb2165.72
-Hid - ID = hob2165.72
-Hid - ID = hnb2165.73
-Hid - ID = hob2165.73
-Hid - ID = hnb2165.74
-Hid - ID = hob2165.74
-Hid - ID = hnb2165.75
-Hid - ID = hob2165.75
-Hid - ID = hnb2165.77
-Hid - ID = hob2165.77
-Hid - ID = hnb2165.78
-Hid - ID = hob2165.78
-Hid - ID = hnb2165.80
-Hid - ID = hnb2166.73
-Hid - ID = hob2166.73
-Hid - ID = hnb2166.74
-Hid - ID = hob2166.74
-Hid - ID = hnb2166.77
-Hid - ID = hob2166.77
 Hid - ID = hnb2166.80
-Hid - ID = hnb2167.72
-Hid - ID = hob2167.72
-Hid - ID = hnb2167.77
-Hid - ID = hob2167.77
-Hid - ID = hnb2167.79
-Hid - ID = hob2167.79
-Hid - ID = hnb2167.80
-Hid - ID = hnb2168.75
-Hid - ID = hob2168.75
-Hid - ID = hnb2168.77
-Hid - ID = hob2168.77
-Hid - ID = hnb2168.79
-Hid - ID = hob2168.79
 Hid - ID = hnb2168.80
-Hid - ID = hnb2169.72
-Hid - ID = hob2169.72
-Hid - ID = hnb2169.73
-Hid - ID = hob2169.73
-Hid - ID = hnb2169.75
-Hid - ID = hob2169.75
-Hid - ID = hnb2169.77
-Hid - ID = hob2169.77
-Hid - ID = hnb2169.79
+Hid - ID = hnb2167.80
+Hid - ID = hnb2165.80
+Hid - ID = hob2162.79
+Hid - ID = hob2167.79
 Hid - ID = hob2169.79
-Hid - ID = hob2170.72
-Hid - ID = hob2170.73
-Hid - ID = hob2170.74
 Hid - ID = hob2170.79
+Hid - ID = hob2168.79
+Hid - ID = hob2164.79
+Hid - ID = hnb2162.79
+Hid - ID = hnb2167.79
+Hid - ID = hnb2169.79
+Hid - ID = hnb2168.79
+Hid - ID = hnb2164.79
+Hid - ID = hob2163.78
+Hid - ID = hob2165.78
+Hid - ID = hob2164.78
+Hid - ID = hnb2163.78
+Hid - ID = hnb2165.78
+Hid - ID = hnb2164.78
+Hid - ID = hob2163.77
+Hid - ID = hob2166.77
+Hid - ID = hob2168.77
+Hid - ID = hob2169.77
+Hid - ID = hob2167.77
+Hid - ID = hob2165.77
+Hid - ID = hnb2165.77
+Hid - ID = hnb2167.77
+Hid - ID = hnb2169.77
+Hid - ID = hnb2168.77
+Hid - ID = hnb2166.77
+Hid - ID = hnb2163.77
+Hid - ID = hob2162.76
+Hid - ID = hob2163.76
+Hid - ID = hnb2163.76
+Hid - ID = hnb2162.76
+Hid - ID = hob2162.75
+Hid - ID = hob2168.75
+Hid - ID = hob2169.75
+Hid - ID = hob2165.75
+Hid - ID = hnb2165.75
+Hid - ID = hnb2169.75
+Hid - ID = hnb2168.75
+Hid - ID = hnb2162.75
+Hid - ID = hob2163.74
+Hid - ID = hob2166.74
+Hid - ID = hob2170.74
+Hid - ID = hob2165.74
+Hid - ID = hob2162.74
+Hid - ID = hnb2162.74
+Hid - ID = hnb2165.74
+Hid - ID = hnb2166.74
+Hid - ID = hnb2163.74
+Hid - ID = hob2163.73
+Hid - ID = hob2166.73
+Hid - ID = hob2170.73
+Hid - ID = hob2169.73
+Hid - ID = hob2165.73
+Hid - ID = hnb2165.73
+Hid - ID = hnb2169.73
+Hid - ID = hnb2166.73
+Hid - ID = hnb2163.73
+Hid - ID = hob2167.72
+Hid - ID = hob2170.72
+Hid - ID = hob2169.72
+Hid - ID = hob2165.72
+Hid - ID = hnb2167.72
+Hid - ID = hnb2169.72
+Hid - ID = hnb2165.72
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2200,33 +2744,33 @@ SIM
 ARQUIVO: Dle-10.qry
 
 Dle shr 480.000000 8010.000000 13610.000000
-Hid - ID = hnb2165.80
 Hid - ID = hob2165.80
-Hid - ID = hnb2166.80
-Hid - ID = hob2166.80
-Hid - ID = hnb2167.77
-Hid - ID = hob2167.77
-Hid - ID = hnb2167.79
-Hid - ID = hob2167.79
-Hid - ID = hnb2167.80
 Hid - ID = hob2167.80
-Hid - ID = hnb2168.77
-Hid - ID = hob2168.77
-Hid - ID = hnb2168.79
-Hid - ID = hob2168.79
-Hid - ID = hnb2168.80
-Hid - ID = hob2168.80
-Hid - ID = hnb2169.77
-Hid - ID = hob2169.77
-Hid - ID = hnb2169.79
-Hid - ID = hob2169.79
-Hid - ID = hnb2170.79
-Hid - ID = hob2170.79
-Hid - ID = hnb2170.80
 Hid - ID = hob2170.80
+Hid - ID = hob2168.80
+Hid - ID = hob2166.80
+Hid - ID = hnb2166.80
+Hid - ID = hnb2168.80
+Hid - ID = hnb2170.80
+Hid - ID = hnb2167.80
+Hid - ID = hnb2165.80
+Hid - ID = hob2167.79
+Hid - ID = hob2169.79
+Hid - ID = hob2170.79
+Hid - ID = hob2168.79
+Hid - ID = hnb2167.79
+Hid - ID = hnb2169.79
+Hid - ID = hnb2170.79
+Hid - ID = hnb2168.79
+Hid - ID = hob2168.77
+Hid - ID = hob2169.77
+Hid - ID = hob2167.77
+Hid - ID = hnb2167.77
+Hid - ID = hnb2169.77
+Hid - ID = hnb2168.77
+Sem - ID = sfb2169.79
 Sem - ID = sfb2167.78
 Sem - ID = sfb2169.77
-Sem - ID = sfb2169.79
 Sem - ID = sfb2170.77
 Rbs - ID = rbb2166.80
 Rbs - ID = rbb2168.77
@@ -2239,26 +2783,26 @@ SIM
 ARQUIVO: dle-8.qry
 
 dle s 3550.000000 6450.000000 900.000000 700.000000
-Sem - ID = sfb282.37
-Sem - ID = sfb282.45
 Sem - ID = sfb283.45
-Sem - ID = sfb284.39
-Sem - ID = sfb284.41
-Sem - ID = sfb284.45
-Sem - ID = sfb285.43
-Sem - ID = sfb286.37
-Sem - ID = sfb286.41
-Sem - ID = sfb287.37
-Sem - ID = sfb287.39
-Sem - ID = sfb287.40
-Sem - ID = sfb287.41
-Sem - ID = sfb288.37
-Sem - ID = sfb288.42
-Sem - ID = sfb288.44
 Sem - ID = sfb288.45
-Sem - ID = sfb289.40
-Sem - ID = sfb289.42
+Sem - ID = sfb284.45
+Sem - ID = sfb282.45
 Sem - ID = sfb289.44
+Sem - ID = sfb288.44
+Sem - ID = sfb285.43
+Sem - ID = sfb288.42
+Sem - ID = sfb289.42
+Sem - ID = sfb284.41
+Sem - ID = sfb287.41
+Sem - ID = sfb286.41
+Sem - ID = sfb289.40
+Sem - ID = sfb287.40
+Sem - ID = sfb284.39
+Sem - ID = sfb287.39
+Sem - ID = sfb282.37
+Sem - ID = sfb287.37
+Sem - ID = sfb288.37
+Sem - ID = sfb286.37
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2268,10 +2812,10 @@ SIM
 ARQUIVO: Dle-2.qry
 
 Dle shr 96.000000 4010.000000 6810.000000
-Hid - ID = hnb285.40
 Hid - ID = hob285.40
-Sem - ID = sfb286.41
+Hid - ID = hnb285.40
 Sem - ID = sfb287.41
+Sem - ID = sfb286.41
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2281,22 +2825,22 @@ SIM
 ARQUIVO: dq-6.qry
 
 dq 7550.000000 13250.000000 450.000000 350.000000
-Quad - CEP = b2167.77
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2315,22 +2859,22 @@ SIM
 ARQUIVO: dq-4.qry
 
 dq 9.000000 9.000000 450.000000 350.000000
-Quad - CEP = b21.1
-Quad - CEP = b21.2
-Quad - CEP = b21.3
-Quad - CEP = b21.4
-Quad - CEP = b22.1
-Quad - CEP = b22.2
+Quad - CEP = b24.4
+Quad - CEP = b23.4
+Quad - CEP = b23.3
+Quad - CEP = b24.3
 Quad - CEP = b22.3
 Quad - CEP = b22.4
-Quad - CEP = b23.1
-Quad - CEP = b23.2
-Quad - CEP = b23.3
-Quad - CEP = b23.4
-Quad - CEP = b24.1
+Quad - CEP = b22.2
 Quad - CEP = b24.2
-Quad - CEP = b24.3
-Quad - CEP = b24.4
+Quad - CEP = b23.2
+Quad - CEP = b21.2
+Quad - CEP = b21.4
+Quad - CEP = b21.3
+Quad - CEP = b21.1
+Quad - CEP = b23.1
+Quad - CEP = b24.1
+Quad - CEP = b22.1
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2340,8 +2884,8 @@ SIM
 ARQUIVO: Dle-3.qry
 
 Dle shr 96.000000 8010.000000 13610.000000
-Hid - ID = hnb2170.80
 Hid - ID = hob2170.80
+Hid - ID = hnb2170.80
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2352,8 +2896,8 @@ ARQUIVO: Dle-9.qry
 
 Dle r 640.000000 8010.000000 13610.000000
 Rbs - ID = rbb2166.80
-Rbs - ID = rbb2167.76
 Rbs - ID = rbb2168.77
+Rbs - ID = rbb2167.76
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2372,34 +2916,34 @@ SIM
 ARQUIVO: Dcq-5.qry
 
 Dq 320.000000 4010.000000 6810.000000
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
-Quad - CEP = b284.42
-Quad - CEP = b285.38
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
 Quad - CEP = b285.43
-Quad - CEP = b286.38
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
-Quad - CEP = b286.42
 Quad - CEP = b286.43
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
-Quad - CEP = b287.42
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
+Quad - CEP = b284.42
+Quad - CEP = b286.42
 Quad - CEP = b288.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b286.38
+Quad - CEP = b285.38
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2409,78 +2953,78 @@ SIM
 ARQUIVO: dq-9.qry
 
 dq 7100.000000 12900.000000 900.000000 700.000000
-Quad - CEP = b2163.72
-Quad - CEP = b2163.73
-Quad - CEP = b2163.74
-Quad - CEP = b2163.75
-Quad - CEP = b2163.76
-Quad - CEP = b2163.77
-Quad - CEP = b2163.78
-Quad - CEP = b2163.79
-Quad - CEP = b2163.80
-Quad - CEP = b2164.72
-Quad - CEP = b2164.73
-Quad - CEP = b2164.74
-Quad - CEP = b2164.75
-Quad - CEP = b2164.76
-Quad - CEP = b2164.77
-Quad - CEP = b2164.78
-Quad - CEP = b2164.79
 Quad - CEP = b2164.80
-Quad - CEP = b2165.72
-Quad - CEP = b2165.73
-Quad - CEP = b2165.74
-Quad - CEP = b2165.75
-Quad - CEP = b2165.76
-Quad - CEP = b2165.77
-Quad - CEP = b2165.78
-Quad - CEP = b2165.79
-Quad - CEP = b2165.80
-Quad - CEP = b2166.72
-Quad - CEP = b2166.73
-Quad - CEP = b2166.74
-Quad - CEP = b2166.75
-Quad - CEP = b2166.76
-Quad - CEP = b2166.77
-Quad - CEP = b2166.78
-Quad - CEP = b2166.79
 Quad - CEP = b2166.80
-Quad - CEP = b2167.72
-Quad - CEP = b2167.73
-Quad - CEP = b2167.74
-Quad - CEP = b2167.75
-Quad - CEP = b2167.76
-Quad - CEP = b2167.77
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.72
-Quad - CEP = b2168.73
-Quad - CEP = b2168.74
-Quad - CEP = b2168.75
-Quad - CEP = b2168.76
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.72
-Quad - CEP = b2169.73
-Quad - CEP = b2169.74
-Quad - CEP = b2169.75
-Quad - CEP = b2169.76
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.72
-Quad - CEP = b2170.73
-Quad - CEP = b2170.74
-Quad - CEP = b2170.75
-Quad - CEP = b2170.76
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2165.80
+Quad - CEP = b2163.80
+Quad - CEP = b2163.79
+Quad - CEP = b2165.79
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2164.79
+Quad - CEP = b2164.78
+Quad - CEP = b2166.78
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2165.78
+Quad - CEP = b2163.78
+Quad - CEP = b2163.77
+Quad - CEP = b2165.77
+Quad - CEP = b2167.77
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77
+Quad - CEP = b2166.77
+Quad - CEP = b2164.77
+Quad - CEP = b2164.76
+Quad - CEP = b2166.76
+Quad - CEP = b2168.76
+Quad - CEP = b2170.76
+Quad - CEP = b2169.76
+Quad - CEP = b2167.76
+Quad - CEP = b2165.76
+Quad - CEP = b2163.76
+Quad - CEP = b2163.75
+Quad - CEP = b2165.75
+Quad - CEP = b2167.75
+Quad - CEP = b2169.75
+Quad - CEP = b2170.75
+Quad - CEP = b2168.75
+Quad - CEP = b2166.75
+Quad - CEP = b2164.75
+Quad - CEP = b2164.74
+Quad - CEP = b2166.74
+Quad - CEP = b2168.74
+Quad - CEP = b2170.74
+Quad - CEP = b2169.74
+Quad - CEP = b2167.74
+Quad - CEP = b2165.74
+Quad - CEP = b2163.74
+Quad - CEP = b2163.73
+Quad - CEP = b2165.73
+Quad - CEP = b2167.73
+Quad - CEP = b2169.73
+Quad - CEP = b2170.73
+Quad - CEP = b2168.73
+Quad - CEP = b2166.73
+Quad - CEP = b2164.73
+Quad - CEP = b2164.72
+Quad - CEP = b2166.72
+Quad - CEP = b2168.72
+Quad - CEP = b2170.72
+Quad - CEP = b2169.72
+Quad - CEP = b2167.72
+Quad - CEP = b2165.72
+Quad - CEP = b2163.72
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2490,22 +3034,22 @@ SIM
 ARQUIVO: dq-5.qry
 
 dq 3775.000000 6625.000000 450.000000 350.000000
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
 Quad - CEP = b284.42
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
 Quad - CEP = b286.42
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
 Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2515,70 +3059,70 @@ SIM
 ARQUIVO: dq-8.qry
 
 dq 3550.000000 6450.000000 900.000000 700.000000
-Quad - CEP = b282.37
-Quad - CEP = b282.38
-Quad - CEP = b282.39
-Quad - CEP = b282.40
-Quad - CEP = b282.41
-Quad - CEP = b282.42
-Quad - CEP = b282.43
 Quad - CEP = b282.44
-Quad - CEP = b283.37
-Quad - CEP = b283.38
-Quad - CEP = b283.39
-Quad - CEP = b283.40
-Quad - CEP = b283.41
-Quad - CEP = b283.42
-Quad - CEP = b283.43
-Quad - CEP = b283.44
-Quad - CEP = b284.37
-Quad - CEP = b284.38
-Quad - CEP = b284.39
-Quad - CEP = b284.40
-Quad - CEP = b284.41
-Quad - CEP = b284.42
-Quad - CEP = b284.43
 Quad - CEP = b284.44
-Quad - CEP = b285.37
-Quad - CEP = b285.38
-Quad - CEP = b285.39
-Quad - CEP = b285.40
-Quad - CEP = b285.41
-Quad - CEP = b285.42
-Quad - CEP = b285.43
-Quad - CEP = b285.44
-Quad - CEP = b286.37
-Quad - CEP = b286.38
-Quad - CEP = b286.39
-Quad - CEP = b286.40
-Quad - CEP = b286.41
-Quad - CEP = b286.42
-Quad - CEP = b286.43
 Quad - CEP = b286.44
-Quad - CEP = b287.37
-Quad - CEP = b287.38
-Quad - CEP = b287.39
-Quad - CEP = b287.40
-Quad - CEP = b287.41
-Quad - CEP = b287.42
-Quad - CEP = b287.43
-Quad - CEP = b287.44
-Quad - CEP = b288.37
-Quad - CEP = b288.38
-Quad - CEP = b288.39
-Quad - CEP = b288.40
-Quad - CEP = b288.41
-Quad - CEP = b288.42
-Quad - CEP = b288.43
 Quad - CEP = b288.44
-Quad - CEP = b289.37
-Quad - CEP = b289.38
-Quad - CEP = b289.39
-Quad - CEP = b289.40
-Quad - CEP = b289.41
-Quad - CEP = b289.42
-Quad - CEP = b289.43
 Quad - CEP = b289.44
+Quad - CEP = b287.44
+Quad - CEP = b285.44
+Quad - CEP = b283.44
+Quad - CEP = b283.43
+Quad - CEP = b285.43
+Quad - CEP = b287.43
+Quad - CEP = b289.43
+Quad - CEP = b288.43
+Quad - CEP = b286.43
+Quad - CEP = b284.43
+Quad - CEP = b282.43
+Quad - CEP = b282.42
+Quad - CEP = b284.42
+Quad - CEP = b286.42
+Quad - CEP = b288.42
+Quad - CEP = b289.42
+Quad - CEP = b287.42
+Quad - CEP = b285.42
+Quad - CEP = b283.42
+Quad - CEP = b283.41
+Quad - CEP = b285.41
+Quad - CEP = b287.41
+Quad - CEP = b289.41
+Quad - CEP = b288.41
+Quad - CEP = b286.41
+Quad - CEP = b284.41
+Quad - CEP = b282.41
+Quad - CEP = b282.40
+Quad - CEP = b284.40
+Quad - CEP = b286.40
+Quad - CEP = b288.40
+Quad - CEP = b289.40
+Quad - CEP = b287.40
+Quad - CEP = b285.40
+Quad - CEP = b283.40
+Quad - CEP = b283.39
+Quad - CEP = b285.39
+Quad - CEP = b287.39
+Quad - CEP = b289.39
+Quad - CEP = b288.39
+Quad - CEP = b286.39
+Quad - CEP = b284.39
+Quad - CEP = b282.39
+Quad - CEP = b282.38
+Quad - CEP = b284.38
+Quad - CEP = b286.38
+Quad - CEP = b288.38
+Quad - CEP = b289.38
+Quad - CEP = b287.38
+Quad - CEP = b285.38
+Quad - CEP = b283.38
+Quad - CEP = b283.37
+Quad - CEP = b285.37
+Quad - CEP = b287.37
+Quad - CEP = b289.37
+Quad - CEP = b288.37
+Quad - CEP = b286.37
+Quad - CEP = b284.37
+Quad - CEP = b282.37
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2588,115 +3132,115 @@ SIM
 ARQUIVO: dle-7.qry
 
 dle shr 9.000000 9.000000 900.000000 700.000000
-Hid - ID = hnb21.1
-Hid - ID = hob21.1
-Hid - ID = hnb21.8
-Hid - ID = hob21.8
-Hid - ID = hnb21.9
-Hid - ID = hob21.9
-Hid - ID = hnb22.2
-Hid - ID = hob22.2
-Hid - ID = hnb22.4
-Hid - ID = hob22.4
-Hid - ID = hnb22.5
-Hid - ID = hob22.5
-Hid - ID = hnb22.6
-Hid - ID = hob22.6
-Hid - ID = hnb22.7
-Hid - ID = hob22.7
-Hid - ID = hnb22.9
-Hid - ID = hob22.9
-Hid - ID = hnb23.5
-Hid - ID = hob23.5
-Hid - ID = hnb23.7
-Hid - ID = hob23.7
-Hid - ID = hnb23.8
-Hid - ID = hob23.8
-Hid - ID = hnb24.3
-Hid - ID = hob24.3
-Hid - ID = hnb24.5
-Hid - ID = hob24.5
-Hid - ID = hnb24.7
-Hid - ID = hob24.7
-Hid - ID = hnb24.8
-Hid - ID = hob24.8
-Hid - ID = hnb24.9
 Hid - ID = hob24.9
-Hid - ID = hnb25.2
-Hid - ID = hob25.2
-Hid - ID = hnb25.3
-Hid - ID = hob25.3
-Hid - ID = hnb25.4
-Hid - ID = hob25.4
-Hid - ID = hnb25.8
+Hid - ID = hob26.9
+Hid - ID = hob22.9
+Hid - ID = hnb22.9
+Hid - ID = hnb26.9
+Hid - ID = hnb24.9
+Hid - ID = hob24.8
+Hid - ID = hob27.8
+Hid - ID = hob29.8
+Hid - ID = hob28.8
 Hid - ID = hob25.8
-Hid - ID = hnb26.1
-Hid - ID = hob26.1
-Hid - ID = hnb26.3
-Hid - ID = hob26.3
+Hid - ID = hob23.8
+Hid - ID = hnb21.9
+Hid - ID = hnb21.8
+Hid - ID = hnb25.8
+Hid - ID = hnb28.8
+Hid - ID = hnb27.8
+Hid - ID = hnb24.8
+Hid - ID = hob24.7
+Hid - ID = hob27.7
+Hid - ID = hob26.7
+Hid - ID = hnb23.8
+Hid - ID = hnb23.7
+Hid - ID = hnb24.7
+Hid - ID = hob28.6
+Hid - ID = hnb28.6
+Hid - ID = hnb27.7
+Hid - ID = hob27.5
+Hid - ID = hob29.5
+Hid - ID = hnb26.6
+Hid - ID = hnb26.7
+Hid - ID = hob26.6
+Hid - ID = hob24.5
+Hid - ID = hob23.5
+Hid - ID = hob23.7
+Hid - ID = hnb23.5
+Hid - ID = hnb27.5
+Hid - ID = hob29.4
 Hid - ID = hnb26.4
 Hid - ID = hob26.4
-Hid - ID = hnb26.6
-Hid - ID = hob26.6
-Hid - ID = hnb26.7
-Hid - ID = hob26.7
-Hid - ID = hnb26.9
-Hid - ID = hob26.9
-Hid - ID = hnb27.1
-Hid - ID = hob27.1
-Hid - ID = hnb27.2
-Hid - ID = hob27.2
-Hid - ID = hnb27.3
-Hid - ID = hob27.3
-Hid - ID = hnb27.5
-Hid - ID = hob27.5
-Hid - ID = hnb27.7
-Hid - ID = hob27.7
-Hid - ID = hnb27.8
-Hid - ID = hob27.8
-Hid - ID = hnb28.3
+Hid - ID = hob26.3
 Hid - ID = hob28.3
-Hid - ID = hnb28.6
-Hid - ID = hob28.6
-Hid - ID = hnb28.8
-Hid - ID = hob28.8
-Hid - ID = hob29.1
 Hid - ID = hob29.3
-Hid - ID = hob29.4
-Hid - ID = hob29.5
-Hid - ID = hob29.8
-Sem - ID = sfb22.3
-Sem - ID = sfb22.7
-Sem - ID = sfb23.5
-Sem - ID = sfb25.2
-Sem - ID = sfb25.5
-Sem - ID = sfb25.9
-Sem - ID = sfb26.4
+Hid - ID = hob27.3
+Hid - ID = hnb25.4
+Hid - ID = hnb25.3
+Hid - ID = hnb28.3
+Hid - ID = hnb27.3
+Hid - ID = hob27.2
+Hid - ID = hnb26.3
+Hid - ID = hob25.2
+Hid - ID = hob25.4
+Hid - ID = hob25.3
+Hid - ID = hnb25.2
+Hid - ID = hnb27.2
+Hid - ID = hob27.1
+Hid - ID = hob29.1
+Hid - ID = hob26.1
+Hid - ID = hnb24.3
+Hid - ID = hnb24.5
+Hid - ID = hob24.3
+Hid - ID = hnb22.2
+Hid - ID = hnb22.4
+Hid - ID = hnb22.5
+Hid - ID = hnb22.6
+Hid - ID = hnb22.7
+Hid - ID = hob22.7
+Hid - ID = hob22.6
+Hid - ID = hob22.5
+Hid - ID = hob22.4
+Hid - ID = hob22.2
+Hid - ID = hob21.1
+Hid - ID = hob21.9
+Hid - ID = hob21.8
+Hid - ID = hnb21.1
+Hid - ID = hnb27.1
+Hid - ID = hnb26.1
+Sem - ID = sfb29.5
+Sem - ID = sfb28.7
 Sem - ID = sfb26.7
+Sem - ID = sfb26.4
 Sem - ID = sfb27.2
 Sem - ID = sfb27.4
-Sem - ID = sfb28.7
-Sem - ID = sfb29.5
-Rbs - ID = rbb21.3
-Rbs - ID = rbb21.5
-Rbs - ID = rbb21.9
-Rbs - ID = rbb22.1
-Rbs - ID = rbb22.3
+Sem - ID = sfb25.2
+Sem - ID = sfb25.9
+Sem - ID = sfb25.5
+Sem - ID = sfb23.5
+Sem - ID = sfb22.3
+Sem - ID = sfb22.7
+Rbs - ID = rbb26.9
+Rbs - ID = rbb29.9
+Rbs - ID = rbb27.9
+Rbs - ID = rbb25.7
+Rbs - ID = rbb24.9
 Rbs - ID = rbb22.6
-Rbs - ID = rbb23.2
-Rbs - ID = rbb23.3
-Rbs - ID = rbb24.1
+Rbs - ID = rbb29.5
+Rbs - ID = rbb28.4
 Rbs - ID = rbb24.4
 Rbs - ID = rbb24.6
-Rbs - ID = rbb24.9
-Rbs - ID = rbb25.1
-Rbs - ID = rbb25.7
-Rbs - ID = rbb26.9
-Rbs - ID = rbb27.9
+Rbs - ID = rbb21.5
+Rbs - ID = rbb21.9
+Rbs - ID = rbb21.3
 Rbs - ID = rbb28.3
-Rbs - ID = rbb28.4
-Rbs - ID = rbb29.5
-Rbs - ID = rbb29.9
+Rbs - ID = rbb23.3
+Rbs - ID = rbb23.2
+Rbs - ID = rbb25.1
+Rbs - ID = rbb24.1
+Rbs - ID = rbb22.1
+Rbs - ID = rbb22.3
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2706,44 +3250,44 @@ SIM
 ARQUIVO: Dle-5.qry
 
 Dle hr 320.000000 4010.000000 6810.000000
-Hid - ID = hnb282.39
-Hid - ID = hob282.39
-Hid - ID = hnb282.42
-Hid - ID = hnb283.38
-Hid - ID = hob283.38
-Hid - ID = hnb283.40
-Hid - ID = hob283.40
-Hid - ID = hnb284.42
-Hid - ID = hob284.42
-Hid - ID = hob285.37
-Hid - ID = hnb285.38
-Hid - ID = hob285.38
-Hid - ID = hnb285.40
-Hid - ID = hob285.40
-Hid - ID = hnb285.43
 Hid - ID = hob285.43
-Hid - ID = hnb286.43
 Hid - ID = hob286.43
-Hid - ID = hnb287.38
-Hid - ID = hob287.38
-Hid - ID = hnb287.40
-Hid - ID = hob287.40
-Hid - ID = hob288.38
-Hid - ID = hnb288.40
-Hid - ID = hob288.40
-Hid - ID = hnb289.40
-Hid - ID = hob289.40
-Hid - ID = hnb289.41
+Hid - ID = hnb285.43
+Hid - ID = hnb286.43
+Hid - ID = hob284.42
+Hid - ID = hnb284.42
+Hid - ID = hnb282.42
 Hid - ID = hob289.41
-Rbs - ID = rbb282.41
-Rbs - ID = rbb283.41
-Rbs - ID = rbb284.40
-Rbs - ID = rbb286.39
-Rbs - ID = rbb287.41
+Hid - ID = hnb289.41
+Hid - ID = hob283.40
+Hid - ID = hob287.40
+Hid - ID = hob289.40
+Hid - ID = hob288.40
+Hid - ID = hob285.40
+Hid - ID = hnb283.40
+Hid - ID = hnb287.40
+Hid - ID = hnb289.40
+Hid - ID = hnb288.40
+Hid - ID = hnb285.40
+Hid - ID = hob282.39
+Hid - ID = hnb282.39
+Hid - ID = hob285.38
+Hid - ID = hob288.38
+Hid - ID = hob287.38
+Hid - ID = hob283.38
+Hid - ID = hnb283.38
+Hid - ID = hnb287.38
+Hid - ID = hnb285.38
+Hid - ID = hob285.37
 Rbs - ID = rbb287.43
-Rbs - ID = rbb288.39
 Rbs - ID = rbb288.42
+Rbs - ID = rbb283.41
 Rbs - ID = rbb289.41
+Rbs - ID = rbb287.41
+Rbs - ID = rbb282.41
+Rbs - ID = rbb284.40
+Rbs - ID = rbb288.39
+Rbs - ID = rbb286.39
 
 ARQUIVO: t03-bsc-002.geo
 
@@ -2753,20 +3297,20 @@ SIM
 ARQUIVO: Dcq-10.qry
 
 Dq 480.000000 8010.000000 13610.000000
-Quad - CEP = b2166.79
 Quad - CEP = b2166.80
-Quad - CEP = b2167.78
-Quad - CEP = b2167.79
-Quad - CEP = b2167.80
-Quad - CEP = b2168.77
-Quad - CEP = b2168.78
-Quad - CEP = b2168.79
 Quad - CEP = b2168.80
-Quad - CEP = b2169.77
-Quad - CEP = b2169.78
-Quad - CEP = b2169.79
-Quad - CEP = b2169.80
-Quad - CEP = b2170.77
-Quad - CEP = b2170.78
-Quad - CEP = b2170.79
 Quad - CEP = b2170.80
+Quad - CEP = b2169.80
+Quad - CEP = b2167.80
+Quad - CEP = b2167.79
+Quad - CEP = b2169.79
+Quad - CEP = b2170.79
+Quad - CEP = b2168.79
+Quad - CEP = b2166.79
+Quad - CEP = b2168.78
+Quad - CEP = b2170.78
+Quad - CEP = b2169.78
+Quad - CEP = b2167.78
+Quad - CEP = b2169.77
+Quad - CEP = b2170.77
+Quad - CEP = b2168.77

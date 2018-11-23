@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../Formas/Círculo/circulo.h"
 
 //DEFINE A STRUCT HIDRANTE
 typedef struct hidrante {
@@ -103,7 +104,19 @@ int compare_hidrante (void* hid1, void* hid2, int dim)
     Hidrante* hidB;    
     hidA = (Hidrante*) hid1;
     hidB = (Hidrante*) hid2;
-    return strcmp (hidA->id, hidB->id);
+    dim = dim % 2;
+    if (!strcmp(hidA->id, hidB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (hidA->x - hidB->x);
+    }
+    else
+    {
+        return (hidA->y - hidB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DO HIDRANTE
@@ -123,3 +136,10 @@ int hashcode_hidrante (void* hid, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO HIDRANTE
+void* get_circulo_hidrante (void* hidrante)
+{
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    return cria_circulo (hid->id, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
+}

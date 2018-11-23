@@ -39,4 +39,7 @@ int compare_semaforo (void* sem1, void* sem2, int dim);
 //RETORNA O CÓDIGO HASH DO SEMÁFORO
 int hashcode_semaforo (void* sem, int modulo);
 
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
+void* get_circulo_semaforo (void* semaforo);
+
 #endif

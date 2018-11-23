@@ -303,3 +303,19 @@ void concat_listas (void* lista1, void* lista2)
     list1->ultimo = list2->ultimo;
     list1->tamanho += list2->tamanho;
 }
+
+//LIBERA A MEMÓRIA ALOCADA DA LISTA
+void free_lista (void* lista)
+{
+    Item* it1;
+    Item* it2;
+    List* list;
+    list = (List*) lista;
+    it1 = list->primeiro;
+    while (it1 != NULL)
+    {
+        it2 = it1->prox;
+        free(it1);
+        it1 = it2;
+    }
+}

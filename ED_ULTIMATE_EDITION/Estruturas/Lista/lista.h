@@ -48,4 +48,7 @@ void* get_ultimo_lista (void* lista);
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
 void concat_listas (void* lista1, void* lista2);
 
+//LIBERA A MEMÓRIA ALOCADA DA LISTA
+void free_lista (void* lista);
+
 #endif

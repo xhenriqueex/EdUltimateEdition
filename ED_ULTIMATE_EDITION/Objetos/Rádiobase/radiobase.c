@@ -104,7 +104,19 @@ int compare_radiobase (void* rb1, void* rb2, int dim)
     Radiobase* rbB;    
     rbA = (Radiobase*) rb1;
     rbB = (Radiobase*) rb2;
-    return strcmp (rbA->id, rbB->id);
+    dim = dim % 2;
+    if (!strcmp(rbA->id, rbB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (rbA->x - rbB->x);
+    }
+    else
+    {
+        return (rbA->y - rbB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DA RADIOBASE
@@ -122,4 +134,12 @@ int hashcode_radiobase (void* rb, int modulo)
         x--;
     }
     return modulo < 0 ? hash : hash % modulo;
+}
+
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
+void* get_circulo_radiobase (void* radiobase)
+{
+    Radiobase* rb;
+    rb = (Radiobase*) radiobase;
+    return cria_circulo (rb->id, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
 }

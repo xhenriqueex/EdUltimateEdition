@@ -104,7 +104,19 @@ int compare_semaforo (void* sem1, void* sem2, int dim)
     Semaforo* semB;    
     semA = (Semaforo*) sem1;
     semB = (Semaforo*) sem2;
-    return strcmp (semA->id, semB->id);
+    dim = dim % 2;
+    if (!strcmp(semA->id, semB->id))
+    {
+        return 0;
+    }
+    if (dim == 0)
+    {
+        return (semA->x - semB->x);
+    }
+    else
+    {
+        return (semA->y - semB->y);
+    }
 }
 
 //RETORNA O CÓDIGO HASH DO SEMÁFORO
@@ -122,4 +134,12 @@ int hashcode_semaforo (void* sem, int modulo)
         x--;
     }
     return modulo < 0 ? hash : hash % modulo;
+}
+
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
+void* get_circulo_semaforo (void* semaforo)
+{
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    return cria_circulo (sem->id, sem->cor_borda, sem->cor_preenche, sem->r, sem->x, sem->y);
 }
