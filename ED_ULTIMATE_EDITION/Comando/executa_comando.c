@@ -2161,13 +2161,223 @@ void caso_mudec (Parametros* par)
 
 void caso_dpr (Parametros* par)
 {
+    double x, y, w, h, xi, xf, yi, yf;
     char* aux;
-    double x, y, w, h;
+    char* tempChar;
+    void* primeiro;
+    void* ident;
+    void* auxA; 
+    void* rc;
+    void* cont;
+    void* temp;
+    void* temp2;
+    void* com;
+    void* pes;
+    void* circ;
+    Anotacao* anot;
+    Lista quadras;
+    Lista hidrantes;
+    Lista semaforos;
+    Lista radiobases;
+    Item it;
     aux = (char*) calloc (55, sizeof (char));
     strcpy (aux, par->comando);
     insere_fila (par->resultado, aux);
     par->comando += 4;
     sscanf (par->comando, "%lf %lf %lf %lf", x, y, w, h);
+    anot = cria_anotacao (w, h, x, y, "dpr");
+    insere_fila (par->anotacoes, anot);
+    quadras = get_todos_arvore (par->tree_quadras);
+    primeiro = get_primeiro_lista (quadras);
+    do
+    {
+        cont = get_valor_lista (quadras, primeiro);
+        if (cont)
+        {
+            it = get_valor_lista (quadras, primeiro);
+            rc = get_retangulo_quadra (it);
+            xi = get_x_retangulo (rc);
+            xf = xi + get_w_retangulo (rc);
+            yi = get_y_retangulo (rc);
+            yf = yi + get_h_retangulo (rc);
+            free_retangulo (rc);
+            if (xi >= x && yi >= y && xf <= x + w && yf <= y + h)
+            {
+                tempChar = (char*) calloc (155, sizeof (char));
+                sprintf (tempChar, "\nQuad - CEP = %s", get_cep_quadra(it));
+                insere_fila (par->resultado, tempChar);
+                Lista enderecos;
+                ident = identificador_endereco_comercio (get_cep_quadra (it));
+                enderecos = get_lista_hashtable (par->hash_end_comercios, ident);
+                auxA = get_primeiro_lista (enderecos);
+                do
+                {
+                    temp = get_valor_lista (enderecos, auxA);
+                    if (temp)
+                    {
+                        com = get_comercio_endereco (temp);
+                        tempChar = (char*) calloc (155, sizeof (char));
+                        sprintf (tempChar, "\n%s", relatorio_comerio (temp));
+                        insere_fila (par->resultado, tempChar);
+                        temp2 = get_proximo_lista (enderecos, auxA);
+                        remove_hashtable (par->hash_comercios, com);
+                        remove_lista (enderecos, auxA);
+                        auxA = temp2;
+                    }
+                    else
+                    {
+                        auxA = get_proximo_lista (enderecos, auxA);
+                    }
+                }
+                while (auxA != NULL);
+                ident = identificador_endereco_pessoa (get_cep_quadra (it));
+                enderecos = get_lista_hashtable (par->hash_end_pessoas, ident);
+                auxA = get_primeiro_lista (enderecos);
+                do
+                {
+                    temp = get_valor_lista (enderecos, auxA);
+                    if (temp)
+                    {
+                        pes = get_pessoa_endereco (temp);
+                        tempChar = (char*) calloc (155, sizeof (char));
+                        sprintf (tempChar, "\n%s", relatorio_pessoa (temp));
+                        insere_fila (par->resultado, tempChar);
+                        temp2 = get_proximo_lista (enderecos, auxA);
+                        remove_hashtable (par->hash_end_pessoas, pes);
+                        remove_lista (enderecos, auxA);
+                        auxA = temp2;
+                    }
+                    else
+                    {
+                        auxA = get_proximo_lista (enderecos, auxA);
+                    }
+                }
+                while (auxA != NULL);
+                temp2 = get_proximo_lista (quadras, primeiro);
+                remove_valor_arvore (par->tree_quadras, it);
+                remove_hashtable (par->hash_quadras, it);
+                remove_lista (quadras, primeiro);
+                primeiro = temp2;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (quadras, primeiro);
+            }
+        }
+    }
+    while (primeiro != NULL);
+    free_lista (quadras);
+    hidrantes = get_todos_arvore (par->tree_hidrantes);
+    primeiro = get_primeiro_lista (hidrantes);
+    do
+    {
+        cont = get_valor_lista (hidrantes, primeiro);
+        if (cont)
+        {
+            it = get_valor_lista (hidrantes, primeiro);
+            circ = get_circulo_hidrante (it);
+            xi = get_x_circulo (circ) - get_r_circulo (circ);
+            xf = get_x_circulo (circ) + get_r_circulo (circ);
+            yi = get_y_circulo (circ) - get_r_circulo (circ);
+            yf = get_y_circulo (circ) + get_r_circulo (circ);
+            free_circulo (circ);
+            if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
+            {
+                tempChar = (char*) calloc (155, sizeof (char));
+                sprintf (tempChar, "\nHid - ID = %s X - %s Y - %s", get_id_hidrante (it), get_x_hidrante (it), get_y_hidrante (it));
+                insere_fila (par->resultado, tempChar);
+                temp2 = get_proximo_lista (hidrantes, primeiro);
+                remove_lista (hidrantes, primeiro);
+                remove_valor_arvore (par->tree_hidrantes, it);
+                remove_hashtable (par->hash_hidrantes, it);
+                primeiro = temp2;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (hidrantes, primeiro);
+            }
+        }
+        else
+        {
+            primeiro = get_proximo_lista (hidrantes, primeiro);
+        }
+    }
+    while (primeiro != NULL);
+    free_lista (hidrantes);
+    semaforos = get_todos_arvore (par->tree_semaforos);
+    primeiro = get_primeiro_lista (semaforos);
+    do
+    {
+        cont = get_valor_lista (semaforos, primeiro);
+        if (cont)
+        {
+            it = get_valor_lista (semaforos, primeiro);
+            circ = get_circulo_semaforo (it);
+            xi = get_x_circulo (circ) - get_r_circulo (circ);
+            xf = get_x_circulo (circ) + get_r_circulo (circ);
+            yi = get_y_circulo (circ) - get_r_circulo (circ);
+            yf = get_y_circulo (circ) + get_r_circulo (circ);
+            free_circulo (circ);
+            if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
+            {
+                tempChar = (char*) calloc (155, sizeof (char));
+                sprintf (tempChar, "\nSem - ID = %s X - %s Y - %s", get_id_semaforo (it), get_x_semaforo (it), get_y_semaforo (it));
+                insere_fila (par->resultado, tempChar);
+                temp2 = get_proximo_lista (semaforos, primeiro);
+                remove_lista (semaforos, primeiro);
+                remove_valor_arvore (par->tree_semaforos, it);
+                remove_hashtable (par->hash_semaforos, it);
+                primeiro = temp2;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (semaforos, primeiro);
+            }
+        }
+        else
+        {
+            primeiro = get_proximo_lista (semaforos, primeiro);
+        }
+    }
+    while (primeiro != NULL);
+    free_lista (semaforos);
+    radiobases = get_todos_arvore (par->tree_radiobases);
+    primeiro = get_primeiro_lista (radiobases);
+    do
+    {
+        cont = get_valor_lista (radiobases, primeiro);
+        if (cont)
+        {
+            it = get_valor_lista (radiobases, primeiro);
+            circ = get_circulo_radiobase (it);
+            xi = get_x_circulo (circ) - get_r_circulo (circ);
+            xf = get_x_circulo (circ) + get_r_circulo (circ);
+            yi = get_y_circulo (circ) - get_r_circulo (circ);
+            yf = get_y_circulo (circ) + get_r_circulo (circ);
+            free_circulo (circ);
+            if(xi >= x && yi >= y && xf <= x + w && yf <= y + h)
+            {
+                tempChar = (char*) calloc (155, sizeof (char));
+                sprintf (tempChar, "\nRbs - ID = %s X - %s Y - %s", get_id_radiobase (it), get_x_radiobase (it), get_y_radiobase (it));
+                insere_fila (par->resultado, tempChar);
+                temp2 = get_proximo_lista (radiobases, primeiro);
+                remove_lista (radiobases, primeiro);
+                remove_valor_arvore (par->tree_radiobases, it);
+                remove_hashtable (par->hash_radiobases, it);
+                primeiro = temp2;
+            }
+            else
+            {
+                primeiro = get_proximo_lista (radiobases, primeiro);
+            }
+        }
+        else
+        {
+            primeiro = get_proximo_lista (radiobases, primeiro);
+        }
+    }
+    while (primeiro != NULL);
+    free_lista (radiobases);
     return;
 }
 

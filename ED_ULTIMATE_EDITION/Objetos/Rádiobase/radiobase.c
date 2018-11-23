@@ -135,3 +135,11 @@ int hashcode_radiobase (void* rb, int modulo)
     }
     return modulo < 0 ? hash : hash % modulo;
 }
+
+//FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
+void* get_circulo_radiobase (void* radiobase)
+{
+    Radiobase* rb;
+    rb = (Radiobase*) radiobase;
+    return cria_circulo (rb->id, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
+}
