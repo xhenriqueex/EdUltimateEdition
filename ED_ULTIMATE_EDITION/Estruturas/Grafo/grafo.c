@@ -1,10 +1,18 @@
 #include <stdlib.h>
 #include "grafo.h"
 
+#define INFINITO -1
+
+struct _atributos_aresta
+{
+    int direcao;
+    double tamanho;
+};
+
 struct _aresta
 {
     int ligado_a;
-    Info direcao;
+    struct _atributos_aresta *atributos;
 };
 
 struct _vertice
@@ -12,6 +20,7 @@ struct _vertice
     struct _aresta *arestas;
 };
 
+typedef struct _atributos_aresta atributos_aresta;
 typedef struct _aresta aresta;
 typedef struct _vertice vertice;
 
@@ -34,6 +43,7 @@ void insere_aresta(Grafo G, int v1, int v2)
 {
     vertice *vertices = NULL;
     aresta *a = NULL;
+    atributos_aresta *atributos_a = NULL;
 
     vertices = (vertice *) G;
 
@@ -43,9 +53,12 @@ void insere_aresta(Grafo G, int v1, int v2)
     }
 
     a = (aresta *) calloc(1, sizeof(aresta));
+    atributos_a = (atributos_aresta *) calloc(1, sizeof(atributos_aresta));
 
+    atributos_a->direcao = 0;
+    atributos_a->tamanho = INFINITO;
     a->ligado_a = v2;
-    a->direcao = NULL;
+    a->atributos = atributos_a;
 
     insere_lista(vertices[v1].arestas, (void *) a);
 }
@@ -94,8 +107,9 @@ void* get_aresta(Grafo G, int v1, int v2)
     return (void *) a;
 }
 
-void define_info(Grafo G, int v1, int v2, Info i)
+void define_atributos_aresta(Grafo G, int v1, int v2, int direcao, double tamanho)
 {
+    atributos_aresta *atributos_a = NULL;
     aresta *a = NULL;
 
     a = (aresta *) get_aresta(G, v1, v2);
@@ -104,20 +118,49 @@ void define_info(Grafo G, int v1, int v2, Info i)
         return;
     }
 
-    a->direcao = i;
+    atributos_a = a->atributos;
+
+    atributos_a->direcao = direcao;
+    atributos_a->tamanho = tamanho;
 }
 
-Info get_info(Grafo G, int v1, int v2)
+static void* get_atributos_aresta(Grafo G, int v1, int v2)
 {
     aresta *a = NULL;
-    
+
     a = (aresta *) get_aresta(G, v1, v2);
 
     if(a == NULL) {
         return;
     }
 
-    return a->direcao;
+    return (atributos_aresta *) a->atributos;
+}
+
+static int get_direcao_aresta(Grafo G, int v1, int v2)
+{
+    atributos_aresta *atributos_a = NULL;
+    
+    atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
+
+    if(atributos_a == NULL) {
+        return;
+    }
+
+    return atributos_a->direcao;
+}
+
+static int get_tamanho_aresta(Grafo G, int v1, int v2)
+{
+    atributos_aresta *atributos_a = NULL;
+    
+    atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
+
+    if(atributos_a == NULL) {
+        return;
+    }
+
+    return atributos_a->tamanho;
 }
 
 void remove_aresta(Grafo G, int v1, int v2)
