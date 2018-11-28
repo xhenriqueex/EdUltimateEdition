@@ -255,8 +255,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            //free(p->comando);
-            p->comando = NULL;
+            free(p->comando);
         }
         //FECHANDO O ARQUIVO
         fclose (arquivo);
@@ -282,9 +281,8 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
-            //p->comando_vetor = trata_comando (comando);
             executa_comando (p);
-            p->comando = NULL;
+            free (p->comando);
         }
 
         //FECHANDO O ARQUIVO
@@ -312,9 +310,8 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
-            //p->comando_vetor = trata_comando (comando);
             executa_comando (p);
-            p->comando = NULL;
+            free (p->comando);
         }
 
         //FECHANDO O ARQUIVO
@@ -341,10 +338,8 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
-            //p->comando_vetor = trata_comando (comando);
             executa_comando (p);
-
-            p->comando = NULL;
+            free (p->comando);
         }
 
         //FECHANDO O ARQUIVO .QRY
@@ -374,20 +369,19 @@ int main(int argc, char* argv[])
         //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
         while (!fila_vazia (comandos))
         {
-            comando = (char*) remove_fila (comandos);
-            p->comando_vetor = trata_comando (comando);
+            p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free (comando);
+            free (p->comando);
         }
 
         //FECHANDO O ARQUIVO .VIA
         fecha_via (arquivo, p);
 
-        //FECHANDO O ARQUIVOf
+        //FECHANDO O ARQUIVO
         fclose (arquivo);
     }
     */
-  
+
     free (p->arquivo_entrada);
     free (p->arquivo_entrada_ec);
     free (p->arquivo_entrada_pm);
@@ -428,7 +422,7 @@ int main(int argc, char* argv[])
         free_item (p->figuras[i]);
     }
     free (p);
-  
+
     //FINALIZANDO O PROGRAMA
     return 1;
 }

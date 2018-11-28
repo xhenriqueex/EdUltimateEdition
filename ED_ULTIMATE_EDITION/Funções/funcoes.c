@@ -33,7 +33,7 @@ void altera_caminho (char** caminho)
 Fila coloca_comandos_arquivo_fila (FILE* entrada)
 {
     Fila aux;
-    char* linha = NULL;
+    char* linha;
     int i;
     aux = cria_fila ();
     while (!feof (entrada))
