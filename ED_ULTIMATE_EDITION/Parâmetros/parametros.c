@@ -30,7 +30,8 @@ typedef struct params {
     char* cor_preenche_semaforo;
     char* cor_borda_radiobase;
     char* cor_preenche_radiobase;
-    char** comando_vetor;
+    char* comando;
+    char* controle;
     long int max_figuras;
     int contador_figuras;
     Item* figuras;

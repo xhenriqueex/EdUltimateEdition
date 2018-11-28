@@ -37,7 +37,7 @@ typedef struct params {
     char* cor_borda_radiobase;
     char* cor_preenche_radiobase;
     char* comando;
-    //char** comando_vetor;
+    char* controle;
     long int max_figuras;
     int contador_figuras;
     Item* figuras;

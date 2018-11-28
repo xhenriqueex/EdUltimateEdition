@@ -36,7 +36,7 @@ char* cria_svg_hidrante (void* hidrante)
     Hidrante* aux;
     char* result = (char*) calloc (255, sizeof (char));
     aux = (Hidrante*) hidrante;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -111,11 +111,11 @@ int compare_hidrante (void* hid1, void* hid2, int dim)
     }
     if (dim == 0)
     {
-        return (hidA->x - hidB->x);
+        return (hidB->x - hidA->x);
     }
     else
     {
-        return (hidA->y - hidB->y);
+        return (hidB->y - hidA->y);
     }
 }
 
@@ -136,10 +136,21 @@ int hashcode_hidrante (void* hid, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//COMPARADOR DE CEP DO HIDRANTE PARA HASHTABLE
+int compare_hash_hidrante (void* hid, void* id)
+{
+    Hidrante* hidA;
+    Hidrante* hidB;
+    hidA = (Hidrante*) hid;
+    hidB = (Hidrante*) id;
+    return strcmp (hidA->id, hidB->id);
+}
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO HIDRANTE
 void* get_circulo_hidrante (void* hidrante)
 {
+    long int id;
     Hidrante* hid;
     hid = (Hidrante*) hidrante;
-    return cria_circulo (hid->id, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
+    return cria_circulo (0, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
 }

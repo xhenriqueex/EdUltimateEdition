@@ -63,8 +63,10 @@ void* cria_tipo_comercio (char* cod, char* info)
 {
     Tip* tipo;
     tipo = (Tip*) calloc (1, sizeof (Tip));
-    tipo->cod = cod;
-    tipo->info = info;
+    tipo->cod = (char*) calloc (strlen (cod) + 2, sizeof (char));
+    tipo->info = (char*) calloc (strlen (info) + 2, sizeof (char));
+    strcpy (tipo->cod, cod);
+    strcpy (tipo->info, info);
     return (void*) tipo;
 }
 
@@ -231,7 +233,7 @@ double* get_xy_comercio (void* comercio, Parametros* par)
         return NULL;
     }
     Quadra temp = cria_quadra (com->endereco->cep, 0, 0, 0, 0, "", "");
-    Quadra quad = get_hashtable (par->hash_comercios, temp);
+    Quadra quad = get_hashtable (par->hash_quadras, temp);
     sscanf (com->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
     result[0] = get_x_retangulo (get_retangulo_quadra (quad));
@@ -266,11 +268,11 @@ char* relatorio_comercio (void* comercio)
     result = (char*) calloc (555, sizeof (char));
     if(com->endereco == NULL)
     {
-        sprintf (result, "\nNome: %s Tipo: %s", com->nome, com->tipo->info);
+        sprintf (result, "\nNome: %s \nTipo: %s\n", com->nome, com->tipo->info);
     }
     else
     {
-        sprintf (result, "\nNome: %s Tipo: %s \nEndereço: CEP: %s Face: %s Número: %s Complemento: %s", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num, com->endereco->comp);
+        sprintf (result, "\nNome: %s \nTipo: %s \nEndereço: CEP = %s,   Face = %s   Número = %s\n", com->nome, com->tipo->info, com->endereco->cep, com->endereco->face, com->endereco->num);
     }
     return result;
 }
@@ -281,11 +283,13 @@ void* identificador_endereco_comercio (char* cep)
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof(Endereco));
     end->tipo = 0;
-    end->cep = cep;
+    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+    strcpy (end->cep,cep);
     end->face= NULL;
     end->num = NULL;
     end->comp= NULL;
     end->comercio = NULL;
+    return (void*) end;
 }
 
 //RETORNA O CÓDIGO DO TIPO DO COMÉRCIO
@@ -331,6 +335,13 @@ char* relatorio_mud_comercio (void* comercio, void* end1, void* end2)
     endA = (Endereco*) end1;
     endB = (Endereco*) end2;
     relatorio = (char*) calloc (555, sizeof (char));
-    sprintf (relatorio, "\nNome: %s Tipo: %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s", com->nome, com->tipo->info, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    if (end1 == NULL)
+    {
+        sprintf (relatorio, "\nEndereço novo : %s/%s/%s\n", endB->cep, endB->face, endB->num);
+    }
+    if (end2 == NULL)
+    {
+        sprintf (relatorio, "\nNome: %s Tipo: %s\nEndereço antigo: %s/%s/%s", com->nome, com->tipo->info, endA->cep, endA->face, endA->num);
+    }
     return relatorio;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../Formas/Círculo/circulo.h"
 
 //INICIA A STRUCT RÁDIO-BASE
 typedef struct radiobase {
@@ -35,7 +36,7 @@ char* cria_svg_radiobase (void* radiobase)
     Radiobase* aux;
     char* result = (char*) calloc(255, sizeof(char));
     aux = (Radiobase*) radiobase;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -111,11 +112,11 @@ int compare_radiobase (void* rb1, void* rb2, int dim)
     }
     if (dim == 0)
     {
-        return (rbA->x - rbB->x);
+        return (rbB->x - rbA->x);
     }
     else
     {
-        return (rbA->y - rbB->y);
+        return (rbB->y - rbA->y);
     }
 }
 
@@ -136,10 +137,32 @@ int hashcode_radiobase (void* rb, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//COMPARADOR DE CEP DA RÁDIOBASE PARA HASHTABLE
+int compare_hash_radiobase (void* rb, void* id)
+{
+    Radiobase* rbA;
+    Radiobase* rbB;
+    rbA = (Radiobase*) rb;
+    rbB = (Radiobase*) id;
+    return strcmp (rbA->id, rbB->id);
+}
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
 void* get_circulo_radiobase (void* radiobase)
 {
     Radiobase* rb;
     rb = (Radiobase*) radiobase;
-    return cria_circulo (rb->id, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
+    return cria_circulo (0, rb->cor_borda, rb->cor_preenche, rb->r, rb->x, rb->y);
+}
+
+//LIBERA A MEMÓRIA ALOCADA DA RÁDIOBASE
+void free_radiobase (void* radiobase)
+{
+    Radiobase* rb;
+    rb = (Radiobase*) radiobase;
+    free (rb->cor_borda);
+    free (rb->cor_preenche);
+    free (rb->id);
+    free (rb);
+    return;
 }

@@ -99,11 +99,11 @@ int compare_carro (void* carA, void* carB, int dim)
     } 
     if (dim == 0)
     {
-        return cA->x - cB->x;
+        return cB->x - cA->x;
     }
     else
     {
-        return cA->y - cB->y;
+        return cB->y - cA->y;
     }
 }
 

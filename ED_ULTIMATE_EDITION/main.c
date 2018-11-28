@@ -57,10 +57,10 @@ int main(int argc, char* argv[])
     //INICIALIZANDO HASHTABLES
     p->hash_comercios = cria_hashtable (100, compare_cnpj_comercio, hashcode_comercio);
     p->hash_pessoas = cria_hashtable (100, compare_cpf_pessoa, hashcode_pessoa);
-    p->hash_quadras = cria_hashtable (100, compare_quadra, hashcode_quadra);
-    p->hash_hidrantes = cria_hashtable (100, compare_hidrante, hashcode_hidrante);
-    p->hash_semaforos = cria_hashtable (100, compare_semaforo, hashcode_semaforo);
-    p->hash_radiobases = cria_hashtable (100, compare_radiobase, hashcode_radiobase);
+    p->hash_quadras = cria_hashtable (100, compare_hash_quadra, hashcode_quadra);
+    p->hash_hidrantes = cria_hashtable (100, compare_hash_hidrante, hashcode_hidrante);
+    p->hash_semaforos = cria_hashtable (100, compare_hash_semaforo, hashcode_semaforo);
+    p->hash_radiobases = cria_hashtable (100, compare_hash_radiobase, hashcode_radiobase);
     p->hash_end_comercios = cria_hashtable (100, compare_hash_endereco_comercio, hashcode_endereco_comercio);
     p->hash_end_pessoas = cria_hashtable (100, compare_cep_endereco_pessoa, hashcode_endereco_pessoa);
     p->hash_tipos = cria_hashtable (100, compare_hash_tipo_comercio, hashcode_tipo_comercio);
@@ -104,6 +104,9 @@ int main(int argc, char* argv[])
     p->arquivo_entrada_ec = NULL;
     p->arquivo_entrada_pm = NULL;
     //p->arquivo_entrada_via = NULL;
+    
+    //ALOCANDO MEMÓRIA DO CONTROLE
+    p->controle = (char*) calloc (5, sizeof (char));
 
     //TRATANDO OS CAMINHOS
     for (i=0; i<argc; i++)
@@ -237,6 +240,7 @@ int main(int argc, char* argv[])
     if (p->caminho_GEO != NULL)
     {
         arquivo = fopen (p->caminho_GEO, "r");
+        sprintf (p->controle, ".geo");
         if (arquivo == NULL)
         {
             printf ("\nArquivo .geo nao encontrado!\n");
@@ -259,10 +263,70 @@ int main(int argc, char* argv[])
         free(comandos);
     }
     
+    if (p->caminho_EC != NULL)
+    {
+        //ABRINDO O ARQUIVO .EC
+        arquivo = fopen (p->caminho_EC, "r");
+        sprintf (p->controle, ".ec");
+        if (arquivo == NULL)
+        {
+            printf ("\nArquivo .ec não encontrado!\n");
+            return 0;
+        }
+        printf ("\nArquivo .ec aberto com sucesso!\n");
+
+        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+        comandos = coloca_comandos_arquivo_fila (arquivo);
+    
+        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+        while (!fila_vazia (comandos))
+        {
+            p->comando = (char*) remove_fila (comandos);
+            //p->comando_vetor = trata_comando (comando);
+            executa_comando (p);
+            p->comando = NULL;
+        }
+
+        //FECHANDO O ARQUIVO
+        fclose (arquivo);
+        free(comandos);
+    }
+
+    if (p->caminho_PM != NULL)
+    {
+    
+        //ABRINDO O ARQUIVO .PM
+        arquivo = fopen (p->caminho_PM, "r");
+        sprintf (p->controle, ".pm");
+        if (arquivo == NULL)
+        {
+            printf ("\nArquivo .pm não encontrado!\n");
+            return 0;
+        }
+        printf ("\nArquivo .pm aberto com sucesso!\n");
+
+        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+        comandos = coloca_comandos_arquivo_fila (arquivo);
+    
+        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+        while (!fila_vazia (comandos))
+        {
+            p->comando = (char*) remove_fila (comandos);
+            //p->comando_vetor = trata_comando (comando);
+            executa_comando (p);
+            p->comando = NULL;
+        }
+
+        //FECHANDO O ARQUIVO
+        fclose (arquivo);
+        free(comandos);
+    }
+    
     if (p->caminho_QRY != NULL)
     {
         //ABRINDO O ARQUIVO .QRY
         arquivo = fopen (p->caminho_QRY, "r");
+        sprintf (p->controle, ".qry");
         if (arquivo == NULL)
         {
             printf ("\nArquivo .qry não encontrado!\n");
@@ -288,78 +352,15 @@ int main(int argc, char* argv[])
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
-        free(comandos);
+        free (comandos);
     }
-
-    if (p->caminho_EC != NULL)
-    {
-        //ABRINDO O ARQUIVO .EC
-        arquivo = fopen (p->caminho_EC, "r");
-        if (arquivo == NULL)
-        {
-            printf ("\nArquivo .ec não encontrado!\n");
-            return 0;
-        }
-        printf ("\nArquivo .ec aberto com sucesso!\n");
-
-        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
-        comandos = coloca_comandos_arquivo_fila (arquivo);
-    
-        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
-        while (!fila_vazia (comandos))
-        {
-            p->comando = (char*) remove_fila (comandos);
-            //p->comando_vetor = trata_comando (comando);
-            executa_comando (p);
-            p->comando = NULL;
-        }
-
-        //FECHANDO O ARQUIVO .EC
-        //fecha_ec (arquivo, p);
-
-        //FECHANDO O ARQUIVO
-        fclose (arquivo);
-        free(comandos);
-    }
-
-    if (p->caminho_PM != NULL)
-    {
-    
-        //ABRINDO O ARQUIVO .PM
-        arquivo = fopen (p->caminho_PM, "r");
-        if (arquivo == NULL)
-        {
-            printf ("\nArquivo .pm não encontrado!\n");
-            return 0;
-        }
-        printf ("\nArquivo .pm aberto com sucesso!\n");
-
-        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
-        comandos = coloca_comandos_arquivo_fila (arquivo);
-    
-        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
-        while (!fila_vazia (comandos))
-        {
-            p->comando = (char*) remove_fila (comandos);
-            //p->comando_vetor = trata_comando (comando);
-            executa_comando (p);
-            p->comando = NULL;
-        }
-
-        //FECHANDO O ARQUIVO .PM
-        //fecha_pm (arquivo, p);
-
-        //FECHANDO O ARQUIVO
-        fclose (arquivo);
-        free(comandos);
-    }
-
 
     /*
     if (p->caminho_VIA != NULL)
     {
         //ABRINDO O ARQUIVO .VIA
         arquivo = fopen (p->caminho_VIA, "r");
+        sprintf (p->controle, ".via");
         if (arquivo == NULL)
         {
             printf ("\nArquivo .via não encontrado!\n");
@@ -386,13 +387,48 @@ int main(int argc, char* argv[])
         fclose (arquivo);
     }
     */
-
-    free(p->diretorio_entrada);
-    free(p->arquivo_entrada);
-    free(p->diretorio_saida);
-    free(p->anotacoes);
-    free(p->resultado);
-    free(p);
+  
+    free (p->arquivo_entrada);
+    free (p->arquivo_entrada_ec);
+    free (p->arquivo_entrada_pm);
+    free (p->arquivo_entrada_qry);
+    free (p->caminho_EC);
+    free (p->caminho_GEO);
+    free (p->caminho_PM);
+    free (p->caminho_QRY);
+    free (p->caminho_SVG);
+    free (p->caminho_TXT);
+    free (p->comando);
+    free (p->controle);
+    free (p->cor_borda_hidrante);
+    free (p->cor_borda_quadra);
+    free (p->cor_borda_radiobase);
+    free (p->cor_borda_semaforo);
+    free (p->cor_preenche_hidrante);
+    free (p->cor_preenche_quadra);
+    free (p->cor_preenche_radiobase);
+    free (p->cor_preenche_semaforo);
+    free (p->diretorio_entrada);
+    free (p->diretorio_saida);
+    free_arvore (p->tree_hidrantes);
+    free_arvore (p->tree_quadras);
+    free_arvore (p->tree_radiobases);
+    free_arvore (p->tree_semaforos);
+    free_hashtable (p->hash_comercios);
+    free_hashtable (p->hash_end_comercios);
+    free_hashtable (p->hash_end_pessoas);
+    free_hashtable (p->hash_hidrantes);
+    free_hashtable (p->hash_pessoas);
+    free_hashtable (p->hash_quadras);
+    free_hashtable (p->hash_radiobases);
+    free_hashtable (p->hash_semaforos);
+    free_hashtable (p->hash_tipos);
+    for (i=0; i<p->contador_figuras; i++)
+    {
+        free_item (p->figuras[i]);
+    }
+    free (p);
+  
     //FINALIZANDO O PROGRAMA
     return 1;
 }

@@ -241,7 +241,7 @@ void remove_valor_arvore (Arvore* arv, void* ref)
     void* primeiro;
     void* temp;
     primeiro = get_primeiro_lista (list);
-    while (1)
+    while (primeiro != NULL)
     {
         temp = get_valor_lista (list, primeiro);
         if (temp)
@@ -281,7 +281,7 @@ void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double*
         *dist = dist_atual;
         *item = n->valor;
     }
-    if (arv->compare (n->valor, ref, dim + 1) < 0)
+    if (arv->compare (n->valor, ref, dim) < 0)
     {
         vizinho_proximo_nodulo (n->esquerda, arv, ref, item, dist, dim + 1);
         if (abs (arv->compare (n->valor, ref, dim)) < *dist)

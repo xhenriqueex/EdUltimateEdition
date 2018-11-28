@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../../Formas/Círculo/circulo.h"
 
 //INICIA A STRUCT SEMÁFORO
 typedef struct semaforo{
@@ -35,7 +36,7 @@ char* cria_svg_semaforo (void* semaforo)
     Semaforo* aux;
     char* result = (char*) calloc(255, sizeof(char));
     aux = (Semaforo*) semaforo;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -111,11 +112,11 @@ int compare_semaforo (void* sem1, void* sem2, int dim)
     }
     if (dim == 0)
     {
-        return (semA->x - semB->x);
+        return (semB->x - semA->x);
     }
     else
     {
-        return (semA->y - semB->y);
+        return (semB->y - semA->y);
     }
 }
 
@@ -136,10 +137,22 @@ int hashcode_semaforo (void* sem, int modulo)
     return modulo < 0 ? hash : hash % modulo;
 }
 
+//COMPARADOR DE CEP DO SEMÁFORO PARA HASHTABLE
+int compare_hash_semaforo (void* sem, void* id)
+{
+    Semaforo* semA;
+    Semaforo* semB;
+    semA = (Semaforo*) sem;
+    semB = (Semaforo*) id;
+    return strcmp (semA->id, semB->id);
+}
+
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
 void* get_circulo_semaforo (void* semaforo)
 {
     Semaforo* sem;
     sem = (Semaforo*) semaforo;
-    return cria_circulo (sem->id, sem->cor_borda, sem->cor_preenche, sem->r, sem->x, sem->y);
+    void* circ;
+    circ = cria_circulo (0, sem->cor_borda, sem->cor_preenche, sem->r, sem->x, sem->y);
+    return circ;
 }

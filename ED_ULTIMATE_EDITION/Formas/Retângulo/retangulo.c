@@ -36,7 +36,7 @@ char* cria_svg_retangulo (void* rectangle)
     Retangulo* retangulo;
     char* result = (char*) calloc (255, sizeof(char));
     retangulo = (Retangulo*) rectangle;
-    sprintf (result, "\n<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", retangulo->x, retangulo->y, retangulo->w, retangulo->h, retangulo->cor2, retangulo->cor1);
+    sprintf (result, "\n<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", retangulo->x, retangulo->y, retangulo->w, retangulo->h, retangulo->cor2, retangulo->cor1);
     return result;
 }
 

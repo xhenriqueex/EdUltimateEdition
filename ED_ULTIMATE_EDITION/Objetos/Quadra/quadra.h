@@ -46,4 +46,10 @@ int compare_quadra (void* quad1, void* quad2, int dim);
 //RETORNA O CÓDIGO HASH DA QUADRA
 int hashcode_quadra (void* quad, int modulo);
 
+//COMPARADOR DE CEP DA QUADRA PARA HASHTABLE
+int compare_hash_quadra (void* quad, void* cep);
+
+//LIBERA A MEMÓRIA ALOCADA DA QUADRA
+void free_quadra (void* quad);
+
 #endif
