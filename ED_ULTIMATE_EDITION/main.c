@@ -352,7 +352,7 @@ int main(int argc, char* argv[])
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
-        free(comandos);
+        free (comandos);
     }
 
     /*
@@ -388,11 +388,47 @@ int main(int argc, char* argv[])
     }
     */
 
-    free(p->diretorio_entrada);
-    free(p->arquivo_entrada);
-    free(p->diretorio_saida);
-    free(p->anotacoes);
-    free(p->resultado);
+    free (p->arquivo_entrada);
+    free (p->arquivo_entrada_ec);
+    free (p->arquivo_entrada_pm);
+    free (p->arquivo_entrada_qry);
+    free (p->caminho_EC);
+    free (p->caminho_GEO);
+    free (p->caminho_PM);
+    free (p->caminho_QRY);
+    free (p->caminho_SVG);
+    free (p->caminho_TXT);
+    free (p->comando);
+    free (p->controle);
+    free (p->cor_borda_hidrante);
+    free (p->cor_borda_quadra);
+    free (p->cor_borda_radiobase);
+    free (p->cor_borda_semaforo);
+    free (p->cor_preenche_hidrante);
+    free (p->cor_preenche_quadra);
+    free (p->cor_preenche_radiobase);
+    free (p->cor_preenche_semaforo);
+    free (p->diretorio_entrada);
+    free (p->diretorio_saida);
+    free_arvore (p->tree_hidrantes);
+    free_arvore (p->tree_quadras);
+    free_arvore (p->tree_radiobases);
+    free_arvore (p->tree_semaforos);
+    free_hashtable (p->hash_comercios);
+    free_hashtable (p->hash_end_comercios);
+    free_hashtable (p->hash_end_pessoas);
+    free_hashtable (p->hash_hidrantes);
+    free_hashtable (p->hash_pessoas);
+    free_hashtable (p->hash_quadras);
+    free_hashtable (p->hash_radiobases);
+    free_hashtable (p->hash_semaforos);
+    free_hashtable (p->hash_tipos);
+    for (i=0; i<p->contador_figuras; i++)
+    {
+        free_item (p->figuras[i]);
+    }
+    free (p);
+
     //FINALIZANDO O PROGRAMA
     return 1;
 }

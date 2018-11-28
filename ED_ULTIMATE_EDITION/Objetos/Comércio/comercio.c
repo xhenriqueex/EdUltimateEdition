@@ -63,8 +63,10 @@ void* cria_tipo_comercio (char* cod, char* info)
 {
     Tip* tipo;
     tipo = (Tip*) calloc (1, sizeof (Tip));
-    tipo->cod = cod;
-    tipo->info = info;
+    tipo->cod = (char*) calloc (strlen (cod) + 2, sizeof (char));
+    tipo->info = (char*) calloc (strlen (info) + 2, sizeof (char));
+    strcpy (tipo->cod, cod);
+    strcpy (tipo->info, info);
     return (void*) tipo;
 }
 
@@ -281,11 +283,13 @@ void* identificador_endereco_comercio (char* cep)
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof(Endereco));
     end->tipo = 0;
-    end->cep = cep;
+    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+    strcpy (end->cep,cep);
     end->face= NULL;
     end->num = NULL;
     end->comp= NULL;
     end->comercio = NULL;
+    return (void*) end;
 }
 
 //RETORNA O CÓDIGO DO TIPO DO COMÉRCIO
@@ -331,6 +335,13 @@ char* relatorio_mud_comercio (void* comercio, void* end1, void* end2)
     endA = (Endereco*) end1;
     endB = (Endereco*) end2;
     relatorio = (char*) calloc (555, sizeof (char));
-    sprintf (relatorio, "\nNome: %s Tipo: %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s", com->nome, com->tipo->info, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    if (end1 == NULL)
+    {
+        sprintf (relatorio, "\nEndereço novo : %s/%s/%s\n", endB->cep, endB->face, endB->num);
+    }
+    if (end2 == NULL)
+    {
+        sprintf (relatorio, "\nNome: %s Tipo: %s\nEndereço antigo: %s/%s/%s", com->nome, com->tipo->info, endA->cep, endA->face, endA->num);
+    }
     return relatorio;
 }

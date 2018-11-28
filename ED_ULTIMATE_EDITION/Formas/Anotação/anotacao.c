@@ -35,9 +35,14 @@ char* cria_svg_anotacao (void* anotation)
         sprintf (result, "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"transparent\" stroke=\"purple\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n", anotacao->x, anotacao->y, anotacao->w);
         return result;
     }
-    if (anotacao->w == 0)
+    if (!strcmp (anotacao->texto, "rip"))
     {
         sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"10\" height=\"20\" fill=\"BLACK\"/>\n<rect x=\"%f\" y=\"%f\" width=\"2\" height=\"12\" fill=\"WHITE\"/>\n<rect x=\"%f\" y=\"%f\" width=\"6\" height=\"2\" fill=\"WHITE\"/>\n", anotacao->x, anotacao->y, anotacao->x + 4, anotacao->y + 4, anotacao->x + 2, anotacao->y + 8);
+        return result;
+    }
+    if (!strcmp (anotacao->texto, "mr"))
+    {
+        sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"darkgrey\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>", anotacao->x, anotacao->y, anotacao->w, anotacao->h);
         return result;
     }
     if (!strcmp (anotacao->texto, "dm"))
@@ -60,6 +65,11 @@ char* cria_svg_anotacao (void* anotation)
         sprintf (result, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"darkblue\" stroke-width=\"4\"/>", anotacao->w, anotacao->h, anotacao->x, anotacao->y);
         return result;
     }
+    if (!strcmp (anotacao->texto, "ecr"))
+    {
+        sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"grey\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>", anotacao->x, anotacao->y, anotacao->w, anotacao->h);
+        return result;
+    }
     if (!strcmp (anotacao->texto, "hmpe"))
     {
         sprintf (result, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"ligthgreen\" stroke-width=\"4\"/>", anotacao->w, anotacao->h, anotacao->x, anotacao->y);
@@ -73,6 +83,11 @@ char* cria_svg_anotacao (void* anotation)
     if (!strcmp (anotacao->texto, "dpr"))
     {
         sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"blue\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>",anotacao->x, anotacao->y, anotacao->w, anotacao->h);
+        return result;
+    }
+    if (!strcmp (anotacao->texto, "tecr"))
+    {
+        sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"orange\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>", anotacao->x, anotacao->y, anotacao->w, anotacao->h);
         return result;
     }
     sprintf(result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"purple\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n<text x=\"%f\" y=\"%f\" fill=\"purple\">%s</text>",anotacao->x, anotacao->y, anotacao->w, anotacao->h, anotacao->x, anotacao->y, anotacao->texto);

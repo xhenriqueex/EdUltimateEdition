@@ -6,7 +6,7 @@
 #include "../../Estruturas/Hash/hashtable.h"
 
 //DEFINE A STRUCT ENDEREÇO
-typedef struct{
+typedef struct e{
     int tipo;
     char* cep;
     char* face;
@@ -16,7 +16,7 @@ typedef struct{
 } Endereco;
 
 //DEFINE A STRUCT PESSOA
-typedef struct {
+typedef struct p{
     char* nome;
     char* sobrenome;
     char* cpf;
@@ -68,14 +68,18 @@ void* set_endereco_pessoa (void* pes, char* cep, char* face, char* num, char* co
     }
     else
     {
-        free(pessoa->endereco->cep);
-        free(pessoa->endereco->face);
-        free(pessoa->endereco->num);
-        free(pessoa->endereco->comp);
-        pessoa->endereco->cep = cep;
-        pessoa->endereco->face= face;
-        pessoa->endereco->num = num;
-        pessoa->endereco->comp= comp;
+        free (pessoa->endereco->cep);
+        free (pessoa->endereco->face);
+        free (pessoa->endereco->num);
+        free (pessoa->endereco->comp);
+        pessoa->endereco->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+        strcpy (pessoa->endereco->cep, cep);
+        pessoa->endereco->face = (char*) calloc (strlen (face) + 2, sizeof (char));
+        strcpy (pessoa->endereco->face, face);
+        pessoa->endereco->num = (char*) calloc (strlen (num) + 2, sizeof (char));
+        strcpy (pessoa->endereco->num, num);
+        pessoa->endereco->comp = (char*) calloc (strlen (comp) + 2, sizeof (char));
+        strcpy (pessoa->endereco->comp, comp);
         return (void*) pessoa->endereco;
     }
 }
@@ -98,7 +102,8 @@ void free_pessoa (void* pes)
     free(pessoa->sobrenome);
     free(pessoa->sexo);
     free(pessoa->nascimento);
-    if(pessoa->endereco != NULL){
+    if(pessoa->endereco != NULL)
+    {
         free(pessoa->endereco->cep);
         free(pessoa->endereco->face);
         free(pessoa->endereco->num);
@@ -171,6 +176,10 @@ int compare_cep_endereco_pessoa (void* endereco1, void* endereco2)
     Endereco* est2;
     est1 = (Endereco*) endereco1;
     est2 = (Endereco*) endereco2;
+    if (est1->cep == NULL)
+    {
+        return 1;
+    }
     return strcmp (est1->cep, est2->cep);
 }
 
@@ -180,11 +189,13 @@ void* identificador_endereco_pessoa (char* cep)
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof (Endereco));
     end->tipo = 1;
-    end->cep = cep;
+    end->cep = (char*) calloc (strlen (cep) + 1, sizeof (char));
+    strcpy (end->cep, cep);
     end->face= NULL;
     end->num = NULL;
     end->comp= NULL;
     end->pessoa = NULL;
+    return (void*) end;
 }
 
 //GERA UMA STRING COM AS INFORMAÇÕES DO ENDEREÇO DA PESSOA
@@ -266,6 +277,13 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
     endA = (Endereco*) end1;
     endB = (Endereco*) end2;
     relatorio = (char*) calloc (555, sizeof (char));
-    sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s\nEndereço novo: %s/%s/%s/%s\n", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp, endB->cep, endB->face, endB->num, endB->comp);
+    if (end1 == NULL)
+    {
+        sprintf (relatorio, "\nEndereço novo: %s/%s/%s/%s\n", endB->cep, endB->face, endB->num, endB->comp);
+    }
+    if (end2 == NULL)
+    {
+        sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp);
+    }
     return relatorio;
 }

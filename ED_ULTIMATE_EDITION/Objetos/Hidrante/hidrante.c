@@ -36,7 +36,7 @@ char* cria_svg_hidrante (void* hidrante)
     Hidrante* aux;
     char* result = (char*) calloc (255, sizeof (char));
     aux = (Hidrante*) hidrante;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -111,11 +111,11 @@ int compare_hidrante (void* hid1, void* hid2, int dim)
     }
     if (dim == 0)
     {
-        return (hidA->x - hidB->x);
+        return (hidB->x - hidA->x);
     }
     else
     {
-        return (hidA->y - hidB->y);
+        return (hidB->y - hidA->y);
     }
 }
 

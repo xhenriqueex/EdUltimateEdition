@@ -38,7 +38,7 @@ char* cria_svg_quadra (void* quadra)
     Quadra* aux;
     char* result = (char*) calloc (255, sizeof(char));
     aux = (Quadra*) quadra;
-    sprintf (result, "\n<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->w, aux->h, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", aux->x, aux->y, aux->w, aux->h, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -129,11 +129,11 @@ int compare_quadra (void* quad1, void* quad2, int dim)
     }
     if (dim == 0)
     {
-        return (quadA->x - quadB->x);
+        return (quadB->x - quadA->x);
     }
     else
     {
-        return (quadA->y - quadB->y);
+        return (quadB->y - quadA->y);
     }
 }
 
@@ -162,4 +162,16 @@ int compare_hash_quadra (void* quad, void* cep)
     quadA = (Quadra*) quad;
     quadB = (Quadra*) cep;
     return strcmp (quadA->cep, quadB->cep);
+}
+
+//LIBERA A MEMÓRIA ALOCADA DA QUADRA
+void free_quadra (void* quad)
+{
+    Quadra* quadra;
+    quadra = (Quadra*) quad;
+    free (quadra->cep);
+    free (quadra->cor_borda);
+    free (quadra->cor_preenche);
+    free (quadra);
+    return;
 }

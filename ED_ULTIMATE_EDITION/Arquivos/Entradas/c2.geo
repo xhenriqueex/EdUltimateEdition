@@ -1008,6 +1008,7 @@ cq black black
 cq black black
 cq black black
 cq black black
+nx 1500
 c 1 white green 10.000000 3917.000000 528.000000
 c 2 white green 14.000000 4652.000000 617.000000
 c 3 white green 1.000000 4826.000000 754.000000

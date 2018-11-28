@@ -35,7 +35,7 @@ char* cria_svg_circulo (void* circle)
     Circulo* circulo;
     char* result = (char*) calloc(255, sizeof(char));
     circulo = (Circulo*) circle;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\"/>", circulo->x, circulo->y, circulo->r, circulo->cor2, circulo->cor1);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", circulo->x, circulo->y, circulo->r, circulo->cor2, circulo->cor1);
     return result;
 }
 

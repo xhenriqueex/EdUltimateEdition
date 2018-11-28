@@ -240,6 +240,7 @@ Lista reporta_quadra_dentro_retangulo (Lista quadras, double w, double h, double
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while(primeiro != NULL);
+    return reporta_retangulo;
 }
 
 void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, void* semaforos, void* radiobases, double x, double y, double r)
@@ -794,6 +795,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
     void* primeiro;
     void* prox;
     void* comercio;
+    void* comercioAux;
     result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
     tipo = (char*) calloc (155, sizeof (char));
     aux = (char*) calloc (155, sizeof (char));
@@ -803,9 +805,14 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
         primeiro = get_primeiro_lista (comercios);
         comercio = get_valor_lista (comercios, primeiro);
         tipo = get_tipo_comercio (comercio);
+        charAux = (char*) calloc (55, sizeof (char));
+        sprintf (charAux, "\nTipo: %s", tipo);
+        strcat (result, charAux);
+        free (charAux);
         do
         {
-            aux = get_tipo_comercio (comercio);
+            comercioAux = get_valor_lista (comercios, primeiro);
+            aux = get_tipo_comercio (comercioAux);
             if (!strcmp (tipo, aux))
             {
                 nome = get_nome_comercio (comercio);
@@ -824,6 +831,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
         }
         while (primeiro != NULL);
     }
+    strcat (result, "\n");
     return result;
 }
 
@@ -833,15 +841,12 @@ char* imprime_tipos_quadra (Lista comercios)
     char* result;
     char* tipo;
     char* aux;
-    char* nome;
     char* charAux;
     void* primeiro;
     void* prox;
     void* comercio;
-    result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
-    tipo = (char*) calloc (155, sizeof (char));
-    aux = (char*) calloc (155, sizeof (char));
-    nome = (char*) calloc (155, sizeof (char));
+    void* comercioAux;
+    result = (char*) calloc (largura_lista (comercios) * 55, sizeof (char));
     while (largura_lista (comercios) != 0)
     {
         primeiro = get_primeiro_lista (comercios);
@@ -853,7 +858,8 @@ char* imprime_tipos_quadra (Lista comercios)
         free (charAux);
         do
         {
-            aux = get_tipo_comercio (comercio);
+            comercioAux = get_valor_lista (comercios, primeiro);
+            aux = get_tipo_comercio (comercioAux);
             if (!strcmp (tipo, aux))
             {
                 prox = get_proximo_lista (comercios, primeiro);
@@ -867,6 +873,7 @@ char* imprime_tipos_quadra (Lista comercios)
         }
         while (primeiro != NULL);
     }
+    strcat (result, "\n");
     return result;
 }
 
@@ -926,6 +933,7 @@ void fecha_qry (Parametros* par)
         {
             conteudo_svg = cria_svg_retangulo (get_valor_item (*(par->figuras + i)));
             fprintf (saida_SVG, conteudo_svg);
+            free (conteudo_svg);
             free_retangulo (get_valor_item (*(par->figuras + i)));
             continue;
         }
@@ -933,11 +941,11 @@ void fecha_qry (Parametros* par)
         {
             conteudo_svg = cria_svg_circulo (get_valor_item (*(par->figuras + i)));
             fprintf (saida_SVG, conteudo_svg);
+            free (conteudo_svg);
             free_circulo (get_valor_item (*(par->figuras + i)));
             continue;
         }
         free_item (*(par->figuras + i));
-        free (conteudo_svg);
     }
     quadras = get_todos_arvore (par->tree_quadras);
     primeiro = get_primeiro_lista (quadras);
@@ -951,6 +959,7 @@ void fecha_qry (Parametros* par)
         conteudo_svg = cria_svg_quadra (get_valor_lista (quadras, primeiro));
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (quadras, primeiro)) + get_h_quadra (get_valor_lista (quadras, primeiro)) - 3, get_cep_quadra (get_valor_lista (quadras, primeiro)));
+        free (conteudo_svg);
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
@@ -966,6 +975,7 @@ void fecha_qry (Parametros* par)
         conteudo_svg = cria_svg_hidrante(get_valor_lista(hidrantes, primeiro));
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(hidrantes, primeiro)), get_y_hidrante(get_valor_lista(hidrantes, primeiro)));
+        free (conteudo_svg);
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
@@ -981,6 +991,7 @@ void fecha_qry (Parametros* par)
         conteudo_svg = cria_svg_semaforo (get_valor_lista (semaforos, primeiro));
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (semaforos, primeiro)), get_y_semaforo (get_valor_lista (semaforos, primeiro)));
+        free (conteudo_svg);
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
@@ -996,10 +1007,10 @@ void fecha_qry (Parametros* par)
         conteudo_svg = cria_svg_radiobase (get_valor_lista (radiobases, primeiro));
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (radiobases, primeiro)), get_y_radiobase (get_valor_lista (radiobases, primeiro)));
+        free (conteudo_svg);
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
-    free(conteudo_svg);
     while (!fila_vazia (par->anotacoes))
     {
         conteudo_svg = cria_svg_anotacao (remove_fila (par->anotacoes));
@@ -1007,45 +1018,14 @@ void fecha_qry (Parametros* par)
         free (conteudo_svg);
         continue;
     }
-    free (par->anotacoes);
     fprintf (saida_SVG, "\n</svg>");
     fclose (saida_SVG);
     remove_ext = par->arquivo_entrada;
-    //percorre = remove_ext;
-    //while (*percorre != '.')
-    //{
-        //percorre++;
-    //}
-    //*percorre = '\0';
     caminho = (char*) calloc (255, sizeof(char));
     strcpy(caminho, par->diretorio_saida);
     strcat(caminho, "/");
     strcat (caminho, remove_ext);
-    //strcat (caminho, "-");
-    //remove_ext = arquivo_entrada_qry;
-    //percorre = remove_ext + strlen(remove_ext)-1;
-    //while (*percorre != '/')
-    //{
-        //percorre--;
-    //}
-    //remove_ext = percorre+1;
-    //percorre = remove_ext + strlen(remove_ext)-1;
-    //while (*percorre != '.')
-    //{
-        //percorre--;
-    //}
-    //*percorre = '\0';
-    //strcat (caminho, remove_ext);
     strcat (caminho, ".txt");
-
-    /*
-    percorre = caminho + strlen(caminho)-1;
-    while (*percorre != '-')
-    {
-        percorre--;
-    }
-    strcpy(percorre, ".txt");
-    */
     saida_QRY = fopen (caminho, "a");
     free (caminho);
     percorre = par->arquivo_entrada_qry + strlen (par->arquivo_entrada_qry) - 1;
@@ -1060,10 +1040,9 @@ void fecha_qry (Parametros* par)
     {
         conteudo_svg = remove_fila (par->resultado);
         fprintf (saida_QRY, conteudo_svg);
+        free (conteudo_svg);
         continue;
     }
-    free (par->resultado);
-    //free(conteudo_svg);
     fclose (saida_QRY);
     printf ("\n"); 
 }

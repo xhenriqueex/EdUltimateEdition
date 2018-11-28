@@ -45,4 +45,7 @@ int compare_hash_radiobase (void* rb, void* id);
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DA RÁDIOBASE
 void* get_circulo_radiobase (void* radiobase);
 
+//LIBERA A MEMÓRIA ALOCADA DA RÁDIOBASE
+void free_radiobase (void* radiobase);
+
 #endif

@@ -42,7 +42,7 @@ void remove_hashtable (void* hash, void* item)
 {
     Hash_table* table;
     table = (Hash_table*) hash;
-    int hashcode = table->hash (item, table->modulo);    
+    int hashcode = table->hash (item, table->modulo); 
     Lista list = *(table->hashtable + hashcode);
     Posic t;
     t= get_primeiro_lista (list);

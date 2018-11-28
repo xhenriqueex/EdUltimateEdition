@@ -36,7 +36,7 @@ char* cria_svg_semaforo (void* semaforo)
     Semaforo* aux;
     char* result = (char*) calloc(255, sizeof(char));
     aux = (Semaforo*) semaforo;
-    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_borda, aux->cor_preenche);
+    sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
 }
 
@@ -112,11 +112,11 @@ int compare_semaforo (void* sem1, void* sem2, int dim)
     }
     if (dim == 0)
     {
-        return (semA->x - semB->x);
+        return (semB->x - semA->x);
     }
     else
     {
-        return (semA->y - semB->y);
+        return (semB->y - semA->y);
     }
 }
 
