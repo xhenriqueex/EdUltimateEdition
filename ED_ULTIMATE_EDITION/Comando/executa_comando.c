@@ -2634,13 +2634,14 @@ void caso_dpr (Parametros* par)
                     remove_hashtable (par->hash_end_comercios, endAux);
                     remove_hashtable (par->hash_comercios, com);
                     remove_lista (enderecos, auxA);
-                    free (endAux);
+                    // free (endAux);
                     free_comercio (com);    
                     auxA = temp2;
                 }
                 while (auxA != NULL);
             }
-            ident = identificador_endereco_pessoa (get_cep_quadra (cont));
+            char* auxCep = get_cep_quadra (cont);
+            ident = identificador_endereco_pessoa (auxCep);
             enderecos = get_lista_hashtable (par->hash_end_pessoas, ident);
             free (ident);
             if (largura_lista (enderecos) == 0)
@@ -2669,6 +2670,7 @@ void caso_dpr (Parametros* par)
                     remove_hashtable (par->hash_pessoas, pes);
                     //free (endAux);
                     remove_lista (enderecos, auxA);
+                    free_pessoa (pes);
                     auxA = temp2;
                 }
                 while (auxA != NULL);
@@ -2677,6 +2679,7 @@ void caso_dpr (Parametros* par)
             remove_valor_arvore (par->tree_quadras, cont);
             remove_hashtable (par->hash_quadras, cont);
             remove_lista (quadras, primeiro);
+            free_quadra (cont);
             primeiro = temp2;
         }
         else
@@ -2685,7 +2688,7 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    free_lista (quadras);
+    //free_lista (quadras);
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2725,7 +2728,7 @@ void caso_dpr (Parametros* par)
         }
     }   
     while (primeiro != NULL);
-    free_lista (hidrantes);
+    //free_lista (hidrantes);
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2765,7 +2768,7 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    free_lista (semaforos);
+    //free_lista (semaforos);
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2805,7 +2808,7 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    free_lista (radiobases);
+    //free_lista (radiobases);
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);

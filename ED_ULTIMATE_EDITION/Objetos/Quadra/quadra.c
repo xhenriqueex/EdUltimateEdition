@@ -46,7 +46,7 @@ char* cria_svg_quadra (void* quadra)
 char* get_cep_quadra (void* quadra)
 {
     Quadra* aux;
-    aux = quadra;
+    aux = (Quadra*) quadra;
     return aux->cep;   
 }
 
