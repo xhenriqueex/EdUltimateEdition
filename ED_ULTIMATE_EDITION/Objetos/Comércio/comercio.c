@@ -13,7 +13,7 @@ typedef struct {
 } Tip;
 
 //DEFINE A STRUCT ENDEREÇO
-typedef struct {
+typedef struct e{
     int tipo;
     char* cep;
     char* face;
@@ -23,7 +23,7 @@ typedef struct {
 } Endereco;
 
 //DEFINE A STRUCT COMÉRCIO
-typedef struct {
+typedef struct c{
     char* cnpj;
     Tip* tipo;
     Endereco* endereco;
@@ -102,10 +102,13 @@ void free_comercio (void* com)
     result = (Com*) com;
     free (result->nome);
     free (result->cnpj);
-    free (result->endereco->cep);
-    free (result->endereco->face);
-    free (result->endereco->num);
-    free (result->endereco);
+    if (result->endereco != NULL) 
+    {
+        free (result->endereco->cep);
+        free (result->endereco->face);
+        free (result->endereco->num);
+        free (result->endereco);
+    }
     free (result);
 }
 

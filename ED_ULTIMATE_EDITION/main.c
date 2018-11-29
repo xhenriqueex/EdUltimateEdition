@@ -255,7 +255,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free(p->comando);
+            //free(p->comando);
         }
         //FECHANDO O ARQUIVO
         fclose (arquivo);
@@ -282,7 +282,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free (p->comando);
+            //free (p->comando);
         }
 
         //FECHANDO O ARQUIVO
@@ -311,7 +311,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free (p->comando);
+            //free (p->comando);
         }
 
         //FECHANDO O ARQUIVO
@@ -339,7 +339,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free (p->comando);
+            //free (p->comando);
         }
 
         //FECHANDO O ARQUIVO .QRY
@@ -371,7 +371,7 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            free (p->comando);
+            //free (p->comando);
         }
 
         //FECHANDO O ARQUIVO .VIA

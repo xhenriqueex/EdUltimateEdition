@@ -101,8 +101,8 @@ void remove_lista (void* lista, void* posic)
     {
         aux->primeiro = verif->item->prox;
     }
-    free (verif->item);
-    free (verif);
+    //free (verif->item);
+    //free (verif);
     aux->tamanho--;
     return;   
 }
