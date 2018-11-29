@@ -18,5 +18,8 @@ static int get_tamanho_aresta(Grafo G, int v1, int v2);
 void remove_aresta(Grafo G, int v1, int v2);
 int adjacente(Grafo G, int v1, int v2);
 Lista adjacentes(Grafo G, int v1);
+void dijkstra(Grafo G, int src);
+int minima_distancia(int dist[], int sptSet[], int tam);
+int printar_distancias(int dist[], int n);
 
 #endif // GRAFO_H

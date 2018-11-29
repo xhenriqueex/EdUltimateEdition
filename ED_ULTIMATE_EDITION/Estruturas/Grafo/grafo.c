@@ -227,3 +227,59 @@ Lista adjacentes(Grafo G, int v1)
 
     return vertices[v1].arestas;
 }
+
+void dijkstra(Grafo G, int src)
+{
+    int tam = qtd_vertices(G);
+    int dist[tam];
+    int sptset[tam];
+
+    for (int i = 0; i < tam; i++) {
+        dist[i] = INFINITO, sptset[i] = 0;
+    }
+
+    dist[src] = 0;
+
+    for (int count = 0; count < tam-1; count++)
+    {
+        int u = minima_distancia(dist, sptset, tam);
+
+        sptset[u] = 1;
+
+        for (int v = 0; v < tam; v++)
+        {
+            if (!sptset[v] && get_tamanho_aresta(G, u, v)
+            && dist[u] != INFINITO && dist[u]+get_tamanho_aresta(G, u, v) < dist[v])
+            {
+                dist[v] = dist[u] + get_tamanho_aresta(G, u, v);
+            }
+        }
+    }
+
+    printar_distancias(dist, tam);
+}
+
+int minima_distancia(int dist[], int sptSet[], int tam)
+{
+    int min = INFINITO, min_index;
+
+    for (int v = 0; v < tam; v++)
+    {
+        if (sptSet[v] == 0 && dist[v] == min)
+        {
+            min = dist[v];
+            min_index = v;
+        }
+    }
+
+    return min_index;
+}
+
+int printar_distancias(int dist[], int n)
+{
+    printf("Vertex   Distance from Source\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d tt %d\n", i, dist[i]);
+    }
+}
