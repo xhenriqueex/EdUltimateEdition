@@ -256,10 +256,12 @@ int main(int argc, char* argv[])
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
             //free(p->comando);
+            //p->comando = NULL;
         }
         //FECHANDO O ARQUIVO
         fclose (arquivo);
         free(comandos);
+        comandos = NULL;
     }
     
     if (p->caminho_EC != NULL)
@@ -283,11 +285,13 @@ int main(int argc, char* argv[])
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
             //free (p->comando);
+            //p->comando = NULL;
         }
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
         free(comandos);
+        comandos = NULL;
     }
 
     if (p->caminho_PM != NULL)
@@ -312,11 +316,13 @@ int main(int argc, char* argv[])
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
             //free (p->comando);
+            //p->comando = NULL;
         }
 
         //FECHANDO O ARQUIVO
         fclose (arquivo);
         free(comandos);
+        comandos = NULL;
     }
     
     if (p->caminho_QRY != NULL)
@@ -340,6 +346,7 @@ int main(int argc, char* argv[])
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
             //free (p->comando);
+            p->comando = NULL;
         }
 
         //FECHANDO O ARQUIVO .QRY
@@ -348,6 +355,7 @@ int main(int argc, char* argv[])
         //FECHANDO O ARQUIVO
         fclose (arquivo);
         free (comandos);
+        comandos = NULL;
     }
 
     /*
@@ -372,6 +380,7 @@ int main(int argc, char* argv[])
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
             //free (p->comando);
+            //p->comando = NULL;
         }
 
         //FECHANDO O ARQUIVO .VIA
@@ -383,27 +392,49 @@ int main(int argc, char* argv[])
     */
 
     free (p->arquivo_entrada);
+    p->arquivo_entrada = NULL;
     free (p->arquivo_entrada_ec);
+    p->arquivo_entrada_ec = NULL;
     free (p->arquivo_entrada_pm);
+    p->arquivo_entrada_pm = NULL;
     free (p->arquivo_entrada_qry);
+    p->arquivo_entrada_qry = NULL;
     free (p->caminho_EC);
+    p->caminho_EC = NULL;
     free (p->caminho_GEO);
+    p->caminho_GEO = NULL;
     free (p->caminho_PM);
+    p->caminho_PM = NULL;
     free (p->caminho_QRY);
+    p->caminho_QRY = NULL;
     free (p->caminho_SVG);
+    p->caminho_SVG = NULL;
     free (p->caminho_TXT);
+    p->caminho_TXT = NULL;
     free (p->comando);
+    p->comando = NULL;
     free (p->controle);
+    p->controle = NULL;
     free (p->cor_borda_hidrante);
+    p->cor_borda_hidrante = NULL;
     free (p->cor_borda_quadra);
+    p->cor_borda_quadra = NULL;
     free (p->cor_borda_radiobase);
+    p->cor_borda_radiobase = NULL;
     free (p->cor_borda_semaforo);
+    p->cor_borda_semaforo = NULL;
     free (p->cor_preenche_hidrante);
+    p->cor_preenche_hidrante = NULL;
     free (p->cor_preenche_quadra);
+    p->cor_preenche_quadra = NULL;
     free (p->cor_preenche_radiobase);
+    p->cor_preenche_radiobase = NULL;
     free (p->cor_preenche_semaforo);
+    p->cor_preenche_semaforo = NULL;
     free (p->diretorio_entrada);
+    p->diretorio_entrada = NULL;
     free (p->diretorio_saida);
+    p->diretorio_saida = NULL;
     free_arvore (p->tree_hidrantes);
     free_arvore (p->tree_quadras);
     free_arvore (p->tree_radiobases);
@@ -417,11 +448,12 @@ int main(int argc, char* argv[])
     free_hashtable (p->hash_radiobases);
     free_hashtable (p->hash_semaforos);
     free_hashtable (p->hash_tipos);
-    for (i=0; i<p->contador_figuras; i++)
-    {
-        free_item (p->figuras[i]);
-    }
+    //for (i=0; i<p->contador_figuras; i++)
+    //{
+    //    free_item (p->figuras[i]);
+    //}
     free (p);
+    p = NULL;
 
     //FINALIZANDO O PROGRAMA
     return 1;

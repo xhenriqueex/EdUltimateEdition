@@ -129,7 +129,10 @@ void free_hashtable (void* hash)
     {
         //Lista_free(*(table->hashtable + i));
         free(*(table->hashtable + i));
+        *(table->hashtable + i) = NULL;
     }
     free(table->hashtable);
+    table->hashtable = NULL;
     free(table);
+    table = NULL;
 }

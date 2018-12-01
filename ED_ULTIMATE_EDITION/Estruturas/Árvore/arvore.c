@@ -98,6 +98,7 @@ void free_nodulo (void* nodulo)
     }
     n->valor = NULL;
     free (n);
+    n = NULL;
 }
 
 //LIBERA A ÁRVORE
@@ -110,6 +111,7 @@ void free_arvore (void* arvore)
     arv->tam = 0;
     arv->dim = 0;
     free(arv);
+    arv = NULL;
 }
 
 //RETORNA UMA LISTA COM TODOS OS VALORES DO NÓDULO

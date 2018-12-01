@@ -40,6 +40,8 @@ void free_item (Item item)
     it* aux;
     aux = (it*) item;
     free (aux->tipo);
+    aux->tipo = NULL;
     free (aux);
+    aux = NULL;
     return; 
 }

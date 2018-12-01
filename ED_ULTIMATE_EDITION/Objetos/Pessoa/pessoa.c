@@ -69,9 +69,13 @@ void* set_endereco_pessoa (void* pes, char* cep, char* face, char* num, char* co
     else
     {
         free (pessoa->endereco->cep);
+        pessoa->endereco->cep = NULL;
         free (pessoa->endereco->face);
+        pessoa->endereco->face = NULL;
         free (pessoa->endereco->num);
+        pessoa->endereco->num = NULL;
         free (pessoa->endereco->comp);
+        pessoa->endereco->comp = NULL;
         pessoa->endereco->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
         strcpy (pessoa->endereco->cep, cep);
         pessoa->endereco->face = (char*) calloc (strlen (face) + 2, sizeof (char));
@@ -98,19 +102,30 @@ void free_pessoa (void* pes)
     Pessoa* pessoa;
     pessoa = (Pessoa*) pes;
     free(pessoa->cpf);
+    pessoa->cpf = NULL;
     free(pessoa->nome);
+    pessoa->nome = NULL;
     free(pessoa->sobrenome);
+    pessoa->sobrenome = NULL;
     free(pessoa->sexo);
+    pessoa->sexo = NULL;
     free(pessoa->nascimento);
+    pessoa->nascimento = NULL;
     if(pessoa->endereco != NULL)
     {
         free(pessoa->endereco->cep);
+        pessoa->endereco->cep = NULL;
         free(pessoa->endereco->face);
+        pessoa->endereco->face = NULL;
         free(pessoa->endereco->num);
+        pessoa->endereco->num = NULL;
         free(pessoa->endereco->comp);
+        pessoa->endereco->comp = NULL;
         free(pessoa->endereco);
+        pessoa->endereco = NULL;
     }
     free(pessoa);
+    pessoa = NULL;
 }
 
 //FUNÇÃO QUE RETORNA O CÓDIGO HASH REFERENTE À PESSOA

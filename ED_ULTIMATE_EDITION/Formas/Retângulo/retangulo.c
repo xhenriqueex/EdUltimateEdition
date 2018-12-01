@@ -146,7 +146,10 @@ void free_retangulo (void* rectangle)
     Retangulo* retangulo;
     retangulo = (Retangulo*) rectangle;
     free (retangulo->cor1);
+    retangulo->cor1 = NULL;
     free (retangulo->cor2);
+    retangulo->cor2 = NULL;
     free (retangulo);
+    retangulo = NULL;
     return;
 }

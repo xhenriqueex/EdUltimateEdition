@@ -112,7 +112,9 @@ float closest_dist (Ponto** vetor, int inicial, int final, char* saida)
         strcpy (saida, result2);
     }
     free (result1);
+    result1 = NULL;
     free (result2);
+    result2 = NULL;
     Ponto* strip[final - inicial];
     Ponto mid_point = *vetor[mid];
     j = 0;
@@ -132,6 +134,7 @@ float closest_dist (Ponto** vetor, int inicial, int final, char* saida)
         mindist = result;
     }
     free (result1);
+    result1 = NULL;
     return mindist;
 }
 

@@ -141,7 +141,10 @@ void free_circulo (void* circle)
     Circulo* circulo;
     circulo = (Circulo*) circle;
     free (circulo->cor1);
+    circulo->cor1 = NULL;
     free (circulo->cor2);
+    circulo->cor2 = NULL;
     free (circulo);
+    circulo = NULL;
     return;
 }

@@ -86,6 +86,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_nx (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIAR UM CÍRCULO
@@ -94,6 +95,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_c (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIAR UM RETÂNGULO
@@ -102,6 +104,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_r (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIA UMA QUADRA
@@ -110,6 +113,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_q (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIA UM HIDRANTE
@@ -118,6 +122,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_h (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIA UM SEMÁFORO
@@ -126,6 +131,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_s (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIA UMA RADIOBASE
@@ -136,6 +142,7 @@ void executa_comando (void* p)
             par->comando += 2;
             caso_t_geo (par);
             free(comando);
+            comando = NULL;
             return;    
         }
     }
@@ -145,6 +152,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_cq (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO HIDRANTE
@@ -153,6 +161,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_ch (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DA RADIO-BASE
@@ -161,6 +170,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_ct (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //ALTERA AS CORES DA BORDA E DO PREENCHIMENDO DO SEMAFORO
@@ -169,6 +179,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_cs (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //VERIFICAR SE DUAS FIGURAS SE SOBREPOEM
@@ -176,6 +187,7 @@ void executa_comando (void* p)
     {
         caso_o (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //VERIFICAR SE UM PONTO É INTERNO A FIGURA
@@ -183,6 +195,7 @@ void executa_comando (void* p)
     {
         caso_i (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CALCULAR A DISTÂNCIA ENTRE OS CENTROS DE MASSA DE DUAS FIGURAS
@@ -190,6 +203,7 @@ void executa_comando (void* p)
     {
         caso_d (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //CRIA O ARQUIVO SVG COM O SUFIXO
@@ -198,6 +212,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_a (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //FINALIZA O ARQUIVO
@@ -206,6 +221,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_hashtag (par);
         free(comando);
+        comando = NULL;
         return;
     }
 
@@ -219,6 +235,7 @@ void executa_comando (void* p)
             par->comando += 2;
             caso_t_ec (par);
             free(comando);
+            comando = NULL;
             return;
         }
     }
@@ -228,6 +245,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_e (par);
         free(comando);
+        comando = NULL;
         return;
     }
 
@@ -238,6 +256,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_p (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //INFORMA O ENDEREÇO ONDE UMA PESSOA MORA
@@ -246,6 +265,7 @@ void executa_comando (void* p)
         par->comando += 2;
         caso_m (par);
         free(comando);
+        comando = NULL;
         return;
     }
     
@@ -256,6 +276,7 @@ void executa_comando (void* p)
     {
         caso_q_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //REPORTA O QUE ESTIVER DENTRO DO CÍRCULO ESPECIFICADO
@@ -263,6 +284,7 @@ void executa_comando (void* p)
     {
         caso_Q_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO RETÂNGULO ESPECIFICADO
@@ -270,6 +292,7 @@ void executa_comando (void* p)
     {
         caso_dq (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO RETÂNGULO ESPECIFICADO
@@ -277,6 +300,7 @@ void executa_comando (void* p)
     {
         caso_dle (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DELETA TODAS AS QUADRAS DENTRO DO CÍRCULO ESPECIFICADO
@@ -284,6 +308,7 @@ void executa_comando (void* p)
     {
         caso_Dq (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DELETA TODOS OS EQUIPAMENTOS DENTRO DO CÍRCULO ESPECIFICADO
@@ -291,6 +316,7 @@ void executa_comando (void* p)
     {
         caso_Dle (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //MUDA AS CORES DA QUADRA IDENTIFICADA PELO CEP
@@ -299,6 +325,7 @@ void executa_comando (void* p)
         par->comando += 3;
         caso_cc (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //IMPRIME NO .TXT AS COORDENADAS DE UMA DETERMINADA QUADRA OU EQUIPAMENTO
@@ -306,6 +333,7 @@ void executa_comando (void* p)
     {
         caso_crd_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DETERMINA AS RADIOBASES MAIS PRÓXIMAS
@@ -313,6 +341,7 @@ void executa_comando (void* p)
     {
         caso_crb_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //MORADORES DA QUADRA DEFINIDA PELO CEP
@@ -320,6 +349,7 @@ void executa_comando (void* p)
     {
         caso_m_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //MORADORES DAS QUADRAS DENTRO DO RETÂNGULO
@@ -327,6 +357,7 @@ void executa_comando (void* p)
     {
         caso_mr_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //IMPRIME OS DADOS DO MORADOR IDENTIFICADO PELO CPF
@@ -334,6 +365,7 @@ void executa_comando (void* p)
     {
         caso_dm_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //IMPRIME OS DADOS DO ESTABELECIMENTO IDENTIFICADO PELO CNPJ
@@ -341,6 +373,7 @@ void executa_comando (void* p)
     {
         caso_de_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //APAGA TODOS OS DADOS DE UMA PESSOA
@@ -348,6 +381,7 @@ void executa_comando (void* p)
     {
         caso_rip (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //LISTA OS ESTABELECIMENTOS DE UMA QUADRA
@@ -355,6 +389,7 @@ void executa_comando (void* p)
     {
         caso_ecq_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //LISTA OS ESTABELECIMeNTOS DE UM DETERMINADO TIPO EM UM RETÂNGULO
@@ -362,6 +397,7 @@ void executa_comando (void* p)
     {
         caso_ecr_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS DE UMA QUADRA ESPECÍFICA
@@ -369,6 +405,7 @@ void executa_comando (void* p)
     {
         caso_tecq_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //LISTA OS TIPOS DE ESTABELECIMENTOS COMERCIAIS EM UM RETÂNGULO
@@ -376,6 +413,7 @@ void executa_comando (void* p)
     {
         caso_tecr_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UM ENDEREÇO ESPECÍFICO
@@ -383,6 +421,7 @@ void executa_comando (void* p)
     {
         caso_hmpe_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //ENCONTRA O HIDRANTE MAIS PRÓXIMO À UMA RADIOBASE ESPECÍFICA
@@ -390,6 +429,7 @@ void executa_comando (void* p)
     {
         caso_hmp_pergunta (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //APAGA TODOS OS DADOS DE UM ESTABELECIMENTO
@@ -397,6 +437,7 @@ void executa_comando (void* p)
     {
         caso_fec (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //MUDA O ENDEREÇO DA PESSOA E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
@@ -404,6 +445,7 @@ void executa_comando (void* p)
     {
         caso_mud (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //MUDA O ESTABELECIMENTO DE ENDEREÇO E TRAÇA UMA LINHA ENTRE O ENDEREÇO ANTIGO E O NOVO
@@ -411,6 +453,7 @@ void executa_comando (void* p)
     {
         caso_mudec (par);
         free(comando);
+        comando = NULL;
         return;
     }
     //DESAPROPRIA UMA REGIÃO (DELETA TUDO DENTRO DELA, MAS A PESSOA NÃO MORRE, SÓ DEIXA DE MORAR LÁ)
@@ -418,6 +461,7 @@ void executa_comando (void* p)
     {
         caso_dpr (par);
         free(comando);
+        comando = NULL;
         return;
     }
 }
@@ -440,6 +484,7 @@ void caso_nx (Parametros* par)
         }
     }
     free (par->figuras);
+    par->figuras = NULL;
     par->figuras = (Item*) calloc (par->max_figuras, sizeof (Item));
     i = 0;
     par->contador_figuras = 0;
@@ -470,7 +515,9 @@ void caso_c (Parametros* par)
     sscanf (par->comando, "%ld %s %s %lf %lf %lf", &id, cor1, cor2, &r, &x, &y);
     fig = cria_circulo (id, cor1, cor2, r, x, y);
     free (cor1);
+    cor1 = NULL;
     free (cor2);
+    cor2 = NULL;
     it = cria_item (fig, C);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
@@ -495,12 +542,16 @@ void caso_r (Parametros* par)
     sscanf (par->comando, "%ld %s %s %lf %lf %lf %lf", &id, cor1, cor2, &w, &h, &x, &y);
     fig = cria_retangulo (id, cor1, cor2, w, h, x, y);
     free (cor1);
+    cor1 = NULL;
     free (cor2);
+    cor2 = NULL;
     it = cria_item (fig, R);
     par->figuras[par->contador_figuras] = it;
     par->contador_figuras++;
     free (cor1);
+    cor1 = NULL;
     free (cor2);
+    cor2 = NULL;
     return;
 }
 
@@ -513,6 +564,7 @@ void caso_q (Parametros* par)
     sscanf (par->comando, "%s %lf %lf %lf %lf", cep, &x, &y, &w, &h);
     quadra = cria_quadra (cep, x, y, w, h, par->cor_borda_quadra, par->cor_preenche_quadra);
     free (cep);
+    cep = NULL;
     insere_arvore (par->tree_quadras, quadra);
     insere_hashtable (par->hash_quadras, quadra);
     return;
@@ -527,6 +579,7 @@ void caso_h (Parametros* par)
     sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     hidrante = cria_hidrante (id, 5, x, y, par->cor_borda_hidrante, par->cor_preenche_hidrante);
     free (id);
+    id = NULL;
     insere_arvore (par->tree_hidrantes, hidrante);
     insere_hashtable (par->hash_hidrantes, hidrante);
     return;
@@ -541,6 +594,7 @@ void caso_s (Parametros* par)
     sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     semaforo = cria_semaforo (id, 5, x, y, par->cor_borda_semaforo, par->cor_preenche_semaforo);
     free (id);
+    id = NULL;
     insere_arvore (par->tree_semaforos, semaforo);
     insere_hashtable (par->hash_semaforos, semaforo);
     return;
@@ -556,6 +610,7 @@ void caso_t_geo (Parametros* par)
     sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     radiobase = cria_radiobase (id, 5, x, y, par->cor_borda_radiobase, par->cor_preenche_radiobase);
     free (id);
+    id = NULL;
     insere_arvore (par->tree_radiobases, radiobase);
     insere_hashtable (par->hash_radiobases, radiobase);
     return;
@@ -656,7 +711,9 @@ void caso_o (Parametros* par)
         valor1 = (*centro2 - *centro1);
         valor2 = (*(centro2+1) - *(centro1+1));
         free (centro1);
+        centro1 = NULL;
         free (centro2);
+        centro2 = NULL;
         dist = sqrt ((valor1 * valor1) + (valor2 * valor2));
         if (dist <= get_r_circulo (get_valor_item (fig1)) + get_r_circulo (get_valor_item (fig2)))
         {
@@ -988,7 +1045,9 @@ void caso_d (Parametros* par)
     dx = *centro1 - *centro2;
     dy = *(centro1 + 1) - *(centro2 +1);
     free (centro1);
+    centro1 = NULL;
     free (centro2);
+    centro2 = NULL;
     result = sqrt ((dx*dx) + (dy*dy));
     result_string = (char*) calloc (1, sizeof(result));
     sprintf (result_string, "\n%f\n", result);
@@ -1063,6 +1122,7 @@ void caso_a (Parametros* par)
     saida_SVG = fopen (par->caminho_SVG, "w");
     
     free (par->caminho_SVG);
+    par->caminho_SVG = NULL;
     
     fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
     for (i=0; i<par->contador_figuras; i++)
@@ -1076,6 +1136,7 @@ void caso_a (Parametros* par)
             conteudo_svg = cria_svg_retangulo (get_valor_item (par->figuras[i]));
             fprintf (saida_SVG, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             continue;
         }
         else
@@ -1083,6 +1144,7 @@ void caso_a (Parametros* par)
             conteudo_svg = cria_svg_circulo (get_valor_item (par->figuras[i]));
             fprintf (saida_SVG, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             continue;
         }
     }
@@ -1093,6 +1155,7 @@ void caso_a (Parametros* par)
         conteudo_svg = cria_svg_anotacao (fila_linha);
         fprintf (saida_SVG, conteudo_svg);
         free (conteudo_svg);
+        conteudo_svg = NULL;
         insere_fila (aux, fila_linha);
         continue;
     }
@@ -1101,6 +1164,7 @@ void caso_a (Parametros* par)
         insere_fila (par->anotacoes, remove_fila(aux));
     }
     free (aux);
+    aux = NULL;
     if(!strcmp (get_tipo_item (fig), R))
     {
         centro1 = centro_massa_retangulo (get_valor_item (fig));
@@ -1114,6 +1178,7 @@ void caso_a (Parametros* par)
     x1 = *centro1;
     y1 = *(centro1 + 1);
     free (centro1);
+    centro1 = NULL;
     for (i=0; i<par->contador_figuras; i++)
     {
         if (par->figuras[i] == NULL || i == id)
@@ -1133,6 +1198,7 @@ void caso_a (Parametros* par)
         dx = x2 - x1;
         dy = y2 - y1;
         free (centro2);
+        centro2 = NULL;
         result = sqrt ((dx*dx) + (dy*dy));
         fprintf (saida_SVG, "\n<line x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" stroke=\"%s\" stroke-width=\"2\"/>", x1, y1, x2, y2, corB);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%.2f</text>", (x1 + dx/2), (y1+dy/2), result);
@@ -1151,6 +1217,7 @@ void caso_a (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)), get_y_quadra (get_valor_lista (primeiro)), get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
@@ -1167,6 +1234,7 @@ void caso_a (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (primeiro)), get_y_hidrante (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
@@ -1183,6 +1251,7 @@ void caso_a (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
@@ -1199,6 +1268,7 @@ void caso_a (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase(get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
@@ -1244,6 +1314,7 @@ void caso_hashtag (Parametros* par)
             conteudo_svg = cria_svg_retangulo (get_valor_item (par->figuras[i]));
             fprintf (saida_svg, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             continue;
         }
         else
@@ -1251,6 +1322,7 @@ void caso_hashtag (Parametros* par)
             conteudo_svg = cria_svg_circulo (get_valor_item (par->figuras[i]));
             fprintf (saida_svg, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             continue;
         }
     }
@@ -1268,6 +1340,7 @@ void caso_hashtag (Parametros* par)
         fprintf (saida_svg, conteudo_svg);
         fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)) + 3, get_y_quadra (get_valor_lista (primeiro)) + (get_h_quadra (get_valor_lista (primeiro))) - 3, get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
@@ -1284,6 +1357,7 @@ void caso_hashtag (Parametros* par)
         fprintf (saida_svg, conteudo_svg);
         fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (primeiro)), get_y_hidrante (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
@@ -1300,6 +1374,7 @@ void caso_hashtag (Parametros* par)
         fprintf (saida_svg, conteudo_svg);
         fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
@@ -1316,6 +1391,7 @@ void caso_hashtag (Parametros* par)
         fprintf (saida_svg, conteudo_svg);
         fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
@@ -1326,6 +1402,7 @@ void caso_hashtag (Parametros* par)
         conteudo_svg = cria_svg_anotacao (fila_linha);
         fprintf (saida_svg, conteudo_svg);
         free (conteudo_svg);
+        conteudo_svg = NULL;
         insere_fila (aux, fila_linha);
         continue;
     }
@@ -1334,6 +1411,7 @@ void caso_hashtag (Parametros* par)
         insere_fila (par->anotacoes, remove_fila (aux));
     }
     free (aux);
+    aux = NULL;
     fprintf (saida_svg, "\n</svg>");
     fclose (saida_svg);
     par->caminho_TXT = (char *) calloc(strlen(par->caminho_SVG)+1, sizeof(char));
@@ -1346,12 +1424,14 @@ void caso_hashtag (Parametros* par)
     strcpy (percorre, ".txt");
     saida_txt = fopen (par->caminho_TXT, "a");
     free (par->caminho_TXT);
+    par->caminho_TXT = NULL;
     fprintf (saida_txt, "\nARQUIVO: %s\n\n", par->arquivo_entrada);
     while (!fila_vazia (par->resultado))
     {
         conteudo_svg = remove_fila (par->resultado);
         fprintf (saida_txt, conteudo_svg);
         free (conteudo_svg);
+        conteudo_svg = NULL;
         continue;
     }
     fclose (saida_txt);
@@ -1453,6 +1533,7 @@ void caso_dle (Parametros* par)
     delete_equipamento_dentro_retangulo (par->resultado, tipo, hidrantes, semaforos, radiobases, x, y, w, h);
     insere_fila (par->resultado, "\n");
     free (tipo);
+    tipo = NULL;
     return;
 }
 
@@ -1498,6 +1579,7 @@ void caso_Dle (Parametros* par)
     delete_equipamento_dentro_circulo (par->resultado, tipo, hidrantes, semaforos, radiobases, x, y, r);
     insere_fila (par->resultado, "\n");
     free (tipo);
+    tipo = NULL;
     return;
 }
 
@@ -1569,8 +1651,11 @@ void caso_cc (Parametros* par)
     }
     while (primeiro != NULL);
     free (aux);
+    aux = NULL;
     free (cor_borda);
+    cor_borda = NULL;
     free (cor_preenche);
+    cor_preenche = NULL;
     return;
 }
 
@@ -1657,6 +1742,7 @@ void caso_crd_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
     free (aux);
+    aux = NULL;
     return;
 }
 
@@ -1740,6 +1826,7 @@ void caso_m_pergunta (Parametros* par)
     endereco = identificador_endereco_pessoa (cep);
     enderecos = get_lista_hashtable (par->hash_end_pessoas, endereco);
     free (endereco);
+    endereco = NULL;
     if (!largura_lista (enderecos))
     {
         result = (char*) calloc (55, sizeof (char));
@@ -1763,6 +1850,7 @@ void caso_m_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
     free (cep);
+    cep = NULL;
     return;
 }
 
@@ -1813,6 +1901,7 @@ void caso_mr_pergunta (Parametros* par)
         insere_fila (par->resultado, relatorio);
         enderecos = get_lista_hashtable (par->hash_end_pessoas, endereco);
         free (endereco);
+        endereco = NULL;
         if (!largura_lista (enderecos))
         {
             primeiro = get_proximo_lista (report, primeiro);
@@ -1866,6 +1955,7 @@ void caso_dm_pergunta (Parametros* par)
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
     free (auxPes);
+    auxPes = NULL;
     if (pessoa == NULL)
     {
         result = (char*) calloc (55, sizeof (char));
@@ -1885,6 +1975,7 @@ void caso_dm_pergunta (Parametros* par)
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (cpf);
+    cpf = NULL;
     return;
 }
 
@@ -1907,6 +1998,7 @@ void caso_de_pergunta (Parametros* par)
     auxCom = cria_comercio (cnpj, "", "", "", "", "");
     comercio = get_hashtable (par->hash_comercios, auxCom);
     free (auxCom);
+    auxCom = NULL;
     if (comercio == NULL)
     {
         result = (char*) calloc (55, sizeof (char));
@@ -1926,6 +2018,7 @@ void caso_de_pergunta (Parametros* par)
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (cnpj);
+    cnpj = NULL;
     return;
 }
 
@@ -1949,6 +2042,7 @@ void caso_rip (Parametros* par)
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
     free (auxPes);
+    auxPes = NULL;
     if (pessoa == NULL)
     {
         result = (char*) calloc (55, sizeof (char));
@@ -1967,11 +2061,12 @@ void caso_rip (Parametros* par)
         remove_hashtable (par->hash_end_pessoas, end);
     }
     remove_hashtable (par->hash_pessoas, pessoa);
-    free_pessoa (pessoa);
+    //free_pessoa (pessoa);
     result = (char*) calloc (5, sizeof (char));
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (cpf);
+    cpf = NULL;
     return;
 }
 
@@ -1995,6 +2090,7 @@ void caso_ecq_pergunta (Parametros* par)
     endereco = identificador_endereco_comercio (cep);
     enderecos = get_lista_hashtable (par->hash_end_comercios, endereco);
     free (endereco);
+    endereco = NULL;
     if (!largura_lista (enderecos))
     {
         result = (char*) calloc (55, sizeof (char));
@@ -2024,6 +2120,7 @@ void caso_ecq_pergunta (Parametros* par)
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (cep);
+    cep = NULL;
     return;
 }
 
@@ -2077,6 +2174,7 @@ void caso_ecr_pergunta (Parametros* par)
             endereco = identificador_endereco_comercio (get_cep_quadra (quadra));
             enderecos = get_lista_hashtable (par->hash_end_comercios, endereco);
             free (endereco);
+            endereco = NULL;
             if (!largura_lista (enderecos))
             {
                 primeiro = get_proximo_lista (report, primeiro);
@@ -2141,6 +2239,7 @@ void caso_ecr_pergunta (Parametros* par)
         endereco = identificador_endereco_comercio (get_cep_quadra (quadra));
         enderecos = get_lista_hashtable (par->hash_end_comercios, endereco);
         free (endereco);
+        endereco = NULL;
         if (!largura_lista (enderecos))
         {
             result = (char*) calloc (55, sizeof (char));
@@ -2176,6 +2275,7 @@ void caso_ecr_pergunta (Parametros* par)
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (tipo);
+    tipo = NULL;
     return;
 }
 
@@ -2203,6 +2303,7 @@ void caso_tecq_pergunta (Parametros* par)
     quadraAux = cria_quadra (cep, 0, 0, 0, 0, "", "");
     quadra = get_hashtable (par->hash_quadras, quadraAux);
     free (quadraAux);
+    quadraAux = NULL;
     if (quadra == NULL)
     {
         relatorio = (char*) calloc (55, sizeof (char));
@@ -2213,6 +2314,7 @@ void caso_tecq_pergunta (Parametros* par)
     end = identificador_endereco_comercio (cep);
     enderecos = get_lista_hashtable (par->hash_end_comercios, end);
     free (end);
+    end = NULL;
     if (!largura_lista (enderecos))
     {
         relatorio = (char*) calloc (55, sizeof (char));
@@ -2243,6 +2345,7 @@ void caso_tecq_pergunta (Parametros* par)
     sprintf (relatorio, "\n");
     insere_fila (par->resultado, relatorio);
     free (cep);
+    cep = NULL;
     return;
 }
 
@@ -2297,6 +2400,7 @@ void caso_tecr_pergunta (Parametros* par)
         end = identificador_endereco_comercio (get_cep_quadra (valor));
         enderecos = get_lista_hashtable (par->hash_end_comercios, end);
         free (end);
+        end = NULL;
         if (!largura_lista (enderecos))
         {
             relatorioQuad = (char*) calloc (55, sizeof (char));
@@ -2366,8 +2470,11 @@ void caso_hmpe_pergunta (Parametros* par)
     anot = cria_anotacao (get_x_hidrante (hidA), get_y_hidrante (hidA), get_x_hidrante (hidB), get_y_hidrante (hidB), "hmp");
     insere_fila (par->anotacoes, anot);
     free (cep);
+    cep = NULL;
     free (face);
+    face = NULL;
     free (num);
+    num = NULL;
     return;
 }
 void caso_hmp_pergunta (Parametros* par)
@@ -2409,6 +2516,7 @@ void caso_hmp_pergunta (Parametros* par)
     anot = cria_anotacao (get_x_hidrante (hidA), get_y_hidrante (hidA), get_x_hidrante (hidB), get_y_hidrante (hidB), "hmp");
     insere_fila (par->anotacoes, anot);
     free (id);
+    id = NULL;
     return;
 }
 void caso_fec (Parametros* par)
@@ -2442,6 +2550,7 @@ void caso_fec (Parametros* par)
     remove_hashtable (par->hash_comercios, comercio);
     free_comercio (comercio);
     free (cnpj);
+    cnpj = NULL;
     return;
 }
 void caso_mud (Parametros* par)
@@ -2496,10 +2605,15 @@ void caso_mud (Parametros* par)
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
     free (cpf);
+    cpf = NULL;
     free (cep);
+    cep = NULL;
     free (face);
+    face = NULL;
     free (num);
+    num = NULL;
     free (comp);
+    comp = NULL;
     return;
 }
 
@@ -2550,9 +2664,13 @@ void caso_mudec (Parametros* par)
     anot = cria_anotacao (*coordAntiga, *(coordAntiga + 1), *coordNova, *(coordNova + 1), "mudec");
     insere_fila (par->anotacoes, anot);
     free (cnpj);
+    cnpj = NULL;
     free (cep);
+    cep = NULL;
     free (face);
+    face = NULL;
     free (num);
+    num = NULL;
     return;
 }
 
@@ -2609,6 +2727,7 @@ void caso_dpr (Parametros* par)
             ident = identificador_endereco_comercio (get_cep_quadra (cont));
             enderecos = get_lista_hashtable (par->hash_end_comercios, ident);
             free (ident);
+            ident = NULL;
             if (!largura_lista (enderecos))
             {
                 tempChar = (char*) calloc (55, sizeof (char));
@@ -2635,6 +2754,7 @@ void caso_dpr (Parametros* par)
                     remove_hashtable (par->hash_comercios, com);
                     remove_lista (enderecos, auxA);
                     // free (endAux);
+                    // endAux = NULL;
                     free_comercio (com);    
                     auxA = temp2;
                 }
@@ -2644,6 +2764,7 @@ void caso_dpr (Parametros* par)
             ident = identificador_endereco_pessoa (auxCep);
             enderecos = get_lista_hashtable (par->hash_end_pessoas, ident);
             free (ident);
+            ident = NULL;
             if (largura_lista (enderecos) == 0)
             {
                 tempChar = (char*) calloc (55, sizeof (char));
@@ -2669,6 +2790,7 @@ void caso_dpr (Parametros* par)
                     remove_hashtable (par->hash_end_pessoas, endAux);
                     remove_hashtable (par->hash_pessoas, pes);
                     //free (endAux);
+                    //endAux = NULL;
                     remove_lista (enderecos, auxA);
                     free_pessoa (pes);
                     auxA = temp2;
@@ -2679,7 +2801,7 @@ void caso_dpr (Parametros* par)
             remove_valor_arvore (par->tree_quadras, cont);
             remove_hashtable (par->hash_quadras, cont);
             remove_lista (quadras, primeiro);
-            free_quadra (cont);
+            //free_quadra (cont);
             primeiro = temp2;
         }
         else
@@ -2827,7 +2949,9 @@ void caso_t_ec (Parametros* par)
     sscanf (par->comando, "%s %s", cod, info);
     tipo = cria_tipo_comercio (cod, info);
     free (cod);
+    cod = NULL;
     free (info);
+    info = NULL;
     insere_hashtable (par->hash_tipos, tipo);
     return;
 }
@@ -2854,13 +2978,20 @@ void caso_e (Parametros* par)
     tAux = cria_tipo_comercio (cod, "");
     t = get_hashtable (par->hash_tipos, tAux);
     free (tAux);
+    tAux = NULL;
     comercio = cria_comercio (cnpj, t, cep, face, num, nome);
     free (cod);
+    cod = NULL;
     free (cnpj);
+    cnpj = NULL;
     free (cep);
+    cep = NULL;
     free (face);
+    face = NULL;
     free (num);
+    num = NULL;
     free (nome);
+    nome = NULL;
     insere_hashtable (par->hash_comercios, comercio);
     end = get_endereco_comercio (comercio);
     insere_hashtable (par->hash_end_comercios, end);
@@ -2885,10 +3016,15 @@ void caso_p (Parametros* par)
     sscanf (par->comando, "%s %s %s %s %s", cpf, nome, sobrenome, sexo, nascimento);
     pessoa = cria_pessoa (nome, sobrenome, cpf, sexo, nascimento);
     free (cpf);
+    cpf = NULL;
     free (nome);
+    nome = NULL;
     free (sobrenome);
+    sobrenome = NULL;
     free (sexo);
+    sexo = NULL;
     free (nascimento);
+    nascimento = NULL;
     insere_hashtable (par->hash_pessoas, pessoa);
     return;
 }
@@ -2912,6 +3048,7 @@ void caso_m (Parametros* par)
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
     free (auxPes);
+    auxPes = NULL;
     if (pessoa == NULL)
     {
         printf ("\nERRO: MORADOR NAO ENCONTRADO!");
@@ -2919,10 +3056,15 @@ void caso_m (Parametros* par)
     }
     end = set_endereco_pessoa (pessoa, cep, face, num, comp);
     free (cpf);
+    cpf = NULL;
     free (cep);
+    cep = NULL;
     free (face);
+    face = NULL;
     free (num);
+    num = NULL;
     free (comp);
+    comp = NULL;
     insere_hashtable (par->hash_end_pessoas, end);
     return;
 }

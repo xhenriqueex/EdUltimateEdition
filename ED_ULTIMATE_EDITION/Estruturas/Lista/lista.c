@@ -81,7 +81,7 @@ Posic remove_lista (Lista list, Posic p)
 
 	if (l->primeiro == (elemento *) p) {
 		if (largura_lista(list) == 1) {
-			free(l->primeiro);
+			//free(l->primeiro);
 			l->primeiro = NULL;
 			l->ultimo = NULL;
 			p = NULL;

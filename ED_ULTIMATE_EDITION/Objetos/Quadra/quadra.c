@@ -123,6 +123,15 @@ int compare_quadra (void* quad1, void* quad2, int dim)
     quadA = (Quadra*) quad1;
     quadB = (Quadra*) quad2;
     dim = dim % 2;
+    if(quadA == NULL) {
+        printf("fodei\n");
+    }
+    if(quadA->cep == NULL) {
+        printf("AAAAAAAAAA\n");
+    }
+    if(quadB->cep == NULL) {
+        printf("BBBBBBBBBBB\n");
+    }
     if (!strcmp(quadA->cep, quadB->cep))
     {
         return 0;
@@ -170,8 +179,12 @@ void free_quadra (void* quad)
     Quadra* quadra;
     quadra = (Quadra*) quad;
     free (quadra->cep);
+    quadra->cep = NULL;
     free (quadra->cor_borda);
+    quadra->cor_borda = NULL;
     free (quadra->cor_preenche);
+    quadra->cor_preenche = NULL;
     free (quadra);
+    quadra = NULL;
     return;
 }

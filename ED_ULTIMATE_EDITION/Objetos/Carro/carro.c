@@ -45,7 +45,9 @@ char* cria_svg_carro (void* car)
     free_retangulo (rt);
     free_anotacao (nt);
     free (ret);
+    ret = NULL;
     free (anot);
+    anot = NULL;
     return (result);
 }
 
@@ -71,7 +73,9 @@ void free_carro (void* car)
     carro* c;
     c = (carro*) car;
     free (c->placa);
+    c->placa = NULL;
     free (c);
+    c = NULL;
 }
 
 //GERA UM RELATÓRIO DO CARRO

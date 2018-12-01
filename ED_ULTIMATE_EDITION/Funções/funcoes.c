@@ -80,8 +80,10 @@ void free_strings (char** strings)
 	for (i = 0; i < tamanho_strings (strings); i++)
     {
 		free (strings[i]);
+        strings[i] = NULL;
 	}
 	free (strings);
+    strings = NULL;
 }
 
 //VERIFICA E RETORNA O MAIOR VALOR
@@ -809,6 +811,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
         sprintf (charAux, "\nTipo: %s", tipo);
         strcat (result, charAux);
         free (charAux);
+        charAux = NULL;
         do
         {
             comercioAux = get_valor_lista (primeiro);
@@ -820,6 +823,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
                 sprintf (charAux, "\n   Nome: %s", nome);
                 strcat (result, charAux);
                 free (charAux);
+                charAux = NULL;
                 prox = get_proximo_lista (comercios, primeiro);
                 remove_lista (comercios, primeiro);
                 primeiro = prox;
@@ -856,6 +860,7 @@ char* imprime_tipos_quadra (Lista comercios)
         sprintf (charAux, "\n   Tipo: %s", tipo);
         strcat (result, charAux);
         free (charAux);
+        charAux = NULL;
         do
         {
             comercioAux = get_valor_lista (primeiro);
@@ -922,6 +927,7 @@ void fecha_qry (Parametros* par)
     strcat (caminho, ".svg");
     saida_SVG = fopen (caminho, "w");
     free (caminho);
+    caminho = NULL;
     fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
     for (i=0; i<par->max_figuras; i++)
     {
@@ -934,6 +940,7 @@ void fecha_qry (Parametros* par)
             conteudo_svg = cria_svg_retangulo (get_valor_item (*(par->figuras + i)));
             fprintf (saida_SVG, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             free_retangulo (get_valor_item (*(par->figuras + i)));
             continue;
         }
@@ -942,6 +949,7 @@ void fecha_qry (Parametros* par)
             conteudo_svg = cria_svg_circulo (get_valor_item (*(par->figuras + i)));
             fprintf (saida_SVG, conteudo_svg);
             free (conteudo_svg);
+            conteudo_svg = NULL;
             free_circulo (get_valor_item (*(par->figuras + i)));
             continue;
         }
@@ -960,6 +968,7 @@ void fecha_qry (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)) + 3, get_y_quadra (get_valor_lista (primeiro)) + get_h_quadra (get_valor_lista (primeiro)) - 3, get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
@@ -976,6 +985,7 @@ void fecha_qry (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(primeiro)), get_y_hidrante(get_valor_lista(primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
@@ -992,6 +1002,7 @@ void fecha_qry (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
@@ -1008,6 +1019,7 @@ void fecha_qry (Parametros* par)
         fprintf (saida_SVG, conteudo_svg);
         fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase (get_valor_lista (primeiro)));
         free (conteudo_svg);
+        conteudo_svg = NULL;
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
@@ -1016,6 +1028,7 @@ void fecha_qry (Parametros* par)
         conteudo_svg = cria_svg_anotacao (remove_fila (par->anotacoes));
         fprintf (saida_SVG, conteudo_svg);
         free (conteudo_svg);
+        conteudo_svg = NULL;
         continue;
     }
     fprintf (saida_SVG, "\n</svg>");
@@ -1028,6 +1041,7 @@ void fecha_qry (Parametros* par)
     strcat (caminho, ".txt");
     saida_QRY = fopen (caminho, "a");
     free (caminho);
+    caminho = NULL;
     percorre = par->arquivo_entrada_qry + strlen (par->arquivo_entrada_qry) - 1;
     while (*percorre != '/')
     {
@@ -1041,6 +1055,7 @@ void fecha_qry (Parametros* par)
         conteudo_svg = remove_fila (par->resultado);
         fprintf (saida_QRY, conteudo_svg);
         free (conteudo_svg);
+        conteudo_svg = NULL;
         continue;
     }
     fclose (saida_QRY);

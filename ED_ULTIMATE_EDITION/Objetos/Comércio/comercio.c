@@ -76,8 +76,11 @@ void* set_endereco_comercio (void* com,  char* cep, char* face, char* num)
     Com* result;
     result = (Com*) com;
     free (result->endereco->cep);
+    result->endereco->cep = NULL;
     free (result->endereco->face);
+    result->endereco->face = NULL;
     free (result->endereco->num);
+    result->endereco->num = NULL;
     result->endereco->cep = (char*) calloc (strlen (cep) + 2 , sizeof (char*));
     result->endereco->face = (char*) calloc (strlen (face) + 2 , sizeof (char*));
     result->endereco->num = (char*) calloc (strlen (num) + 2  , sizeof (char*));
@@ -101,15 +104,22 @@ void free_comercio (void* com)
     Com* result;
     result = (Com*) com;
     free (result->nome);
+    result->nome = NULL;
     free (result->cnpj);
+    result->cnpj = NULL;
     if (result->endereco != NULL) 
     {
         free (result->endereco->cep);
+        result->endereco->cep = NULL;
         free (result->endereco->face);
+        result->endereco->face = NULL;
         free (result->endereco->num);
+        result->endereco->num = NULL;
         free (result->endereco);
+        result->endereco = NULL;
     }
     free (result);
+    result = NULL;
 }
 
 //FUNÇÃO DE COMPARAÇÃO DE CNPJ DE COMÉRCIO

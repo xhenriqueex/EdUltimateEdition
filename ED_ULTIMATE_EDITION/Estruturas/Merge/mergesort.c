@@ -70,4 +70,5 @@ void intercala (void** lista, int inic, int meio, int fim, int compare (void*, v
         lista[comAux] = vetAux[comAux-inic];
     }
     free(vetAux);
+    vetAux = NULL;
 }

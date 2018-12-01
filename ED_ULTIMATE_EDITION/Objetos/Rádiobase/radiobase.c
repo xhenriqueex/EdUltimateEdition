@@ -161,8 +161,12 @@ void free_radiobase (void* radiobase)
     Radiobase* rb;
     rb = (Radiobase*) radiobase;
     free (rb->cor_borda);
+    rb->cor_borda = NULL;
     free (rb->cor_preenche);
+    rb->cor_preenche = NULL;
     free (rb->id);
+    rb->id = NULL;
     free (rb);
+    rb = NULL;
     return;
 }
