@@ -121,7 +121,7 @@ void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, v
             continue;
         }
         Quadra* aux;
-        aux = get_valor_lista (quadras, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_quadra (aux);
         xf = xi + get_w_quadra (aux);
         yi = get_y_quadra (aux);
@@ -145,7 +145,7 @@ void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, v
             continue;
         }
         Hidrante* aux;
-        aux = get_valor_lista (hidrantes, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_hidrante (aux) - get_r_hidrante (aux);
         xf = get_x_hidrante (aux) + get_r_hidrante (aux);
         yi = get_y_hidrante (aux) - get_r_hidrante (aux);
@@ -169,7 +169,7 @@ void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, v
             continue;
         }
         Semaforo* aux;
-        aux = get_valor_lista (semaforos, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_semaforo (aux) - get_r_semaforo (aux);
         xf = get_x_semaforo (aux) + get_r_semaforo (aux);
         yi = get_y_semaforo (aux) - get_r_semaforo (aux);
@@ -193,7 +193,7 @@ void reporta_dentro_retangulo (Fila resultado, void* quadras, void* hidrantes, v
             continue;
         }
         Radiobase* aux;
-        aux = get_valor_lista (radiobases, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_radiobase (aux) - get_r_radiobase (aux);
         xf = get_x_radiobase (aux) + get_r_radiobase (aux);
         yi = get_y_radiobase (aux) - get_r_radiobase (aux);
@@ -228,7 +228,7 @@ Lista reporta_quadra_dentro_retangulo (Lista quadras, double w, double h, double
             continue;
         }
         Quadra* aux;
-        aux = get_valor_lista (quadras, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_quadra (aux);
         xf = xi + get_w_quadra (aux);
         yi = get_y_quadra (aux);
@@ -262,7 +262,7 @@ void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, voi
             continue;
         }
         Quadra* aux;
-        aux = get_valor_lista (quadras, primeiro);
+        aux = get_valor_lista (primeiro);
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux)), (get_y_quadra(aux)));
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux) + get_w_quadra(aux)), (get_y_quadra(aux)));
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux)), (get_y_quadra(aux) + get_h_quadra(aux)));
@@ -286,7 +286,7 @@ void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, voi
             continue;
         }
         Hidrante* aux;
-        aux = get_valor_lista (hidrantes, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_hidrante (aux) - x;
         value2 = get_y_hidrante (aux) - y;
         value1 *= value1;
@@ -311,7 +311,7 @@ void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, voi
             continue;
         }
         Semaforo* aux;
-        aux = get_valor_lista (semaforos, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_semaforo (aux) - x;
         value2 = get_y_semaforo (aux) - y;
         value1 *= value1;
@@ -336,7 +336,7 @@ void reporta_dentro_circulo (Fila resultado, void* quadras, void* hidrantes, voi
             continue;
         }
         Radiobase* aux;
-        aux = get_valor_lista (radiobases, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_radiobase (aux) - x;
         value2 = get_y_radiobase (aux) - y;
         value1 *= value1;
@@ -374,7 +374,7 @@ void delete_quadra_dentro_retangulo (Fila resultado, void* quadras, double x, do
             continue;
         }
         Quadra* aux;
-        aux = get_valor_lista (quadras, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_quadra (aux);
         xf = xi + get_w_quadra (aux);
         yi = get_y_quadra (aux);
@@ -436,7 +436,7 @@ void delete_equipamento_dentro_retangulo (Fila resultado, char* tipo, void* hidr
             continue;
         }
         Hidrante* aux;
-        aux = get_valor_lista (hidrantes, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_hidrante (aux) - get_r_hidrante (aux);
         xf = get_x_hidrante (aux) + get_r_hidrante (aux);
         yi = get_y_hidrante (aux) - get_r_hidrante (aux);
@@ -468,7 +468,7 @@ void delete_equipamento_dentro_retangulo (Fila resultado, char* tipo, void* hidr
             continue;
         }
         Semaforo* aux;
-        aux = get_valor_lista (semaforos, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_semaforo (aux) - get_r_semaforo (aux);
         xf = get_x_semaforo (aux) + get_r_semaforo (aux);
         yi = get_y_semaforo (aux) - get_r_semaforo (aux);
@@ -500,7 +500,7 @@ void delete_equipamento_dentro_retangulo (Fila resultado, char* tipo, void* hidr
             continue;
         }
         Radiobase* aux;
-        aux = get_valor_lista (radiobases, primeiro);
+        aux = get_valor_lista (primeiro);
         xi = get_x_radiobase (aux) - get_r_radiobase (aux);
         xf = get_x_radiobase (aux) + get_r_radiobase (aux);
         yi = get_y_radiobase (aux) - get_r_radiobase (aux);
@@ -544,7 +544,7 @@ void delete_quadra_dentro_circulo (Fila resultado, void* quadras, double x, doub
             continue;
         }
         Quadra* aux;
-        aux = get_valor_lista (quadras, primeiro);
+        aux = get_valor_lista (primeiro);
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux)), (get_y_quadra(aux)));
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux) + get_w_quadra(aux)), (get_y_quadra(aux)));
         result += dentro_borda_circulo (circulo, (get_x_quadra(aux)), (get_y_quadra(aux) + get_h_quadra(aux)));
@@ -610,7 +610,7 @@ void delete_equipamento_dentro_circulo (Fila resultado, char* tipo, void* hidran
             continue;
         }
         Hidrante* aux;
-        aux = get_valor_lista (hidrantes, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_hidrante (aux) - x;
         value2 = get_y_hidrante (aux) - y;
         value1 *= value1;
@@ -643,7 +643,7 @@ void delete_equipamento_dentro_circulo (Fila resultado, char* tipo, void* hidran
             continue;
         }
         Semaforo* aux;
-        aux = get_valor_lista (semaforos, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_semaforo (aux) - x;
         value2 = get_y_semaforo (aux) - y;
         value1 *= value1;
@@ -676,7 +676,7 @@ void delete_equipamento_dentro_circulo (Fila resultado, char* tipo, void* hidran
             continue;
         }
         Radiobase* aux;
-        aux = get_valor_lista (radiobases, primeiro);
+        aux = get_valor_lista (primeiro);
         value1 = get_x_radiobase (aux) - x;
         value2 = get_y_radiobase (aux) - y;
         value1 *= value1;
@@ -803,7 +803,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
     while (largura_lista (comercios) != 0)
     {
         primeiro = get_primeiro_lista (comercios);
-        comercio = get_valor_lista (comercios, primeiro);
+        comercio = get_valor_lista (primeiro);
         tipo = get_tipo_comercio (comercio);
         charAux = (char*) calloc (55, sizeof (char));
         sprintf (charAux, "\nTipo: %s", tipo);
@@ -811,7 +811,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
         free (charAux);
         do
         {
-            comercioAux = get_valor_lista (comercios, primeiro);
+            comercioAux = get_valor_lista (primeiro);
             aux = get_tipo_comercio (comercioAux);
             if (!strcmp (tipo, aux))
             {
@@ -850,7 +850,7 @@ char* imprime_tipos_quadra (Lista comercios)
     while (largura_lista (comercios) != 0)
     {
         primeiro = get_primeiro_lista (comercios);
-        comercio = get_valor_lista (comercios, primeiro);
+        comercio = get_valor_lista (primeiro);
         tipo = get_tipo_comercio (comercio);
         charAux = (char*) calloc (55, sizeof (char));
         sprintf (charAux, "\n   Tipo: %s", tipo);
@@ -858,7 +858,7 @@ char* imprime_tipos_quadra (Lista comercios)
         free (charAux);
         do
         {
-            comercioAux = get_valor_lista (comercios, primeiro);
+            comercioAux = get_valor_lista (primeiro);
             aux = get_tipo_comercio (comercioAux);
             if (!strcmp (tipo, aux))
             {
@@ -951,14 +951,14 @@ void fecha_qry (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        if (get_valor_lista (quadras, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (quadras, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_quadra (get_valor_lista (quadras, primeiro));
+        conteudo_svg = cria_svg_quadra (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (quadras, primeiro)) + get_h_quadra (get_valor_lista (quadras, primeiro)) - 3, get_cep_quadra (get_valor_lista (quadras, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)) + 3, get_y_quadra (get_valor_lista (primeiro)) + get_h_quadra (get_valor_lista (primeiro)) - 3, get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (quadras, primeiro);
     }
@@ -967,14 +967,14 @@ void fecha_qry (Parametros* par)
     primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        if (get_valor_lista (hidrantes, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (hidrantes, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_hidrante(get_valor_lista(hidrantes, primeiro));
+        conteudo_svg = cria_svg_hidrante(get_valor_lista(primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(hidrantes, primeiro)), get_y_hidrante(get_valor_lista(hidrantes, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(primeiro)), get_y_hidrante(get_valor_lista(primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
@@ -983,14 +983,14 @@ void fecha_qry (Parametros* par)
     primeiro = get_primeiro_lista (semaforos);
     do
     {
-        if (get_valor_lista(semaforos, primeiro) == NULL)
+        if (get_valor_lista(primeiro) == NULL)
         {
             primeiro = get_proximo_lista (semaforos, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_semaforo (get_valor_lista (semaforos, primeiro));
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (semaforos, primeiro)), get_y_semaforo (get_valor_lista (semaforos, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
@@ -999,14 +999,14 @@ void fecha_qry (Parametros* par)
     primeiro = get_primeiro_lista (radiobases);
     do
     {
-        if (get_valor_lista (radiobases, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (radiobases, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_radiobase (get_valor_lista (radiobases, primeiro));
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (radiobases, primeiro)), get_y_radiobase (get_valor_lista (radiobases, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (radiobases, primeiro);
     }

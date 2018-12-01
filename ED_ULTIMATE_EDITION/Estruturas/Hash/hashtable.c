@@ -49,7 +49,7 @@ void remove_hashtable (void* hash, void* item)
     while(t != NULL)
     {
         void* aux;
-        aux = get_valor_lista (list,t);
+        aux = get_valor_lista (t);
         if(table->compare (aux, item) == 0)
         {
             remove_lista (list, t);
@@ -71,7 +71,7 @@ void* get_hashtable (void* hash, void* ident)
     while (t != NULL)
     {
         void* aux;
-        aux = get_valor_lista (list,t);
+        aux = get_valor_lista (t);
         if(table->compare (aux, ident) == 0)
         {
             return aux;
@@ -94,7 +94,7 @@ Lista get_lista_hashtable (void* hash, void* ident)
     while (t != NULL)
     {
         void* aux;
-        aux = get_valor_lista (list,t);
+        aux = get_valor_lista (t);
         if (table->compare (aux, ident) == 0)
         {
             insere_lista (result, aux);

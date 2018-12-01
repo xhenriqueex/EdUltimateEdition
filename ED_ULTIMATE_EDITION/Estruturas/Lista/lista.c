@@ -1,292 +1,293 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "lista.h"
 
-typedef struct it
-{
-    void* valor;
-    struct it* ant;
-    struct it* prox;
-} Item;
+struct tipo_elemento {
+	void* forma;
+	struct tipo_elemento *proximo;
+	struct tipo_elemento *anterior;
+};
 
-typedef struct list
-{
-    Item* primeiro;
-    Item* ultimo;
-    int tamanho;
-} List;
+struct tipo_lista {
+	int tamanho;
+	struct tipo_elemento *primeiro;
+	struct tipo_elemento *ultimo;
+};
 
-typedef struct pos
-{
-    List* lista;
-    Item* item;
-} Pos;
+typedef struct tipo_lista lista;
+typedef struct tipo_elemento elemento;
 
 //CRIA E RETORNA UMA LISTA VAZIA
-void* cria_lista ()
+Lista cria_lista ()
 {
-    List* aux;
-    aux = (List*) calloc (1, sizeof(List));
-    aux->primeiro = NULL;
-    aux->ultimo = NULL;
-    aux->tamanho = 0;
-    return (void*) aux;
+	lista *l;
+
+	l = (lista *) malloc(sizeof(lista));
+	l->primeiro = NULL;
+	l->ultimo = NULL;
+
+	l->tamanho = 0;
+
+	return (Lista) l;
 }
 
 //VERIFICA O TAMANHO DA LISTA E O RETORNA
-int largura_lista (void* lista)
+int largura_lista (Lista list)
 {
-    List* aux;
-    aux = (List*) lista;
-    return aux->tamanho;
+	lista *l;
+	l = (lista *) list;
+
+	return l->tamanho;
 }
 
 //INSERE UM ELEMENTO NA LISTA E RETORNA SUA POSIÇÃO
-void* insere_lista (void* lista, void* item)
+Posic insere_lista (Lista list, void* obj)
 {
-    List* aux;
-    Item* insert;
-    Pos* retorno;
-    aux = (List*) lista;
-    insert = (Item*) calloc (1, sizeof(Item));
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    retorno->lista = aux;
-    retorno->item = insert;
-    insert->prox = NULL;
-    insert->valor = item;
-    if (aux->tamanho == 0)
-    {
-        aux->primeiro = insert;
-        aux->ultimo = insert;
-        insert->ant = NULL;
-        aux->tamanho++;
-        return (void*) retorno;
-    }
-    aux->tamanho++;
-    insert->ant = aux->ultimo;
-    aux->ultimo->prox = insert;
-    aux->ultimo = insert;
-    return (void*) retorno;
+    lista *l;
+	elemento *novoelemento, *auxiliar;
+
+	l = (lista *) list;
+
+	novoelemento = (elemento *) malloc(sizeof(elemento));
+	novoelemento->proximo = NULL;
+	novoelemento->anterior = NULL;
+	novoelemento->forma = obj;
+	
+	if(l->tamanho == 0) {
+		l->primeiro = novoelemento;
+	}
+	else {
+		auxiliar = l->primeiro;
+		while(auxiliar->proximo != NULL) {
+			auxiliar = auxiliar->proximo;
+		}
+		auxiliar->proximo = novoelemento;
+		novoelemento->anterior = auxiliar;
+	}
+	
+	l->ultimo = novoelemento;
+	l->tamanho++;
+	
+	return (Posic) novoelemento;
 }
 
 //REMOVE UM ELEMENTO NA LISTA
-void remove_lista (void* lista, void* posic)
+Posic remove_lista (Lista list, Posic p)
 {
-    List* aux;
-    aux = (List*) lista;
-    Pos* verif;
-    verif = (Pos*) posic;
-    if (aux->tamanho == 0)
-    {
-        return;
-    }
-    if (aux != verif->lista)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return;
-    }
-    if (verif->item->prox != NULL)
-    {
-        verif->item->prox->ant = verif->item->ant;
-    }
-    else
-    {
-        aux->ultimo = verif->item->ant;
-    }
-    if(verif->item->ant != NULL)
-    {
-        verif->item->ant->prox = verif->item->prox;    
-    }
-    else
-    {
-        aux->primeiro = verif->item->prox;
-    }
-    //free (verif->item);
-    //free (verif);
-    aux->tamanho--;
-    return;   
+    lista *l;
+	elemento *auxiliar, *auxiliar2;
+
+	l = (lista *) list;
+
+	if (l->primeiro == (elemento *) p) {
+		if (largura_lista(list) == 1) {
+			free(l->primeiro);
+			l->primeiro = NULL;
+			l->ultimo = NULL;
+			p = NULL;
+		} else {
+			auxiliar = (elemento *) p;
+			l->primeiro = auxiliar->proximo;
+			//free(auxiliar);
+			auxiliar = NULL;
+			p = (Posic) l->primeiro;
+		}
+	}
+	else {
+		if (l->ultimo == (elemento *) p) {
+			auxiliar = l->ultimo;
+			auxiliar = auxiliar->anterior;
+			//free(auxiliar->proximo);
+			auxiliar->proximo = NULL;
+			l->ultimo = auxiliar;
+			p = (Posic) auxiliar;
+		}
+		else {
+			auxiliar = (elemento *) p;
+			auxiliar2 = auxiliar->proximo;
+			auxiliar = auxiliar->anterior;
+			//free(auxiliar->proximo);
+			auxiliar->proximo = auxiliar2;
+			auxiliar2->anterior = auxiliar;
+			p = (Posic) auxiliar;
+		}
+	}
+	l->tamanho--;
+
+	return p;  
 }
 
 //RETORNA O VALOR DE UM ELEMENTO DA LISTA
-void* get_valor_lista (void* lista, void* posic)
+void* get_valor_lista (Posic p)
 {
-    List* aux;
-    aux = (List*) lista;
-    if (aux->tamanho == 0)
-    {
-        return NULL;
-    }
-    Pos* verif;
-    verif = (Pos*) posic;
-    if (aux != verif->lista)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return NULL;
-    }
-    return (void*) verif->item->valor;
+    elemento *auxiliar;
+	void* obj;
+
+	if (p != NULL) {
+		auxiliar = (elemento *) p;
+		obj = auxiliar->forma;
+	}
+	else {
+		obj = NULL;
+	}
+
+	return obj;
 }
 
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
-void* insere_antes_lista (void* lista, void* posic, void* valor)
+Posic insere_antes_lista (Lista list, Posic p, void* obj)
 {
-    List* aux;
-    aux = (List*) lista;
-    Pos* verif;
-    verif = (Pos*) posic;
-    if (aux->tamanho == 0)
-    {
-        return insere_lista (lista, valor);
-    }
-    if (aux != verif->lista)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return NULL;
-    }
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    Item* novo;
-    novo = (Item*) calloc (1, sizeof(Item));
-    novo->prox = verif->item;
-    novo->ant = verif->item->ant;
-    novo->ant->prox = novo;
-    novo->prox->ant = novo;
-    novo->valor = valor;
-    retorno->lista = aux;
-    retorno->item = novo;
-    if (aux->primeiro->ant != NULL)
-    {
-        aux->primeiro = novo;
-    }
-    return (void*) retorno;
+    lista *l;
+	elemento *novoelemento, *auxiliar;
+
+	l = (lista *) list;
+
+	if (p == NULL) {
+		printf("A posição solicitada não é válida.\n");
+	}
+	else {
+		novoelemento = (elemento *) malloc(sizeof(elemento));
+		novoelemento->forma = obj;
+		auxiliar = (elemento *) p;
+		p = (Posic) novoelemento;
+
+		if(auxiliar == l->primeiro) {
+			auxiliar->anterior = novoelemento;
+			novoelemento->proximo = auxiliar;
+			novoelemento->anterior = NULL;
+			l->primeiro = novoelemento;
+		}
+		else {
+			novoelemento->proximo = auxiliar;
+			auxiliar = auxiliar->anterior;
+			auxiliar->proximo = novoelemento;
+			novoelemento->anterior = auxiliar;
+			auxiliar = novoelemento->proximo;
+			auxiliar->anterior = novoelemento;
+		}
+
+		l->tamanho++;
+	}
+
+	return p;
 }
 
 //INSERE UM ITEM NA POSIÇÃO POSTERIOR AO INDICADO POR POSIC
-void* insere_depois_lista (void* lista, void* posic, void* valor)
+Posic insere_depois_lista (Lista list, Posic p, void* obj)
 {
-    List* aux;
-    aux = (List*) lista;
-    Pos* verif;
-    verif = (Pos*) posic;
-    if (aux->tamanho == 0)
-    {
-        return insere_lista (lista, valor);
-    }
-    if (aux != verif->lista)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return NULL;
-    }
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    Item* novo;
-    novo = (Item*) calloc (1, sizeof(Item));
-    novo->prox = verif->item->prox;
-    novo->ant = verif->item;
-    novo->ant->prox = novo;
-    novo->prox->ant = novo;
-    novo->valor = valor;
-    retorno->lista = aux;
-    retorno->item = novo;
-    if (aux->ultimo->prox != NULL)
-    {
-        aux->ultimo = novo;
-    }
-    return (void*) retorno;
+    lista *l;
+	elemento *novoelemento, *auxiliar;
+
+	l = (lista *) list;
+
+	if (p == NULL) {
+		printf("A posição solicitada não é válida.\n");
+	}
+	else {
+		novoelemento = (elemento *) malloc(sizeof(elemento));
+		novoelemento->forma = obj;
+		auxiliar = (elemento *) p;
+		p = (Posic) novoelemento;
+
+		if(auxiliar == l->ultimo) {
+			auxiliar->proximo = novoelemento;
+			novoelemento->anterior = auxiliar;
+			novoelemento->proximo = NULL;
+			l->ultimo = novoelemento;
+		}
+		else {
+			novoelemento->anterior = auxiliar;
+			auxiliar = auxiliar->proximo;
+			novoelemento->proximo = auxiliar;
+			auxiliar->anterior = novoelemento;
+			auxiliar = novoelemento->anterior;
+			auxiliar->proximo = novoelemento;
+		}
+
+		l->tamanho++;
+	}
+
+	return p;
 }
 
 //RETORNA O PRIMEIRO VALOR DA LISTA, CASO LENGTH = 0, RETORNA NULL
-void* get_primeiro_lista (void* lista)
+Posic get_primeiro_lista (Lista list)
 {
-    List* aux;
-    aux = (List*) lista;
-    if (aux->tamanho == 0)
-    {
-        return NULL;
-    }
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    retorno->item = aux->primeiro;
-    retorno->lista = lista;
-    return (void*) retorno;
+    lista *l;
+	Posic p;
+
+	l = (lista *) list;
+
+	if (l->tamanho != 0) {
+		p = (Posic) l->primeiro;
+	}
+	else {
+		p = NULL;
+	}
+
+	return p;
 }
 
 //RETORNA O PRÓXIMO ELEMENTO APONTADO POR POSIC
-void* get_proximo_lista (void* lista, void* posic)
+Posic get_proximo_lista (Lista list, Posic p)
 {
-    List* aux;
-    aux = (List*) lista;
-    if (aux->tamanho == 0)
-    {
-        return NULL;
-    }
-    Pos* verif;
-    verif = (Pos*) posic;
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    if (verif->lista != aux)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return NULL;
-    }
-    if (verif->item->prox == NULL)
-    {
-        return NULL;
-    }
-    retorno->lista = aux;
-    retorno->item = verif->item->prox;
-    return (void*) retorno;
+    lista *l;
+	elemento *auxiliar;
+
+	if (p != NULL) {
+		l = (lista *) list;
+		auxiliar = (elemento *) p;
+		auxiliar = auxiliar->proximo;
+		p = (Posic) auxiliar;
+	}
+	else {
+		p = NULL;
+	}
+
+	return p;
 }
 
 //RETORNA O ELEMENTO ANTERIOR A POSIC
-void* get_anterior_lista (void* lista, void* posic)
+Posic get_anterior_lista (Lista list, Posic p)
 {
-    List* aux;
-    aux = (List*) lista;
-    if (aux->tamanho == 0)
-    {
-        return NULL;
-    }
-    Pos* verif;
-    verif = (Pos*) posic;
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    if (verif->lista != aux)
-    {
-        printf ("\nERRO: LISTAS DIFERENTES!");
-        return NULL;
-    }
-    if (verif->item->ant == NULL)
-    {
-        return NULL;
-    }
-    retorno->lista = aux;
-    retorno->item = verif->item->ant;
-    return (void*) retorno;
+    lista *l;
+	elemento *auxiliar;
+
+	l = (lista *) list;
+	auxiliar = (elemento *) p;
+	auxiliar = auxiliar->anterior;
+	p = (Posic) auxiliar;
+
+	return p;
 }
 
 //RETORNA O ÚLTIMO ELEMENTO DA LISTA
-void* get_ultimo_lista (void* lista)
+Posic get_ultimo_lista (Lista list)
 {
-    List* aux;
-    aux = (List*) lista;
-    if (aux->tamanho == 0)
-    {
-        return NULL;
-    }
-    Pos* retorno;
-    retorno = (Pos*) calloc (1, sizeof(Pos));
-    retorno->item = aux->ultimo;
-    retorno->lista = lista;
-    return (void*) retorno;
+    lista *l;
+	Posic p;
+
+	l = (lista *) list;
+
+	if (l->tamanho != 0) {
+		p = (Posic) l->ultimo;
+	}
+	else {
+		p = NULL;
+	}
+
+	return p;
 }
 
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
-void concat_listas (void* lista1, void* lista2)
+void concat_listas (Lista lista1, Lista lista2)
 {
-    List* list1;
-    list1 = (List*) lista1;
-    List* list2;
-    list2 = (List*) lista2;
+    lista *list1, *list2;
+    elemento *element;
+
+    list1 = (lista*) lista1;
+    list2 = (lista*) lista2;
+
     if (list1->tamanho == 0)
     {
         list1->primeiro = list2->primeiro;
@@ -298,24 +299,49 @@ void concat_listas (void* lista1, void* lista2)
     {
         return;
     }
-    list1->ultimo->prox = list2->primeiro;
-    list2->primeiro->ant = list1->ultimo;
+    list1->ultimo->proximo = list2->primeiro;
+    list2->primeiro->anterior = list1->ultimo;
     list1->ultimo = list2->ultimo;
     list1->tamanho += list2->tamanho;
 }
 
 //LIBERA A MEMÓRIA ALOCADA DA LISTA
-void free_lista (void* lista)
-{
-    Item* it1;
-    Item* it2;
-    List* list;
-    list = (List*) lista;
-    it1 = list->primeiro;
-    while (it1 != NULL)
-    {
-        it2 = it1->prox;
-        free(it1);
-        it1 = it2;
-    }
+Posic liberar_elemento_lista(Lista list, Posic p) {
+	lista *l = NULL;
+	elemento *auxiliar = NULL, *auxiliar2 = NULL;
+
+	l = (lista *) list;
+	auxiliar = (elemento *) p;
+
+	l->tamanho--;
+
+	if (l->primeiro != NULL && l->primeiro != l->ultimo) {
+		auxiliar2 = auxiliar;
+		auxiliar = auxiliar->proximo;
+		auxiliar2->proximo = NULL;
+		auxiliar2->anterior = NULL;
+		auxiliar->anterior = NULL;
+		l->primeiro = auxiliar;
+		free(auxiliar2);
+		auxiliar2 = NULL;
+	}
+	else {
+		if (l->primeiro == l->ultimo) {
+			l->primeiro = NULL;
+			l->ultimo = NULL;
+			free(auxiliar);
+			auxiliar = NULL;
+		}
+	}
+	return (Posic) auxiliar;
+}
+
+void liberar_lista(Lista list) {
+	int i = 0;
+	Posic p = NULL;
+
+	for(i = 0; i < largura_lista(list); i++) {
+		p = get_primeiro_lista(list);
+		liberar_elemento_lista(list, p);
+	}
 }

@@ -1142,14 +1142,14 @@ void caso_a (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        if (get_valor_lista (quadras, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (quadras, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_quadra (get_valor_lista (quadras, primeiro));
+        conteudo_svg = cria_svg_quadra (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (quadras, primeiro)), get_y_quadra (get_valor_lista (quadras, primeiro)), get_cep_quadra (get_valor_lista (quadras, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)), get_y_quadra (get_valor_lista (primeiro)), get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (quadras, primeiro);
     }
@@ -1158,14 +1158,14 @@ void caso_a (Parametros* par)
     primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        if (get_valor_lista (hidrantes, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (hidrantes, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_hidrante (get_valor_lista (hidrantes, primeiro));
+        conteudo_svg = cria_svg_hidrante (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (hidrantes, primeiro)), get_y_hidrante (get_valor_lista (hidrantes, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (primeiro)), get_y_hidrante (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
@@ -1174,14 +1174,14 @@ void caso_a (Parametros* par)
     primeiro = get_primeiro_lista (semaforos);
     do
     {
-        if (get_valor_lista (semaforos, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (semaforos, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_semaforo (get_valor_lista (semaforos, primeiro));
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (semaforos, primeiro)), get_y_semaforo (get_valor_lista (semaforos, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
@@ -1190,14 +1190,14 @@ void caso_a (Parametros* par)
     primeiro = get_primeiro_lista (radiobases);
     do
     {
-        if (get_valor_lista (radiobases, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (radiobases, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_radiobase (get_valor_lista (radiobases, primeiro));
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (primeiro));
         fprintf (saida_SVG, conteudo_svg);
-        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (radiobases, primeiro)), get_y_radiobase(get_valor_lista (radiobases, primeiro)));
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase(get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
@@ -1259,14 +1259,14 @@ void caso_hashtag (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        if (get_valor_lista (quadras, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (quadras, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_quadra (get_valor_lista (quadras, primeiro));
+        conteudo_svg = cria_svg_quadra (get_valor_lista (primeiro));
         fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (quadras, primeiro)) + 3, get_y_quadra (get_valor_lista (quadras, primeiro)) + (get_h_quadra (get_valor_lista (quadras, primeiro))) - 3, get_cep_quadra (get_valor_lista (quadras, primeiro)));
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)) + 3, get_y_quadra (get_valor_lista (primeiro)) + (get_h_quadra (get_valor_lista (primeiro))) - 3, get_cep_quadra (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (quadras, primeiro);
     }
@@ -1275,14 +1275,14 @@ void caso_hashtag (Parametros* par)
     primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        if (get_valor_lista (hidrantes, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (hidrantes, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_hidrante (get_valor_lista (hidrantes, primeiro));
+        conteudo_svg = cria_svg_hidrante (get_valor_lista (primeiro));
         fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (hidrantes, primeiro)), get_y_hidrante (get_valor_lista (hidrantes, primeiro)));
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante (get_valor_lista (primeiro)), get_y_hidrante (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
@@ -1291,14 +1291,14 @@ void caso_hashtag (Parametros* par)
     primeiro = get_primeiro_lista (semaforos);
     do
     {
-        if (get_valor_lista (semaforos, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (semaforos, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_semaforo (get_valor_lista (semaforos, primeiro));
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (primeiro));
         fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (semaforos, primeiro)), get_y_semaforo (get_valor_lista (semaforos, primeiro)));
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
@@ -1307,14 +1307,14 @@ void caso_hashtag (Parametros* par)
     primeiro = get_primeiro_lista (radiobases);
     do
     {
-        if (get_valor_lista (radiobases, primeiro) == NULL)
+        if (get_valor_lista (primeiro) == NULL)
         {
             primeiro = get_proximo_lista (radiobases, primeiro);
             continue;
         }
-        conteudo_svg = cria_svg_radiobase (get_valor_lista (radiobases, primeiro));
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (primeiro));
         fprintf (saida_svg, conteudo_svg);
-        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (radiobases, primeiro)), get_y_radiobase (get_valor_lista (radiobases, primeiro)));
+        fprintf (saida_svg, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase (get_valor_lista (primeiro)));
         free (conteudo_svg);
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
@@ -1523,7 +1523,7 @@ void caso_cc (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        compare = get_valor_lista (quadras, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp (get_cep_quadra (compare), aux))
         {
             compare = muda_cor_quadra (compare, cor_borda, cor_preenche);
@@ -1535,7 +1535,7 @@ void caso_cc (Parametros* par)
     primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        compare = get_valor_lista (hidrantes, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp(get_id_hidrante (compare), aux))
         {
             compare = muda_cor_hidrante (compare, cor_borda, cor_preenche);
@@ -1547,7 +1547,7 @@ void caso_cc (Parametros* par)
     primeiro = get_primeiro_lista (semaforos);
     do
     {
-        compare = get_valor_lista (semaforos, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp (get_id_semaforo (compare), aux))
         {
             compare = muda_cor_semaforo (compare, cor_borda, cor_preenche);
@@ -1559,7 +1559,7 @@ void caso_cc (Parametros* par)
     primeiro = get_primeiro_lista (radiobases);
     do
     {
-        compare = get_valor_lista (radiobases, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp(get_id_radiobase (compare), aux))
         {
             compare = muda_cor_radiobase (compare, cor_borda, cor_preenche);
@@ -1594,7 +1594,7 @@ void caso_crd_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        compare = get_valor_lista (quadras, primeiro);
+        compare = get_valor_lista (primeiro);
         if (compare == NULL)
         {
             primeiro = get_proximo_lista (quadras, primeiro);
@@ -1615,7 +1615,7 @@ void caso_crd_pergunta (Parametros* par)
         {
             continue;
         }
-        compare = get_valor_lista (hidrantes, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp(get_id_hidrante(compare), aux))
         {
             escreve_crd_hidrante (par->resultado, compare);
@@ -1631,7 +1631,7 @@ void caso_crd_pergunta (Parametros* par)
         {
             continue;
         }
-        compare = get_valor_lista (semaforos, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp(get_id_semaforo(compare), aux))
         {
             escreve_crd_semaforo (par->resultado, compare);
@@ -1647,7 +1647,7 @@ void caso_crd_pergunta (Parametros* par)
         {
             continue;
         }
-        compare = get_valor_lista (radiobases, primeiro);
+        compare = get_valor_lista (primeiro);
         if (!strcmp (get_id_radiobase (compare), aux))
         {
             escreve_crd_radiobase (par->resultado, compare);
@@ -1676,12 +1676,12 @@ void caso_crb_pergunta (Parametros* par)
     insere_fila (par->resultado, string);
     radiobases = get_todos_arvore (par->tree_radiobases);
     aux = get_primeiro_lista (radiobases);
-    rbA = get_valor_lista (radiobases, aux);
+    rbA = get_valor_lista (aux);
     rbB = vizinho_proximo_arvore (par->tree_radiobases, rbA);
     dist = dist_arvore (par->tree_radiobases, rbA, rbB);
     do
     {
-        auxR = get_valor_lista (radiobases, aux);
+        auxR = get_valor_lista (aux);
         if (auxR != NULL)
         {
             auxB = vizinho_proximo_arvore (par->tree_radiobases, auxR);
@@ -1750,7 +1750,7 @@ void caso_m_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (enderecos);
     do
     {
-        valor = get_valor_lista (enderecos, primeiro);
+        valor = get_valor_lista (primeiro);
         if (valor == NULL)
         {
             primeiro = get_proximo_lista (enderecos, primeiro);
@@ -1801,7 +1801,7 @@ void caso_mr_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (report);
     do
     {
-        quadra = get_valor_lista (report, primeiro);
+        quadra = get_valor_lista (primeiro);
         if (quadra == NULL)
         {
             primeiro = get_proximo_lista (report, primeiro);
@@ -1824,7 +1824,7 @@ void caso_mr_pergunta (Parametros* par)
         percorre = get_primeiro_lista (enderecos);
         do
         {
-            valor = get_valor_lista (enderecos, percorre);
+            valor = get_valor_lista (percorre);
             if (valor == NULL)
             {
                 percorre = get_proximo_lista (enderecos, percorre);
@@ -2005,7 +2005,7 @@ void caso_ecq_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (enderecos);
     do
     {
-        valor = get_valor_lista (enderecos, primeiro);
+        valor = get_valor_lista (primeiro);
         if (valor == NULL)
         {
             primeiro = get_proximo_lista (enderecos, primeiro);
@@ -2068,7 +2068,7 @@ void caso_ecr_pergunta (Parametros* par)
         primeiro = get_primeiro_lista (report);
         do
         {
-            quadra = get_valor_lista (report, primeiro);
+            quadra = get_valor_lista (primeiro);
             if (quadra == NULL)
             {
                 primeiro = get_proximo_lista (report, primeiro);
@@ -2085,7 +2085,7 @@ void caso_ecr_pergunta (Parametros* par)
             percorre = get_primeiro_lista (enderecos);
             do
             {
-                valor = get_valor_lista (enderecos, percorre);
+                valor = get_valor_lista (percorre);
                 if (valor == NULL)
                 {
                     percorre = get_proximo_lista (enderecos, percorre);
@@ -2129,7 +2129,7 @@ void caso_ecr_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (report);
     do
     {
-        quadra = get_valor_lista (report, primeiro);
+        quadra = get_valor_lista (primeiro);
         if (quadra == NULL)
         {
             primeiro = get_proximo_lista (report, primeiro);
@@ -2152,7 +2152,7 @@ void caso_ecr_pergunta (Parametros* par)
         percorre = get_primeiro_lista (enderecos);
         do
         {
-            valor = get_valor_lista (enderecos, percorre);
+            valor = get_valor_lista (percorre);
             if (valor == NULL)
             {
                 percorre = get_proximo_lista (enderecos, percorre);
@@ -2224,7 +2224,7 @@ void caso_tecq_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (enderecos);
     do
     {
-        auxA = get_valor_lista (enderecos, primeiro);
+        auxA = get_valor_lista (primeiro);
         if (auxA == NULL)
         {
             primeiro = get_proximo_lista (enderecos, primeiro);
@@ -2285,7 +2285,7 @@ void caso_tecr_pergunta (Parametros* par)
     primeiro = get_primeiro_lista (report);
     do
     {
-        valor = get_valor_lista (report, primeiro);
+        valor = get_valor_lista (primeiro);
         if (valor == NULL)
         {
             primeiro = get_proximo_lista (report, primeiro);
@@ -2309,7 +2309,7 @@ void caso_tecr_pergunta (Parametros* par)
         percorre = get_primeiro_lista (enderecos);
         do
         {
-            auxA = get_valor_lista (enderecos, percorre);
+            auxA = get_valor_lista (percorre);
             if (auxA == NULL)
             {
                 percorre = get_proximo_lista (enderecos, percorre);
@@ -2589,7 +2589,7 @@ void caso_dpr (Parametros* par)
     primeiro = get_primeiro_lista (quadras);
     do
     {
-        cont = get_valor_lista (quadras, primeiro);
+        cont = get_valor_lista (primeiro);
         if (cont == NULL)
         {
             primeiro = get_proximo_lista (quadras, primeiro);
@@ -2620,7 +2620,7 @@ void caso_dpr (Parametros* par)
                 auxA = get_primeiro_lista (enderecos);
                 do
                 {
-                    temp = get_valor_lista (enderecos, auxA);
+                    temp = get_valor_lista (auxA);
                     if (temp == NULL)
                     {
                         auxA = get_proximo_lista (enderecos, auxA);
@@ -2655,7 +2655,7 @@ void caso_dpr (Parametros* par)
                 auxA = get_primeiro_lista (enderecos);
                 do
                 {
-                    temp = get_valor_lista (enderecos, auxA);
+                    temp = get_valor_lista (auxA);
                     if (temp == NULL)
                     {
                         auxA = get_proximo_lista (enderecos, auxA);
@@ -2696,7 +2696,7 @@ void caso_dpr (Parametros* par)
     primeiro = get_primeiro_lista (hidrantes);
     do
     {
-        cont = get_valor_lista (hidrantes, primeiro);
+        cont = get_valor_lista (primeiro);
         if (cont == NULL)
         {
             primeiro = get_proximo_lista (hidrantes, primeiro);
@@ -2736,7 +2736,7 @@ void caso_dpr (Parametros* par)
     primeiro = get_primeiro_lista (semaforos);
     do
     {
-        cont = get_valor_lista (semaforos, primeiro);
+        cont = get_valor_lista (primeiro);
         if (cont == NULL)
         {
             primeiro = get_proximo_lista (semaforos, primeiro);
@@ -2776,7 +2776,7 @@ void caso_dpr (Parametros* par)
     primeiro = get_primeiro_lista (radiobases);
     do
     {
-        cont = get_valor_lista (radiobases, primeiro);
+        cont = get_valor_lista (primeiro);
         if (cont == NULL)
         {
             primeiro = get_proximo_lista (radiobases, primeiro);

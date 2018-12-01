@@ -6,9 +6,6 @@
 //DEFINE O TIPO LISTA
 typedef void* Lista;
 
-//DEFINE O TIPO ITEM
-typedef void* It;
-
 //DEFINE O TIPO POSIC
 typedef void* Posic;
 
@@ -16,39 +13,40 @@ typedef void* Posic;
 Lista cria_lista ();
 
 //VERIFICA O TAMANHO DA LISTA E O RETORNA
-int largura_lista (void* lista);
+int largura_lista (Lista list);
 
 //INSERE UM ELEMENTO NA LISTA E RETORNA SUA POSIÇÃO
-void* insere_lista (void* lista, void* item);
+Posic insere_lista (Lista list, void* obj);
 
 //REMOVE UM ELEMENTO NA LISTA
-void remove_lista (void* lista, void* posic);
+Posic remove_lista (Lista list, Posic p);
 
 //RETORNA O VALOR DE UM ELEMENTO DA LISTA
-void* get_valor_lista (void* lista, void* posic);
+void* get_valor_lista (Posic p);
 
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
-void* insere_antes_lista (void* lista, void* posic, void* valor);
+Posic insere_antes_lista (Lista list, Posic p, void* obj);
 
 //INSERE UM ITEM NA POSIÇÃO POSTERIOR AO INDICADO POR POSIC
-void* insere_depois_lista (void* lista, void* posic, void* valor);
+Posic insere_depois_lista (Lista list, Posic p, void* obj);
 
 //RETORNA O PRIMEIRO VALOR DA LISTA, CASO LENGTH = 0, RETORNA NULL;
-void* get_primeiro_lista (void* lista);
+Posic get_primeiro_lista (Lista list);
 
 //RETORNA O PRÓXIMO ELEMENTO APONTADO POR POSIC
-void* get_proximo_lista (void* lista, void* posic);
+Posic get_proximo_lista (Lista list, Posic p);
 
 //RETORNA O ELEMENTO ANTERIOR A POSIC
-void* get_anterior_lista (void* lista, void* posic);
+Posic get_anterior_lista (Lista list, Posic p);
 
 //RETORNA O ÚLTIMO ELEMENTO DA LISTA
-void* get_ultimo_lista (void* lista);
+Posic get_ultimo_lista (Lista list);
 
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
-void concat_listas (void* lista1, void* lista2);
+void concat_listas (Lista lista1, Lista lista2);
 
 //LIBERA A MEMÓRIA ALOCADA DA LISTA
-void free_lista (void* lista);
+Posic liberar_elemento_lista(Lista list, Posic p);
+void liberar_lista(Lista list);
 
 #endif

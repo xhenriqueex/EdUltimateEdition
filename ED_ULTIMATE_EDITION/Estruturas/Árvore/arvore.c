@@ -243,7 +243,7 @@ void remove_valor_arvore (Arvore* arv, void* ref)
     primeiro = get_primeiro_lista (list);
     while (primeiro != NULL)
     {
-        temp = get_valor_lista (list, primeiro);
+        temp = get_valor_lista (primeiro);
         if (temp)
         {
             insere_arvore (arv, temp);
