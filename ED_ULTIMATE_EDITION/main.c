@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     p->caminho_QRY = NULL;
     p->caminho_EC = NULL;
     p->caminho_PM = NULL;
-    //p->caminho_VIA = NULL;
+    p->caminho_VIA = NULL;
 
     //INICIALIZANDO STRING DE COMANDO
     p->comando = NULL;
@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
     p->arquivo_entrada_qry = NULL;
     p->arquivo_entrada_ec = NULL;
     p->arquivo_entrada_pm = NULL;
-    //p->arquivo_entrada_via = NULL;
+    p->arquivo_entrada_via = NULL;
     
     //ALOCANDO MEMÓRIA DO CONTROLE
     p->controle = (char*) calloc (5, sizeof (char));
@@ -155,7 +155,6 @@ int main(int argc, char* argv[])
             i++;
             continue;
         }
-        /*
         if (!strcmp (argv[i], "-v"))
         {
             p->arquivo_entrada_via = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
@@ -163,7 +162,6 @@ int main(int argc, char* argv[])
             i++;
             continue;
         }
-        */
     }
     if (p->diretorio_entrada != NULL)
     {
@@ -195,7 +193,6 @@ int main(int argc, char* argv[])
             strcat (p->caminho_PM, "/");
             strcat (p->caminho_PM, p->arquivo_entrada_pm);
         }
-        /*
         if (p->arquivo_entrada_via != NULL)
         {    
             p->caminho_VIA = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada_via) + 3, sizeof (char));
@@ -203,7 +200,6 @@ int main(int argc, char* argv[])
             strcat (p->caminho_VIA, "/");
             strcat (p->caminho_VIA, p->arquivo_entrada_via);
         }
-        */
     }
     else
     {
@@ -227,13 +223,11 @@ int main(int argc, char* argv[])
             p->caminho_PM = (char*) calloc (strlen (p->arquivo_entrada_pm) + 2, sizeof(char));
             strcpy (p->caminho_PM, p->arquivo_entrada_pm);
         }
-        /*
         if (p->arquivo_entrada_via != NULL)
         {
             p->caminho_VIA = (char*) calloc (strlen (p->arquivo_entrada_via) + 2, sizeof(char));
             strcpy (p->caminho_VIA, p->arquivo_entrada_via);
         }
-        */
     }
 
     //ABRINDO O ARQUIVO .GEO
@@ -324,6 +318,34 @@ int main(int argc, char* argv[])
         free(comandos);
         comandos = NULL;
     }
+
+    if (p->caminho_VIA != NULL)
+    {
+        //ABRINDO O ARQUIVO .VIA
+        arquivo = fopen (p->caminho_VIA, "r");
+        sprintf (p->controle, ".via");
+        if (arquivo == NULL)
+        {
+            printf ("\nArquivo .via não encontrado!\n");
+            return 0;
+        }
+        printf ("\nArquivo .via aberto com sucesso!\n");
+
+        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
+        comandos = coloca_comandos_arquivo_fila (arquivo);
+    
+        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
+        while (!fila_vazia (comandos))
+        {
+            p->comando = (char*) remove_fila (comandos);
+            executa_comando (p);
+            //free (p->comando);
+            //p->comando = NULL;
+        }
+        
+        //FECHANDO O ARQUIVO
+        fclose (arquivo);
+    }
     
     if (p->caminho_QRY != NULL)
     {
@@ -358,45 +380,15 @@ int main(int argc, char* argv[])
         comandos = NULL;
     }
 
-    /*
-    if (p->caminho_VIA != NULL)
-    {
-        //ABRINDO O ARQUIVO .VIA
-        arquivo = fopen (p->caminho_VIA, "r");
-        sprintf (p->controle, ".via");
-        if (arquivo == NULL)
-        {
-            printf ("\nArquivo .via não encontrado!\n");
-            return 0;
-        }
-        printf ("\nArquivo .via aberto com sucesso!\n");
-
-        //COLOCANDO TODOS OS COMANDOS DO ARQUIVO EM UMA FILA
-        comandos = coloca_comandos_arquivo_fila (arquivo);
-    
-        //TRATANDO OS COMANDOS PARA VETOR E OS EXECUTANDO
-        while (!fila_vazia (comandos))
-        {
-            p->comando = (char*) remove_fila (comandos);
-            executa_comando (p);
-            //free (p->comando);
-            //p->comando = NULL;
-        }
-
-        //FECHANDO O ARQUIVO .VIA
-        fecha_via (arquivo, p);
-
-        //FECHANDO O ARQUIVO
-        fclose (arquivo);
-    }
-    */
-
+    //LIBERANDO MEMÓRIA ALOCADA
     free (p->arquivo_entrada);
     p->arquivo_entrada = NULL;
     free (p->arquivo_entrada_ec);
     p->arquivo_entrada_ec = NULL;
     free (p->arquivo_entrada_pm);
     p->arquivo_entrada_pm = NULL;
+    free (p->arquivo_entrada_via);
+    p->arquivo_entrada_via = NULL;
     free (p->arquivo_entrada_qry);
     p->arquivo_entrada_qry = NULL;
     free (p->caminho_EC);
@@ -405,6 +397,8 @@ int main(int argc, char* argv[])
     p->caminho_GEO = NULL;
     free (p->caminho_PM);
     p->caminho_PM = NULL;
+    free (p->caminho_VIA);
+    p->caminho_VIA = NULL;
     free (p->caminho_QRY);
     p->caminho_QRY = NULL;
     free (p->caminho_SVG);
