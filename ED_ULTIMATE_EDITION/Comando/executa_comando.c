@@ -70,7 +70,7 @@ void caso_mud (Parametros* par);
 void caso_mudec (Parametros* par);
 void caso_dpr (Parametros* par);
 void caso_v (Parametros* par);
-void caso_e_ec (Parametros* par);
+void caso_e_via (Parametros* par);
 
 void executa_comando (void* p)
 {
