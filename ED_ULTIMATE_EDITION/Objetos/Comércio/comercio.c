@@ -241,6 +241,7 @@ double* get_xy_comercio (void* comercio, Parametros* par)
     double num;
     com = (Com*) comercio;
     double* result;
+    void *ret = NULL;
     if(com->endereco == NULL)
     {
         return NULL;
@@ -249,12 +250,14 @@ double* get_xy_comercio (void* comercio, Parametros* par)
     Quadra quad = get_hashtable (par->hash_quadras, temp);
     sscanf (com->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
-    result[0] = get_x_retangulo (get_retangulo_quadra (quad));
-    result[1] = get_y_retangulo (get_retangulo_quadra (quad));
+    ret = get_retangulo_quadra(quad);
+    result[0] = get_x_retangulo (ret);
+    result[1] = get_y_retangulo (ret);
     if(!strcmp (com->endereco->face, "N"))
     {
         result[0] += num;
-        result[1] += get_h_retangulo (get_retangulo_quadra (quad));
+        
+        result[1] += get_h_retangulo (ret);
     }
     if(!strcmp(com->endereco->face, "S"))
     {
@@ -267,8 +270,10 @@ double* get_xy_comercio (void* comercio, Parametros* par)
     if(!strcmp(com->endereco->face, "O"))
     {
         result[1] += num;
-        result[0] += get_w_retangulo (get_retangulo_quadra (quad));
+        result[0] += get_w_retangulo (ret);
     }
+
+    free(ret);
     return result;
 }
 

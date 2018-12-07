@@ -18,7 +18,7 @@ void Merge (void** lista, int size, int compare (void*, void*))
 //FUNÇÃO PARA ORDENAR OS PONTOS (EXECUÇÃO)
 void merge_sort (void** lista, int inic, int fim, int compare (void*, void*))
 {
-    int meio;
+    int meio = 0;
     if (inic == fim)
     {
         return;
@@ -32,8 +32,8 @@ void merge_sort (void** lista, int inic, int fim, int compare (void*, void*))
 //FUNÇÃO QUE INTERCALA OS VALORES EM ORDEM
 void intercala (void** lista, int inic, int meio, int fim, int compare (void*, void*))
 {
-    int com1, com2, comAux, tam;
-    void** vetAux;
+    int com1 = 0, com2 = 0, comAux = 0, tam = 0;
+    void** vetAux = NULL;
     com1 = inic;
     com2 = meio+1;
     comAux = 0;

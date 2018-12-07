@@ -238,6 +238,7 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
     double num;
     pes = (Pessoa*) pessoa;
     double* result;
+    void *ret = NULL;
     if (pes->endereco == NULL)
     {
         return NULL;
@@ -246,13 +247,14 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
     Quadra quad = get_hashtable (par->hash_quadras, temp);
     sscanf (pes->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
-    result[0] = get_x_retangulo (get_retangulo_quadra (quad));
-    result[1] = get_y_retangulo (get_retangulo_quadra (quad));
+    ret = get_retangulo_quadra(quad);
+    result[0] = get_x_retangulo (ret);
+    result[1] = get_y_retangulo (ret);
 
     if (!strcmp (pes->endereco->face, "N"))
     {
         result[0] += num;
-        result[1] += get_h_retangulo (get_retangulo_quadra (quad));
+        result[1] += get_h_retangulo (ret);
     }
     if (!strcmp (pes->endereco->face, "S"))
     {
@@ -265,8 +267,9 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
     if(!strcmp(pes->endereco->face, "O"))
     {
         result[1] += num;
-        result[0] += get_w_retangulo (get_retangulo_quadra (quad));
+        result[0] += get_w_retangulo (ret);
     }
+    free(ret);
     return result;
 }
 

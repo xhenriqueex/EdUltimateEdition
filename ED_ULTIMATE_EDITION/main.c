@@ -452,6 +452,10 @@ int main(int argc, char* argv[])
     //{
     //    free_item (p->figuras[i]);
     //}
+    free(p->anotacoes);
+    p->anotacoes = NULL;
+    free(p->resultado);
+    p->resultado = NULL;
     free (p);
     p = NULL;
 

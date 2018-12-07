@@ -11,7 +11,7 @@ typedef struct it {
 //CRIA UM ITEM E O RETORNA
 Item cria_item (void* Valor, char* tipo)
 {
-    it* aux;
+    it* aux = NULL;
     aux = (it*) calloc (1, sizeof(it));
     aux->valor = Valor;
     aux->tipo = tipo;
@@ -21,7 +21,7 @@ Item cria_item (void* Valor, char* tipo)
 //PEGA O TIPO DO ITEM
 char* get_tipo_item (Item item)
 {
-    it* aux;
+    it* aux = NULL;
     aux = (it*) item;
     return aux->tipo;
 }
@@ -29,7 +29,7 @@ char* get_tipo_item (Item item)
 //PEGA O VALOR DO ITEM
 Valor get_valor_item (Item item)
 {
-    it* aux;
+    it* aux = NULL;
     aux = (it*) item;
     return aux->valor;
 }
@@ -37,7 +37,7 @@ Valor get_valor_item (Item item)
 //LIBERA A MEMÓRIA ALOCADA DOS ITENS
 void free_item (Item item)
 {
-    it* aux;
+    it* aux = NULL;
     aux = (it*) item;
     free (aux->tipo);
     aux->tipo = NULL;

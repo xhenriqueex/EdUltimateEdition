@@ -20,7 +20,7 @@ typedef struct kd {
 //CRIA A ÁRVORE
 void* cria_arvore (int (*compare)(void*, void*, int), int dim)
 {
-    Arvore* result;
+    Arvore* result = NULL;
     result = (Arvore*) calloc (1, sizeof (Arvore));
     result->compare = compare;
     result->dim = dim;
@@ -70,9 +70,9 @@ void insere_nodulo (No* n, Arvore* arv, void* valor, int dim)
 //INSERE UM VALOR NA ÁRVORE
 void insere_arvore (void* arv, void* valor)
 {
-    Arvore* arvore;
+    Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
-    No* n;
+    No* n = NULL;
     n = (No*) arvore->nodulo;
     if (n == NULL)
     {
@@ -86,7 +86,7 @@ void insere_arvore (void* arv, void* valor)
 //LIBERA UM NÓDULO
 void free_nodulo (void* nodulo)
 {
-    No* n;
+    No* n = NULL;
     n = (No*) nodulo;
     if (n->esquerda != NULL)
     {
@@ -104,7 +104,7 @@ void free_nodulo (void* nodulo)
 //LIBERA A ÁRVORE
 void free_arvore (void* arvore)
 {
-    Arvore* arv;
+    Arvore* arv = NULL;
     arv = (Arvore*) arvore;
     free_nodulo (arv->nodulo);
     arv->compare = NULL;
@@ -117,7 +117,7 @@ void free_arvore (void* arvore)
 //RETORNA UMA LISTA COM TODOS OS VALORES DO NÓDULO
 Lista get_todos_nodulo (void* nodulo, void* lista)
 {
-    No* no;
+    No* no = NULL;
     no = (No*) nodulo;
     if (no == NULL)
     {
@@ -141,9 +141,9 @@ Lista get_todos_nodulo (void* nodulo, void* lista)
 //RETORNA UMA LISTA COM TODOS OS VALORES DA ÁRVORE
 Lista get_todos_arvore (void* arv)
 {
-    Arvore* arvore;
+    Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
-    Lista* list;
+    Lista* list = NULL;
     list = cria_lista ();
     return get_todos_nodulo (arvore->nodulo, list);
 }
@@ -176,7 +176,7 @@ void* get_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
 //RETORNA UM VALOR DA ÁRVORE, COMPARADO À REFERÊNCIA
 void* get_valor_arvore (void* arv, void* ref)
 {
-    Arvore* arvore;
+    Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
     int dim = 0;
     return get_valor_nodulo (arvore, arvore->nodulo, dim, ref);
@@ -198,7 +198,7 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
         dim = 0;
     }
     int i = arv->compare (nodulo->valor, ref, dim);
-    Lista list;
+    Lista list = NULL;
     if (i==0 && arv->compare (nodulo->valor, ref, dim + 1) == 0)
     {
         list = cria_lista();
@@ -231,17 +231,17 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
 //REMOVE UM VALOR DA ÁRVORE
 void remove_valor_arvore (Arvore* arv, void* ref)
 {
-    Arvore* arvore;
+    Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
     int dim = 0;
-    Lista list;
+    Lista list = NULL;
     list = remove_valor_nodulo (arv, arvore->nodulo, dim, ref);
     if (list == NULL)
     {
         return;
     }
-    void* primeiro;
-    void* temp;
+    void* primeiro = NULL;
+    void* temp = NULL;
     primeiro = get_primeiro_lista (list);
     while (primeiro != NULL)
     {
@@ -261,7 +261,7 @@ void remove_valor_arvore (Arvore* arv, void* ref)
 //RETORNA A DISTÂNCIA ENTRE DOIS VALORES DA ÁRVORE
 double dist_arvore (Arvore* arv, void* valor1, void* valor2)
 {
-    int i;
+    int i = 0;
     double dist = 0;
     for (i=0; i<arv->dim; i++)
     {
@@ -304,18 +304,18 @@ void vizinho_proximo_nodulo (No* n, Arvore* arv, void* ref, void** item, double*
 //RETORNA O VIZINHO MAIS PRÓXIMO À REFERÊNCIA NA ÁRVORE
 void* vizinho_proximo_arvore (void* arv, void* ref)
 {
-    Arvore* arvore;
+    Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
-    No* n;
+    No* n = NULL;
     n = (No*) arvore->nodulo;
     if (n == NULL)
     {
         return NULL;
     }
-    void** item;
+    void** item = NULL;
     item = (void**) calloc (1, sizeof (void*));
     *item = n->valor;
-    double* dist;
+    double* dist = NULL;
     dist = (double*) calloc (1, sizeof (double));
     *dist = dist_arvore (arvore, ref, n->valor);
     vizinho_proximo_nodulo (n, arvore, ref, item, dist, 0);

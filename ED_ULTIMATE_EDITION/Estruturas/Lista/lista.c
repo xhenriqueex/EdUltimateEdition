@@ -20,7 +20,7 @@ typedef struct tipo_elemento elemento;
 //CRIA E RETORNA UMA LISTA VAZIA
 Lista cria_lista ()
 {
-	lista *l;
+	lista *l = NULL;
 
 	l = (lista *) malloc(sizeof(lista));
 	l->primeiro = NULL;
@@ -34,7 +34,7 @@ Lista cria_lista ()
 //VERIFICA O TAMANHO DA LISTA E O RETORNA
 int largura_lista (Lista list)
 {
-	lista *l;
+	lista *l = NULL;
 	l = (lista *) list;
 
 	return l->tamanho;
@@ -43,8 +43,8 @@ int largura_lista (Lista list)
 //INSERE UM ELEMENTO NA LISTA E RETORNA SUA POSIÇÃO
 Posic insere_lista (Lista list, void* obj)
 {
-    lista *l;
-	elemento *novoelemento, *auxiliar;
+    lista *l = NULL;
+	elemento *novoelemento = NULL, *auxiliar = NULL;
 
 	l = (lista *) list;
 
@@ -74,8 +74,8 @@ Posic insere_lista (Lista list, void* obj)
 //REMOVE UM ELEMENTO NA LISTA
 Posic remove_lista (Lista list, Posic p)
 {
-    lista *l;
-	elemento *auxiliar, *auxiliar2;
+    lista *l = NULL;
+	elemento *auxiliar = NULL, *auxiliar2 = NULL;
 
 	l = (lista *) list;
 
@@ -120,8 +120,8 @@ Posic remove_lista (Lista list, Posic p)
 //RETORNA O VALOR DE UM ELEMENTO DA LISTA
 void* get_valor_lista (Posic p)
 {
-    elemento *auxiliar;
-	void* obj;
+    elemento *auxiliar = NULL;
+	void* obj = NULL;
 
 	if (p != NULL) {
 		auxiliar = (elemento *) p;
@@ -137,8 +137,8 @@ void* get_valor_lista (Posic p)
 //INSERE UM ITEM NA POSIÇÃO ANTERIOR AO INDICADO POR POSIC
 Posic insere_antes_lista (Lista list, Posic p, void* obj)
 {
-    lista *l;
-	elemento *novoelemento, *auxiliar;
+    lista *l = NULL;
+	elemento *novoelemento = NULL, *auxiliar = NULL;
 
 	l = (lista *) list;
 
@@ -175,8 +175,8 @@ Posic insere_antes_lista (Lista list, Posic p, void* obj)
 //INSERE UM ITEM NA POSIÇÃO POSTERIOR AO INDICADO POR POSIC
 Posic insere_depois_lista (Lista list, Posic p, void* obj)
 {
-    lista *l;
-	elemento *novoelemento, *auxiliar;
+    lista *l = NULL;
+	elemento *novoelemento = NULL, *auxiliar = NULL;
 
 	l = (lista *) list;
 
@@ -213,8 +213,8 @@ Posic insere_depois_lista (Lista list, Posic p, void* obj)
 //RETORNA O PRIMEIRO VALOR DA LISTA, CASO LENGTH = 0, RETORNA NULL
 Posic get_primeiro_lista (Lista list)
 {
-    lista *l;
-	Posic p;
+    lista *l = NULL;
+	Posic p = NULL;
 
 	l = (lista *) list;
 
@@ -231,8 +231,8 @@ Posic get_primeiro_lista (Lista list)
 //RETORNA O PRÓXIMO ELEMENTO APONTADO POR POSIC
 Posic get_proximo_lista (Lista list, Posic p)
 {
-    lista *l;
-	elemento *auxiliar;
+    lista *l = NULL;
+	elemento *auxiliar = NULL;
 
 	if (p != NULL) {
 		l = (lista *) list;
@@ -250,8 +250,8 @@ Posic get_proximo_lista (Lista list, Posic p)
 //RETORNA O ELEMENTO ANTERIOR A POSIC
 Posic get_anterior_lista (Lista list, Posic p)
 {
-    lista *l;
-	elemento *auxiliar;
+    lista *l = NULL;
+	elemento *auxiliar = NULL;
 
 	l = (lista *) list;
 	auxiliar = (elemento *) p;
@@ -264,8 +264,8 @@ Posic get_anterior_lista (Lista list, Posic p)
 //RETORNA O ÚLTIMO ELEMENTO DA LISTA
 Posic get_ultimo_lista (Lista list)
 {
-    lista *l;
-	Posic p;
+    lista *l = NULL;
+	Posic p = NULL;
 
 	l = (lista *) list;
 
@@ -282,7 +282,7 @@ Posic get_ultimo_lista (Lista list)
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
 void concat_listas (Lista lista1, Lista lista2)
 {
-    lista *list1, *list2;
+    lista *list1 = NULL, *list2 = NULL;
     elemento *element;
 
     list1 = (lista*) lista1;

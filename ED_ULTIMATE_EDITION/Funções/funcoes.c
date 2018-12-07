@@ -799,7 +799,7 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
     void* comercio;
     void* comercioAux;
     result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
-    tipo = (char*) calloc (155, sizeof (char));
+    //tipo = (char*) calloc (155, sizeof (char));
     aux = (char*) calloc (155, sizeof (char));
     nome = (char*) calloc (155, sizeof (char));
     while (largura_lista (comercios) != 0)

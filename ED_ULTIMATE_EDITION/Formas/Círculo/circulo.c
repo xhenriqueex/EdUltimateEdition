@@ -16,7 +16,7 @@ typedef struct circle {
 //RETORNA UM PONTEIRO PARA VOID COM AS INFORMAÇÕES DO CÍRCULO
 void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, double y)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) calloc (1, sizeof (Circulo));
     circulo->cor1 = (char*) calloc (strlen(cor1) + 2, sizeof(char));
     circulo->cor2 = (char*) calloc (strlen(cor2) + 2, sizeof(char));
@@ -32,7 +32,7 @@ void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, dou
 //RETORNA UMA STRING COM AS INFORMAÇÕES PARA IMPRIMIR O CÍRCULO NO SVG
 char* cria_svg_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     char* result = (char*) calloc(255, sizeof(char));
     circulo = (Circulo*) circle;
     sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", circulo->x, circulo->y, circulo->r, circulo->cor2, circulo->cor1);
@@ -42,10 +42,10 @@ char* cria_svg_circulo (void* circle)
 //RETORNA 0 SE UMA COORDENADA (X,Y) NÃO ESTIVER CONTIDA NO CÍRCULO, OU 1 CASO CONTRÁRIO
 int dentro_circulo (void* circle, double x, double y)
 {
-    double a;
-    double b;
-    double c;
-    Circulo* aux;
+    double a = 0;
+    double b = 0;
+    double c = 0;
+    Circulo* aux = NULL;
     aux = (Circulo*) circle;
     a = x - aux->x;
     b = y - aux->y;
@@ -60,10 +60,10 @@ int dentro_circulo (void* circle, double x, double y)
 //RETORNA 0 SE UMA COORDENADA(X,Y) NÃO ESTIVER CONTIDA NO CÍRCULO OU NA BORDA DO MESMO, OU 1 CASO CONTRÁRIO
 int dentro_borda_circulo (void* circle, double x, double y)
 {
-    double a;
-    double b;
-    double c;
-    Circulo* aux;
+    double a = 0;
+    double b = 0;
+    double c = 0;
+    Circulo* aux = NULL;
     aux = (Circulo*) circle;
     a = x - aux->x;
     b = y - aux->y;
@@ -78,8 +78,8 @@ int dentro_borda_circulo (void* circle, double x, double y)
 //RETORNA UM DOUBLE POINTER COM AS COORDENADAS DO CENTRO DE MASSA DO CÍRCULO
 double* centro_massa_circulo (void* circle)
 {
-    double* result;
-    Circulo* aux;
+    double* result = NULL;
+    Circulo* aux = NULL;
     aux = (Circulo*) circle;
     result = (double*) calloc (2, sizeof(double));
     *result = aux->x;
@@ -90,7 +90,7 @@ double* centro_massa_circulo (void* circle)
 //PEGA O ID DO CÍRCULO
 long int get_id_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->id;
 }
@@ -98,7 +98,7 @@ long int get_id_circulo (void* circle)
 //PEGA O RAIO DO CÍRCULO
 double get_r_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->r;
 }
@@ -106,7 +106,7 @@ double get_r_circulo (void* circle)
 //PEGA O X DO CÍRCULO
 double get_x_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->x;
 }
@@ -114,7 +114,7 @@ double get_x_circulo (void* circle)
 //PEGA O Y DO CÍRCULO
 double get_y_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->y;
 }
@@ -122,7 +122,7 @@ double get_y_circulo (void* circle)
 //PEGA A COR1 DO CÍRCULO
 char* get_cor1_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->cor1;
 }
@@ -130,7 +130,7 @@ char* get_cor1_circulo (void* circle)
 //PEGA A COR2 DO CÍRCULO
 char* get_cor2_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     return circulo->cor2;
 }
@@ -138,7 +138,7 @@ char* get_cor2_circulo (void* circle)
 //FUNÇÃO PARA DAR FREE NA MEMÓRIA ALOCADA DO CÍRCULO
 void free_circulo (void* circle)
 {
-    Circulo* circulo;
+    Circulo* circulo = NULL;
     circulo = (Circulo*) circle;
     free (circulo->cor1);
     circulo->cor1 = NULL;

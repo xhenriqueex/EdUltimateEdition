@@ -14,13 +14,13 @@ typedef struct hash {
 //CRIA UMA HASHTABLE DE MODULO N
 void* cria_hashtable (int modulo, int (*compare) (void*, void*), int (*hash) (void*, int))
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) calloc (1, sizeof (Hash_table));
     table->modulo = modulo;
     table->compare = compare;
     table->hash = hash;
     table->hashtable = (Lista*) calloc (modulo, sizeof (Lista));
-    int i;
+    int i = 0;
     for(i=0; i<modulo; i++)
     {
         *(table->hashtable + i) = cria_lista();
@@ -31,7 +31,7 @@ void* cria_hashtable (int modulo, int (*compare) (void*, void*), int (*hash) (vo
 //INSERE UM ITEM NA HASHTABLE
 void insere_hashtable (void* hash, void* item)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
     int hashcode = table->hash (item, table->modulo);
     insere_lista (*(table->hashtable + hashcode), item);
@@ -40,15 +40,15 @@ void insere_hashtable (void* hash, void* item)
 //REMOVE UM ITEM DA HASHTABLE
 void remove_hashtable (void* hash, void* item)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
     int hashcode = table->hash (item, table->modulo); 
     Lista list = *(table->hashtable + hashcode);
-    Posic t;
+    Posic t = NULL;
     t= get_primeiro_lista (list);
     while(t != NULL)
     {
-        void* aux;
+        void* aux = NULL;
         aux = get_valor_lista (t);
         if(table->compare (aux, item) == 0)
         {
@@ -62,15 +62,15 @@ void remove_hashtable (void* hash, void* item)
 //RETORNA UM ITEM DA HASHTABLE
 void* get_hashtable (void* hash, void* ident)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
     int hashcode = table->hash (ident, table->modulo);    
     Lista list = *(table->hashtable + hashcode);
-    Posic t;
+    Posic t = NULL;
     t = get_primeiro_lista (list);
     while (t != NULL)
     {
-        void* aux;
+        void* aux = NULL;
         aux = get_valor_lista (t);
         if(table->compare (aux, ident) == 0)
         {
@@ -84,16 +84,16 @@ void* get_hashtable (void* hash, void* ident)
 //RETORNA UM LISTA DE ITENS DA HASHTABLE
 Lista get_lista_hashtable (void* hash, void* ident)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
     int hashcode = table->hash (ident, table->modulo);    
     Lista list = *(table->hashtable + hashcode);
     Lista result = cria_lista();
-    Posic t;
+    Posic t = NULL;
     t = get_primeiro_lista (list);
     while (t != NULL)
     {
-        void* aux;
+        void* aux = NULL;
         aux = get_valor_lista (t);
         if (table->compare (aux, ident) == 0)
         {
@@ -107,10 +107,10 @@ Lista get_lista_hashtable (void* hash, void* ident)
 //RETORNA UMA LISTA COM TODOS OS ITENS DA HASHTABLE
 Lista get_todos_hashtable (void* hash)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
     Lista list = cria_lista ();
-    int i;
+    int i = 0;
     for(i = 0; i < table->modulo; i++)
     {
         concat_listas (list, *(table->hashtable + i));
@@ -121,10 +121,10 @@ Lista get_todos_hashtable (void* hash)
 //APAGA A HASHTABLE (DEPENDE DO FREE DA LISTA -> NAO IMPLEMENTADO)
 void free_hashtable (void* hash)
 {
-    Hash_table* table;
+    Hash_table* table = NULL;
     table = (Hash_table*) hash;
-    Lista list = cria_lista();
-    int i;
+    //Lista list = cria_lista();
+    int i = 0;
     for(i = 0; i < table->modulo; i++)
     {
         //Lista_free(*(table->hashtable + i));

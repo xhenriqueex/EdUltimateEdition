@@ -261,7 +261,7 @@ void dijkstra(Grafo G, int src)
 
 int minima_distancia(int dist[], int sptSet[], int tam)
 {
-    int min = INFINITO, min_index;
+    int min = INFINITO, min_index = 0;
 
     for (int v = 0; v < tam; v++)
     {

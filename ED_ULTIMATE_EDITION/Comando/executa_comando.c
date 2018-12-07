@@ -494,6 +494,8 @@ void caso_nx (Parametros* par)
         i++;
         par->contador_figuras++;
     }
+    free(fila);
+    fila = NULL;
     return;
 }
 void caso_c (Parametros* par)
@@ -1819,6 +1821,8 @@ void caso_m_pergunta (Parametros* par)
         result = (char*) calloc (55, sizeof (char));
         sprintf (result, "\nQUADRA NÃO ENCONTRADA!\n\n");
         insere_fila (par->resultado, result);
+        free(cep);
+        cep = NULL;
         return;
     }
     free_quadra (quad);
@@ -1832,6 +1836,10 @@ void caso_m_pergunta (Parametros* par)
         result = (char*) calloc (55, sizeof (char));
         sprintf (result, "\nNENHUM MORADOR ENCONTRADO NESSA QUADRA!\n\n");
         insere_fila (par->resultado, result);
+        free(enderecos);
+        enderecos = NULL;
+        free(cep);
+        cep = NULL;
         return;
     }
     primeiro = get_primeiro_lista (enderecos);
@@ -1849,6 +1857,14 @@ void caso_m_pergunta (Parametros* par)
         primeiro = get_proximo_lista (enderecos, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    {
+        remove_lista(enderecos, get_primeiro_lista(enderecos));
+    }
+    free(enderecos);
+    enderecos = NULL;
+    
     free (cep);
     cep = NULL;
     return;
@@ -1954,8 +1970,10 @@ void caso_dm_pergunta (Parametros* par)
     sscanf (par->comando, "%s", cpf);
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
-    free (auxPes);
+    free_pessoa (auxPes);
     auxPes = NULL;
+    free(cpf);
+    cpf = NULL;
     if (pessoa == NULL)
     {
         result = (char*) calloc (55, sizeof (char));
@@ -1974,6 +1992,8 @@ void caso_dm_pergunta (Parametros* par)
     result = (char*) calloc (5, sizeof (char));
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
+    free(coord);
+    coord = NULL;
     free (cpf);
     cpf = NULL;
     return;
@@ -1997,7 +2017,7 @@ void caso_de_pergunta (Parametros* par)
     sscanf (par->comando, "%s", cnpj);
     auxCom = cria_comercio (cnpj, "", "", "", "", "");
     comercio = get_hashtable (par->hash_comercios, auxCom);
-    free (auxCom);
+    free_comercio (auxCom);
     auxCom = NULL;
     if (comercio == NULL)
     {
@@ -2017,6 +2037,8 @@ void caso_de_pergunta (Parametros* par)
     result = (char*) calloc (5, sizeof (char));
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
+    free(coord);
+    coord = NULL;
     free (cnpj);
     cnpj = NULL;
     return;
@@ -2041,7 +2063,7 @@ void caso_rip (Parametros* par)
     sscanf (par->comando, "%s", cpf);
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
-    free (auxPes);
+    free_pessoa (auxPes);
     auxPes = NULL;
     if (pessoa == NULL)
     {
@@ -2065,6 +2087,8 @@ void caso_rip (Parametros* par)
     result = (char*) calloc (5, sizeof (char));
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
+    free(coord);
+    coord = NULL;
     free (cpf);
     cpf = NULL;
     return;
@@ -2096,6 +2120,8 @@ void caso_ecq_pergunta (Parametros* par)
         result = (char*) calloc (55, sizeof (char));
         sprintf (result, "\nNENHUM COMÉRCIO ENCONTRADO NESSA QUADRA!\n\n");
         insere_fila (par->resultado, result);
+        free(cep);
+        cep = NULL;
         return;
     }
     primeiro = get_primeiro_lista (enderecos);
@@ -2215,6 +2241,14 @@ void caso_ecr_pergunta (Parametros* par)
     sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     quadras = get_todos_hashtable (par->hash_quadras);
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
+    
+    for(size_t i = 0; i < largura_lista(quadras); i++)
+    {
+        remove_lista(quadras, get_primeiro_lista(quadras));
+    }
+    free(quadras);
+    quadras = NULL;
+    
     if (!largura_lista (report))
     {
         result = (char*) calloc (75, sizeof (char));
@@ -2302,13 +2336,15 @@ void caso_tecq_pergunta (Parametros* par)
     strcpy (cep, par->comando);
     quadraAux = cria_quadra (cep, 0, 0, 0, 0, "", "");
     quadra = get_hashtable (par->hash_quadras, quadraAux);
-    free (quadraAux);
+    free_quadra (quadraAux);
     quadraAux = NULL;
     if (quadra == NULL)
     {
         relatorio = (char*) calloc (55, sizeof (char));
         sprintf (relatorio, "\nERRO: QUADRA NÃO ENCONTRADA!\n\n");
         insere_fila (par->resultado, relatorio);
+        free(cep);
+        cep = NULL;
         return;
     }
     end = identificador_endereco_comercio (cep);
@@ -2320,6 +2356,8 @@ void caso_tecq_pergunta (Parametros* par)
         relatorio = (char*) calloc (55, sizeof (char));
         sprintf (relatorio, "\nNENHUM COMÉRCIO ENCONTRADO NESSA QUADRA!");
         insere_fila (par->resultado, relatorio);
+        free(cep);
+        cep = NULL;
         return;
     }
     comercios = cria_lista ();
@@ -2336,6 +2374,14 @@ void caso_tecq_pergunta (Parametros* par)
         primeiro = get_proximo_lista (enderecos, primeiro);
     }
     while (primeiro != NULL);
+
+    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    {
+        remove_lista(enderecos, get_primeiro_lista(enderecos));
+    }
+    free(enderecos);
+    enderecos = NULL;
+
     relatorio = (char*) calloc (55, sizeof (char));
     sprintf (relatorio, "\nQuad - CEP - %s", cep);
     insere_fila (par->resultado, relatorio);
@@ -2346,6 +2392,8 @@ void caso_tecq_pergunta (Parametros* par)
     insere_fila (par->resultado, relatorio);
     free (cep);
     cep = NULL;
+    free(comercios);
+    comercios = NULL;
     return;
 }
 
@@ -2376,6 +2424,14 @@ void caso_tecr_pergunta (Parametros* par)
     sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     quadras = get_todos_hashtable (par->hash_quadras);
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
+
+    for(size_t i = 0; i < largura_lista(quadras); i++)
+    {
+        remove_lista(quadras, get_primeiro_lista(quadras));
+    }
+    free(quadras);
+    quadras = NULL;
+
     if (!largura_lista (report))
     {
         relatorio = (char*) calloc (155, sizeof (char));
@@ -2810,7 +2866,8 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    //free_lista (quadras);
+    free (quadras);
+    quadras = NULL;
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2850,7 +2907,8 @@ void caso_dpr (Parametros* par)
         }
     }   
     while (primeiro != NULL);
-    //free_lista (hidrantes);
+    free (hidrantes);
+    hidrantes = NULL;
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2890,7 +2948,8 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    //free_lista (semaforos);
+    free (semaforos);
+    semaforos = NULL;
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -2930,7 +2989,8 @@ void caso_dpr (Parametros* par)
         }
     }
     while (primeiro != NULL);
-    //free_lista (radiobases);
+    free (radiobases);
+    radiobases = NULL;
     tempChar = (char*) calloc (5, sizeof (char));
     sprintf (tempChar, "\n");
     insere_fila (par->resultado, tempChar);
@@ -3049,14 +3109,22 @@ void caso_m (Parametros* par)
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
     free (auxPes);
     auxPes = NULL;
+    free (cpf);
+    cpf = NULL;
     if (pessoa == NULL)
     {
         printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        free (cep);
+        cep = NULL;
+        free (face);
+        face = NULL;
+        free (num);
+        num = NULL;
+        free (comp);
+        comp = NULL;
         return;
     }
     end = set_endereco_pessoa (pessoa, cep, face, num, comp);
-    free (cpf);
-    cpf = NULL;
     free (cep);
     cep = NULL;
     free (face);
