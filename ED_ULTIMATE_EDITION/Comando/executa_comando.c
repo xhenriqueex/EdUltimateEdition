@@ -42,7 +42,7 @@ void caso_d (Parametros* par);
 void caso_a (Parametros* par);
 void caso_hashtag (Parametros* par);
 void caso_t_ec (Parametros* par);
-void caso_e (Parametros* par);
+void caso_e_ec (Parametros* par);
 void caso_p (Parametros* par);
 void caso_m (Parametros* par);
 void caso_q_pergunta (Parametros* par);
@@ -69,6 +69,8 @@ void caso_fec (Parametros* par);
 void caso_mud (Parametros* par);
 void caso_mudec (Parametros* par);
 void caso_dpr (Parametros* par);
+void caso_v (Parametros* par);
+void caso_e_via (Parametros* par);
 
 void executa_comando (void* p)
 {
@@ -242,11 +244,14 @@ void executa_comando (void* p)
     //INSERE UM NOVO ESTABELECIMENTO COMERCIAL DE UM DETERMINADO TIPO
     if (!strcmp (comando, "e"))
     {
-        par->comando += 2;
-        caso_e (par);
-        free(comando);
-        comando = NULL;
-        return;
+        if (!strcmp (par->controle, ".ec"))
+        {
+            par->comando += 2;
+            caso_e_ec (par);
+            free(comando);
+            comando = NULL;
+            return;
+        }
     }
 
     //COMANDOS DO ARQUIVO .PM
@@ -269,6 +274,30 @@ void executa_comando (void* p)
         return;
     }
     
+    //COMANDOS DO ARQUIVO .VIA
+    //CRIA UM VÉRTICE POSICIONADO NAS COORDENADAS
+    if (!strcmp (comando, "v"))
+    {
+        par->comando += 2;
+        caso_v (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+
+    //CRIA UMA ARESTA E ASSOCIA INFORMAÇÕES
+    if (!strcmp (comando, "e"))
+    {
+        if (!strcmp (par->controle, ".via"))
+        {
+            par->comando += 2;
+            caso_e_via (par);
+            free (comando);
+            comando = NULL;
+            return;
+        }
+    }
+
     //COMANDOS DO ARQUIVOS .QRY 
 
     //REPORTA O QUE ESTIVER DENTRO DO RETÂNGULO ESPECIFICADO
@@ -3016,7 +3045,7 @@ void caso_t_ec (Parametros* par)
     return;
 }
 
-void caso_e (Parametros* par)
+void caso_e_ec (Parametros* par)
 {
     char* cnpj;
     char* cod;
@@ -3134,5 +3163,17 @@ void caso_m (Parametros* par)
     free (comp);
     comp = NULL;
     insere_hashtable (par->hash_end_pessoas, end);
+    return;
+}
+
+//COMANDOS DO ARQUIVO .VIA
+
+void caso_v (Parametros* par)
+{
+    return;
+}
+
+void caso_e_via (Parametros* par)
+{
     return;
 }
