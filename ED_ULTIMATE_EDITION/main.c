@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
     //DECLARANDO INTS
     int i;
 
+    char *aux = NULL;
+
     //ALOCANDO STRUCT
     p = (Parametros*) calloc (1, sizeof (Parametros));
 
@@ -248,9 +250,10 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
+            aux = p->comando;
             executa_comando (p);
-            //free(p->comando);
-            //p->comando = NULL;
+            free(aux);
+            aux = NULL;
         }
         //FECHANDO O ARQUIVO
         fclose (arquivo);
@@ -277,9 +280,10 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
+            aux = p->comando;
             executa_comando (p);
-            //free (p->comando);
-            //p->comando = NULL;
+            free(aux);
+            aux = NULL;
         }
 
         //FECHANDO O ARQUIVO
@@ -308,9 +312,10 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
+            aux = p->comando;
             executa_comando (p);
-            //free (p->comando);
-            //p->comando = NULL;
+            free(aux);
+            aux = NULL;
         }
 
         //FECHANDO O ARQUIVO
@@ -338,13 +343,16 @@ int main(int argc, char* argv[])
         while (!fila_vazia (comandos))
         {
             p->comando = (char*) remove_fila (comandos);
+            aux = p->comando;
             executa_comando (p);
-            //free (p->comando);
-            //p->comando = NULL;
+            free(aux);
+            aux = NULL;
         }
         
         //FECHANDO O ARQUIVO
         fclose (arquivo);
+        free(comandos);
+        comandos = NULL;
     }
     
     if (p->caminho_QRY != NULL)

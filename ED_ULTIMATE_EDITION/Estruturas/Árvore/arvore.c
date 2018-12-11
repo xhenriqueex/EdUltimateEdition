@@ -96,9 +96,14 @@ void free_nodulo (void* nodulo)
     {
         free_nodulo (n->direita);
     }
-    n->valor = NULL;
-    free (n);
-    n = NULL;
+    if(n != NULL)
+    {
+        n->valor = NULL;
+        n->direita = NULL;
+        n->esquerda = NULL;
+        free (n);
+        n = NULL;
+    }
 }
 
 //LIBERA A ÁRVORE
@@ -203,9 +208,11 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
     {
         list = cria_lista();
         get_todos_nodulo (nodulo->esquerda, list);
+        free_nodulo(nodulo->esquerda);
         get_todos_nodulo (nodulo->direita, list);
+        //free_nodulo(nodulo->direita);
         nodulo->valor = NULL;
-        nodulo->direita = NULL;
+        nodulo->esquerda = NULL;
         nodulo->direita = NULL;
         return list;
     }
@@ -215,6 +222,19 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
         if (list == NULL)
         {
             list = remove_valor_nodulo (arv, nodulo->direita, dim + 1, ref);
+            if(nodulo->direita->valor == NULL)
+            {
+                free(nodulo->direita);
+                nodulo->direita = NULL;
+            }
+        }
+        else
+        {
+            if(nodulo->esquerda->valor == NULL)
+            {
+                free(nodulo->esquerda);
+                nodulo->esquerda = NULL;
+            }
         }
     }
     if (i>=0)
@@ -223,6 +243,19 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
         if (list == NULL)
         {
             list = remove_valor_nodulo (arv, nodulo->esquerda, dim + 1, ref);
+            if(nodulo->esquerda->valor == NULL)
+            {
+                free(nodulo->esquerda);
+                nodulo->esquerda = NULL;
+            }
+        }
+        else
+        {
+            if(nodulo->direita->valor == NULL)
+            {
+                free(nodulo->direita);
+                nodulo->direita = NULL;
+            }
         }
     }
     return list;
@@ -256,6 +289,13 @@ void remove_valor_arvore (Arvore* arv, void* ref)
             break;
         }
     }
+    
+    for(size_t i = 0; i < largura_lista(list); i++)
+    {
+        remove_lista(list, get_primeiro_lista(list));
+    }
+    free(list);
+    list = NULL;
 }
 
 //RETORNA A DISTÂNCIA ENTRE DOIS VALORES DA ÁRVORE

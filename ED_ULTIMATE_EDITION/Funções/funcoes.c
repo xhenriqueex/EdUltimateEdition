@@ -41,6 +41,8 @@ Fila coloca_comandos_arquivo_fila (FILE* entrada)
         linha = (char*) calloc (200, sizeof (char));
         if (fgets(linha, 200, entrada) == NULL)
         {
+            free(linha);
+            linha = NULL;
             break;
         }
         if (linha[strlen(linha)-1] == '\n')
@@ -800,8 +802,8 @@ char* imprime_tipos_comercios_quadra (Lista comercios)
     void* comercioAux;
     result = (char*) calloc (largura_lista (comercios) * 155, sizeof (char));
     //tipo = (char*) calloc (155, sizeof (char));
-    aux = (char*) calloc (155, sizeof (char));
-    nome = (char*) calloc (155, sizeof (char));
+    //aux = (char*) calloc (155, sizeof (char));
+    //nome = (char*) calloc (155, sizeof (char));
     while (largura_lista (comercios) != 0)
     {
         primeiro = get_primeiro_lista (comercios);
@@ -972,6 +974,14 @@ void fecha_qry (Parametros* par)
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(quadras); i++)
+    {
+        remove_lista(quadras, get_primeiro_lista(quadras));
+    }
+    free(quadras);
+    quadras = NULL;
+    
     hidrantes = get_todos_arvore (par->tree_hidrantes);
     primeiro = get_primeiro_lista (hidrantes);
     do
@@ -989,6 +999,14 @@ void fecha_qry (Parametros* par)
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
+
+    for(size_t i = 0; i < largura_lista(hidrantes); i++)
+    {
+        remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+    }
+    free(hidrantes);
+    hidrantes = NULL;
+    
     semaforos = get_todos_arvore (par->tree_semaforos);
     primeiro = get_primeiro_lista (semaforos);
     do
@@ -1006,6 +1024,14 @@ void fecha_qry (Parametros* par)
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(semaforos); i++)
+    {
+        remove_lista(semaforos, get_primeiro_lista(semaforos));
+    }
+    free(semaforos);
+    semaforos = NULL;
+    
     radiobases = get_todos_arvore (par->tree_radiobases);
     primeiro = get_primeiro_lista (radiobases);
     do
@@ -1023,6 +1049,14 @@ void fecha_qry (Parametros* par)
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
+
+    for(size_t i = 0; i < largura_lista(radiobases); i++)
+    {
+        remove_lista(radiobases, get_primeiro_lista(radiobases));
+    }
+    free(radiobases);
+    radiobases = NULL;
+    
     while (!fila_vazia (par->anotacoes))
     {
         conteudo_svg = cria_svg_anotacao (remove_fila (par->anotacoes));

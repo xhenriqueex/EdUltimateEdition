@@ -73,4 +73,6 @@ char* get_cnpj_comercio (Comercio* comercio);
 //GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
 char* relatorio_mud_comercio (Comercio comercio, void* end1, void* end2);
 
+void free_tipo_comercio(void *tipo_comercio);
+
 #endif

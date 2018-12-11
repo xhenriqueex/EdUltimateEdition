@@ -75,6 +75,7 @@ Valor remove_fila (Fila f)
 {
     fila *f0 = NULL;
     elemento *e0 = NULL;
+    Valor valor = NULL;
 
     f0 = (fila *) f;
     
@@ -82,7 +83,12 @@ Valor remove_fila (Fila f)
     {
         e0 = f0->comeco;
         f0->comeco = e0->proximo;
-        return e0->valor;
+        valor = e0->valor;
+        e0->valor = NULL;
+        e0->proximo = NULL;
+        free(e0);
+        e0 = NULL;
+        return valor;
     }
     else
     {

@@ -1375,6 +1375,14 @@ void caso_hashtag (Parametros* par)
         primeiro = get_proximo_lista (quadras, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(quadras); i++)
+    {
+        remove_lista(quadras, get_primeiro_lista(quadras));
+    }
+    free(quadras);
+    quadras = NULL;
+
     hidrantes = get_todos_arvore (par->tree_hidrantes);
     primeiro = get_primeiro_lista (hidrantes);
     do
@@ -1392,6 +1400,14 @@ void caso_hashtag (Parametros* par)
         primeiro = get_proximo_lista (hidrantes, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(hidrantes); i++)
+    {
+        remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+    }
+    free(hidrantes);
+    hidrantes = NULL;
+    
     semaforos = get_todos_arvore (par->tree_semaforos);
     primeiro = get_primeiro_lista (semaforos);
     do
@@ -1409,6 +1425,14 @@ void caso_hashtag (Parametros* par)
         primeiro = get_proximo_lista (semaforos, primeiro);
     }
     while (primeiro != NULL);
+
+    for(size_t i = 0; i < largura_lista(semaforos); i++)
+    {
+        remove_lista(semaforos, get_primeiro_lista(semaforos));
+    }
+    free(semaforos);
+    semaforos = NULL;
+
     radiobases = get_todos_arvore (par->tree_radiobases);
     primeiro = get_primeiro_lista (radiobases);
     do
@@ -1426,6 +1450,14 @@ void caso_hashtag (Parametros* par)
         primeiro = get_proximo_lista (radiobases, primeiro);
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(radiobases); i++)
+    {
+        remove_lista(radiobases, get_primeiro_lista(radiobases));
+    }
+    free(radiobases);
+    radiobases = NULL;
+
     aux = cria_fila ();
     while (!fila_vazia (par->anotacoes))
     {
@@ -1852,6 +1884,7 @@ void caso_m_pergunta (Parametros* par)
         insere_fila (par->resultado, result);
         free(cep);
         cep = NULL;
+        free_quadra (quad);
         return;
     }
     free_quadra (quad);
@@ -1922,6 +1955,15 @@ void caso_mr_pergunta (Parametros* par)
     sscanf (par->comando, "%lf %lf %lf %lf", &x, &y, &w, &h);
     quadras = get_todos_hashtable (par->hash_quadras);
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
+
+    
+    for(size_t i = 0; i < largura_lista(quadras); i++)
+    {
+        remove_lista(quadras, get_primeiro_lista(quadras));
+    }
+    free(quadras);
+    quadras = NULL;
+
     if (!largura_lista (report))
     {
         relatorio = (char*) calloc (55, sizeof (char));
@@ -1945,14 +1987,16 @@ void caso_mr_pergunta (Parametros* par)
         sprintf (relatorio, "\nQuad - CEP - %s", get_cep_quadra (quadra));
         insere_fila (par->resultado, relatorio);
         enderecos = get_lista_hashtable (par->hash_end_pessoas, endereco);
-        free (endereco);
-        endereco = NULL;
+        free_endereco (endereco);
         if (!largura_lista (enderecos))
         {
             primeiro = get_proximo_lista (report, primeiro);
             relatorio = (char*) calloc (55, sizeof (char));
             sprintf (relatorio, "\nNENHUM MORADOR REGISTRADO NESSA QUADRA!\n");
             insere_fila (par->resultado, relatorio);    
+
+            free(enderecos);
+            enderecos = NULL;
             continue;
         }
         percorre = get_primeiro_lista (enderecos);
@@ -1971,8 +2015,17 @@ void caso_mr_pergunta (Parametros* par)
         }
         while (percorre != NULL);
         primeiro = get_proximo_lista (report, primeiro);
+
+        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        {
+            remove_lista(enderecos, get_primeiro_lista(enderecos));
+        }
+        free(enderecos);
+        enderecos = NULL;
     }
     while (primeiro != NULL);
+    
+    
     anot = cria_anotacao (w, h, x, y, "mr");
     insere_fila (par->anotacoes, anot);
     relatorio = (char*) calloc (5, sizeof (char));
@@ -2070,6 +2123,8 @@ void caso_de_pergunta (Parametros* par)
     coord = NULL;
     free (cnpj);
     cnpj = NULL;
+    free(coord);
+    coord = NULL;
     return;
 }
 
@@ -2151,6 +2206,8 @@ void caso_ecq_pergunta (Parametros* par)
         insere_fila (par->resultado, result);
         free(cep);
         cep = NULL;
+        free(enderecos);
+        enderecos = NULL;
         return;
     }
     primeiro = get_primeiro_lista (enderecos);
@@ -2171,6 +2228,14 @@ void caso_ecq_pergunta (Parametros* par)
         primeiro = get_proximo_lista (enderecos, primeiro);
     }
     while (primeiro != NULL);
+
+    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    {
+        remove_lista(enderecos, get_primeiro_lista(enderecos));
+    }
+    free(enderecos);
+    enderecos = NULL;
+
     result = (char*) calloc (5, sizeof (char));
     sprintf (result, "\n");
     insere_fila (par->resultado, result);
@@ -2285,6 +2350,9 @@ void caso_ecr_pergunta (Parametros* par)
         insere_fila (par->resultado, result);
         anot = cria_anotacao (w, h, x, y, "ecr");
         insere_fila (par->anotacoes, anot);
+
+        free(report);
+        report = NULL;
         return;
     }
     primeiro = get_primeiro_lista (report);
@@ -2301,7 +2369,7 @@ void caso_ecr_pergunta (Parametros* par)
         insere_fila (par->resultado, result);
         endereco = identificador_endereco_comercio (get_cep_quadra (quadra));
         enderecos = get_lista_hashtable (par->hash_end_comercios, endereco);
-        free (endereco);
+        free_endereco (endereco);
         endereco = NULL;
         if (!largura_lista (enderecos))
         {
@@ -2309,6 +2377,9 @@ void caso_ecr_pergunta (Parametros* par)
             sprintf (result, "\nNENHUM COMÉRCIO DO TIPO ESPECIFICADO NESSA QUADRA!");
             insere_fila (par->resultado, result);
             primeiro = get_proximo_lista (report, primeiro);
+
+            free(enderecos);
+            enderecos = NULL;
             continue;
         }
         percorre = get_primeiro_lista (enderecos);
@@ -2330,8 +2401,24 @@ void caso_ecr_pergunta (Parametros* par)
         }
         while (percorre != NULL);
         primeiro = get_proximo_lista (report, primeiro);
+
+        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        {
+            remove_lista(enderecos, get_primeiro_lista(enderecos));
+        }
+        free(enderecos);
+        enderecos = NULL;
+        
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(report); i++)
+    {
+        remove_lista(report, get_primeiro_lista(report));
+    }
+    free(report);
+    report = NULL;
+    
     anot = cria_anotacao (w, h, x, y, "ecr");
     insere_fila (par->anotacoes, anot);
     result = (char*) calloc (5, sizeof (char));
@@ -2484,14 +2571,16 @@ void caso_tecr_pergunta (Parametros* par)
         insere_fila (par->resultado, relatorio);
         end = identificador_endereco_comercio (get_cep_quadra (valor));
         enderecos = get_lista_hashtable (par->hash_end_comercios, end);
-        free (end);
-        end = NULL;
+        free_endereco (end);
         if (!largura_lista (enderecos))
         {
             relatorioQuad = (char*) calloc (55, sizeof (char));
             sprintf (relatorioQuad, "\nNENHUM COMÉRCIO NESSA QUADRA!\n");
             insere_fila (par->resultado, relatorioQuad);
             primeiro = get_proximo_lista (report, primeiro);
+
+            free(enderecos);
+            enderecos = NULL;
             continue;
         }
         comercios = cria_lista ();
@@ -2511,8 +2600,30 @@ void caso_tecr_pergunta (Parametros* par)
         relatorioQuad = imprime_tipos_quadra (comercios);
         insere_fila (par->resultado, relatorioQuad);
         primeiro = get_proximo_lista (report, primeiro);
+
+        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        {
+            remove_lista(enderecos, get_primeiro_lista(enderecos));
+        }
+        free(enderecos);
+        enderecos = NULL;
+        
+        for(size_t i = 0; i < largura_lista(comercios); i++)
+        {
+            remove_lista(comercios, get_primeiro_lista(comercios));
+        }
+        free(comercios);
+        comercios = NULL;
     }
     while (primeiro != NULL);
+    
+    for(size_t i = 0; i < largura_lista(report); i++)
+    {
+        remove_lista(report, get_primeiro_lista(report));
+    }
+    free(report);
+    report = NULL;
+    
     anot = cria_anotacao (w, h, x, y, "tecr");
     insere_fila (par->anotacoes, anot);
     relatorio = (char*) calloc (5, sizeof (char));
@@ -2811,8 +2922,7 @@ void caso_dpr (Parametros* par)
             insere_fila (par->resultado, tempChar);
             ident = identificador_endereco_comercio (get_cep_quadra (cont));
             enderecos = get_lista_hashtable (par->hash_end_comercios, ident);
-            free (ident);
-            ident = NULL;
+            free_endereco (ident);
             if (!largura_lista (enderecos))
             {
                 tempChar = (char*) calloc (55, sizeof (char));
@@ -2845,11 +2955,13 @@ void caso_dpr (Parametros* par)
                 }
                 while (auxA != NULL);
             }
+            free(enderecos);
+            enderecos = NULL;
+
             char* auxCep = get_cep_quadra (cont);
             ident = identificador_endereco_pessoa (auxCep);
             enderecos = get_lista_hashtable (par->hash_end_pessoas, ident);
-            free (ident);
-            ident = NULL;
+            free_endereco (ident);
             if (largura_lista (enderecos) == 0)
             {
                 tempChar = (char*) calloc (55, sizeof (char));
@@ -2882,6 +2994,14 @@ void caso_dpr (Parametros* par)
                 }
                 while (auxA != NULL);
             }
+            
+            for(size_t i = 0; i < largura_lista(enderecos); i++)
+            {
+                remove_lista(enderecos, get_primeiro_lista(enderecos));
+            }
+            free(enderecos);
+            enderecos = NULL;
+            
             temp2 = get_proximo_lista (quadras, primeiro);
             remove_valor_arvore (par->tree_quadras, cont);
             remove_hashtable (par->hash_quadras, cont);
@@ -3066,8 +3186,7 @@ void caso_e_ec (Parametros* par)
     sscanf (par->comando, "%s %s %s %s %s %s", cnpj, cod, cep, face, num, nome);
     tAux = cria_tipo_comercio (cod, "");
     t = get_hashtable (par->hash_tipos, tAux);
-    free (tAux);
-    tAux = NULL;
+    free_tipo_comercio (tAux);
     comercio = cria_comercio (cnpj, t, cep, face, num, nome);
     free (cod);
     cod = NULL;
@@ -3136,8 +3255,7 @@ void caso_m (Parametros* par)
     sscanf (par->comando, "%s %s %s %s %s", cpf, cep, face, num, comp);
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
-    free (auxPes);
-    auxPes = NULL;
+    free_pessoa (auxPes);
     free (cpf);
     cpf = NULL;
     if (pessoa == NULL)

@@ -50,4 +50,6 @@ char* relatorio_morte_pessoa (Pessoa pessoa);
 //GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
 char* relatorio_mud_pessoa (Pessoa pessoa, void* end1, void* end2);
 
+void free_endereco(void *endereco);
+
 #endif

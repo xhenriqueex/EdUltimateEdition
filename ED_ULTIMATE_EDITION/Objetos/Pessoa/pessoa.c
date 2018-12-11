@@ -245,6 +245,8 @@ double* get_xy_pessoa (void* pessoa, Parametros* par)
     }
     Quadra temp = cria_quadra (pes->endereco->cep, 0, 0, 0, 0, "", "");
     Quadra quad = get_hashtable (par->hash_quadras, temp);
+    free(temp);
+    temp = NULL;
     sscanf (pes->endereco->num, "%lf", &num);
     result = (double*) calloc (2, sizeof (double));
     ret = get_retangulo_quadra(quad);
@@ -304,4 +306,22 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
         sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp);
     }
     return relatorio;
+}
+
+void free_endereco(void *endereco)
+{
+    Endereco *end = NULL;
+
+    end = (Endereco *) endereco;
+
+    free(end->cep);
+    end->cep = NULL;
+    free(end->comp);
+    end->comp = NULL;
+    free(end->face);
+    end->face = NULL;
+    free(end->num);
+    end->num = NULL;
+    free(end);
+    end = NULL;
 }
