@@ -208,9 +208,9 @@ Lista remove_valor_nodulo (Arvore* arv, No* nodulo, int dim, void* ref)
     {
         list = cria_lista();
         get_todos_nodulo (nodulo->esquerda, list);
-        free_nodulo(nodulo->esquerda);
+        free(nodulo->esquerda);
         get_todos_nodulo (nodulo->direita, list);
-        //free_nodulo(nodulo->direita);
+        free(nodulo->direita);
         nodulo->valor = NULL;
         nodulo->esquerda = NULL;
         nodulo->direita = NULL;
