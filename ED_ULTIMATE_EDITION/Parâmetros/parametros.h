@@ -11,6 +11,7 @@
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Árvore/arvore.h"
+#include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"
 
 //DEFINE A STRUCT DE PARAMETROS

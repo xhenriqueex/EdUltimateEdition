@@ -3440,7 +3440,11 @@ void caso_arroba_xy(Parametros *par)
     r = 0;
 }
 
-void caso_arroba_tp_pergunta(Parametros *par);
+void caso_arroba_tp_pergunta(Parametros *par)
+{
+    
+}
+
 void caso_p_pergunta(Parametros *par);
 void caso_sp_pergunta(Parametros *par);
 void caso_au(Parametros *par);

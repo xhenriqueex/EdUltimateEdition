@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "grafo.h"
 
 #define INFINITO -1
@@ -112,7 +114,7 @@ void* get_aresta(Grafo G, char *v1, char *v2)
 
     do
     {
-        a = (aresta *) get_valor_lista(lista, posic);
+        a = (aresta *) get_valor_lista(posic);
 
         if(strcmp(a->ligado_a, v2) == 0)
         {
@@ -151,7 +153,7 @@ static void* get_atributos_aresta(Grafo G, char *v1, char *v2)
     a = (aresta *) get_aresta(G, v1, v2);
 
     if(a == NULL) {
-        return;
+        return NULL;
     }
 
     return (atributos_aresta *) a->atributos;
@@ -229,7 +231,7 @@ void remove_aresta(Grafo G, char *v1, char *v2)
     Posic *posic = NULL;
 
     if (get_vertice(G, v1) == NULL || get_vertice(G, v2) == NULL) {
-        return NULL;
+        return;
     }
 
     lista = adjacentes(G, v1);
@@ -238,7 +240,7 @@ void remove_aresta(Grafo G, char *v1, char *v2)
 
     do
     {
-        a = (aresta *) get_valor_lista(lista, posic);
+        a = (aresta *) get_valor_lista(posic);
 
         if(strcmp(a->ligado_a, v2) == 0)
         {
@@ -256,7 +258,7 @@ int adjacente(Grafo G, char *v1, char *v2)
     int retorno = 0;
 
     if (get_vertice(G, v1) == NULL || get_vertice(G, v2) == NULL) {
-        return NULL;
+        return 0;
     }
 
     a = get_aresta(G, v1, v2);
@@ -285,6 +287,7 @@ void dijkstra(Grafo G, int src)
     int tam = qtd_vertices(G);
     int dist[tam];
     int sptset[tam];
+    Posic p1 = NULL, p2 = NULL;
 
     for (int i = 0; i < tam; i++) {
         dist[i] = INFINITO, sptset[i] = 0;
@@ -292,20 +295,28 @@ void dijkstra(Grafo G, int src)
 
     dist[src] = 0;
 
-    for (int count = 0; count < tam-1; count++)
+    p1 = get_primeiro_lista(G);
+
+    while(get_proximo_lista(G, p1) != NULL)
     {
         int u = minima_distancia(dist, sptset, tam);
 
         sptset[u] = 1;
 
-        for (int v = 0; v < tam; v++)
+        p2 = get_primeiro_lista(G);
+
+        int v = 0;
+        while(p2 != NULL)
         {
-            if (!sptset[v] && get_cmp_aresta(G, u, v)
-            && dist[u] != INFINITO && dist[u]+get_cmp_aresta(G, u, v) < dist[v])
+            if (!sptset[v] && get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2))
+            && dist[u] != INFINITO && dist[u]+get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2)) < dist[v])
             {
-                dist[v] = dist[u] + get_cmp_aresta(G, u, v);
+                dist[v] = dist[u] + get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2));
             }
+            v++;
+            p2 = get_proximo_lista(G, p2);
         }
+        p1 = get_proximo_lista(G, p1);
     }
 
     printar_distancias(dist, tam);

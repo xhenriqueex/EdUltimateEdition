@@ -1,5 +1,5 @@
-siguel: Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o
-	gcc Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o -lm -o siguel -g -pedantic -fstack-protector-all -std=c99
+siguel: Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o
+	gcc Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o -lm -o siguel -g -pedantic -fstack-protector-all -std=c99
 
 Comando/executa_comando.o: Comando/executa_comando.c Comando/executa_comando.h
 	gcc -c Comando/executa_comando.c -lm -o Comando/executa_comando.o -g -pedantic -fstack-protector-all -std=c99
@@ -21,6 +21,12 @@ Estruturas/Lista/lista.o: Estruturas/Lista/lista.c Estruturas/Lista/lista.h
 
 Estruturas/Merge/mergesort.o: Estruturas/Merge/mergesort.c Estruturas/Merge/mergesort.h	
 	gcc -c Estruturas/Merge/mergesort.c -lm -o Estruturas/Merge/mergesort.o -g -pedantic -fstack-protector-all -std=c99
+
+Estruturas/Grafo/grafo.o: Estruturas/Grafo/grafo.c Estruturas/Grafo/grafo.h	
+	gcc -c Estruturas/Grafo/grafo.c -lm -o Estruturas/Grafo/grafo.o -g -pedantic -fstack-protector-all -std=c99
+
+Estruturas/Registrador/registrador.o: Estruturas/Registrador/registrador.c Estruturas/Registrador/registrador.h	
+	gcc -c Estruturas/Registrador/registrador.c -lm -o Estruturas/Registrador/registrador.o -g -pedantic -fstack-protector-all -std=c99
 
 Formas/Anotação/anotacao.o: Formas/Anotação/anotacao.c Formas/Anotação/anotacao.h		
 	gcc -c Formas/Anotação/anotacao.c -lm -o Formas/Anotação/anotacao.o -g -pedantic -fstack-protector-all -std=c99
@@ -62,4 +68,4 @@ main.o: main.c
 	gcc -c main.c -lm -o main.o -g -pedantic -fstack-protector-all -std=c99
 
 clean: 
-	rm -rf Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o siguel vgcore.*
+	rm -rf Comando/executa_comando.o Estruturas/Árvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotação/anotacao.o Formas/Círculo/circulo.o Formas/Retângulo/retangulo.o Funções/funcoes.o Funções/parproximo.o Objetos/Comércio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Rádiobase/radiobase.o Objetos/Semáforo/semaforo.o Parâmetros/parametros.o main.o siguel vgcore.*
