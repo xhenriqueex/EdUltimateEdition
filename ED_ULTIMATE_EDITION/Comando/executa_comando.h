@@ -84,4 +84,24 @@ void caso_mudec (Parametros* par);
 
 void caso_dpr (Parametros* par);
 
+void caso_arroba_m_pergunta(Parametros *par);
+
+void caso_arroba_e_pergunta(Parametros *par);
+
+void caso_arroba_g_pergunta(Parametros *par);
+
+void caso_arroba_xy(Parametros *par);
+
+void caso_arroba_tp_pergunta(Parametros *par);
+
+void caso_p_pergunta(Parametros *par);
+
+void caso_sp_pergunta(Parametros *par);
+
+void caso_au(Parametros *par);
+
+void caso_dc(Parametros *par);
+
+void caso_rau(Parametros *par);
+
 #endif

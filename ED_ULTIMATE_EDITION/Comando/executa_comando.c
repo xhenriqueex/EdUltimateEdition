@@ -19,6 +19,7 @@
 #include "../Estruturas/Árvore/arvore.h"
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Merge/mergesort.h"
+#include "../Estruturas/Registrador/registrador.h"
 #include "../Funções/parproximo.h"
 
 #define C "circulo"
@@ -3295,3 +3296,39 @@ void caso_e_via (Parametros* par)
 {
     return;
 }
+
+void caso_arroba_m_pergunta(Parametros *par) {
+    char *registrador = NULL;
+    char *cpf = NULL;
+    int r = 0;
+    Pessoa pessoa = NULL, auxPes = NULL;
+    double *pos_pessoa = NULL;
+
+    registrador = (char *) calloc(1, sizeof(char));
+    cpf = (char *) calloc(1, sizeof(char));
+
+    sscanf(par->comando, "%s %s", registrador, cpf);
+
+    auxPes = cria_pessoa("", "", cpf, "", "");
+    pessoa = get_hashtable(par->hash_pessoas, auxPes);
+    pos_pessoa = get_xy_pessoa(pessoa, par);
+    r = busca_registrador(par->regis, registrador);
+    inserir_pos_registrador(par->regis[r], pos_pessoa);
+
+    free(registrador);
+    registrador = NULL;
+    free(cpf);
+    cpf = NULL;
+    r = 0;
+
+    return;
+}
+void caso_arroba_e_pergunta(Parametros *par);
+void caso_arroba_g_pergunta(Parametros *par);
+void caso_arroba_xy(Parametros *par);
+void caso_arroba_tp_pergunta(Parametros *par);
+void caso_p_pergunta(Parametros *par);
+void caso_sp_pergunta(Parametros *par);
+void caso_au(Parametros *par);
+void caso_dc(Parametros *par);
+void caso_rau(Parametros *par);

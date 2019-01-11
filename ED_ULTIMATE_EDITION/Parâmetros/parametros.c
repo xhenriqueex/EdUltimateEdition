@@ -6,6 +6,7 @@
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Árvore/arvore.h"
 #include "../Estruturas/Hash/hashtable.h"
+#include "../Estruturas/Registrador/registrador.h"
 
 typedef struct params {
     char* caminho_GEO;
@@ -50,4 +51,6 @@ typedef struct params {
     Hashtable hash_pessoas;
     Hashtable hash_end_comercios;
     Hashtable hash_end_pessoas;
+    Registrador *regis;
+    
 } Parametros;

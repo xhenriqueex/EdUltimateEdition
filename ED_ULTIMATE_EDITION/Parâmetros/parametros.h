@@ -56,6 +56,7 @@ typedef struct params {
     Hashtable hash_pessoas;
     Hashtable hash_end_comercios;
     Hashtable hash_end_pessoas;
+    Registrador *regis;
 } Parametros;
 
 #endif

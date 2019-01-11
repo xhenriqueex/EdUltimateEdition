@@ -13,6 +13,7 @@
 #include "Objetos/Rádiobase/radiobase.h"
 #include "Objetos/Comércio/comercio.h"
 #include "Objetos/Pessoa/pessoa.h"
+#include "Estruturas/Registrador/registrador.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -109,6 +110,9 @@ int main(int argc, char* argv[])
     
     //ALOCANDO MEMÓRIA DO CONTROLE
     p->controle = (char*) calloc (5, sizeof (char));
+
+    //CRIANDO VETOR DE REGISTRADORES
+    p->regis = (Registrador *) calloc(11, sizeof(Registrador));
 
     //TRATANDO OS CAMINHOS
     for (i=0; i<argc; i++)
