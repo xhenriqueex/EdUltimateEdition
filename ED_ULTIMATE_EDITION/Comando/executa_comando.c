@@ -3298,13 +3298,28 @@ void caso_v (Parametros* par)
     sscanf(par->comando, "%s %lf %lf", id, x, y);
     pos[0] = x;
     pos[1] = y;
-    
+
     insere_vertice(par->grafo_via, id, pos);
     return;
 }
 
 void caso_e_via (Parametros* par)
 {
+    char *i = NULL, *j = NULL;
+    char *ldir = NULL, *lesq = NULL;
+    char *nome = NULL;
+    double cmp = 0, vm = 0;
+
+    i = (char *) calloc(5, sizeof(char));
+    j = (char *) calloc(5, sizeof(char));
+    ldir = (char *) calloc(255, sizeof(char));
+    lesq = (char *) calloc(255, sizeof(char));
+    nome = (char *) calloc(255, sizeof(char));
+
+    sscanf(par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, cmp, vm, nome);
+
+    insere_aresta(par->grafo_via, i, j);
+    define_atributos_aresta(par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
 
     return;
 }
