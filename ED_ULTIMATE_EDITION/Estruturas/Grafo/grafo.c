@@ -5,86 +5,104 @@
 
 struct _atributos_aresta
 {
-    int direcao;
-    double tamanho;
+    char *nome;
+    char *ldir;
+    char *lesq;
+    double cmp;
+    double vm;
 };
 
 struct _aresta
 {
-    int ligado_a;
+    char *ligado_a;
     struct _atributos_aresta *atributos;
 };
 
 struct _vertice
 {
     struct _aresta *arestas;
+    char *id;
+    double *pos;
 };
 
 typedef struct _atributos_aresta atributos_aresta;
 typedef struct _aresta aresta;
 typedef struct _vertice vertice;
 
-Grafo cria_grafo(int n)
+Grafo cria_grafo()
 {
-    vertice *vertices = NULL;
-    int i = 0;
+    Lista *grafo = NULL;
     
-    vertices = (vertice *) calloc(n, sizeof(vertice));
-    
-    for(i = 0; i < n; i++)
-    {
-        vertices[i].arestas = NULL;
-    }
+    grafo = cria_lista();
 
-    return (void *) vertices;
+    return grafo;
 }
 
-void insere_aresta(Grafo G, int v1, int v2)
+void insere_vertice(Grafo G, char *id, double *pos)
 {
-    vertice *vertices = NULL;
+    vertice *v = NULL;
+
+    v = (vertice *) calloc(1, sizeof(vertice));
+
+    v->arestas = NULL;
+    v->id = id;
+    v->pos = pos;
+
+    insere_lista(G, (void *) v);
+}
+
+static void* get_vertice(Grafo G, char *v1)
+{
+    vertice *v = NULL;
+    Posic *p = NULL;
+
+    p = get_primeiro_lista(G);
+    
+    while(p != NULL){
+        v = (vertice *) get_valor_lista(p);
+        if (strcmp(v->id, v1) == 0) {
+            break;
+        }
+        p = get_proximo_lista(G, p);
+    }
+    
+    return (void *) v;
+}
+
+void insere_aresta(Grafo G, char *v1, char *v2)
+{
+    vertice *v = NULL;
     aresta *a = NULL;
     atributos_aresta *atributos_a = NULL;
 
-    vertices = (vertice *) G;
-
-    if(vertices[v1].arestas == NULL)
+    v = (vertice *) get_vertice(G, v1);
+    if(v->arestas == NULL)
     {
-        vertices[v1].arestas = cria_lista();
+        v->arestas = cria_lista();
     }
 
     a = (aresta *) calloc(1, sizeof(aresta));
     atributos_a = (atributos_aresta *) calloc(1, sizeof(atributos_aresta));
 
-    atributos_a->direcao = 0;
-    atributos_a->tamanho = INFINITO;
     a->ligado_a = v2;
     a->atributos = atributos_a;
 
-    insere_lista(vertices[v1].arestas, (void *) a);
+    insere_lista(v->arestas, (void *) a);
+    define_atributos_aresta(G, v1, v2, "", "", "", INFINITO, 0);
 }
 
 int qtd_vertices(Grafo G)
-{
-    vertice *vertices = NULL;
-    int qtd = 0;
-
-    vertices = (vertice *) G;
-
-    qtd = (int) sizeof(vertices)/sizeof(vertices[0]);
-    
-    return qtd;
+{   
+    return largura_lista(G);
 }
 
-void* get_aresta(Grafo G, int v1, int v2)
+void* get_aresta(Grafo G, char *v1, char *v2)
 {
     aresta *a = NULL;
     Lista *lista = NULL;
     Posic *posic = NULL;
-    int qtd = 0;
 
-    qtd = qtd_vertices(G);
-
-    if (v1 > qtd || v2 > qtd) {
+    if (get_vertice(G, v1) == NULL || get_vertice(G, v2) == NULL) {
         return NULL;
     }
 
@@ -96,7 +114,7 @@ void* get_aresta(Grafo G, int v1, int v2)
     {
         a = (aresta *) get_valor_lista(lista, posic);
 
-        if(a->ligado_a == v2)
+        if(strcmp(a->ligado_a, v2) == 0)
         {
             break;
         }
@@ -107,7 +125,7 @@ void* get_aresta(Grafo G, int v1, int v2)
     return (void *) a;
 }
 
-void define_atributos_aresta(Grafo G, int v1, int v2, int direcao, double tamanho)
+void define_atributos_aresta(Grafo G, char *v1, char *v2, char *nome, char *ldir, char *lesq, double cmp, double vm)
 {
     atributos_aresta *atributos_a = NULL;
     aresta *a = NULL;
@@ -119,12 +137,14 @@ void define_atributos_aresta(Grafo G, int v1, int v2, int direcao, double tamanh
     }
 
     atributos_a = a->atributos;
-
-    atributos_a->direcao = direcao;
-    atributos_a->tamanho = tamanho;
+    atributos_a->nome = nome;
+    atributos_a->ldir = ldir;
+    atributos_a->lesq = lesq;
+    atributos_a->cmp = cmp;
+    atributos_a->vm = vm;
 }
 
-static void* get_atributos_aresta(Grafo G, int v1, int v2)
+static void* get_atributos_aresta(Grafo G, char *v1, char *v2)
 {
     aresta *a = NULL;
 
@@ -137,42 +157,78 @@ static void* get_atributos_aresta(Grafo G, int v1, int v2)
     return (atributos_aresta *) a->atributos;
 }
 
-static int get_direcao_aresta(Grafo G, int v1, int v2)
+static char *get_nome_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
     atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
 
     if(atributos_a == NULL) {
-        return;
+        return 0;
     }
 
-    return atributos_a->direcao;
+    return atributos_a->nome;
 }
 
-static int get_tamanho_aresta(Grafo G, int v1, int v2)
+static char *get_ldir_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
     atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
 
     if(atributos_a == NULL) {
-        return;
+        return 0;
     }
 
-    return atributos_a->tamanho;
+    return atributos_a->ldir;
 }
 
-void remove_aresta(Grafo G, int v1, int v2)
+static char *get_lesq_aresta(Grafo G, char *v1, char *v2)
+{
+    atributos_aresta *atributos_a = NULL;
+    
+    atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
+
+    if(atributos_a == NULL) {
+        return 0;
+    }
+
+    return atributos_a->lesq;
+}
+
+static double get_cmp_aresta(Grafo G, char *v1, char *v2)
+{
+    atributos_aresta *atributos_a = NULL;
+    
+    atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
+
+    if(atributos_a == NULL) {
+        return 0;
+    }
+
+    return atributos_a->cmp;
+}
+
+static double get_vm_aresta(Grafo G, char *v1, char *v2)
+{
+    atributos_aresta *atributos_a = NULL;
+    
+    atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
+
+    if(atributos_a == NULL) {
+        return 0;
+    }
+
+    return atributos_a->vm;
+}
+
+void remove_aresta(Grafo G, char *v1, char *v2)
 {
     aresta *a = NULL;
     Lista *lista = NULL;
     Posic *posic = NULL;
-    int qtd = 0;
 
-    qtd = qtd_vertices(G);
-
-    if (v1 > qtd || v2 > qtd) {
+    if (get_vertice(G, v1) == NULL || get_vertice(G, v2) == NULL) {
         return NULL;
     }
 
@@ -184,7 +240,7 @@ void remove_aresta(Grafo G, int v1, int v2)
     {
         a = (aresta *) get_valor_lista(lista, posic);
 
-        if(a->ligado_a == v2)
+        if(strcmp(a->ligado_a, v2) == 0)
         {
             remove_lista(lista, posic);
             break;
@@ -194,14 +250,12 @@ void remove_aresta(Grafo G, int v1, int v2)
     } while(posic != NULL);
 }
 
-int adjacente(Grafo G, int v1, int v2)
+int adjacente(Grafo G, char *v1, char *v2)
 {
     aresta *a = NULL;
     int retorno = 0;
-    int qtd = 0;
 
-    qtd = qtd_vertices(G);
-    if (v1 > qtd || v2 > qtd) {
+    if (get_vertice(G, v1) == NULL || get_vertice(G, v2) == NULL) {
         return NULL;
     }
 
@@ -215,17 +269,15 @@ int adjacente(Grafo G, int v1, int v2)
     return retorno;
 }
 
-Lista adjacentes(Grafo G, int v1)
+Lista adjacentes(Grafo G, char *v1)
 {
-    vertice *vertices = NULL;
-    int qtd = 0;
+    vertice *v = NULL;
 
-    qtd = qtd_vertices(G);
-    if (v1 > qtd) {
+    if (get_vertice(G, v1) == NULL) {
         return NULL;
     }
 
-    return vertices[v1].arestas;
+    return v->arestas;
 }
 
 void dijkstra(Grafo G, int src)
@@ -248,10 +300,10 @@ void dijkstra(Grafo G, int src)
 
         for (int v = 0; v < tam; v++)
         {
-            if (!sptset[v] && get_tamanho_aresta(G, u, v)
-            && dist[u] != INFINITO && dist[u]+get_tamanho_aresta(G, u, v) < dist[v])
+            if (!sptset[v] && get_cmp_aresta(G, u, v)
+            && dist[u] != INFINITO && dist[u]+get_cmp_aresta(G, u, v) < dist[v])
             {
-                dist[v] = dist[u] + get_tamanho_aresta(G, u, v);
+                dist[v] = dist[u] + get_cmp_aresta(G, u, v);
             }
         }
     }
