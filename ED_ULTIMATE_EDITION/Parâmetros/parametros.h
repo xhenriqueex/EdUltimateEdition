@@ -11,6 +11,7 @@
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Árvore/arvore.h"
+#include "../Estruturas/Grafo/grafo.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {
@@ -57,6 +58,7 @@ typedef struct params {
     Hashtable hash_end_comercios;
     Hashtable hash_end_pessoas;
     Registrador *regis;
+    Grafo grafo_via;
 } Parametros;
 
 #endif

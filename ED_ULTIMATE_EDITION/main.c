@@ -113,6 +113,13 @@ int main(int argc, char* argv[])
 
     //CRIANDO VETOR DE REGISTRADORES
     p->regis = (Registrador *) calloc(11, sizeof(Registrador));
+    for(i = 0; i < 11; i++)
+    {
+        p->regis[i] = cria_registrador();
+    }
+
+    //CRIANDO O GRAFO
+    p->grafo_via = cria_grafo();
 
     //TRATANDO OS CAMINHOS
     for (i=0; i<argc; i++)

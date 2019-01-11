@@ -4,13 +4,13 @@
 typedef void* Registrador;
 
 
-Registrador criar_registrador();
+Registrador cria_registrador();
 
-void inserir_pos_registrador(Registrador r, double *pos);
+void insere_pos_registrador(Registrador r, double *pos);
 
-void inserir_tipo_registrador(Registrador r, void *tipo);
+void insere_tipo_registrador(Registrador r, void *tipo);
 
-void inserir_nome_registrador(Registrador r, char *nome);
+void insere_nome_registrador(Registrador r, char *nome);
 
 double *get_pos_registrador(Registrador r);
 

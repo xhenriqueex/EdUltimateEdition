@@ -3289,11 +3289,23 @@ void caso_m (Parametros* par)
 
 void caso_v (Parametros* par)
 {
+    char *id = NULL;
+    double x = 0, y = 0, *pos = NULL;
+
+    id = (char *) calloc(255, sizeof(char));
+    pos = (double *) calloc(2, sizeof(double));
+
+    sscanf(par->comando, "%s %lf %lf", id, x, y);
+    pos[0] = x;
+    pos[1] = y;
+    
+    insere_vertice(par->grafo_via, id, pos);
     return;
 }
 
 void caso_e_via (Parametros* par)
 {
+
     return;
 }
 
@@ -3304,8 +3316,8 @@ void caso_arroba_m_pergunta(Parametros *par) {
     Pessoa pessoa = NULL, auxPes = NULL;
     double *pos_pessoa = NULL;
 
-    registrador = (char *) calloc(1, sizeof(char));
-    cpf = (char *) calloc(1, sizeof(char));
+    registrador = (char *) calloc(5, sizeof(char));
+    cpf = (char *) calloc(25, sizeof(char));
 
     sscanf(par->comando, "%s %s", registrador, cpf);
 
@@ -3313,7 +3325,7 @@ void caso_arroba_m_pergunta(Parametros *par) {
     pessoa = get_hashtable(par->hash_pessoas, auxPes);
     pos_pessoa = get_xy_pessoa(pessoa, par);
     r = busca_registrador(par->regis, registrador);
-    inserir_pos_registrador(par->regis[r], pos_pessoa);
+    insere_pos_registrador(par->regis[r], pos_pessoa);
 
     free(registrador);
     registrador = NULL;
