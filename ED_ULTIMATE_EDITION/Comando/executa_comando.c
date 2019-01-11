@@ -3350,9 +3350,96 @@ void caso_arroba_m_pergunta(Parametros *par) {
 
     return;
 }
-void caso_arroba_e_pergunta(Parametros *par);
-void caso_arroba_g_pergunta(Parametros *par);
-void caso_arroba_xy(Parametros *par);
+
+void caso_arroba_e_pergunta(Parametros *par)
+{
+    char *registrador = NULL;
+    char *cep = NULL, *face = NULL, *num = NULL;
+    int r = 0;
+    Comercio auxCom = NULL;
+    double *pos_comercio = NULL;
+
+    registrador = (char *) calloc(5, sizeof(char));
+    cep = (char *) calloc(255, sizeof(char));
+    face = (char *) calloc(255, sizeof(char));
+    num = (char *) calloc(255, sizeof(char));
+
+    sscanf(par->comando, "%s %s %s %s", registrador, cep, face, num);
+
+    auxCom = cria_comercio("", NULL, cep, face, num, "");
+    pos_comercio = get_xy_comercio(auxCom, par);
+    r = busca_registrador(par->regis, registrador);
+    insere_pos_registrador(par->regis[r], pos_comercio);
+
+    free(registrador);
+    registrador = NULL;
+    free(cep);
+    cep = NULL;
+    free(face);
+    face = NULL;
+    free(num);
+    num = NULL;
+    r = 0;
+}
+
+void caso_arroba_g_pergunta(Parametros *par)
+{
+    char *registrador = NULL;
+    char *id = NULL;
+    int r = 0;
+    void *auxEquip = NULL, *equipamento = NULL;
+    double *pos_equipamento = NULL;
+
+    registrador = (char *) calloc(5, sizeof(char));
+    id = (char *) calloc(255, sizeof(char));
+
+    sscanf(par->comando, "%s %s", registrador, id);
+
+    auxEquip = cria_hidrante(id, 0, 0, 0, "", "");
+    equipamento = get_hashtable(par->hash_hidrantes, auxEquip);
+    
+    if (equipamento == NULL) {
+        auxEquip = cria_radiobase(id, 0, 0, 0, "", "");
+        equipamento = get_hashtable(par->hash_radiobases, auxEquip);
+        
+        if (equipamento == NULL) {
+            auxEquip = cria_semaforo(id, 0, 0, 0, "", "");
+            equipamento = get_hashtable(par->hash_semaforos, auxEquip);
+            if (equipamento == NULL) {
+                return;
+            }
+        }
+    }
+
+    r = busca_registrador(par->regis, registrador);
+    insere_pos_registrador(par->regis[r], pos_equipamento);
+
+    free(registrador);
+    registrador = NULL;
+    free(id);
+    id = NULL;
+    r = 0;
+}
+
+void caso_arroba_xy(Parametros *par)
+{
+    char *registrador = NULL;
+    int r = 0;
+    double *pos = NULL;
+
+    registrador = (char *) calloc(5, sizeof(char));
+    pos = (double *) calloc(2, sizeof(double));
+
+    sscanf(par->comando, "%s %lf %lf", registrador, pos[0], pos[1]);
+    
+    r = busca_registrador(par->regis, registrador);
+    insere_pos_registrador(par->regis[r], pos);
+
+    free(registrador);
+    registrador = NULL;
+    r = 0;
+}
+
 void caso_arroba_tp_pergunta(Parametros *par);
 void caso_p_pergunta(Parametros *par);
 void caso_sp_pergunta(Parametros *par);
