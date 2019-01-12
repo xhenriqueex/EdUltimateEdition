@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include "grafo.h"
-
-#define INFINITO -1
 
 struct _atributos_aresta
 {
@@ -53,7 +52,7 @@ void insere_vertice(Grafo G, char *id, double *pos)
     insere_lista(G, (void *) v);
 }
 
-static void* get_vertice(Grafo G, char *v1)
+void* get_vertice(Grafo G, char *v1)
 {
     vertice *v = NULL;
     Posic *p = NULL;
@@ -71,6 +70,14 @@ static void* get_vertice(Grafo G, char *v1)
     return (void *) v;
 }
 
+char *get_id_vertice(void *v1)
+{
+    vertice *v = NULL;
+    v = (vertice *) v1;
+    
+    return v->id;
+}
+
 void insere_aresta(Grafo G, char *v1, char *v2)
 {
     vertice *v = NULL;
@@ -85,12 +92,12 @@ void insere_aresta(Grafo G, char *v1, char *v2)
 
     a = (aresta *) calloc(1, sizeof(aresta));
     atributos_a = (atributos_aresta *) calloc(1, sizeof(atributos_aresta));
-
+    
     a->ligado_a = v2;
     a->atributos = atributos_a;
 
     insere_lista(v->arestas, (void *) a);
-    define_atributos_aresta(G, v1, v2, "", "", "", INFINITO, 0);
+    define_atributos_aresta(G, v1, v2, "", "", "", INT_MAX, 0);
 }
 
 int qtd_vertices(Grafo G)
@@ -110,8 +117,12 @@ void* get_aresta(Grafo G, char *v1, char *v2)
 
     lista = adjacentes(G, v1);
 
+    if(lista == NULL)
+    {
+        return NULL;
+    }
+    
     posic = get_primeiro_lista(lista);
-
     do
     {
         a = (aresta *) get_valor_lista(posic);
@@ -153,13 +164,14 @@ static void* get_atributos_aresta(Grafo G, char *v1, char *v2)
     a = (aresta *) get_aresta(G, v1, v2);
 
     if(a == NULL) {
+        printf("\naaaaaa\n");
         return NULL;
     }
 
     return (atributos_aresta *) a->atributos;
 }
 
-static char *get_nome_aresta(Grafo G, char *v1, char *v2)
+char *get_nome_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
@@ -172,7 +184,7 @@ static char *get_nome_aresta(Grafo G, char *v1, char *v2)
     return atributos_a->nome;
 }
 
-static char *get_ldir_aresta(Grafo G, char *v1, char *v2)
+char *get_ldir_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
@@ -185,7 +197,7 @@ static char *get_ldir_aresta(Grafo G, char *v1, char *v2)
     return atributos_a->ldir;
 }
 
-static char *get_lesq_aresta(Grafo G, char *v1, char *v2)
+char *get_lesq_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
@@ -198,20 +210,21 @@ static char *get_lesq_aresta(Grafo G, char *v1, char *v2)
     return atributos_a->lesq;
 }
 
-static double get_cmp_aresta(Grafo G, char *v1, char *v2)
+double get_cmp_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
     atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
 
     if(atributos_a == NULL) {
+        printf("abcde\n");
         return 0;
     }
 
     return atributos_a->cmp;
 }
 
-static double get_vm_aresta(Grafo G, char *v1, char *v2)
+double get_vm_aresta(Grafo G, char *v1, char *v2)
 {
     atributos_aresta *atributos_a = NULL;
     
@@ -222,6 +235,15 @@ static double get_vm_aresta(Grafo G, char *v1, char *v2)
     }
 
     return atributos_a->vm;
+}
+
+char *get_id_vertice_aresta(void *a1)
+{
+    aresta *a = NULL;
+
+    a = (aresta *) a1;
+
+    return a->ligado_a;
 }
 
 void remove_aresta(Grafo G, char *v1, char *v2)
@@ -275,7 +297,8 @@ Lista adjacentes(Grafo G, char *v1)
 {
     vertice *v = NULL;
 
-    if (get_vertice(G, v1) == NULL) {
+    v = get_vertice(G, v1);
+    if (v == NULL) {
         return NULL;
     }
 
@@ -285,12 +308,15 @@ Lista adjacentes(Grafo G, char *v1)
 void dijkstra(Grafo G, int src)
 {
     int tam = qtd_vertices(G);
-    int dist[tam];
+    double dist[tam];
     int sptset[tam];
     Posic p1 = NULL, p2 = NULL;
+    char *vertice1 = NULL, *vertice2 = NULL;
+    double cmp = 0;
 
     for (int i = 0; i < tam; i++) {
-        dist[i] = INFINITO, sptset[i] = 0;
+        dist[i] = INT_MAX;
+        sptset[i] = 0;
     }
 
     dist[src] = 0;
@@ -299,19 +325,28 @@ void dijkstra(Grafo G, int src)
 
     while(get_proximo_lista(G, p1) != NULL)
     {
+        vertice1 = get_id_vertice(get_valor_lista(p1));
         int u = minima_distancia(dist, sptset, tam);
 
         sptset[u] = 1;
+
+        printf("u = %d\n", u);
 
         p2 = get_primeiro_lista(G);
 
         int v = 0;
         while(p2 != NULL)
         {
-            if (!sptset[v] && get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2))
-            && dist[u] != INFINITO && dist[u]+get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2)) < dist[v])
+            vertice2 = get_id_vertice(get_valor_lista(p2));
+            cmp = get_cmp_aresta(G, vertice1, vertice2);
+
+            printf("Vértice processado? %d\n", sptset[v]);
+            printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, cmp);
+            printf("Distância processada do vértice %s: %lf\n", vertice1, dist[u]);
+            printf("Distância a ser processada de %s: %lf\n", vertice2, dist[v]);
+            if (!sptset[v] && cmp && dist[u] != INT_MAX && dist[u]+cmp < dist[v])
             {
-                dist[v] = dist[u] + get_cmp_aresta(G, get_valor_lista(p1), get_valor_lista(p2));
+                dist[v] = dist[u] + cmp;
             }
             v++;
             p2 = get_proximo_lista(G, p2);
@@ -322,13 +357,13 @@ void dijkstra(Grafo G, int src)
     printar_distancias(dist, tam);
 }
 
-int minima_distancia(int dist[], int sptSet[], int tam)
+int minima_distancia(double dist[], int sptSet[], int tam)
 {
-    int min = INFINITO, min_index = 0;
+    int min = INT_MAX, min_index = 0;
 
     for (int v = 0; v < tam; v++)
     {
-        if (sptSet[v] == 0 && dist[v] == min)
+        if (!sptSet[v] && dist[v] <= min)
         {
             min = dist[v];
             min_index = v;
@@ -338,11 +373,11 @@ int minima_distancia(int dist[], int sptSet[], int tam)
     return min_index;
 }
 
-int printar_distancias(int dist[], int n)
+int printar_distancias(double dist[], int n)
 {
-    printf("Vertex   Distance from Source\n");
+    printf("Vértice   Distância do primeiro\n");
     for (int i = 0; i < n; i++)
     {
-        printf("%d tt %d\n", i, dist[i]);
+        printf("%d tt %lf\n", i, dist[i]);
     }
 }
