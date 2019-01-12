@@ -78,6 +78,14 @@ char *get_id_vertice(void *v1)
     return v->id;
 }
 
+double *get_pos_vertice(void *v1)
+{
+    vertice *v = NULL;
+    v = (vertice *) v1;
+    
+    return v->pos;
+}
+
 void insere_aresta(Grafo G, char *v1, char *v2)
 {
     vertice *v = NULL;
@@ -314,13 +322,14 @@ Lista adjacentes(Grafo G, char *v1)
     return v->arestas;
 }
 
-void dijkstra(Grafo G, int src)
+char **dijkstra(Grafo G, int src)
 {
     int tam = qtd_vertices(G);
     double dist[tam];
     int sptset[tam];
     Posic p1 = NULL, p2 = NULL;
     char *vertice1 = NULL, *vertice2 = NULL;
+    char **vertices = NULL;
     double cmp = 0;
 
     for (int i = 0; i < tam; i++) {
@@ -329,6 +338,8 @@ void dijkstra(Grafo G, int src)
     }
 
     dist[src] = 0;
+
+    vertices = (char **) calloc(1, sizeof(char *));
 
     for(int k = 0; k < tam-1; k++)
     {
@@ -345,6 +356,9 @@ void dijkstra(Grafo G, int src)
 
         printf("u = %d\n", u);
 
+        vertices = (char **) realloc(vertices, (k+1)*sizeof(char *));
+        vertices[k] = vertice1;
+
         p2 = get_primeiro_lista(G);
 
         int v = 0;
@@ -353,21 +367,23 @@ void dijkstra(Grafo G, int src)
             vertice2 = get_id_vertice(get_valor_lista(p2));
             cmp = get_cmp_aresta(G, vertice1, vertice2);
 
-            printf("Vértice processado? %d\n", sptset[v]);
-            printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, cmp);
-            printf("Distância processada do vértice %s: %lf\n", vertice1, dist[u]);
-            printf("Distância a ser processada de %s: %lf\n", vertice2, dist[v]);
+            //printf("Vértice processado? %d\n", sptset[v]);
+            //printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, cmp);
+            //printf("Distância processada do vértice %s: %lf\n", vertice1, dist[u]);
+            //printf("Distância a ser processada de %s: %lf\n", vertice2, dist[v]);
             if (!sptset[v] && cmp && dist[u] != __INT_MAX__ && dist[u]+cmp < dist[v])
             {
                 dist[v] = dist[u] + cmp;
             }
-            printf("Distância processada de %s: %lf\n", vertice2, dist[v]);
+            //printf("Distância processada de %s: %lf\n", vertice2, dist[v]);
             v++;
             p2 = get_proximo_lista(G, p2);
         }
     }
 
-    printar_distancias(dist, tam);
+    //printar_distancias(dist, tam);
+
+    return vertices;
 }
 
 int minima_distancia(double dist[], int sptSet[], int tam)

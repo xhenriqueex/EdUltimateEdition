@@ -1095,3 +1095,29 @@ void fecha_qry (Parametros* par)
     fclose (saida_QRY);
     printf ("\n"); 
 }
+
+void escreve_grafo(Grafo G, char **caminho)
+{
+    //AQUI VAI O ARQUIVO A SER ESCRITO
+    FILE *arquivo = NULL;
+    //////// AINDA FALTA O ARQUIVO E A(S) COR(ES)
+    void *vert1 = NULL, *vert2 = NULL;
+    double *pos1 = NULL, *pos2 = NULL;
+
+    fprintf (arquivo, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
+
+    for(size_t i = 0; i < qtd_vertices(G)-1; i++)
+    {
+        vert1 = get_vertice(G, caminho[i]);
+        vert2 = get_vertice(G, caminho[i+1]);
+
+        pos1 = get_pos_vertice(vert1);
+        pos2 = get_pos_vertice(vert2);
+
+        fprintf (arquivo,
+            "\n<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\"/>",
+            pos1[0], pos1[1], pos2[0], pos2[1], "black");
+    }
+
+    fprintf (arquivo, "\n</svg>");
+}

@@ -11,6 +11,7 @@ Grafo cria_grafo();
 void insere_vertice(Grafo G, char *id, double *pos);
 void* get_vertice(Grafo G, char *v1);
 char *get_id_vertice(void *v1);
+double *get_pos_vertice(void *v1);
 void insere_aresta(Grafo G, char *v1, char *v2);
 int qtd_vertices(Grafo G);
 void* get_aresta(Grafo G, char *v1, char *v2);
@@ -25,7 +26,7 @@ char *get_id_vertice_aresta(void *a1);
 void remove_aresta(Grafo G, char *v1, char *v2);
 int adjacente(Grafo G, char *v1, char *v2);
 Lista adjacentes(Grafo G, char *v1);
-void dijkstra(Grafo G, int src);
+char **dijkstra(Grafo G, int src);
 int minima_distancia(double dist[], int sptSet[], int tam);
 int printar_distancias(double dist[], int n);
 
