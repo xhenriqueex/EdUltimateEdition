@@ -19,44 +19,6 @@
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
 {
-    /*Grafo G = NULL;
-    Posic p1 = NULL, p2 = NULL;
-    double *pos = NULL;
-    double *distancias = NULL;
-    Lista adj = NULL;
-    char *v_id = NULL, *v_id2 = NULL;
-
-    G = cria_grafo();
-    pos = (double *) calloc(2, sizeof(double));
-    distancias = (double *) calloc(1, sizeof(double));
-
-    pos[0] = 1;
-    pos[1] = 2;
-    insere_vertice(G, "0", pos);
-    pos[0] = 2;
-    pos[1] = 4;
-    insere_vertice(G, "1", pos);
-    pos[0] = 10;
-    pos[1] = 1;
-    insere_vertice(G, "2", pos);
-    pos[0] = 5;
-    pos[1] = 3;
-    insere_vertice(G, "3", pos);
-
-    insere_aresta(G, "0", "1");
-    define_atributos_aresta(G, "0", "1", "", "", "", 5, 2);
-    insere_aresta(G, "0", "2");
-    define_atributos_aresta(G, "0", "2", "", "", "", 2, 2);
-    insere_aresta(G, "1", "3");
-    define_atributos_aresta(G, "1", "3", "", "", "", 8, 2);
-    insere_aresta(G, "2", "3");
-    define_atributos_aresta(G, "2", "3", "", "", "", 3, 2);
-
-    dijkstra(G, 0);
-    
-    //printar_distancias(distancias, (int) sizeof(distancias)/sizeof(distancias[0]));
-    return 0;*/
-
     //DECLARANDO STRUCT
     Parametros* p;
     
