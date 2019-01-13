@@ -74,6 +74,6 @@ char* imprime_tipos_quadra (Lista comercios);
 //FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
 void fecha_qry (Parametros* par);
 
-void escreve_grafo(Grafo G, char **vertices);
+void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2);
 
 #endif

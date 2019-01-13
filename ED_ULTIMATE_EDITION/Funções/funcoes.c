@@ -1065,6 +1065,8 @@ void fecha_qry (Parametros* par)
         conteudo_svg = NULL;
         continue;
     }
+    ///////////escreve_grafo(par->grafo_via, par->vertices, saida_SVG, )
+
     fprintf (saida_SVG, "\n</svg>");
     fclose (saida_SVG);
     remove_ext = par->arquivo_entrada;
@@ -1096,28 +1098,29 @@ void fecha_qry (Parametros* par)
     printf ("\n"); 
 }
 
-void escreve_grafo(Grafo G, char **caminho)
+void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2)
 {
-    //AQUI VAI O ARQUIVO A SER ESCRITO
-    FILE *arquivo = NULL;
-    //////// AINDA FALTA O ARQUIVO E A(S) COR(ES)
     void *vert1 = NULL, *vert2 = NULL;
     double *pos1 = NULL, *pos2 = NULL;
-
-    fprintf (arquivo, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
+    char *auxCor = NULL;
 
     for(size_t i = 0; i < qtd_vertices(G)-1; i++)
     {
-        vert1 = get_vertice(G, caminho[i]);
-        vert2 = get_vertice(G, caminho[i+1]);
+        vert1 = get_vertice(G, vertices[i]);
+        vert2 = get_vertice(G, vertices[i+1]);
 
         pos1 = get_pos_vertice(vert1);
         pos2 = get_pos_vertice(vert2);
 
+        if(i%2 == 0) {
+            auxCor = cor1;
+        }
+        else {
+            auxCor = cor2;
+        }
+
         fprintf (arquivo,
             "\n<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\"/>",
-            pos1[0], pos1[1], pos2[0], pos2[1], "black");
+            pos1[0], pos1[1], pos2[0], pos2[1], auxCor);
     }
-
-    fprintf (arquivo, "\n</svg>");
 }
