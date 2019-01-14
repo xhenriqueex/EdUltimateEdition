@@ -80,4 +80,10 @@ void escreve_grafo (Grafo G, char **vertices, FILE *arquivo, char *cor1, char *c
 //FUNÇÃO QUE ENCONTRA O COMÉRCIO MAIS PRÓXIMO DA COORDENADA QUE SEJA DAQUELE TIPO
 void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par);
 
+//FUNÇÃO QUE VERIFICA SE DOIS RETÂNGULOS SE SOBREPÕEM
+int sobrepoe_ret (Retangulo ret1, Retangulo ret2);
+
+//FUNÇÃO QUE DETECTA TODAS AS COLISÕES ENTRE OS CARROS
+char** detectar_colisoes (Lista carros);
+
 #endif

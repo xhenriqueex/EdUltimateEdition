@@ -13,6 +13,7 @@
 #include "../Objetos/Semáforo/semaforo.h"
 #include "../Objetos/Rádiobase/radiobase.h"
 #include "../Objetos/Comércio/comercio.h"
+#include "../Objetos/Carro/carro.h"
 
 #define C "circulo"
 #define R "retangulo"
@@ -1169,4 +1170,92 @@ void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par)
     }
     while (primeiro != NULL);
     return comProx;
+}
+
+//FUNÇÃO QUE VERIFICA SE DOIS RETÂNGULOS SE SOBREPÕEM
+int sobrepoe_ret (Retangulo ret1, Retangulo ret2)
+{
+    int dentro;
+    double valor1, valor2;
+    dentro = 1;
+    valor1 = get_x_retangulo (ret1) + get_w_retangulo (ret1);
+    valor2 = get_x_retangulo (ret2);
+    if (valor1 <= valor2 && dentro)
+    {
+        dentro = 0;
+    }
+    valor1 = get_x_retangulo (ret1);
+    valor2 = get_x_retangulo (ret2) + get_w_retangulo (ret2);
+    if (valor1 >= valor2 && dentro)
+    {
+        dentro = 0;
+    }
+    valor1 = get_y_retangulo (ret1) + get_h_retangulo (ret1);
+    valor2 = get_y_retangulo (ret2);
+    if (valor1 <= valor2 && dentro)
+    {
+        dentro = 0;
+    }
+    valor1 = get_y_retangulo (ret1);
+    valor2 = get_y_retangulo (ret2) + get_h_retangulo (ret2);
+    if (valor1 >= valor2 && dentro)
+    {
+        dentro = 0;
+    }
+    return dentro;
+}
+
+//FUNÇÃO QUE DETECTA TODAS AS COLISÕES ENTRE OS CARROS
+char** detectar_colisoes (Lista carros)
+{
+    char** colisoes;
+    char* placa1;
+    char* placa2;
+    char* colisao;
+    void* primeiro;
+    void* percorre;
+    void* carro1;
+    void* carro2;
+    int i, j;
+    Lista list1;
+    Retangulo* ret1;
+    Retangulo* ret2;
+    list1 = carros;
+    i = largura_lista (list1);
+    j = 0;
+    colisoes = (char**) calloc (i/2, sizeof (char*));
+    *colisoes = (char*) calloc (55, sizeof (char));
+    primeiro = get_primeiro_lista (list1);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        carro1 = get_valor_lista (primeiro);
+        ret1 = get_retangulo_carro (carro1);
+        percorre = get_proximo_lista (list1, primeiro);
+        do
+        {
+            if (percorre == NULL)
+            {
+                continue;
+            }
+            carro2 = get_valor_lista (percorre);
+            ret2 = get_retangulo_carro (carro2);
+            i = sobrepoe_ret (ret1, ret2);
+            if (i == 1)
+            {
+                placa1 = get_placa_carro (carro1);
+                placa2 = get_placa_carro (carro2);
+                strcat ( *(colisoes+j), placa1);
+                strcat ( *(colisoes+j), "+");
+                strcat ( *(colisoes+j), placa2);
+                strcat ( *(colisoes+j), "\0");
+                j++;
+            }
+        }
+        while (percorre != NULL);
+    }
+    while (primeiro != NULL);
 }
