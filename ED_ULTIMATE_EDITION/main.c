@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Estruturas/Item/item.h"
 #include "Estruturas/Lista/lista.h"
+#include "Estruturas/Registrador/registrador.h"
 #include "Funções/funcoes.h"
 #include "Comando/executa_comando.h"
 #include "Parâmetros/parametros.h"
@@ -13,8 +14,7 @@
 #include "Objetos/Rádiobase/radiobase.h"
 #include "Objetos/Comércio/comercio.h"
 #include "Objetos/Pessoa/pessoa.h"
-#include "Estruturas/Registrador/registrador.h"
-#include "Estruturas/Grafo/grafo.h"
+#include "Objetos/Carro/carro.h"
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -63,6 +63,7 @@ int main(int argc, char* argv[])
     p->hash_pessoas = cria_hashtable (100, compare_cpf_pessoa, hashcode_pessoa);
     p->hash_quadras = cria_hashtable (100, compare_hash_quadra, hashcode_quadra);
     p->hash_hidrantes = cria_hashtable (100, compare_hash_hidrante, hashcode_hidrante);
+    p->hash_carros = cria_hashtable (100, compare_hash_carro, hashcode_carro);
     p->hash_semaforos = cria_hashtable (100, compare_hash_semaforo, hashcode_semaforo);
     p->hash_radiobases = cria_hashtable (100, compare_hash_radiobase, hashcode_radiobase);
     p->hash_end_comercios = cria_hashtable (100, compare_hash_endereco_comercio, hashcode_endereco_comercio);
@@ -74,6 +75,7 @@ int main(int argc, char* argv[])
     p->tree_hidrantes = cria_arvore (compare_hidrante, 2);
     p->tree_semaforos = cria_arvore (compare_semaforo, 2);
     p->tree_radiobases = cria_arvore (compare_radiobase, 2);
+    p->tree_carros = cria_arvore (compare_carro, 2);
 
     //INICIALIZANDO CORES PADRÃO
     p->cor_borda_quadra = (char*) calloc (155, sizeof(char));
@@ -95,9 +97,16 @@ int main(int argc, char* argv[])
 
     //INICIALIZANDO VETOR DE FIGURAS
     p->figuras = (Item*) calloc (p->max_figuras, sizeof(Item));
-    for(i=0;i<p->max_figuras; i++)
+    for(i=0; i<p->max_figuras; i++)
     {
         *(p->figuras+i) = NULL;
+    }
+
+    //INICIALIZANDO REGISTRADORES
+    p->regis = (Registrador*) calloc (11, sizeof (Registrador));
+    for (i=0; i<11; i++)
+    {
+        *(p->regis+i) = NULL;
     }
 
     //INICIALIZANDO PARÂMETROS DE CHAMADA
@@ -111,16 +120,6 @@ int main(int argc, char* argv[])
     
     //ALOCANDO MEMÓRIA DO CONTROLE
     p->controle = (char*) calloc (5, sizeof (char));
-
-    //CRIANDO VETOR DE REGISTRADORES
-    p->regis = (Registrador *) calloc(11, sizeof(Registrador));
-    for(i = 0; i < 11; i++)
-    {
-        p->regis[i] = cria_registrador();
-    }
-
-    //CRIANDO O GRAFO
-    p->grafo_via = cria_grafo();
 
     //TRATANDO OS CAMINHOS
     for (i=0; i<argc; i++)
@@ -453,6 +452,7 @@ int main(int argc, char* argv[])
     free_arvore (p->tree_quadras);
     free_arvore (p->tree_radiobases);
     free_arvore (p->tree_semaforos);
+    free_arvore (p->tree_carros);
     free_hashtable (p->hash_comercios);
     free_hashtable (p->hash_end_comercios);
     free_hashtable (p->hash_end_pessoas);
@@ -462,6 +462,7 @@ int main(int argc, char* argv[])
     free_hashtable (p->hash_radiobases);
     free_hashtable (p->hash_semaforos);
     free_hashtable (p->hash_tipos);
+    free_hashtable (p->hash_carros);
     //for (i=0; i<p->contador_figuras; i++)
     //{
     //    free_item (p->figuras[i]);

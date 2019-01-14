@@ -12,6 +12,7 @@
 #include "../Objetos/Rádiobase/radiobase.h"
 #include "../Objetos/Pessoa/pessoa.h"
 #include "../Objetos/Comércio/comercio.h"
+#include "../Objetos/Carro/carro.h"
 #include "../Formas/Anotação/anotacao.h"
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Fila/fila.h"
@@ -72,6 +73,16 @@ void caso_mudec (Parametros* par);
 void caso_dpr (Parametros* par);
 void caso_v (Parametros* par);
 void caso_e_via (Parametros* par);
+void caso_arroba_m_pergunta (Parametros* par);
+void caso_arroba_e_pergunta (Parametros* par);
+void caso_arroba_g_pergunta (Parametros* par);
+void caso_arroba_xy (Parametros* par);
+void caso_arroba_tp_pergunta (Parametros* par);
+void caso_p_pergunta (Parametros* par);
+void caso_sp_pergunta (Parametros* par);
+void caso_au (Parametros* par);
+void caso_dc (Parametros* par);
+void caso_rau (Parametros* par);
 
 void executa_comando (void* p)
 {
@@ -491,6 +502,86 @@ void executa_comando (void* p)
     {
         caso_dpr (par);
         free(comando);
+        comando = NULL;
+        return;
+    }
+    //ARMAZENA NO REGISTRADOR A POSIÇÃO GEOGRÁFICA DO MORADOR DE TAL CPF
+    if (!strcmp (comando, "@m?"))
+    {
+        caso_arroba_m_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //ARMAZENA NO REGISTRADOR A POSIÇÃO GEOGRÁFICA DO ENDEREÇO
+    if (!strcmp (comando, "@e?"))
+    {
+        caso_arroba_e_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //ARMAZENA NO REGISTRADOR A POSIÇÃO GEOGRÁFICA DO EQUIPAMENTO URBANO
+    if (!strcmp (comando, "@g?"))
+    {
+        caso_arroba_g_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //ARMAZENA NO REGISTRADOR A POSIÇÃO GEOGRÁFICA (X,Y)
+    if (!strcmp (comando, "@xy"))
+    {
+        caso_arroba_xy (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //ARMAZENA NO REGISTRADOR 1 O ESTABELECIMENTO DO TIPO ESPECIFICADO MAIS PRÓXIMO DO REGISTRADOR 2
+    if (!strcmp (comando, "@tp?"))
+    {
+        caso_arroba_tp_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //MELHOR TRAJETO ENTRE A ORIGEM (REGISTRADOR 1) E O DESTINO (REGISTRADOR 2)
+    if (!strcmp (comando, "p?"))
+    {
+        caso_p_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //MELHOR TRAJETO ENTRE A ORIGEM (REGISTRADOR 1) E O DESTINO (REGISTRADOR N) PASSANDO POR TODOS OS OUTROS  REGISTRADORES PEDIDOS
+    if (!strcmp (comando, "sp?"))
+    {
+        caso_sp_pergunta (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //POSICIONA O CARRO EM ALGUM LUGAR DA CIDADE
+    if (!strcmp (comando, "au"))
+    {
+        caso_au (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //DETECTA COLISÃO E INTERDITA TRECHO DA RUA
+    if (!strcmp (comando, "dc"))
+    {
+        caso_dc (par);
+        free (comando);
+        comando = NULL;
+        return;
+    }
+    //REMOVE CARRO IDENTIFICADO PELA PLACA
+    if (!strcmp (comando, "rau"))
+    {
+        caso_rau (par);
+        free (comando);
         comando = NULL;
         return;
     }
@@ -3147,6 +3238,305 @@ void caso_dpr (Parametros* par)
     return;
 }
 
+void caso_arroba_m_pergunta (Parametros* par) 
+{
+    char* registrador = NULL;
+    char* cpf = NULL;
+    double* pos_pessoa = NULL;
+    Pessoa pessoa = NULL;
+    Pessoa auxPes = NULL;
+    int r = 0;
+    registrador = (char*) calloc (5, sizeof (char));
+    cpf = (char*) calloc (25, sizeof (char));
+    sscanf (par->comando, "%s %s", registrador, cpf);
+    auxPes = cria_pessoa ("", "", cpf, "", "");
+    pessoa = get_hashtable (par->hash_pessoas, auxPes);
+    pos_pessoa = get_xy_pessoa (pessoa, par);
+    r = busca_registrador (par->regis, registrador);
+    insere_pos_registrador (par->regis[r], pos_pessoa);
+    free (registrador);
+    registrador = NULL;
+    free (cpf);
+    cpf = NULL;
+    r = 0;
+    return;
+}
+
+void caso_arroba_e_pergunta (Parametros* par)
+{
+    char* registrador = NULL;
+    char* cep = NULL;
+    char* face = NULL;
+    char* num = NULL;
+    double *pos_comercio = NULL;
+    Comercio auxCom = NULL;
+    int r = 0;
+    registrador = (char*) calloc (5, sizeof (char));
+    cep = (char*) calloc (255, sizeof (char));
+    face = (char*) calloc (255, sizeof (char));
+    num = (char*) calloc (255, sizeof (char));
+    sscanf (par->comando, "%s %s %s %s", registrador, cep, face, num);
+    auxCom = cria_comercio ("", NULL, cep, face, num, "");
+    pos_comercio = get_xy_comercio (auxCom, par);
+    r = busca_registrador (par->regis, registrador);
+    insere_pos_registrador (par->regis[r], pos_comercio);
+    free (registrador);
+    registrador = NULL;
+    free (cep);
+    cep = NULL;
+    free (face);
+    face = NULL;
+    free (num);
+    num = NULL;
+    r = 0;
+    return;
+}
+
+void caso_arroba_g_pergunta (Parametros* par)
+{
+    char* registrador = NULL;
+    char* id = NULL;
+    int r = 0;
+    void* auxEquip = NULL;
+    void* equipamento = NULL;
+    double* pos_equipamento = NULL;
+    registrador = (char*) calloc (5, sizeof (char));
+    id = (char*) calloc (255, sizeof (char));
+    sscanf (par->comando, "%s %s", registrador, id);
+    auxEquip = cria_hidrante (id, 0, 0, 0, "", "");
+    equipamento = get_hashtable (par->hash_hidrantes, auxEquip);
+    if (equipamento == NULL)
+    {
+        auxEquip = cria_radiobase (id, 0, 0, 0, "", "");
+        equipamento = get_hashtable (par->hash_radiobases, auxEquip);
+        
+        if (equipamento == NULL) 
+        {
+            auxEquip = cria_semaforo(id, 0, 0, 0, "", "");
+            equipamento = get_hashtable(par->hash_semaforos, auxEquip);
+            if (equipamento == NULL) 
+            {
+                return;
+            }
+        }
+    }
+    r = busca_registrador (par->regis, registrador);
+    insere_pos_registrador (par->regis[r], pos_equipamento);
+    free (registrador);
+    registrador = NULL;
+    free (id);
+    id = NULL;
+    r = 0;
+    return;
+}
+
+void caso_arroba_xy (Parametros* par)
+{
+    char* registrador = NULL;
+    double* pos = NULL;
+    int r = 0;
+    registrador = (char*) calloc (5, sizeof (char));
+    pos = (double*) calloc (2, sizeof (double));
+    sscanf (par->comando, "%s %lf %lf", registrador, pos[0], pos[1]);
+    r = busca_registrador (par->regis, registrador);
+    insere_pos_registrador (par->regis[r], pos);
+    free (registrador);
+    registrador = NULL;
+    r = 0;
+    return;
+}
+
+void caso_arroba_tp_pergunta (Parametros* par)
+{
+    char* r1;
+    char* r2;
+    char* tipo;
+    char* nome;
+    double* coord;
+    void* comercio;
+    int i;
+    Registrador reg1;
+    Registrador reg2;
+    r1 = (char*) calloc (55, sizeof (char));
+    r2 = (char*) calloc (55, sizeof (char));
+    tipo = (char*) calloc (55, sizeof (char));
+    par->comando += 5;
+    sscanf (par->comando, "%s %s %s", r1, tipo, r2);
+    i = busca_registrador (par->regis, r1);
+    reg1 = *(par->regis+i);
+    i = busca_registrador (par->regis, r2);
+    reg2 = *(par->regis+i);
+    coord = get_pos_registrador (reg2);
+    comercio = comercio_proximo_coordenada (coord, tipo, par);
+    nome = get_nome_comercio (comercio);
+    insere_nome_registrador (reg1, nome);
+    coord = get_xy_comercio (comercio, par);
+    insere_pos_registrador (reg1, coord);
+    insere_tipo_registrador (reg1, comercio);
+    free (r1);
+    r1 = NULL;
+    free (r2);
+    r2 = NULL;
+    free (tipo);
+    tipo = NULL;
+    return;
+}
+
+void caso_p_pergunta(Parametros *par)
+{
+    char *registrador1 = NULL, *registrador2 = NULL, *cor = NULL;
+    double *pos1 = NULL, *pos2 = NULL;
+    int r1 = 0, r2 = 0;
+    void *v1 = NULL, *v2 = NULL;
+    Lista *l = NULL;
+    char **vertices = NULL;
+    char *cor1 = NULL, *cor2 = NULL;
+    Anotacao anot = NULL;
+    char *anotTexto = NULL;
+
+    registrador1 = (char *) calloc(5, sizeof(char));
+    registrador2 = (char *) calloc(5, sizeof(char));
+    cor = (char *) calloc(255, sizeof(char));
+
+    sscanf(par->comando, "%s %s %s", registrador1, registrador2, cor);
+
+    anotTexto = (char *) calloc(60, sizeof(char));
+
+    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via);
+
+    
+    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
+    {
+        v1 = get_vertice(par->grafo_via, vertices[i]);
+        v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+        pos1 = get_pos_vertice(v1);
+        pos2 = get_pos_vertice(v2);
+        
+        sprintf(anotTexto, "p %s", cor);
+        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+        insere_fila(par->anotacoes, anot);
+    }
+    ////////////////
+}
+
+void caso_sp_pergunta(Parametros *par)
+{
+    char **registradores = NULL, *cor1 = NULL, *cor2 = NULL;
+    char *auxCor = NULL;
+    double *pos1 = NULL, *pos2 = NULL;
+    int r1 = 0, r2 = 0;
+    int n = 0;
+    void *v1 = NULL, *v2 = NULL;
+    Lista *l = NULL;
+    char **vertices = NULL, **auxVertices = NULL;
+    Anotacao anot = NULL;
+    char *anotTexto = NULL;
+
+    cor1 = (char *) calloc(255, sizeof(char));
+    cor2 = (char *) calloc(255, sizeof(char));
+    anotTexto = (char *) calloc(60, sizeof(char));
+
+    sscanf(par->comando, "%d", &n);
+    registradores = (char **) calloc(n, sizeof(char *));
+
+    for(size_t i = 0; i < n; i++)
+    {
+        sscanf(par->comando, "%s", registradores[i]);
+    }
+    
+    sscanf(par->comando, "%s %s", cor1, cor2);
+
+    vertices = (char **) calloc (1000, sizeof(char *));
+    
+    for(size_t i = 0; i < n-1; i++)
+    {
+        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via);
+        strcat(vertices, auxVertices);
+    }
+    
+    
+    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
+    {
+        v1 = get_vertice(par->grafo_via, vertices[i]);
+        v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+        pos1 = get_pos_vertice(v1);
+        pos2 = get_pos_vertice(v2);
+
+        if(i%2 == 0) {
+            auxCor = cor1;
+        }
+        else {
+            auxCor = cor2;
+        }
+
+        sprintf(anotTexto, "p %s", auxCor);
+        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+        insere_fila(par->anotacoes, anot);
+    }
+}
+
+void caso_au (Parametros* par)
+{
+    char* placa;
+    double x, y, w, h;
+    Carro* carro;
+    par->comando += 3;
+    placa = (char*) calloc (55, sizeof (char));
+    sscanf (par->comando, "%s %lf %lf %lf %lf", placa, &x, &y, &w, &h);
+    carro = cria_carro (placa, x, y, w, h);
+    free (placa);
+    placa = NULL;
+    insere_arvore (par->tree_carros, carro);
+    insere_hashtable (par->hash_carros, carro);
+    return;
+}
+
+void caso_dc (Parametros* par);
+
+void caso_rau (Parametros* par)
+{
+    void* primeiro;
+    void* pontAux;
+    char* placa;
+    char* comando;
+    char* info;
+    Lista carros;
+    Carro* aux;
+    comando = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
+    strcpy (par->comando, comando);
+    insere_fila (par->resultado, comando);
+    par->comando += 4;
+    placa = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
+    strcpy (par->comando, placa);
+    carros = get_todos_arvore (par->tree_carros);
+    primeiro = get_primeiro_lista (carros);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        aux = get_valor_lista (primeiro);
+        if (!strcmp (placa, get_placa_carro))
+        {
+            info = (char*) calloc (155, sizeof (char));
+            sprintf (info, "Carro - PLACA = %s", placa);
+            insere_fila (par->resultado, info);
+            remove_valor_arvore (par->tree_carros, aux);
+            remove_hashtable (par->hash_carros, aux);
+            pontAux = get_proximo_lista (carros, primeiro);
+            remove_lista (carros, aux);
+            primeiro = pontAux;
+        }
+        primeiro = get_proximo_lista (carros, primeiro);
+    }
+    while (primeiro != NULL);
+}
+
 //COMANDOS REFERENTES AO ARQUIVO .EC
 
 void caso_t_ec (Parametros* par)
@@ -3289,259 +3679,35 @@ void caso_m (Parametros* par)
 
 void caso_v (Parametros* par)
 {
-    char *id = NULL;
-    double x = 0, y = 0, *pos = NULL;
-
-    id = (char *) calloc(255, sizeof(char));
-    pos = (double *) calloc(2, sizeof(double));
-
-    sscanf(par->comando, "%s %lf %lf", id, x, y);
+    char* id = NULL;
+    double x = 0;
+    double y = 0; 
+    double* pos = NULL;
+    id = (char*) calloc (255, sizeof (char));
+    pos = (double*) calloc (2, sizeof (double));
+    sscanf (par->comando, "%s %lf %lf", id, x, y);
     pos[0] = x;
     pos[1] = y;
-
-    insere_vertice(par->grafo_via, id, pos);
+    insere_vertice (par->grafo_via, id, pos);
     return;
 }
 
 void caso_e_via (Parametros* par)
 {
-    char *i = NULL, *j = NULL;
-    char *ldir = NULL, *lesq = NULL;
-    char *nome = NULL;
-    double cmp = 0, vm = 0;
-
-    i = (char *) calloc(5, sizeof(char));
-    j = (char *) calloc(5, sizeof(char));
-    ldir = (char *) calloc(255, sizeof(char));
-    lesq = (char *) calloc(255, sizeof(char));
-    nome = (char *) calloc(255, sizeof(char));
-
-    sscanf(par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, cmp, vm, nome);
-
-    insere_aresta(par->grafo_via, i, j);
-    define_atributos_aresta(par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
-
+    char* i = NULL;
+    char* j = NULL;
+    char* ldir = NULL;
+    char* lesq = NULL;
+    char* nome = NULL;
+    double cmp = 0;
+    double vm = 0;
+    i = (char*) calloc (5, sizeof (char));
+    j = (char*) calloc (5, sizeof (char));
+    ldir = (char*) calloc (255, sizeof (char));
+    lesq = (char*) calloc (255, sizeof (char));
+    nome = (char*) calloc (255, sizeof (char));
+    sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, cmp, vm, nome);
+    insere_aresta (par->grafo_via, i, j);
+    define_atributos_aresta (par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
     return;
 }
-
-void caso_arroba_m_pergunta(Parametros *par) {
-    char *registrador = NULL;
-    char *cpf = NULL;
-    int r = 0;
-    Pessoa pessoa = NULL, auxPes = NULL;
-    double *pos_pessoa = NULL;
-
-    registrador = (char *) calloc(5, sizeof(char));
-    cpf = (char *) calloc(25, sizeof(char));
-
-    sscanf(par->comando, "%s %s", registrador, cpf);
-
-    auxPes = cria_pessoa("", "", cpf, "", "");
-    pessoa = get_hashtable(par->hash_pessoas, auxPes);
-    pos_pessoa = get_xy_pessoa(pessoa, par);
-    r = busca_registrador(par->regis, registrador);
-    insere_pos_registrador(par->regis[r], pos_pessoa);
-
-    free(registrador);
-    registrador = NULL;
-    free(cpf);
-    cpf = NULL;
-    r = 0;
-
-    return;
-}
-
-void caso_arroba_e_pergunta(Parametros *par)
-{
-    char *registrador = NULL;
-    char *cep = NULL, *face = NULL, *num = NULL;
-    int r = 0;
-    Comercio auxCom = NULL;
-    double *pos_comercio = NULL;
-
-    registrador = (char *) calloc(5, sizeof(char));
-    cep = (char *) calloc(255, sizeof(char));
-    face = (char *) calloc(255, sizeof(char));
-    num = (char *) calloc(255, sizeof(char));
-
-    sscanf(par->comando, "%s %s %s %s", registrador, cep, face, num);
-
-    auxCom = cria_comercio("", NULL, cep, face, num, "");
-    pos_comercio = get_xy_comercio(auxCom, par);
-    r = busca_registrador(par->regis, registrador);
-    insere_pos_registrador(par->regis[r], pos_comercio);
-
-    free(registrador);
-    registrador = NULL;
-    free(cep);
-    cep = NULL;
-    free(face);
-    face = NULL;
-    free(num);
-    num = NULL;
-    r = 0;
-}
-
-void caso_arroba_g_pergunta(Parametros *par)
-{
-    char *registrador = NULL;
-    char *id = NULL;
-    int r = 0;
-    void *auxEquip = NULL, *equipamento = NULL;
-    double *pos_equipamento = NULL;
-
-    registrador = (char *) calloc(5, sizeof(char));
-    id = (char *) calloc(255, sizeof(char));
-
-    sscanf(par->comando, "%s %s", registrador, id);
-
-    auxEquip = cria_hidrante(id, 0, 0, 0, "", "");
-    equipamento = get_hashtable(par->hash_hidrantes, auxEquip);
-    
-    if (equipamento == NULL) {
-        auxEquip = cria_radiobase(id, 0, 0, 0, "", "");
-        equipamento = get_hashtable(par->hash_radiobases, auxEquip);
-        
-        if (equipamento == NULL) {
-            auxEquip = cria_semaforo(id, 0, 0, 0, "", "");
-            equipamento = get_hashtable(par->hash_semaforos, auxEquip);
-            if (equipamento == NULL) {
-                return;
-            }
-        }
-    }
-
-    r = busca_registrador(par->regis, registrador);
-    insere_pos_registrador(par->regis[r], pos_equipamento);
-
-    free(registrador);
-    registrador = NULL;
-    free(id);
-    id = NULL;
-    r = 0;
-}
-
-void caso_arroba_xy(Parametros *par)
-{
-    char *registrador = NULL;
-    int r = 0;
-    double *pos = NULL;
-
-    registrador = (char *) calloc(5, sizeof(char));
-    pos = (double *) calloc(2, sizeof(double));
-
-    sscanf(par->comando, "%s %lf %lf", registrador, pos[0], pos[1]);
-    
-    r = busca_registrador(par->regis, registrador);
-    insere_pos_registrador(par->regis[r], pos);
-
-    free(registrador);
-    registrador = NULL;
-    r = 0;
-}
-
-void caso_arroba_tp_pergunta(Parametros *par)
-{
-    
-}
-
-void caso_p_pergunta(Parametros *par)
-{
-    char *registrador1 = NULL, *registrador2 = NULL, *cor = NULL;
-    double *pos1 = NULL, *pos2 = NULL;
-    int r1 = 0, r2 = 0;
-    void *v1 = NULL, *v2 = NULL;
-    Lista *l = NULL;
-    char **vertices = NULL;
-    char *cor1 = NULL, *cor2 = NULL;
-    Anotacao anot = NULL;
-    char *anotTexto = NULL;
-
-    registrador1 = (char *) calloc(5, sizeof(char));
-    registrador2 = (char *) calloc(5, sizeof(char));
-    cor = (char *) calloc(255, sizeof(char));
-
-    sscanf(par->comando, "%s %s %s", registrador1, registrador2, cor);
-
-    anotTexto = (char *) calloc(60, sizeof(char));
-
-    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via);
-
-    
-    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
-    {
-        v1 = get_vertice(par->grafo_via, vertices[i]);
-        v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
-        pos1 = get_pos_vertice(v1);
-        pos2 = get_pos_vertice(v2);
-        
-        sprintf(anotTexto, "p %s", cor);
-        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-        insere_fila(par->anotacoes, anot);
-    }
-    ////////////////
-}
-
-void caso_sp_pergunta(Parametros *par)
-{
-    char **registradores = NULL, *cor1 = NULL, *cor2 = NULL;
-    char *auxCor = NULL;
-    double *pos1 = NULL, *pos2 = NULL;
-    int r1 = 0, r2 = 0;
-    int n = 0;
-    void *v1 = NULL, *v2 = NULL;
-    Lista *l = NULL;
-    char **vertices = NULL, **auxVertices = NULL;
-    Anotacao anot = NULL;
-    char *anotTexto = NULL;
-
-    cor1 = (char *) calloc(255, sizeof(char));
-    cor2 = (char *) calloc(255, sizeof(char));
-    anotTexto = (char *) calloc(60, sizeof(char));
-
-    sscanf(par->comando, "%d", &n);
-    registradores = (char **) calloc(n, sizeof(char *));
-
-    for(size_t i = 0; i < n; i++)
-    {
-        sscanf(par->comando, "%s", registradores[i]);
-    }
-    
-    sscanf(par->comando, "%s %s", cor1, cor2);
-
-    vertices = (char **) calloc (1000, sizeof(char *));
-    
-    for(size_t i = 0; i < n-1; i++)
-    {
-        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via);
-        strcat(vertices, auxVertices);
-    }
-    
-    
-    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
-    {
-        v1 = get_vertice(par->grafo_via, vertices[i]);
-        v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
-        pos1 = get_pos_vertice(v1);
-        pos2 = get_pos_vertice(v2);
-
-        if(i%2 == 0) {
-            auxCor = cor1;
-        }
-        else {
-            auxCor = cor2;
-        }
-
-        sprintf(anotTexto, "p %s", auxCor);
-        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-        insere_fila(par->anotacoes, anot);
-    }
-}
-
-void caso_au(Parametros *par);
-void caso_dc(Parametros *par);
-void caso_rau(Parametros *par);
