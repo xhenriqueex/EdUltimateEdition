@@ -49,16 +49,18 @@ typedef struct params {
     Arvore tree_hidrantes;
     Arvore tree_semaforos;
     Arvore tree_radiobases;
+    Arvore tree_carros;
     Hashtable hash_quadras;
     Hashtable hash_hidrantes;
     Hashtable hash_semaforos;
     Hashtable hash_radiobases;
+    Hashtable hash_carros;
     Hashtable hash_tipos;
     Hashtable hash_comercios;
     Hashtable hash_pessoas;
     Hashtable hash_end_comercios;
     Hashtable hash_end_pessoas;
-    Registrador *regis;
+    Registrador* regis;
     Grafo grafo_via;
 } Parametros;
 

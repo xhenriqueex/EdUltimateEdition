@@ -3,107 +3,92 @@
 #include <string.h>
 #include "registrador.h"
 
-struct registrador
+typedef struct registrador
 {
-    double *pos;
-    void *tipo;
-    char *nome;
-};
+    double* pos;
+    char* nome;
+    void* tipo;
+} Regis;
 
-typedef struct registrador Regis;
-
-
-Registrador cria_registrador()
+//CRIA E RETORNA UM REGISTRADOR
+Registrador cria_registrador ()
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) calloc(1, sizeof(Regis));
-
+    Regis* regis = NULL;
+    regis = (Regis*) calloc (1, sizeof (Regis));
     regis->pos = NULL;
     regis->tipo = NULL;
     regis->nome = NULL;
-
     return (Registrador) regis;
 }
 
-void insere_pos_registrador(Registrador r, double *pos)
+//INSERE A COORDENADA NO REGISTRADOR
+void insere_pos_registrador (Registrador r, double* pos)
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) r;
-
+    Regis* regis = NULL;
+    regis = (Regis*) r;
     regis->pos = pos;
-
     return;
 }
 
-void insere_tipo_registrador(Registrador r, void *tipo)
+//INSERE O TIPO NO REGISTRADOR
+void insere_tipo_registrador (Registrador r, void* tipo)
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) r;
-
+    Regis* regis = NULL;
+    regis = (Regis*) r;
     regis->tipo = tipo;
-
     return;
 }
 
-void insere_nome_registrador(Registrador r, char *nome)
+//INSERE O NOME NO REGISTRADOR
+void insere_nome_registrador (Registrador r, char* nome)
 {
-    Regis *regis = NULL;
-
+    Regis* regis = NULL;
     regis = (Regis *) r;
-
     regis->nome = nome;
-
     return;
 }
 
-double *get_pos_registrador(Registrador r)
+//RETORNA A COORDENADA PRESENTE NO REGISTRADOR
+double* get_pos_registrador (Registrador r)
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) r;
-
+    Regis* regis = NULL;
+    regis = (Regis*) r;
     return regis->pos;
 }
 
-void *get_tipo_registrador(Registrador r)
+//RETORNA O TIPO PRESENTE NO REGISTRADOR
+void* get_tipo_registrador (Registrador r)
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) r;
-
+    Regis*regis = NULL;
+    regis = (Regis*) r;
     return regis->tipo;
 }
 
-char *get_nome_registrador(Registrador r)
+//RETORNA O NOME PRESENTE NO REGISTRADOR
+char* get_nome_registrador (Registrador r)
 {
-    Regis *regis = NULL;
-
-    regis = (Regis *) r;
-
+    Regis* regis = NULL;
+    regis = (Regis*) r;
     return regis->nome;
 }
 
-int busca_registrador(Registrador *registradores, char *nome)
+//BUSCA UM REGISTRADOR ESPECÍFICADO PELO NOME
+int busca_registrador (Registrador* registradores, char* nome)
 {
-    Regis *regis = NULL;
+    Regis* regis = NULL;
     int i = 0;
-
     for(i = 0; i < 11; i++)
     {
-        regis = (Regis *) registradores[i];
-
-        if (regis == NULL) {
+        regis = (Regis*) registradores[i];
+        if (regis == NULL) 
+        {
             continue;
         }
-        
-        if(strcmp(regis->nome, nome) == 0)
+    
+        if (!strcmp (regis->nome, nome))
         {
             break;
         }
     }
-    
     return i;
 }

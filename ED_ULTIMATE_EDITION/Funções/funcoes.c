@@ -1098,7 +1098,7 @@ void fecha_qry (Parametros* par)
     printf ("\n"); 
 }
 
-void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2)
+void escreve_grafo (Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2)
 {
     void *vert1 = NULL, *vert2 = NULL;
     double *pos1 = NULL, *pos2 = NULL;
@@ -1123,4 +1123,50 @@ void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *co
             "\n<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\"/>",
             pos1[0], pos1[1], pos2[0], pos2[1], auxCor);
     }
+}
+
+//FUNÇÃO QUE ENCONTRA O COMÉRCIO MAIS PRÓXIMO DA COORDENADA QUE SEJA DAQUELE TIPO
+void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par)
+{
+    double dist;
+    double minDist;
+    double distX;
+    double distY;
+    double distAux;
+    double* coordAux;
+    void* primeiro;
+    void* comercio;
+    void* comProx;
+    Lista comercios;
+    comercios = get_todos_hashtable (par->hash_comercios);
+    primeiro = get_primeiro_lista (comercios);
+    if (primeiro != NULL)
+    {
+        comProx = get_valor_lista (primeiro);
+        coordAux = get_xy_comercio (comProx, par);
+        distX = *coord + *coordAux;
+        distY = *(coord+1) + *(coordAux+1);
+        distX = distX * distX;
+        distY = distY * distY;
+        minDist = sqrt (distX + distY);
+    }
+    primeiro = get_proximo_lista (comercios, primeiro);
+    do
+    {
+        comercio = get_valor_lista (primeiro);
+        coordAux = get_xy_comercio (comercio, par);
+        distX = *coord + *coordAux;
+        distY = *(coord+1) + *(coordAux+1);
+        distX = distX * distX;
+        distY = distY * distY;
+        distAux = sqrt (distX + distY);
+        if (distAux < minDist)
+        {
+            minDist = distAux;
+            comProx = comercio;
+        }
+        primeiro = get_proximo_lista (comercios, primeiro);
+    }
+    while (primeiro != NULL);
+    return comProx;
 }

@@ -74,6 +74,10 @@ char* imprime_tipos_quadra (Lista comercios);
 //FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
 void fecha_qry (Parametros* par);
 
-void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2);
+//FUNÇÃO QUE ESCREVE O GRAFO NO SVG
+void escreve_grafo (Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2);
+
+//FUNÇÃO QUE ENCONTRA O COMÉRCIO MAIS PRÓXIMO DA COORDENADA QUE SEJA DAQUELE TIPO
+void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par);
 
 #endif
