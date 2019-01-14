@@ -3382,9 +3382,102 @@ void caso_arroba_tp_pergunta (Parametros* par)
     return;
 }
 
-void caso_p_pergunta (Parametros* par);
+void caso_p_pergunta(Parametros *par)
+{
+    char *registrador1 = NULL, *registrador2 = NULL, *cor = NULL;
+    double *pos1 = NULL, *pos2 = NULL;
+    int r1 = 0, r2 = 0;
+    void *v1 = NULL, *v2 = NULL;
+    Lista *l = NULL;
+    char **vertices = NULL;
+    char *cor1 = NULL, *cor2 = NULL;
+    Anotacao anot = NULL;
+    char *anotTexto = NULL;
 
-void caso_sp_pergunta (Parametros* par);
+    registrador1 = (char *) calloc(5, sizeof(char));
+    registrador2 = (char *) calloc(5, sizeof(char));
+    cor = (char *) calloc(255, sizeof(char));
+
+    sscanf(par->comando, "%s %s %s", registrador1, registrador2, cor);
+
+    anotTexto = (char *) calloc(60, sizeof(char));
+
+    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via);
+
+    
+    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
+    {
+        v1 = get_vertice(par->grafo_via, vertices[i]);
+        v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+        pos1 = get_pos_vertice(v1);
+        pos2 = get_pos_vertice(v2);
+        
+        sprintf(anotTexto, "p %s", cor);
+        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+        insere_fila(par->anotacoes, anot);
+    }
+    ////////////////
+}
+
+void caso_sp_pergunta(Parametros *par)
+{
+    char **registradores = NULL, *cor1 = NULL, *cor2 = NULL;
+    char *auxCor = NULL;
+    double *pos1 = NULL, *pos2 = NULL;
+    int r1 = 0, r2 = 0;
+    int n = 0;
+    void *v1 = NULL, *v2 = NULL;
+    Lista *l = NULL;
+    char **vertices = NULL, **auxVertices = NULL;
+    Anotacao anot = NULL;
+    char *anotTexto = NULL;
+
+    cor1 = (char *) calloc(255, sizeof(char));
+    cor2 = (char *) calloc(255, sizeof(char));
+    anotTexto = (char *) calloc(60, sizeof(char));
+
+    sscanf(par->comando, "%d", &n);
+    registradores = (char **) calloc(n, sizeof(char *));
+
+    for(size_t i = 0; i < n; i++)
+    {
+        sscanf(par->comando, "%s", registradores[i]);
+    }
+    
+    sscanf(par->comando, "%s %s", cor1, cor2);
+
+    vertices = (char **) calloc (1000, sizeof(char *));
+    
+    for(size_t i = 0; i < n-1; i++)
+    {
+        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via);
+        strcat(vertices, auxVertices);
+    }
+    
+    
+    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
+    {
+        v1 = get_vertice(par->grafo_via, vertices[i]);
+        v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+        pos1 = get_pos_vertice(v1);
+        pos2 = get_pos_vertice(v2);
+
+        if(i%2 == 0) {
+            auxCor = cor1;
+        }
+        else {
+            auxCor = cor2;
+        }
+
+        sprintf(anotTexto, "p %s", auxCor);
+        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+        insere_fila(par->anotacoes, anot);
+    }
+}
 
 void caso_au (Parametros* par)
 {

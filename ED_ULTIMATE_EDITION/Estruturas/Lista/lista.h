@@ -45,6 +45,12 @@ Posic get_ultimo_lista (Lista list);
 //CONCATENA A SEGUNDA LISTA NA PRIMEIRA
 void concat_listas (Lista lista1, Lista lista2);
 
+//RETORNA UMA LISTA DE ELEMENTOS ATÉ UMA POSIÇÃO ESPECÍFICA
+Lista divide_lista(Lista list, Posic p);
+
+//MUDA O ELEMENTO DO POSIC PARA O PRIMEIRO DA LISTA
+Lista fixa_primeiro_lista(Lista list, Posic p);
+
 //LIBERA A MEMÓRIA ALOCADA DA LISTA
 Posic liberar_elemento_lista(Lista list, Posic p);
 void liberar_lista(Lista list);
