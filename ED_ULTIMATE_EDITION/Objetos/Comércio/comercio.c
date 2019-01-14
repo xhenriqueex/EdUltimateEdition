@@ -364,7 +364,7 @@ char* relatorio_mud_comercio (void* comercio, void* end1, void* end2)
     return relatorio;
 }
 
-void free_tipo_comercio(void *tipo_comercio)
+void free_tipo_comercio (void *tipo_comercio)
 {
     Tip *tipo = NULL;
 
