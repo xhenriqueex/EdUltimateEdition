@@ -3,6 +3,8 @@
 #include <string.h>
 #include "../../Formas/Retângulo/retangulo.h"
 #include "../../Formas/Anotação/anotacao.h"
+#include "../../Estruturas/Lista/lista.h"
+
 typedef struct car {
     char *placa;
     double x;
@@ -57,6 +59,22 @@ char* get_placa_carro (void* car)
     carro* c;
     c = (carro*) car;
     return c->placa;
+}
+
+//PEGA O X DO CARRO
+double get_x_carro (void* car)
+{
+    carro* c;
+    c = (carro*) car;
+    return c->x;
+}
+
+//PEGA O Y DO CARRO
+double get_y_carro (void* car)
+{
+    carro* c;
+    c = (carro*) car;
+    return c->y;
 }
 
 //RETORNA UM RETÂNGULO
@@ -138,4 +156,29 @@ int compare_hash_carro (void* carA, void* carB)
     cA = (carro*) carA;
     cB = (carro*) carB;
     return strcmp (cA->placa, cB->placa);
+}
+
+//RETORNA UM CARRO COM A PLACA ESPECÍFICADA
+void* get_carro_placa (Lista carros, char* placa)
+{
+    void* primeiro;
+    void* carro;
+    Lista list;
+    list = carros;
+    carro == NULL;
+    primeiro = get_primeiro_lista (list);
+    do
+    {
+        if (primeiro == NULL)
+        {
+            continue;
+        }
+        carro = get_valor_lista (primeiro);
+        if (!strcmp (placa, get_placa_carro (carro)))
+        {
+            return carro;
+        }
+    }
+    while (primeiro != NULL);
+    return carro;
 }

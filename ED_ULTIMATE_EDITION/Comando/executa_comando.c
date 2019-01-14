@@ -3402,7 +3402,63 @@ void caso_au (Parametros* par)
     return;
 }
 
-void caso_dc (Parametros* par);
+void caso_dc (Parametros* par)
+{
+    char* comando;
+    char* sufixo;
+    char* colisao;
+    char* placa1;
+    char* placa2;
+    char* info;
+    char** colisoes;
+    void* primeiro;
+    void* percorre;
+    int i, j, k;
+    double x1, x2, y1, y2;
+    Lista carros;
+    Carro carro1;
+    Carro carro2;
+    Anotacao anot;
+    comando = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
+    strcpy (comando, par->comando);
+    insere_fila (par->resultado, comando);
+    par->comando += 3;
+    sufixo = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
+    strcpy (sufixo, par->comando);
+    carros = get_todos_arvore (par->tree_carros);
+    colisoes = detectar_colisoes (carros);
+    for (i=0; *(colisoes+i) != NULL; i++)
+    {
+        colisao = (char*) calloc (strlen (*(colisoes+i)) + 2, sizeof (char));
+        strcpy (colisao, *(colisoes+i));
+        for (j=0; j<strlen (colisao); j++)
+        {
+            if (*colisao == "+")
+            {
+                j++;
+                for (k=0; k<strlen (colisao) - j; k++)
+                {
+                    *(placa2+k) = *(colisao+j+k); 
+                }
+                break;
+            }
+            *(placa1+j) = *(colisao+j);
+        }
+        info = (char*) calloc (strlen (placa1) + strlen (placa2) + 3, sizeof (char));
+        sprintf (info, "Colisão - %s e %s", placa1, placa2);
+        insere_fila (par->resultado, info);
+        carro1 = get_carro_placa (carros, placa1);
+        carro2 = get_carro_placa (carros, placa2);
+        x1 = get_x_carro (carro1);
+        x2 = get_x_carro (carro2);
+        y1 = get_y_carro (carro1);
+        y2 = get_y_carro (carro2);
+        anot = cria_anotacao (x1+x2+1, y1+y2+1, x1-1, y1-1, "colisao");
+        insere_fila (par->anotacoes, anot);
+    }
+    fecha_colisao (par, sufixo);
+    return;
+}
 
 void caso_rau (Parametros* par)
 {
@@ -3414,11 +3470,11 @@ void caso_rau (Parametros* par)
     Lista carros;
     Carro* aux;
     comando = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
-    strcpy (par->comando, comando);
+    strcpy (comando, par->comando);
     insere_fila (par->resultado, comando);
     par->comando += 4;
     placa = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
-    strcpy (par->comando, placa);
+    strcpy (placa, par->comando);
     carros = get_todos_arvore (par->tree_carros);
     primeiro = get_primeiro_lista (carros);
     do

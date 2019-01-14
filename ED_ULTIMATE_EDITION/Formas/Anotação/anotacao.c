@@ -90,6 +90,11 @@ char* cria_svg_anotacao (void* anotation)
         sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"orange\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>", anotacao->x, anotacao->y, anotacao->w, anotacao->h);
         return result;
     }
+    if (!strcmp (anotacao->texto, "colisao"))
+    {
+        sprintf (result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"red\" stroke-width=\"4\" stroke-dasharray=\"3, 3\"/>", anotacao->x, anotacao->y, anotacao->w, anotacao->h);
+        return result;
+    }
     sprintf(result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"purple\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n<text x=\"%f\" y=\"%f\" fill=\"purple\">%s</text>",anotacao->x, anotacao->y, anotacao->w, anotacao->h, anotacao->x, anotacao->y, anotacao->texto);
     return result;
 }

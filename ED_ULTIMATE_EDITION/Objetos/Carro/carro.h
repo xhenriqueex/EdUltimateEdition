@@ -14,6 +14,12 @@ char* cria_svg_carro (Carro car);
 //PEGA A PLACA DO CARRO
 char* get_placa_carro (Carro car);
 
+//PEGA O X DO CARRO
+double get_x_carro (void* car);
+
+//PEGA O Y DO CARRO
+double get_y_carro (void* car);
+
 //RETORNA UM RETÂNGULO
 void* get_retangulo_carro (Carro car);
 
@@ -31,5 +37,8 @@ int hashcode_carro (void* car, int mod);
 
 //COMPARADOR DE HASH DO OBJETO CARRO
 int compare_hash_carro (void* carA, void* carB);
+
+//RETORNA UM CARRO COM A PLACA ESPECÍFICADA
+void* get_carro_placa (Lista carros, char* placa);
 
 #endif

@@ -86,4 +86,7 @@ int sobrepoe_ret (Retangulo ret1, Retangulo ret2);
 //FUNÇÃO QUE DETECTA TODAS AS COLISÕES ENTRE OS CARROS
 char** detectar_colisoes (Lista carros);
 
+//FUNÇÃO QUE GERA O SVG DAS COLISÕES
+void fecha_colisao (Parametros* par, char* sufixo);
+
 #endif
