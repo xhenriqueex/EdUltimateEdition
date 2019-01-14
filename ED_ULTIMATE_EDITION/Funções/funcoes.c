@@ -1124,3 +1124,38 @@ void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *co
             pos1[0], pos1[1], pos2[0], pos2[1], auxCor);
     }
 }
+
+double distancia(double *pos1, double *pos2)
+{
+    double result = 0;
+
+    result = pow(pos1[0]-pos2[0], 2) + pow(pos1[1]-pos2[1], 2);
+    result = sqrt(result);
+
+    return result;
+}
+
+char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Grafo G)
+{
+    int reg1 = 0, reg2 = 0;
+    double *pos1 = NULL, *pos2 = NULL;
+    void *v1 = NULL, *v2 = NULL;
+    Lista l = NULL;
+    char **vertices = NULL;
+
+    reg1 = busca_registrador(regis, r1);
+    reg2 = busca_registrador(regis, r2);
+
+    pos1 = get_pos_registrador(regis[reg1]);
+    pos2 = get_pos_registrador(regis[reg2]);
+
+    v1 = vertice_mais_proximo(G, pos1);
+    v2 = vertice_mais_proximo(G, pos2);
+
+    fixa_primeiro_lista(G, get_posic_vertice(G, get_id_vertice(v1)));
+    l = divide_lista(G, get_posic_vertice(G, get_id_vertice(v1)));
+
+    vertices = dijkstra((Grafo) l, get_id_vertice(v1));
+
+    return vertices;
+}

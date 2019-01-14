@@ -76,4 +76,8 @@ void fecha_qry (Parametros* par);
 
 void escreve_grafo(Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2);
 
+double distancia(double *pos1, double *pos2);
+
+char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Grafo G);
+
 #endif

@@ -10,6 +10,7 @@ typedef void* Info;
 Grafo cria_grafo();
 void insere_vertice(Grafo G, char *id, double *pos);
 void* get_vertice(Grafo G, char *v1);
+Posic get_posic_vertice(Grafo G, char *v1);
 char *get_id_vertice(void *v1);
 double *get_pos_vertice(void *v1);
 void insere_aresta(Grafo G, char *v1, char *v2);
@@ -26,8 +27,9 @@ char *get_id_vertice_aresta(void *a1);
 void remove_aresta(Grafo G, char *v1, char *v2);
 int adjacente(Grafo G, char *v1, char *v2);
 Lista adjacentes(Grafo G, char *v1);
-char **dijkstra(Grafo G, int src);
+char **dijkstra(Grafo G, char *v1);
 int minima_distancia(double dist[], int sptSet[], int tam);
+void *vertice_mais_proximo(Grafo G, double *pos);
 int printar_distancias(double dist[], int n);
 
 #endif // GRAFO_H

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <limits.h>
 #include "grafo.h"
+#include "../../Funções/funcoes.h"
 
 struct _atributos_aresta
 {
@@ -57,17 +58,40 @@ void* get_vertice(Grafo G, char *v1)
     vertice *v = NULL;
     Posic *p = NULL;
 
+    p = get_posic_vertice(G, v1);
+
+    if(p == NULL) {
+        return NULL;
+    }
+
+    v = (vertice *) get_valor_lista(p);
+    
+    return (void *) v;
+}
+
+Posic get_posic_vertice(Grafo G, char *v1)
+{
+    vertice *v = NULL;
+    Posic *p = NULL;
+    int logic = 0;
+
     p = get_primeiro_lista(G);
     
     while(p != NULL){
         v = (vertice *) get_valor_lista(p);
         if (strcmp(v->id, v1) == 0) {
+            logic = 1;
             break;
         }
         p = get_proximo_lista(G, p);
     }
-    
-    return (void *) v;
+
+    if (logic == 0) {
+        return NULL;
+    }
+    else {
+        return p;
+    }
 }
 
 char *get_id_vertice(void *v1)
@@ -322,7 +346,7 @@ Lista adjacentes(Grafo G, char *v1)
     return v->arestas;
 }
 
-char **dijkstra(Grafo G, int src)
+char **dijkstra(Grafo G, char *v1)
 {
     int tam = qtd_vertices(G);
     double dist[tam];
@@ -332,12 +356,15 @@ char **dijkstra(Grafo G, int src)
     char **vertices = NULL;
     double cmp = 0;
 
+    p1 = get_posic_vertice(G, v1);
+    fixa_primeiro_lista(G, p1);
+
     for (int i = 0; i < tam; i++) {
         dist[i] = __INT_MAX__;
         sptset[i] = 0;
     }
 
-    dist[src] = 0;
+    dist[0] = 0;
 
     vertices = (char **) calloc(1, sizeof(char *));
 
@@ -346,6 +373,7 @@ char **dijkstra(Grafo G, int src)
         int u = minima_distancia(dist, sptset, tam);
 
         p1 = get_primeiro_lista(G);
+        
         for(int i = 0; i < u; i++)
         {
             p1 = get_proximo_lista(G, p1);
@@ -400,6 +428,37 @@ int minima_distancia(double dist[], int sptSet[], int tam)
     }
 
     return min_index;
+}
+
+void *vertice_mais_proximo(Grafo G, double *pos)
+{
+    double *posicao = NULL, *distancias = NULL;
+    Posic p = NULL;
+    void *v = NULL, **vertices = NULL;
+    int sptset[qtd_vertices(G)];
+    int index = 0;
+
+    for (int i = 0; i < qtd_vertices(G); i++) {
+        sptset[i] = 0;
+    }
+
+    distancias = (double *) calloc(qtd_vertices(G), sizeof(double));
+    vertices = (void **) calloc(qtd_vertices(G), sizeof(void *));
+    
+    p = get_primeiro_lista(G);
+    
+    for(size_t i = 1; i < qtd_vertices(G); i++)
+    {
+        v = get_valor_lista(p);
+        vertices[i] = v;
+        posicao = get_pos_vertice(v);
+        distancias[i] = distancia(posicao, pos);
+        p = get_proximo_lista(G, p);
+    }
+
+    index = minima_distancia(distancias, sptset, qtd_vertices(G));
+
+    return vertices[index];
 }
 
 int printar_distancias(double dist[], int n)

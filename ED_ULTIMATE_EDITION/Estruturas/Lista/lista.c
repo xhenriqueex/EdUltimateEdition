@@ -76,6 +76,7 @@ Posic remove_lista (Lista list, Posic p)
 {
     lista *l = NULL;
 	elemento *auxiliar = NULL, *auxiliar2 = NULL;
+	Posic p_original = p;
 
 	l = (lista *) list;
 
@@ -114,7 +115,7 @@ Posic remove_lista (Lista list, Posic p)
 	}
 	l->tamanho--;
 
-	return p;  
+	return p_original;
 }
 
 //RETORNA O VALOR DE UM ELEMENTO DA LISTA
@@ -303,6 +304,48 @@ void concat_listas (Lista lista1, Lista lista2)
     list2->primeiro->anterior = list1->ultimo;
     list1->ultimo = list2->ultimo;
     list1->tamanho += list2->tamanho;
+}
+
+Lista divide_lista(Lista list, Posic p) {
+	Lista *l = NULL;
+	Posic p1 = NULL;
+	int logic = 0;
+
+	l = cria_lista();
+
+	p1 = get_primeiro_lista(list);
+	
+	if(p1 == p) {
+		logic = 1;
+	}
+
+	while(p1 != p) {
+		insere_lista(l, get_valor_lista(p1));
+		if(p1 == p) {
+			logic = 1;
+			break;
+		}
+		p1 = get_proximo_lista(list);
+	}
+	
+	if (logic == 0) {
+		return NULL;
+	}
+	else {
+		return l;
+	}
+}
+
+Lista fixa_primeiro_lista(Lista list, Posic p)
+{
+	void *e = NULL;
+
+	p = remove_lista(list, p);
+	e = get_valor_lista(p);
+	p = get_primeiro_lista(list);
+	insere_antes_lista(list, p, e);
+
+	return list;
 }
 
 //LIBERA A MEMÓRIA ALOCADA DA LISTA
