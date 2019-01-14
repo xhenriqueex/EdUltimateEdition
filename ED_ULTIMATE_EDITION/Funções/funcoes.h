@@ -7,6 +7,7 @@
 #include "../Estruturas/Lista/lista.h"
 #include "../Parâmetros/parametros.h"
 #include "../Estruturas/Grafo/grafo.h"
+#include "../Formas/Retângulo/retangulo.h"
 
 //TRATA OS CAMINHOS
 void altera_caminho (char** caminho);

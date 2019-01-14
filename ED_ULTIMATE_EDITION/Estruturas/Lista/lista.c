@@ -325,7 +325,7 @@ Lista divide_lista(Lista list, Posic p) {
 			logic = 1;
 			break;
 		}
-		p1 = get_proximo_lista(list);
+		p1 = get_proximo_lista(list, p1);
 	}
 	
 	if (logic == 0) {

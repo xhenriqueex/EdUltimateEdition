@@ -1159,6 +1159,7 @@ char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Graf
     vertices = dijkstra((Grafo) l, get_id_vertice(v1));
 
     return vertices;
+}
 //FUNÇÃO QUE ENCONTRA O COMÉRCIO MAIS PRÓXIMO DA COORDENADA QUE SEJA DAQUELE TIPO
 void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par)
 {

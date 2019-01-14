@@ -3433,6 +3433,8 @@ void caso_sp_pergunta(Parametros *par)
     char **vertices = NULL, **auxVertices = NULL;
     Anotacao anot = NULL;
     char *anotTexto = NULL;
+    int k = 0;
+    int m = 0;
 
     cor1 = (char *) calloc(255, sizeof(char));
     cor2 = (char *) calloc(255, sizeof(char));
@@ -3448,12 +3450,22 @@ void caso_sp_pergunta(Parametros *par)
     
     sscanf(par->comando, "%s %s", cor1, cor2);
 
-    vertices = (char **) calloc (1000, sizeof(char *));
+    vertices = (char **) calloc (qtd_vertices(par->grafo_via)*n, sizeof(char *));
     
     for(size_t i = 0; i < n-1; i++)
     {
         auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via);
-        strcat(vertices, auxVertices);
+
+        k = 0;
+        while(vertices[k] != NULL){
+            k++;
+        }
+        m = 0;
+        while(auxVertices != NULL) {
+            vertices[k] = auxVertices[m];
+            k++;
+            m++;
+        }
     }
     
     
@@ -3526,7 +3538,7 @@ void caso_dc (Parametros* par)
         strcpy (colisao, *(colisoes+i));
         for (j=0; j<strlen (colisao); j++)
         {
-            if (*colisao == "+")
+            if (*colisao == '+')
             {
                 j++;
                 for (k=0; k<strlen (colisao) - j; k++)
@@ -3577,7 +3589,7 @@ void caso_rau (Parametros* par)
             continue;
         }
         aux = get_valor_lista (primeiro);
-        if (!strcmp (placa, get_placa_carro))
+        if (!strcmp (placa, get_placa_carro(aux)))
         {
             info = (char*) calloc (155, sizeof (char));
             sprintf (info, "Carro - PLACA = %s", placa);

@@ -99,11 +99,21 @@ char* cria_svg_anotacao (void* anotation)
     {
         char *cor = NULL;
         sscanf(anotacao->texto, "p %s", cor);
-        fprintf (result,
+        sprintf (result,
             "\n<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\"/>",
             anotacao->w, anotacao->h, anotacao->x, anotacao->y, cor);
         return result;
     }
     sprintf(result, "<rect x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\" fill=\"transparent\" stroke=\"purple\" stroke-width=\"2\" stroke-dasharray=\"3, 3\"/>\n<text x=\"%f\" y=\"%f\" fill=\"purple\">%s</text>",anotacao->x, anotacao->y, anotacao->w, anotacao->h, anotacao->x, anotacao->y, anotacao->texto);
     return result;
+}
+
+void free_anotacao(void* anotation)
+{
+    Anotacao *an = NULL;
+
+    an = anotation;
+
+    free(an->texto);
+    free(an);
 }
