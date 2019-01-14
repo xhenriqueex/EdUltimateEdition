@@ -61,6 +61,9 @@ Objetos/Rádiobase/radiobase.o: Objetos/Rádiobase/radiobase.c Objetos/Rádiobas
 Objetos/Semáforo/semaforo.o: Objetos/Semáforo/semaforo.c Objetos/Semáforo/semaforo.h
 	gcc -c Objetos/Semáforo/semaforo.c -lm -o Objetos/Semáforo/semaforo.o -g -pedantic -fstack-protector-all -std=c99
 
+Objetos/Carro/carro.o: Objetos/Carro/carro.c Objetos/Carro/carro.h
+	gcc -c Objetos/Carro/carro.c -lm -o Objetos/Carro/carro.o -g -pedantic -fstack-protector-all -std=c99
+	
 Parâmetros/parametros.o: Parâmetros/parametros.c Parâmetros/parametros.h
 	gcc -c Parâmetros/parametros.c -lm -o Parâmetros/parametros.o -g -pedantic -fstack-protector-all -std=c99
 
