@@ -100,3 +100,33 @@ int busca_registrador (Registrador* registradores, char* nome)
 
     return i;
 }
+
+void free_registrador(Registrador registrador) {
+    Regis *regis = NULL;
+
+    regis = (Regis *) registrador;
+
+    if (regis->nome != NULL) {
+        free(regis->nome);
+    }
+    if (regis->pos != NULL) {
+        free(regis->pos);
+    }
+    if (regis->tipo != NULL) {
+        free(regis->tipo);
+    }
+    free(regis);
+}
+
+void free_registradores(Registrador *registradores) {
+    Regis **regis = NULL;
+    int i = 0;
+
+    regis = (Regis **) registradores;
+    
+    for(i = 0; i < 11; i++)
+    {
+        free_registrador(regis[i]);
+    }
+    free(regis);
+}

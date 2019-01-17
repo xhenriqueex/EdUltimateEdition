@@ -393,7 +393,6 @@ int main(int argc, char* argv[])
         {
             p->comando = (char*) remove_fila (comandos);
             executa_comando (p);
-            //free (p->comando);
             p->comando = NULL;
         }
 
@@ -460,20 +459,25 @@ int main(int argc, char* argv[])
     free_arvore (p->tree_radiobases);
     free_arvore (p->tree_semaforos);
     free_arvore (p->tree_carros);
-    free_hashtable (p->hash_comercios);
-    free_hashtable (p->hash_end_comercios);
-    free_hashtable (p->hash_end_pessoas);
-    free_hashtable (p->hash_hidrantes);
-    free_hashtable (p->hash_pessoas);
-    free_hashtable (p->hash_quadras);
-    free_hashtable (p->hash_radiobases);
-    free_hashtable (p->hash_semaforos);
-    free_hashtable (p->hash_tipos);
-    free_hashtable (p->hash_carros);
-    //for (i=0; i<p->contador_figuras; i++)
-    //{
-    //    free_item (p->figuras[i]);
-    //}
+    free_hashtable (p->hash_comercios, free_comercio);
+    free_hashtable (p->hash_tipos, free_tipo_comercio);
+    free_hashtable (p->hash_end_comercios, NULL);
+    free_hashtable (p->hash_hidrantes, free_hidrante);
+    free_hashtable (p->hash_pessoas, free_pessoa);
+    free_hashtable (p->hash_end_pessoas, NULL);
+    free_hashtable (p->hash_quadras, free_quadra);
+    free_hashtable (p->hash_radiobases, free_radiobase);
+    free_hashtable (p->hash_semaforos, free_semaforo);
+    free_hashtable (p->hash_carros, free_carro);
+    free_registradores(p->regis);
+    for (i = 0; i < p->contador_figuras; i++)
+    {
+        free_item (p->figuras[i]);
+        p->figuras[i] = NULL;
+    }
+    free(p->figuras);
+    p->figuras = NULL;
+    free_grafo(p->grafo_via);
     free(p->anotacoes);
     p->anotacoes = NULL;
     free(p->resultado);

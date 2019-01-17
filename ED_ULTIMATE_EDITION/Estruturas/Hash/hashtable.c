@@ -119,17 +119,33 @@ Lista get_todos_hashtable (void* hash)
 }
 
 //APAGA A HASHTABLE (DEPENDE DO FREE DA LISTA -> NAO IMPLEMENTADO)
-void free_hashtable (void* hash)
+void free_hashtable (void* hash, void (*free_generalizado)(void *))
 {
     Hash_table* table = NULL;
     table = (Hash_table*) hash;
-    //Lista list = cria_lista();
-    int i = 0;
+    Lista list = NULL;
+    int i = 0, j = 0;
+    void *valor = NULL;
+    Posic p = NULL;
+
     for(i = 0; i < table->modulo; i++)
     {
-        //Lista_free(*(table->hashtable + i));
-        free(*(table->hashtable + i));
-        *(table->hashtable + i) = NULL;
+        list = table->hashtable[i];
+        
+        while(largura_lista(list) != 0) {
+            p = remove_lista(list, get_primeiro_lista(list));
+            valor = get_valor_lista(p);
+            free_posic(p);
+            p = NULL;
+
+            if(valor != NULL && free_generalizado != NULL) {
+                free_generalizado(valor);
+                valor = NULL;
+            }
+        }
+        
+        free(list);
+        list = NULL;
     }
     free(table->hashtable);
     table->hashtable = NULL;

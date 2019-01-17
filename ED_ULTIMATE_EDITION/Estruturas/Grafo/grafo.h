@@ -32,5 +32,9 @@ char **dijkstra_tempo(Grafo G, char *v1);
 int minima_distancia(double dist[], int sptSet[], int tam);
 void *vertice_mais_proximo(Grafo G, double *pos);
 int printar_distancias(double dist[], int n);
+void free_atributos_aresta(void *atributos);
+void free_aresta(void *a);
+void free_vertice(void *v);
+void free_grafo(Grafo G);
 
 #endif // GRAFO_H

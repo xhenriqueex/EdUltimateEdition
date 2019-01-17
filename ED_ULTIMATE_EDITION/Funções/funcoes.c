@@ -901,6 +901,7 @@ void fecha_qry (Parametros* par)
     Lista hidrantes;
     Lista semaforos;
     Lista radiobases;
+    Posic p = NULL;
     remove_ext = par->arquivo_entrada;
     percorre = remove_ext;
     while (*percorre != '.')
@@ -976,9 +977,11 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(i = 0; i < largura_lista(quadras); i++)
+    while(largura_lista(quadras) != 0)
     {
-        remove_lista(quadras, get_primeiro_lista(quadras));
+        p = remove_lista(quadras, get_primeiro_lista(quadras));
+        free_posic(p);
+        p = NULL;
     }
     free(quadras);
     quadras = NULL;
@@ -1001,9 +1004,11 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(i = 0; i < largura_lista(hidrantes); i++)
+    while(largura_lista(hidrantes) != 0)
     {
-        remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+        p = remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+        free_posic(p);
+        p = NULL;
     }
     free(hidrantes);
     hidrantes = NULL;
@@ -1026,9 +1031,11 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(i = 0; i < largura_lista(semaforos); i++)
+    while(largura_lista(semaforos) != 0)
     {
-        remove_lista(semaforos, get_primeiro_lista(semaforos));
+        p = remove_lista(semaforos, get_primeiro_lista(semaforos));
+        free_posic(p);
+        p = NULL;
     }
     free(semaforos);
     semaforos = NULL;
@@ -1051,9 +1058,11 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(i = 0; i < largura_lista(radiobases); i++)
+    while(largura_lista(radiobases) != 0)
     {
-        remove_lista(radiobases, get_primeiro_lista(radiobases));
+        p = remove_lista(radiobases, get_primeiro_lista(radiobases));
+        free_posic(p);
+        p = NULL;
     }
     free(radiobases);
     radiobases = NULL;

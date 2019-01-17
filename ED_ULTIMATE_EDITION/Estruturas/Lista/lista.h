@@ -53,6 +53,9 @@ Lista fixa_primeiro_lista(Lista list, Posic p);
 
 //LIBERA A MEMÓRIA ALOCADA DA LISTA
 Posic liberar_elemento_lista(Lista list, Posic p);
+
 void liberar_lista(Lista list);
+
+void free_posic(Posic p);
 
 #endif

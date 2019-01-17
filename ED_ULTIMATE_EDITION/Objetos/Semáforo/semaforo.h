@@ -45,4 +45,6 @@ int compare_hash_semaforo (void* sem, void* id);
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
 void* get_circulo_semaforo (void* semaforo);
 
+void free_semaforo(void *semaforo);
+
 #endif

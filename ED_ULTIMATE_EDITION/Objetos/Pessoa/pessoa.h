@@ -11,14 +11,16 @@ typedef void* Endereco;
 //CRIA E RETORNA UMA PESSOA COM OS VALORES PASSADOS
 Pessoa cria_pessoa (char* cpf, char* nome, char* sobrenome, char* sexo, char* nasc);
 
+//LIBERA A MEMÓRIA ALOCADA A UMA PESSOA
+void free_pessoa (Pessoa pes);
+
+void free_endereco(void *endereco);
+
 //ATRIBUI UM ENDEREÇO A UMA DETERMINADA PESSOA
 Endereco set_endereco_pessoa (Pessoa pes, char* cep, char* face, char* num, char* comp);
 
 //RETORNA O ENDEREÇO DE UMA PESSOA
 Endereco get_endereco_pessoa (Pessoa pes);
-
-//LIBERA A MEMÓRIA ALOCADA A UMA PESSOA
-void free_pessoa (Pessoa pes);
 
 //FUNÇÃO QUE RETORNA O CÓDIGO HASH REFERENTE À PESSOA
 int hashcode_pessoa (Pessoa pes, int modulo);
@@ -49,7 +51,5 @@ char* relatorio_morte_pessoa (Pessoa pessoa);
 
 //GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
 char* relatorio_mud_pessoa (Pessoa pessoa, void* end1, void* end2);
-
-void free_endereco(void *endereco);
 
 #endif

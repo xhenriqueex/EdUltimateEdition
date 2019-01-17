@@ -156,3 +156,24 @@ void* get_circulo_semaforo (void* semaforo)
     circ = cria_circulo (0, sem->cor_borda, sem->cor_preenche, sem->r, sem->x, sem->y);
     return circ;
 }
+
+void free_semaforo(void *semaforo)
+{
+    Semaforo *sem;
+    sem = (Semaforo *) semaforo;
+    
+    if(sem->id != NULL) {
+        free(sem->id);
+        sem->id = NULL;
+    }
+    if(sem->cor_borda != NULL) {
+        free(sem->cor_borda);
+        sem->cor_borda = NULL;
+    }
+    if(sem->cor_preenche != NULL) {
+        free(sem->cor_preenche);
+        sem->cor_preenche = NULL;
+    }
+    free(sem);
+    sem = NULL;
+}

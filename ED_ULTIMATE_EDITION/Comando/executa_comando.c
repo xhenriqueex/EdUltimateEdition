@@ -585,6 +585,8 @@ void executa_comando (void* p)
         comando = NULL;
         return;
     }
+    free(comando);
+    comando = NULL;
 }
 
 //FUNÇÕES REFERENTES AOS COMANDOS DO ARQUIVO .GEO
@@ -1413,6 +1415,7 @@ void caso_hashtag (Parametros* par)
     Lista hidrantes;
     Lista semaforos;
     Lista radiobases;
+    Posic p = NULL;
     par->caminho_SVG = (char*) calloc (255, sizeof(char));
     strcpy(par->caminho_SVG, par->diretorio_saida);
     strcat(par->caminho_SVG, "/");
@@ -1468,9 +1471,11 @@ void caso_hashtag (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(quadras); i++)
+    while(largura_lista(quadras) != 0)
     {
-        remove_lista(quadras, get_primeiro_lista(quadras));
+        p = remove_lista(quadras, get_primeiro_lista(quadras));
+        free_posic(p);
+        p = NULL;
     }
     free(quadras);
     quadras = NULL;
@@ -1493,9 +1498,11 @@ void caso_hashtag (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(hidrantes); i++)
+    while(largura_lista(hidrantes) != 0)
     {
-        remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+        p = remove_lista(hidrantes, get_primeiro_lista(hidrantes));
+        free_posic(p);
+        p = NULL;
     }
     free(hidrantes);
     hidrantes = NULL;
@@ -1518,9 +1525,11 @@ void caso_hashtag (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(size_t i = 0; i < largura_lista(semaforos); i++)
+    while(largura_lista(semaforos) != 0)
     {
-        remove_lista(semaforos, get_primeiro_lista(semaforos));
+        p = remove_lista(semaforos, get_primeiro_lista(semaforos));
+        free_posic(p);
+        p = NULL;
     }
     free(semaforos);
     semaforos = NULL;
@@ -1543,9 +1552,11 @@ void caso_hashtag (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(radiobases); i++)
+    while(largura_lista(radiobases) != 0)
     {
-        remove_lista(radiobases, get_primeiro_lista(radiobases));
+        p = remove_lista(radiobases, get_primeiro_lista(radiobases));
+        free_posic(p);
+        p = NULL;
     }
     free(radiobases);
     radiobases = NULL;
@@ -3254,6 +3265,11 @@ void caso_arroba_m_pergunta (Parametros* par)
     
     if (pessoa == NULL) {
         printf("\nERRO: PESSOA NAO ENCONTRADA!");
+        free (registrador);
+        registrador = NULL;
+        free (cpf);
+        cpf = NULL;
+        r = 0;
         return;
     }
     
@@ -3301,9 +3317,27 @@ void caso_arroba_e_pergunta (Parametros* par)
             break;
         }
     }
+    free_endereco(end);
+    end = NULL;
+    
+    while(largura_lista(lista) != 0)
+    {
+        remove_lista(lista, get_primeiro_lista(lista));
+    }
+    free(lista);
+    lista = NULL;
     
     if (auxCom == NULL) {
         printf("\nERRO: NENHUM COMÉRCIO ENCONTRADO!");
+        free (registrador);
+        registrador = NULL;
+        free (cep);
+        cep = NULL;
+        free (face);
+        face = NULL;
+        free (num);
+        num = NULL;
+        r = 0;
         return;
     }
     
@@ -3373,6 +3407,11 @@ void caso_arroba_xy (Parametros* par)
     
     if (r == -1) {
         printf("\nERRO: REGISTRADOR NÃO ENCONTRADO!");
+        free (registrador);
+        registrador = NULL;
+        free(pos);
+        pos = NULL;
+        r = 0;
         return;
     }
     
@@ -3438,8 +3477,6 @@ void caso_p_pergunta (Parametros* par)
 
     registrador1 = (char *) calloc(5, sizeof(char));
     registrador2 = (char *) calloc(5, sizeof(char));
-    cor = (char *) calloc(255, sizeof(char));
-    direcao = (char *) calloc(10, sizeof(char));
 
     sscanf(par->comando, "%c", formato);
 
@@ -3450,17 +3487,21 @@ void caso_p_pergunta (Parametros* par)
         sscanf(par->comando, "%c %s %s %s %s", def, registrador1, registrador2);
     }
 
-    anotTexto = (char *) calloc(60, sizeof(char));
-
     vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via, def);
     
     if (vertices == NULL) {
+        free(registrador1);
+        registrador1 = NULL;
+        free(registrador2);
+        registrador2 = NULL;
         return;
     }
 
     i = 0;
     
     if (formato == 'p') {
+        anotTexto = (char *) calloc(60, sizeof(char));
+        cor = (char *) calloc(255, sizeof(char));
         while(vertices[i+1] != NULL)
         {
             v1 = get_vertice(par->grafo_via, vertices[i]);
@@ -3474,10 +3515,13 @@ void caso_p_pergunta (Parametros* par)
 
             insere_fila(par->anotacoes, anot);
         }
+        free(anotTexto);
+        free(cor);
     }
     else {
         texto = (char *) calloc(1000, sizeof(char));
         rua = (char *) calloc(100, sizeof(char));
+        direcao = (char *) calloc(10, sizeof(char));
         strcpy(texto, " ");
         while(vertices[i+1] != NULL)
         {
@@ -3532,6 +3576,7 @@ void caso_p_pergunta (Parametros* par)
                     }
                 }
             }
+            
 
             sprintf(texto, "%sSiga na direção %s na %s", texto, direcao, rua);
             
@@ -3545,9 +3590,15 @@ void caso_p_pergunta (Parametros* par)
 
             insere_fila(par->resultado, texto);
         }
+        free(rua);
+        free(direcao);
+        rua = NULL;
+        direcao = NULL;
     }
-    
-
+    free(registrador1);
+    registrador1 = NULL;
+    free(registrador2);
+    registrador2 = NULL;
 }
 
 void caso_sp_pergunta(Parametros *par)
@@ -3878,6 +3929,7 @@ void caso_e_ec (Parametros* par)
     tAux = cria_tipo_comercio (cod, "");
     t = get_hashtable (par->hash_tipos, tAux);
     free_tipo_comercio (tAux);
+    tAux = NULL;
     comercio = cria_comercio (cnpj, t, cep, face, num, nome);
     free (cod);
     cod = NULL;
@@ -3989,6 +4041,10 @@ void caso_v (Parametros* par)
     pos[0] = x;
     pos[1] = y;
     insere_vertice (par->grafo_via, id, pos);
+    free(id);
+    id = NULL;
+    free(pos);
+    pos = NULL;
     return;
 }
 
@@ -4009,5 +4065,15 @@ void caso_e_via (Parametros* par)
     sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nome);
     insere_aresta (par->grafo_via, i, j);
     define_atributos_aresta (par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
+    free(i);
+    i = NULL;
+    free(j);
+    j = NULL;
+    free(ldir);
+    ldir = NULL;
+    free(lesq);
+    lesq = NULL;
+    free(nome);
+    nome = NULL;
     return;
 }

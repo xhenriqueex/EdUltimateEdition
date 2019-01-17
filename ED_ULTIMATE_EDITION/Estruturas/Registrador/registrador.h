@@ -27,4 +27,8 @@ char* get_nome_registrador (Registrador r);
 //BUSCA UM REGISTRADOR ESPECÍFICADO PELO NOME
 int busca_registrador (Registrador* registradores, char* regis);
 
+void free_registrador(Registrador registrador);
+
+void free_registradores(Registrador *registradores);
+
 #endif

@@ -117,6 +117,7 @@ char *get_num_comercio (void* com)
 }
 
 //LIBERA A MEMÓRIA ALOCADA DO COMÉRCIO
+/*
 void free_comercio (void* com)
 {
     Com* result;
@@ -138,6 +139,67 @@ void free_comercio (void* com)
     }
     free (result);
     result = NULL;
+}*/
+
+void free_comercio (void* com)
+{
+    Com* comercio = NULL;
+    comercio = (Com*) com;
+    Endereco *end = NULL;
+    Tip *tip = NULL;
+
+    if(comercio != NULL) {
+        if(comercio->cnpj != NULL) {
+            free(comercio->cnpj);
+            comercio->cnpj = NULL;
+        }
+        if(comercio->nome != NULL) {
+            free(comercio->nome);
+            comercio->nome = NULL;
+        }
+        /*tip = (Tip *) comercio->tipo;
+        if(tip != NULL) {
+            if(tip->cod != NULL) {
+                free(tip->cod);
+                tip->cod = NULL;
+            }
+            if(tip->info != NULL) {
+                free(tip->info);
+                tip->info = NULL;
+            }
+            free(tip);
+            comercio->tipo = NULL;
+        }*/
+        end = (Endereco *) comercio->endereco;
+        if(end != NULL)
+        {
+            if(end->cep != NULL)
+            {
+                free(end->cep);
+                end->cep = NULL;
+            }
+            if(end->comp != NULL)
+            {
+                free(end->comp);
+                end->comp = NULL;
+            }
+            if(end->face != NULL)
+            {
+                free(end->face);
+                end->face = NULL;
+            }
+            if(end->num != NULL)
+            {
+                free(end->num);
+                end->num = NULL;
+            }
+            end->tipo = 0;
+            end->comercio = NULL;
+            free(end);
+            comercio->endereco = NULL;
+        }
+        free(comercio);
+    }
 }
 
 //FUNÇÃO DE COMPARAÇÃO DE CNPJ DE COMÉRCIO
@@ -392,5 +454,4 @@ void free_tipo_comercio (void *tipo_comercio)
     free(tipo->info);
     tipo->info = NULL;
     free(tipo);
-    tipo = NULL;
 }

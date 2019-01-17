@@ -23,7 +23,7 @@ void* get_hashtable (Hashtable hash, void* ident);
 Lista get_todos_hashtable (Hashtable hash);
 
 //APAGA A HASHTABLE (DEPENDE DO FREE DA LISTA -> NAO IMPLEMENTADO)
-void free_hashtable (Hashtable hash);
+void free_hashtable (void* hash, void (*free_generalizado)(void *));
 
 //RETORNA UM LISTA DE ITENS DA HASHTABLE
 Lista get_lista_hashtable (void* hash, void* ident);

@@ -85,13 +85,19 @@ Posic remove_lista (Lista list, Posic p)
 			//free(l->primeiro);
 			l->primeiro = NULL;
 			l->ultimo = NULL;
+			auxiliar = (elemento *) p;
+			auxiliar->anterior = NULL;
+			auxiliar->proximo = NULL;
+			auxiliar = NULL;
 			p = NULL;
 		} else {
 			auxiliar = (elemento *) p;
 			l->primeiro = auxiliar->proximo;
 			//free(auxiliar);
+			auxiliar = (elemento *) p;
+			auxiliar->anterior = NULL;
+			auxiliar->proximo = NULL;
 			auxiliar = NULL;
-			p = (Posic) l->primeiro;
 		}
 	}
 	else {
@@ -101,7 +107,10 @@ Posic remove_lista (Lista list, Posic p)
 			//free(auxiliar->proximo);
 			auxiliar->proximo = NULL;
 			l->ultimo = auxiliar;
-			p = (Posic) auxiliar;
+			auxiliar = (elemento *) p;
+			auxiliar->anterior = NULL;
+			auxiliar->proximo = NULL;
+			auxiliar = l->ultimo;
 		}
 		else {
 			auxiliar = (elemento *) p;
@@ -110,7 +119,9 @@ Posic remove_lista (Lista list, Posic p)
 			//free(auxiliar->proximo);
 			auxiliar->proximo = auxiliar2;
 			auxiliar2->anterior = auxiliar;
-			p = (Posic) auxiliar;
+			auxiliar = (elemento *) p;
+			auxiliar->anterior = NULL;
+			auxiliar->proximo = NULL;
 		}
 	}
 	l->tamanho--;
@@ -387,4 +398,16 @@ void liberar_lista(Lista list) {
 		p = get_primeiro_lista(list);
 		liberar_elemento_lista(list, p);
 	}
+}
+
+void free_posic(Posic p) {
+	elemento *e = NULL;
+
+	e = (elemento *) p;
+
+	e->anterior = NULL;
+	e->proximo = NULL;
+	e->forma = NULL;
+
+	free(e);
 }

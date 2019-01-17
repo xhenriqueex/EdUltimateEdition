@@ -44,48 +44,131 @@ void* cria_pessoa (char* nome, char* sobrenome, char* cpf, char* sexo, char* nas
     return (void*) result;  
 }
 
+//LIBERA A MEMÓRIA ALOCADA A UMA PESSOA
+void free_pessoa (void* pes)
+{
+    Pessoa* pessoa = NULL;
+    pessoa = (Pessoa*) pes;
+    Endereco *end = NULL;
+
+    if(pessoa != NULL) {
+        if(pessoa->cpf != NULL) {
+            free(pessoa->cpf);
+            pessoa->cpf = NULL;
+        }
+        if(pessoa->nome != NULL) {
+            free(pessoa->nome);
+            pessoa->nome = NULL;
+        }
+        if(pessoa->sobrenome != NULL) {
+            free(pessoa->sobrenome);
+            pessoa->sobrenome = NULL;
+        }
+        if(pessoa->sexo != NULL) {
+            free(pessoa->sexo);
+            pessoa->sexo = NULL;
+        }
+        if(pessoa->nascimento != NULL) {
+            free(pessoa->nascimento);
+            pessoa->nascimento = NULL;
+        }
+        end = (Endereco *) pessoa->endereco;
+        if(end != NULL)
+        {
+            if(end->cep != NULL)
+            {
+                free(end->cep);
+                end->cep = NULL;
+            }
+            if(end->comp != NULL)
+            {
+                free(end->comp);
+                end->comp = NULL;
+            }
+            if(end->face != NULL)
+            {
+                free(end->face);
+                end->face = NULL;
+            }
+            if(end->num != NULL)
+            {
+                free(end->num);
+                end->num = NULL;
+            }
+            end->tipo = 0;
+            end->pessoa = NULL;
+            free(end);
+            pessoa->endereco = NULL;
+        }
+        free(pessoa);
+    }
+}
+
+void free_endereco(void *endereco)
+{
+    Endereco *end = NULL;
+
+    end = (Endereco *) endereco;
+
+    if(end != NULL)
+    {
+        if(end->cep != NULL)
+        {
+            free(end->cep);
+            end->cep = NULL;
+        }
+        if(end->comp != NULL)
+        {
+            free(end->comp);
+            end->comp = NULL;
+        }
+        if(end->face != NULL)
+        {
+            free(end->face);
+            end->face = NULL;
+        }
+        if(end->num != NULL)
+        {
+            free(end->num);
+            end->num = NULL;
+        }
+        free_pessoa(end->pessoa);
+        end->pessoa = NULL;
+        free(end);
+    }
+}
+
 //ATRIBUI UM ENDEREÇO A UMA DETERMINADA PESSOA E O RETORNA
 void* set_endereco_pessoa (void* pes, char* cep, char* face, char* num, char* comp)
 {
     Pessoa* pessoa;
     pessoa = (Pessoa*) pes;
+    int tipo = 0;
+
     if (pessoa->endereco == NULL)
     {
-        Endereco* end;
-        end = (Endereco*) calloc (1, sizeof (Endereco));
-        end->tipo = 1;
-        end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
-        end->face= (char*) calloc (strlen (face) + 2, sizeof (char));
-        end->num = (char*) calloc (strlen (num) + 2, sizeof (char));
-        end->comp= (char*) calloc (strlen (comp) + 2, sizeof (char));
-        end->pessoa = pessoa;
-        strcpy (end->cep, cep);
-        strcpy (end->face, face);
-        strcpy (end->num, num);
-        strcpy (end->comp, comp);
-        pessoa->endereco = end;
-        return (void*) end;
+        tipo = 1;
     }
     else
     {
-        free (pessoa->endereco->cep);
-        pessoa->endereco->cep = NULL;
-        free (pessoa->endereco->face);
-        pessoa->endereco->face = NULL;
-        free (pessoa->endereco->num);
-        pessoa->endereco->num = NULL;
-        free (pessoa->endereco->comp);
-        pessoa->endereco->comp = NULL;
-        pessoa->endereco->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
-        strcpy (pessoa->endereco->cep, cep);
-        pessoa->endereco->face = (char*) calloc (strlen (face) + 2, sizeof (char));
-        strcpy (pessoa->endereco->face, face);
-        pessoa->endereco->num = (char*) calloc (strlen (num) + 2, sizeof (char));
-        strcpy (pessoa->endereco->num, num);
-        pessoa->endereco->comp = (char*) calloc (strlen (comp) + 2, sizeof (char));
-        strcpy (pessoa->endereco->comp, comp);
-        return (void*) pessoa->endereco;
+        tipo = pessoa->endereco->tipo;
+        free_endereco((void *) pessoa->endereco);
     }
+    Endereco* end;
+    end = (Endereco*) calloc (1, sizeof (Endereco));
+    end->tipo = tipo;
+    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+    end->face= (char*) calloc (strlen (face) + 2, sizeof (char));
+    end->num = (char*) calloc (strlen (num) + 2, sizeof (char));
+    end->comp= (char*) calloc (strlen (comp) + 2, sizeof (char));
+    end->pessoa = pessoa;
+    strcpy (end->cep, cep);
+    strcpy (end->face, face);
+    strcpy (end->num, num);
+    strcpy (end->comp, comp);
+    pessoa->endereco = end;
+
+    return (void*) pessoa->endereco;
 }
 
 //RETORNA O ENDEREÇO DE UMA PESSOA
@@ -94,38 +177,6 @@ void* get_endereco_pessoa (void* pes)
     Pessoa* pessoa;
     pessoa = (Pessoa*) pes;
     return (void*) pessoa->endereco;
-}
-
-//LIBERA A MEMÓRIA ALOCADA A UMA PESSOA
-void free_pessoa (void* pes)
-{
-    Pessoa* pessoa;
-    pessoa = (Pessoa*) pes;
-    free(pessoa->cpf);
-    pessoa->cpf = NULL;
-    free(pessoa->nome);
-    pessoa->nome = NULL;
-    free(pessoa->sobrenome);
-    pessoa->sobrenome = NULL;
-    free(pessoa->sexo);
-    pessoa->sexo = NULL;
-    free(pessoa->nascimento);
-    pessoa->nascimento = NULL;
-    if(pessoa->endereco != NULL)
-    {
-        free(pessoa->endereco->cep);
-        pessoa->endereco->cep = NULL;
-        free(pessoa->endereco->face);
-        pessoa->endereco->face = NULL;
-        free(pessoa->endereco->num);
-        pessoa->endereco->num = NULL;
-        free(pessoa->endereco->comp);
-        pessoa->endereco->comp = NULL;
-        free(pessoa->endereco);
-        pessoa->endereco = NULL;
-    }
-    free(pessoa);
-    pessoa = NULL;
 }
 
 //FUNÇÃO QUE RETORNA O CÓDIGO HASH REFERENTE À PESSOA
@@ -306,22 +357,4 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
         sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp);
     }
     return relatorio;
-}
-
-void free_endereco(void *endereco)
-{
-    Endereco *end = NULL;
-
-    end = (Endereco *) endereco;
-
-    free(end->cep);
-    end->cep = NULL;
-    free(end->comp);
-    end->comp = NULL;
-    free(end->face);
-    end->face = NULL;
-    free(end->num);
-    end->num = NULL;
-    free(end);
-    end = NULL;
 }

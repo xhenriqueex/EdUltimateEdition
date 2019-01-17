@@ -47,8 +47,11 @@ void insere_vertice(Grafo G, char *id, double *pos)
     v = (vertice *) calloc(1, sizeof(vertice));
 
     v->arestas = NULL;
-    v->id = id;
-    v->pos = pos;
+    v->id = (char *) calloc(strlen(id)+1, sizeof(char));
+    strcpy(v->id, id);
+    v->pos = (double *) calloc(2, sizeof(double));
+    v->pos[0] = pos[0];
+    v->pos[1] = pos[1];
 
     insere_lista(G, (void *) v);
 }
@@ -125,11 +128,12 @@ void insere_aresta(Grafo G, char *v1, char *v2)
     a = (aresta *) calloc(1, sizeof(aresta));
     atributos_a = (atributos_aresta *) calloc(1, sizeof(atributos_aresta));
     
-    a->ligado_a = v2;
+    a->ligado_a = (char *) calloc(strlen(v2)+1, sizeof(char));
+    strcpy(a->ligado_a, v2);
     a->atributos = atributos_a;
 
     insere_lista(v->arestas, (void *) a);
-    define_atributos_aresta(G, v1, v2, "", "", "", __INT_MAX__, 0);
+    define_atributos_aresta(G, v1, v2, " ", " ", " ", __INT_MAX__, 0);
 }
 
 int qtd_vertices(Grafo G)
@@ -188,10 +192,17 @@ void define_atributos_aresta(Grafo G, char *v1, char *v2, char *nome, char *ldir
         return;
     }
 
+    free_atributos_aresta(a->atributos);
+    a->atributos = NULL;
+    a->atributos = (atributos_aresta *) calloc(1, sizeof(atributos_aresta));
+
     atributos_a = a->atributos;
-    atributos_a->nome = nome;
-    atributos_a->ldir = ldir;
-    atributos_a->lesq = lesq;
+    atributos_a->nome = (char *) calloc(strlen(nome)+1, sizeof(char));
+    strcpy(atributos_a->nome, nome);
+    atributos_a->ldir = (char *) calloc(strlen(ldir)+1, sizeof(char));
+    strcpy(atributos_a->ldir, ldir);
+    atributos_a->lesq = (char *) calloc(strlen(lesq)+1, sizeof(char));
+    strcpy(atributos_a->lesq, lesq);
     atributos_a->cmp = cmp;
     atributos_a->vm = vm;
 }
@@ -538,4 +549,95 @@ int printar_distancias(double dist[], int n)
     {
         printf("%d tt %lf\n", i, dist[i]);
     }
+}
+
+void free_atributos_aresta(void *atributos) {
+    atributos_aresta *atri = NULL;
+
+    atri = (atributos_aresta *) atributos;
+
+    if(atri != NULL) {
+        if(atri->nome != NULL) {
+            free(atri->nome);
+            atri->nome = NULL;
+        }
+        if(atri->ldir != NULL) {
+            free(atri->ldir);
+            atri->ldir = NULL;
+        }
+        if(atri->lesq != NULL) {
+            free(atri->lesq);
+            atri->lesq = NULL;
+        }
+        free(atri);
+    }
+}
+
+void free_aresta(void *a) {
+    aresta *ares = NULL;
+    atributos_aresta *atri = NULL;
+    
+    ares = (aresta *) a;
+
+    if(ares != NULL) {
+        if(ares->ligado_a != NULL) {
+            free(ares->ligado_a);
+            ares->ligado_a = NULL;
+        }
+        free_atributos_aresta(ares->atributos);
+        ares->atributos = NULL;
+        free(ares);
+    }
+}
+
+void free_vertice(void *v) {
+    vertice *vert = NULL;
+    Lista l = NULL;
+    Posic p = NULL;
+    void *a = NULL;
+
+    vert = (vertice *) v;
+
+    if(vert != NULL) {
+        if(vert->id != NULL) {
+            free(vert->id);
+            vert->id = NULL;
+        }
+        if(vert->pos != NULL) {
+            free(vert->pos);
+            vert->pos = NULL;
+        }
+        if (vert->arestas != NULL) {
+            l = (Lista) vert->arestas;
+            while(largura_lista(l) != 0) {
+                p = remove_lista(l, get_primeiro_lista(l));
+                a = get_valor_lista(p);
+                free_aresta(a);
+                a = NULL;
+                free_posic(p);
+                p = NULL;
+            }
+            free(l);
+            vert->arestas = NULL;
+        }
+        free(vert);
+    }
+}
+
+void free_grafo(Grafo G) {
+    Lista l = NULL, lAux = NULL;
+    Posic p = NULL;
+    void *v = NULL;
+
+    l = (Lista *) G;
+
+    while(largura_lista(l) != 0) {
+        p = remove_lista(l,get_primeiro_lista(l));
+        v = get_valor_lista(p);
+        free_posic(p);
+        p = NULL;
+        free_vertice(v);
+        v = NULL;
+    }
+    free(l);
 }

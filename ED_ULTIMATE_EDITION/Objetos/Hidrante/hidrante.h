@@ -45,4 +45,6 @@ int compare_hash_hidrante (void* hid, void* id);
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO HIDRANTE
 void* get_circulo_hidrante (void* hidrante);
 
+void free_hidrante(void *hidrante);
+
 #endif

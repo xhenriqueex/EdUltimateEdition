@@ -154,3 +154,25 @@ void* get_circulo_hidrante (void* hidrante)
     hid = (Hidrante*) hidrante;
     return cria_circulo (0, hid->cor_borda, hid->cor_preenche, hid->r, hid->x, hid->y);
 }
+
+
+void free_hidrante(void *hidrante)
+{
+    Hidrante *hid;
+    hid = (Hidrante *) hidrante;
+    
+    if(hid->id != NULL) {
+        free(hid->id);
+        hid->id = NULL;
+    }
+    if(hid->cor_borda != NULL) {
+        free(hid->cor_borda);
+        hid->cor_borda = NULL;
+    }
+    if(hid->cor_preenche != NULL) {
+        free(hid->cor_preenche);
+        hid->cor_preenche = NULL;
+    }
+    free(hid);
+    hid = NULL;
+}

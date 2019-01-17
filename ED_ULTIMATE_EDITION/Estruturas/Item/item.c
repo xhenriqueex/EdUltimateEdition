@@ -14,7 +14,8 @@ Item cria_item (void* Valor, char* tipo)
     it* aux = NULL;
     aux = (it*) calloc (1, sizeof(it));
     aux->valor = Valor;
-    aux->tipo = tipo;
+    aux->tipo = (char *) calloc(255,sizeof(char));
+    strcpy(aux->tipo, tipo);
     return aux;
 }
 
@@ -39,9 +40,14 @@ void free_item (Item item)
 {
     it* aux = NULL;
     aux = (it*) item;
-    free (aux->tipo);
-    aux->tipo = NULL;
-    free (aux);
-    aux = NULL;
+
+    if(aux != NULL) {
+        if(aux->tipo != NULL) {
+            free (aux->tipo);
+            aux->tipo = NULL;
+        }
+        aux->valor = NULL;
+        free (aux);
+    }
     return; 
 }
