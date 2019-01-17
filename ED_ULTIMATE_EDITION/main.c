@@ -107,10 +107,14 @@ int main(int argc, char* argv[])
 
     //INICIALIZANDO REGISTRADORES
     p->regis = (Registrador*) calloc (11, sizeof (Registrador));
+    aux = (char *) calloc(5, sizeof(char));
     for (i=0; i<11; i++)
     {
-        *(p->regis+i) = cria_registrador ();
+        sprintf(aux, "R%d", i);
+        *(p->regis+i) = cria_registrador (aux);
     }
+    free(aux);
+    aux = NULL;
 
     //INICIALIZANDO PARÂMETROS DE CHAMADA
     p->diretorio_entrada = NULL;

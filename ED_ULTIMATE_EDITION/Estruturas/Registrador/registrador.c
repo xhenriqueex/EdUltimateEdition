@@ -18,6 +18,7 @@ Registrador cria_registrador (char *nome)
     regis = (Regis*) calloc (1, sizeof (Regis));
     regis->pos = NULL;
     regis->tipo = NULL;
+    regis->nome = (char *) calloc(5, sizeof(char));
     strcpy(regis->nome, nome);
 
     return (Registrador) regis;

@@ -4,7 +4,7 @@
 typedef void* Registrador;
 
 //CRIA E RETORNA UM REGISTRADOR
-Registrador cria_registrador ();
+Registrador cria_registrador (char *nome);
 
 //INSERE A COORDENADA NO REGISTRADOR
 void insere_pos_registrador (Registrador r, double* pos);
