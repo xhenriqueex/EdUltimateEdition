@@ -4001,8 +4001,8 @@ void caso_e_via (Parametros* par)
     char* nome = NULL;
     double cmp = 0;
     double vm = 0;
-    i = (char*) calloc (5, sizeof (char));
-    j = (char*) calloc (5, sizeof (char));
+    i = (char*) calloc (255, sizeof (char));
+    j = (char*) calloc (255, sizeof (char));
     ldir = (char*) calloc (255, sizeof (char));
     lesq = (char*) calloc (255, sizeof (char));
     nome = (char*) calloc (255, sizeof (char));
