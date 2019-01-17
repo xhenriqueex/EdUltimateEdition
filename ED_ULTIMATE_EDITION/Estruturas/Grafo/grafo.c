@@ -346,7 +346,7 @@ Lista adjacentes(Grafo G, char *v1)
     return v->arestas;
 }
 
-char **dijkstra(Grafo G, char *v1)
+char **dijkstra_distancia(Grafo G, char *v1)
 {
     int tam = qtd_vertices(G);
     double dist[tam];
@@ -402,6 +402,76 @@ char **dijkstra(Grafo G, char *v1)
             if (!sptset[v] && cmp && dist[u] != __INT_MAX__ && dist[u]+cmp < dist[v])
             {
                 dist[v] = dist[u] + cmp;
+            }
+            //printf("Distância processada de %s: %lf\n", vertice2, dist[v]);
+            v++;
+            p2 = get_proximo_lista(G, p2);
+        }
+    }
+
+    //printar_distancias(dist, tam);
+
+    return vertices;
+}
+
+char **dijkstra_tempo(Grafo G, char *v1)
+{
+    int tam = qtd_vertices(G);
+    double dist[tam];
+    int sptset[tam];
+    Posic p1 = NULL, p2 = NULL;
+    char *vertice1 = NULL, *vertice2 = NULL;
+    char **vertices = NULL;
+    double vm = 0, cmp = 0, tempo = 0;
+
+    p1 = get_posic_vertice(G, v1);
+    fixa_primeiro_lista(G, p1);
+
+    for (int i = 0; i < tam; i++) {
+        dist[i] = __INT_MAX__;
+        sptset[i] = 0;
+    }
+
+    dist[0] = 0;
+
+    vertices = (char **) calloc(1, sizeof(char *));
+
+    for(int k = 0; k < tam-1; k++)
+    {
+        int u = minima_distancia(dist, sptset, tam);
+
+        p1 = get_primeiro_lista(G);
+        
+        for(int i = 0; i < u; i++)
+        {
+            p1 = get_proximo_lista(G, p1);
+        }
+        vertice1 = get_id_vertice(get_valor_lista(p1));
+        
+        sptset[u] = 1;
+
+        printf("u = %d\n", u);
+
+        vertices = (char **) realloc(vertices, (k+1)*sizeof(char *));
+        vertices[k] = vertice1;
+
+        p2 = get_primeiro_lista(G);
+
+        int v = 0;
+        while(p2 != NULL)
+        {
+            vertice2 = get_id_vertice(get_valor_lista(p2));
+            cmp = get_cmp_aresta(G, vertice1, vertice2);
+            vm = get_vm_aresta(G, vertice1, vertice2);
+            tempo = cmp/vm;
+
+            //printf("Vértice processado? %d\n", sptset[v]);
+            //printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, vm);
+            //printf("Distância processada do vértice %s: %lf\n", vertice1, dist[u]);
+            //printf("Distância a ser processada de %s: %lf\n", vertice2, dist[v]);
+            if (!sptset[v] && tempo && dist[u] != __INT_MAX__ && dist[u]+tempo < dist[v])
+            {
+                dist[v] = dist[u] + tempo;
             }
             //printf("Distância processada de %s: %lf\n", vertice2, dist[v]);
             v++;

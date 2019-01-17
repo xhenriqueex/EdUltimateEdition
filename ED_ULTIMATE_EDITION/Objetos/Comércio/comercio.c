@@ -98,6 +98,24 @@ void* get_endereco_comercio (void* com)
     return (void*) result->endereco;
 }
 
+char *get_face_comercio (void* com)
+{
+    Com* e = NULL;
+
+    e = (Com*) com;
+
+    return e->endereco->face;
+}
+
+char *get_num_comercio (void* com)
+{
+    Com* e = NULL;
+
+    e = (Com*) com;
+
+    return e->endereco->num;
+}
+
 //LIBERA A MEMÓRIA ALOCADA DO COMÉRCIO
 void free_comercio (void* com)
 {

@@ -3251,6 +3251,12 @@ void caso_arroba_m_pergunta (Parametros* par)
     sscanf (par->comando, "%s %s", registrador, cpf);
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
+    
+    if (pessoa == NULL) {
+        printf("\nERRO: PESSOA NAO ENCONTRADA!");
+        return;
+    }
+    
     pos_pessoa = get_xy_pessoa (pessoa, par);
     r = busca_registrador (par->regis, registrador);
     insere_pos_registrador (par->regis[r], pos_pessoa);
@@ -3270,13 +3276,37 @@ void caso_arroba_e_pergunta (Parametros* par)
     char* num = NULL;
     double *pos_comercio = NULL;
     Comercio auxCom = NULL;
+    Comercio com = NULL;
+    Endereco end = NULL;
     int r = 0;
+    Lista *lista = NULL;
+
     registrador = (char*) calloc (5, sizeof (char));
     cep = (char*) calloc (255, sizeof (char));
     face = (char*) calloc (255, sizeof (char));
     num = (char*) calloc (255, sizeof (char));
     sscanf (par->comando, "%s %s %s %s", registrador, cep, face, num);
-    auxCom = cria_comercio ("", NULL, cep, face, num, "");
+
+    end  = identificador_endereco_comercio(cep);
+    lista = get_lista_hashtable(par->hash_end_comercios, end);
+    void *percorre;
+    percorre = get_primeiro_lista(lista);
+    
+    while(percorre != NULL){
+        end = get_valor_lista(percorre);
+        com = get_comercio_endereco (end);
+        if (!strcmp (get_face_comercio (com), face) && !strcmp (get_num_comercio (com), num))
+        {
+            auxCom = com;
+            break;
+        }
+    }
+    
+    if (auxCom == NULL) {
+        printf("\nERRO: NENHUM COMÉRCIO ENCONTRADO!");
+        return;
+    }
+    
     pos_comercio = get_xy_comercio (auxCom, par);
     r = busca_registrador (par->regis, registrador);
     insere_pos_registrador (par->regis[r], pos_comercio);
@@ -3316,6 +3346,7 @@ void caso_arroba_g_pergunta (Parametros* par)
             equipamento = get_hashtable(par->hash_semaforos, auxEquip);
             if (equipamento == NULL) 
             {
+                printf("\nERRO: NENHUM EQUIPAMENTO ENCONTRADO!");
                 return;
             }
         }
@@ -3339,6 +3370,12 @@ void caso_arroba_xy (Parametros* par)
     pos = (double*) calloc (2, sizeof (double));
     sscanf (par->comando, "%s %lf %lf", registrador, pos[0], pos[1]);
     r = busca_registrador (par->regis, registrador);
+    
+    if (r == -1) {
+        printf("\nERRO: REGISTRADOR NÃO ENCONTRADO!");
+        return;
+    }
+    
     insere_pos_registrador (par->regis[r], pos);
     free (registrador);
     registrador = NULL;
@@ -3382,7 +3419,7 @@ void caso_arroba_tp_pergunta (Parametros* par)
     return;
 }
 
-void caso_p_pergunta(Parametros *par)
+void caso_p_pergunta (Parametros* par)
 {
     char *registrador1 = NULL, *registrador2 = NULL, *cor = NULL;
     double *pos1 = NULL, *pos2 = NULL;
@@ -3393,32 +3430,124 @@ void caso_p_pergunta(Parametros *par)
     char *cor1 = NULL, *cor2 = NULL;
     Anotacao anot = NULL;
     char *anotTexto = NULL;
+    char formato = 0, *sufixo = NULL, def = 0;
+    double eixoX = 0, eixoY = 0;
+    char *direcao = NULL, *rua = NULL;
+    int i = 0;
+    char *texto = NULL;
 
     registrador1 = (char *) calloc(5, sizeof(char));
     registrador2 = (char *) calloc(5, sizeof(char));
     cor = (char *) calloc(255, sizeof(char));
+    direcao = (char *) calloc(10, sizeof(char));
 
-    sscanf(par->comando, "%s %s %s", registrador1, registrador2, cor);
+    sscanf(par->comando, "%c", formato);
+
+    if (formato == 'p') {
+        sscanf(par->comando, "%s %c %s %s %s", sufixo, def, registrador1, registrador2, cor);
+    }
+    else {
+        sscanf(par->comando, "%c %s %s %s %s", def, registrador1, registrador2);
+    }
 
     anotTexto = (char *) calloc(60, sizeof(char));
 
-    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via);
-
+    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via, def);
     
-    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
-    {
-        v1 = get_vertice(par->grafo_via, vertices[i]);
-        v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
-        pos1 = get_pos_vertice(v1);
-        pos2 = get_pos_vertice(v2);
-        
-        sprintf(anotTexto, "p %s", cor);
-        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-        insere_fila(par->anotacoes, anot);
+    if (vertices == NULL) {
+        return;
     }
-    ////////////////
+
+    i = 0;
+    
+    if (formato == 'p') {
+        while(vertices[i+1] != NULL)
+        {
+            v1 = get_vertice(par->grafo_via, vertices[i]);
+            v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+            pos1 = get_pos_vertice(v1);
+            pos2 = get_pos_vertice(v2);
+            
+            sprintf(anotTexto, "p %s", cor);
+            anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+            insere_fila(par->anotacoes, anot);
+        }
+    }
+    else {
+        texto = (char *) calloc(1000, sizeof(char));
+        rua = (char *) calloc(100, sizeof(char));
+        strcpy(texto, " ");
+        while(vertices[i+1] != NULL)
+        {
+            v1 = get_vertice(par->grafo_via, vertices[i]);
+            v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+            rua = get_nome_aresta(par->grafo_via, vertices[i], vertices[i+1]);
+
+            pos1 = get_pos_vertice(v1);
+            pos2 = get_pos_vertice(v2);
+
+            eixoX = pos1[0]-pos2[0];
+            eixoY = pos1[1]-pos2[1];
+
+            if(eixoX != 0) {
+                if(eixoX > 0) {
+                    strcpy(direcao, "oeste");
+                }
+                else {
+                    strcpy(direcao, "leste");
+                }
+            }
+            else {
+                strcpy(direcao, " ");
+            }
+            
+            if(eixoY != 0) {
+                if(eixoY > 0) {
+                    if(strcmp(direcao, "oeste") == 0) {
+                        strcpy(direcao, "sudoeste");
+                    }
+                    else {
+                        if(strcmp(direcao, "leste") == 0) {
+                            strcpy(direcao, "sudeste");
+                        }
+                        else {
+                            strcpy(direcao, "sul");
+                        }
+                    }
+                }
+                else {
+                    if(strcmp(direcao, "oeste") == 0) {
+                        strcpy(direcao, "noroeste");
+                    }
+                    else {
+                        if(strcmp(direcao, "leste") == 0) {
+                            strcpy(direcao, "nordeste");
+                        }
+                        else {
+                            strcpy(direcao, "norte");
+                        }
+                    }
+                }
+            }
+
+            sprintf(texto, "%sSiga na direção %s na %s", texto, direcao, rua);
+            
+            if(vertices[i+2] != NULL) {
+                rua = get_nome_aresta(par->grafo_via, vertices[i+1], vertices[i+2]);
+                sprintf(texto, "%s até o cruzamento com a rua %s. ", texto, rua);
+            }
+            else {
+                sprintf(texto, "%s. ", texto);
+            }
+
+            insere_fila(par->resultado, texto);
+        }
+    }
+    
+
 }
 
 void caso_sp_pergunta(Parametros *par)
@@ -3435,26 +3564,49 @@ void caso_sp_pergunta(Parametros *par)
     char *anotTexto = NULL;
     int k = 0;
     int m = 0;
+    char formato = 0, *sufixo = NULL, def = 0;
+    double eixoX = 0, eixoY = 0;
+    char *direcao = NULL, *rua = NULL;
+    int i = 0;
+    char *texto = NULL;
 
     cor1 = (char *) calloc(255, sizeof(char));
     cor2 = (char *) calloc(255, sizeof(char));
     anotTexto = (char *) calloc(60, sizeof(char));
+    direcao = (char *) calloc(10, sizeof(char));
 
-    sscanf(par->comando, "%d", &n);
-    registradores = (char **) calloc(n, sizeof(char *));
+    sscanf(par->comando, "%c", formato);
 
-    for(size_t i = 0; i < n; i++)
-    {
-        sscanf(par->comando, "%s", registradores[i]);
+    if (formato == 'p') {
+        sscanf(par->comando, "%s %c", sufixo, def);
+
+        sscanf(par->comando, "%d", &n);
+        registradores = (char **) calloc(n, sizeof(char *));
+
+        for(i = 0; i < n; i++)
+        {
+            sscanf(par->comando, "%s", registradores[i]);
+        }
+        
+        sscanf(par->comando, "%s %s", cor1, cor2);
     }
-    
-    sscanf(par->comando, "%s %s", cor1, cor2);
+    else {
+        sscanf(par->comando, "%c", def);
+
+        sscanf(par->comando, "%d", &n);
+        registradores = (char **) calloc(n, sizeof(char *));
+
+        for(i = 0; i < n; i++)
+        {
+            sscanf(par->comando, "%s", registradores[i]);
+        }
+    }
 
     vertices = (char **) calloc (qtd_vertices(par->grafo_via)*n, sizeof(char *));
     
-    for(size_t i = 0; i < n-1; i++)
+    for(i = 0; i < n-1; i++)
     {
-        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via);
+        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via, def);
 
         k = 0;
         while(vertices[k] != NULL){
@@ -3467,27 +3619,105 @@ void caso_sp_pergunta(Parametros *par)
             m++;
         }
     }
+
+    if (vertices[0] == NULL) {
+        return;
+    }
+
+    i = 0;
     
-    
-    for(size_t i = 0; i < qtd_vertices(par->grafo_via); i++)
-    {
-        v1 = get_vertice(par->grafo_via, vertices[i]);
-        v2 = get_vertice(par->grafo_via, vertices[i+1]);
+    if (formato == 'p') {
+        while(vertices[i+1] != NULL)
+        {
+            v1 = get_vertice(par->grafo_via, vertices[i]);
+            v2 = get_vertice(par->grafo_via, vertices[i+1]);
 
-        pos1 = get_pos_vertice(v1);
-        pos2 = get_pos_vertice(v2);
+            pos1 = get_pos_vertice(v1);
+            pos2 = get_pos_vertice(v2);
 
-        if(i%2 == 0) {
-            auxCor = cor1;
+            if(i%2 == 0) {
+                auxCor = cor1;
+            }
+            else {
+                auxCor = cor2;
+            }
+            
+            sprintf(anotTexto, "p %s", auxCor);
+            anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
+
+            insere_fila(par->anotacoes, anot);
         }
-        else {
-            auxCor = cor2;
+    }
+    else {
+        texto = (char *) calloc(1000, sizeof(char));
+        rua = (char *) calloc(100, sizeof(char));
+        strcpy(texto, " ");
+        while(vertices[i+1] != NULL)
+        {
+            v1 = get_vertice(par->grafo_via, vertices[i]);
+            v2 = get_vertice(par->grafo_via, vertices[i+1]);
+
+            rua = get_nome_aresta(par->grafo_via, vertices[i], vertices[i+1]);
+
+            pos1 = get_pos_vertice(v1);
+            pos2 = get_pos_vertice(v2);
+
+            eixoX = pos1[0]-pos2[0];
+            eixoY = pos1[1]-pos2[1];
+
+            if(eixoX != 0) {
+                if(eixoX > 0) {
+                    strcpy(direcao, "oeste");
+                }
+                else {
+                    strcpy(direcao, "leste");
+                }
+            }
+            else {
+                strcpy(direcao, " ");
+            }
+            
+            if(eixoY != 0) {
+                if(eixoY > 0) {
+                    if(strcmp(direcao, "oeste") == 0) {
+                        strcpy(direcao, "sudoeste");
+                    }
+                    else {
+                        if(strcmp(direcao, "leste") == 0) {
+                            strcpy(direcao, "sudeste");
+                        }
+                        else {
+                            strcpy(direcao, "sul");
+                        }
+                    }
+                }
+                else {
+                    if(strcmp(direcao, "oeste") == 0) {
+                        strcpy(direcao, "noroeste");
+                    }
+                    else {
+                        if(strcmp(direcao, "leste") == 0) {
+                            strcpy(direcao, "nordeste");
+                        }
+                        else {
+                            strcpy(direcao, "norte");
+                        }
+                    }
+                }
+            }
+
+            sprintf(texto, "%sSiga na direção %s na %s", texto, direcao, rua);
+            
+            if(vertices[i+2] != NULL) {
+                rua = get_nome_aresta(par->grafo_via, vertices[i+1], vertices[i+2]);
+                sprintf(texto, "%s até o cruzamento com a rua %s. ", texto, rua);
+            }
+            else {
+                sprintf(texto, "%s. ", texto);
+            }
+
+            insere_fila(par->resultado, texto);
         }
-
-        sprintf(anotTexto, "p %s", auxCor);
-        anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-        insere_fila(par->anotacoes, anot);
     }
 }
 
@@ -3530,7 +3760,7 @@ void caso_dc (Parametros* par)
     par->comando += 3;
     sufixo = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     strcpy (sufixo, par->comando);
-    carros = get_todos_arvore (par->tree_carros);
+    carros = get_todos_arvore (par->tree_carros);    
     colisoes = detectar_colisoes (carros);
     for (i=0; *(colisoes+i) != NULL; i++)
     {
@@ -3596,13 +3826,15 @@ void caso_rau (Parametros* par)
             insere_fila (par->resultado, info);
             remove_valor_arvore (par->tree_carros, aux);
             remove_hashtable (par->hash_carros, aux);
-            pontAux = get_proximo_lista (carros, primeiro);
             remove_lista (carros, aux);
-            primeiro = pontAux;
+            return;
         }
         primeiro = get_proximo_lista (carros, primeiro);
     }
     while (primeiro != NULL);
+
+    printf("\nERRO: NENHUM CARRO ENCONTRADO!");
+    return;    
 }
 
 //COMANDOS REFERENTES AO ARQUIVO .EC
@@ -3753,7 +3985,7 @@ void caso_v (Parametros* par)
     double* pos = NULL;
     id = (char*) calloc (255, sizeof (char));
     pos = (double*) calloc (2, sizeof (double));
-    sscanf (par->comando, "%s %lf %lf", id, x, y);
+    sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     pos[0] = x;
     pos[1] = y;
     insere_vertice (par->grafo_via, id, pos);
@@ -3774,7 +4006,7 @@ void caso_e_via (Parametros* par)
     ldir = (char*) calloc (255, sizeof (char));
     lesq = (char*) calloc (255, sizeof (char));
     nome = (char*) calloc (255, sizeof (char));
-    sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, cmp, vm, nome);
+    sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nome);
     insere_aresta (par->grafo_via, i, j);
     define_atributos_aresta (par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
     return;

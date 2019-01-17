@@ -1136,7 +1136,7 @@ double distancia(double *pos1, double *pos2)
     return result;
 }
 
-char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Grafo G)
+char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Grafo G, char def)
 {
     int reg1 = 0, reg2 = 0;
     double *pos1 = NULL, *pos2 = NULL;
@@ -1147,8 +1147,18 @@ char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Graf
     reg1 = busca_registrador(regis, r1);
     reg2 = busca_registrador(regis, r2);
 
+    if (reg1 == -1 || reg2 == -1) {
+        printf("\nERRO: REGISTRADOR NAO ENCONTRADO!");
+        return NULL;
+    }
+
     pos1 = get_pos_registrador(regis[reg1]);
     pos2 = get_pos_registrador(regis[reg2]);
+    
+    if (pos1 == NULL || pos2 == NULL) {
+        printf("\nERRO: REGISTRADOR SEM POSICAO DEFINIDA!");
+        return NULL;
+    }
 
     v1 = vertice_mais_proximo(G, pos1);
     v2 = vertice_mais_proximo(G, pos2);
@@ -1156,7 +1166,14 @@ char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Graf
     fixa_primeiro_lista(G, get_posic_vertice(G, get_id_vertice(v1)));
     l = divide_lista(G, get_posic_vertice(G, get_id_vertice(v1)));
 
-    vertices = dijkstra((Grafo) l, get_id_vertice(v1));
+    
+    if (def == 'D') {
+        vertices = dijkstra_distancia ((Grafo) l, get_id_vertice(v1));
+    }
+    else {
+        vertices = dijkstra_tempo((Grafo) l, get_id_vertice(v1));
+    }
+    
 
     return vertices;
 }
@@ -1178,27 +1195,35 @@ void* comercio_proximo_coordenada (double* coord, char* tipo, Parametros* par)
     if (primeiro != NULL)
     {
         comProx = get_valor_lista (primeiro);
-        coordAux = get_xy_comercio (comProx, par);
-        distX = *coord + *coordAux;
-        distY = *(coord+1) + *(coordAux+1);
-        distX = distX * distX;
-        distY = distY * distY;
-        minDist = sqrt (distX + distY);
+        if (comProx!= NULL)
+        {
+            if (!strcmp (get_tipo_comercio (comProx), tipo))
+            {
+                coordAux = get_xy_comercio (comProx, par);
+                minDist = distancia (coord, coordAux);
+            }
+        }
     }
     primeiro = get_proximo_lista (comercios, primeiro);
     do
     {
-        comercio = get_valor_lista (primeiro);
-        coordAux = get_xy_comercio (comercio, par);
-        distX = *coord + *coordAux;
-        distY = *(coord+1) + *(coordAux+1);
-        distX = distX * distX;
-        distY = distY * distY;
-        distAux = sqrt (distX + distY);
-        if (distAux < minDist)
+        if (primeiro == NULL)
         {
-            minDist = distAux;
-            comProx = comercio;
+            continue;
+        }
+        comercio = get_valor_lista (primeiro);
+        if (comercio != NULL)
+        {
+            if (!strcmp (get_tipo_comercio (comercio), tipo))
+            {
+                coordAux = get_xy_comercio (comercio, par);
+                distAux = distancia (coord, coordAux);
+                if (distAux < minDist)
+                {
+                    minDist = distAux;
+                    comProx = comercio;
+                }
+            }
         }
         primeiro = get_proximo_lista (comercios, primeiro);
     }

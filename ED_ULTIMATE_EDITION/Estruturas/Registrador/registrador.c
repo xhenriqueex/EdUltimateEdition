@@ -11,13 +11,15 @@ typedef struct registrador
 } Regis;
 
 //CRIA E RETORNA UM REGISTRADOR
-Registrador cria_registrador ()
+Registrador cria_registrador (char *nome)
 {
     Regis* regis = NULL;
+
     regis = (Regis*) calloc (1, sizeof (Regis));
     regis->pos = NULL;
     regis->tipo = NULL;
-    regis->nome = NULL;
+    strcpy(regis->nome, nome);
+
     return (Registrador) regis;
 }
 
@@ -90,5 +92,10 @@ int busca_registrador (Registrador* registradores, char* nome)
             break;
         }
     }
+    
+    if (i == 11) {
+        i = -1;
+    }
+
     return i;
 }

@@ -94,6 +94,6 @@ void fecha_colisao (Parametros* par, char* sufixo);
 double distancia (double* pos1, double* pos2);
 
 //FUNÇÃO QUE CALCULA O MELHOR TRAJETO ENTRE DOIS REGISTROS
-char** melhor_trajeto_registradores (Registrador* regis, char* r1, char* r2, Grafo G);
+char **melhor_trajeto_registradores(Registrador *regis, char *r1, char *r2, Grafo G, char def);
 
 #endif

@@ -111,7 +111,11 @@ void free_arvore (void* arvore)
 {
     Arvore* arv = NULL;
     arv = (Arvore*) arvore;
-    free_nodulo (arv->nodulo);
+    
+    if (arv->nodulo != NULL) {
+        free_nodulo (arv->nodulo);
+    }
+    
     arv->compare = NULL;
     arv->tam = 0;
     arv->dim = 0;

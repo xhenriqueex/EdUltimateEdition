@@ -77,6 +77,9 @@ int main(int argc, char* argv[])
     p->tree_radiobases = cria_arvore (compare_radiobase, 2);
     p->tree_carros = cria_arvore (compare_carro, 2);
 
+    //INICIALIZANDO GRAFO
+    p->grafo_via = cria_grafo();
+
     //INICIALIZANDO CORES PADRÃO
     p->cor_borda_quadra = (char*) calloc (155, sizeof(char));
     strcpy (p->cor_borda_quadra, "black");

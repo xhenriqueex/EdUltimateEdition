@@ -19,6 +19,12 @@ void* set_endereco_comercio (Comercio com,  char* cep, char* face, char* num);
 //RETORNA O ENDEREÇO DO COMÉRCIO
 void* get_endereco_comercio (void* com);
 
+//RETORNA A FACE DO COMÉRCIO
+char *get_face_comercio (void* com);
+
+//RETORNA O NÚMERO DO COMÉRCIO
+char *get_num_comercio (void* com);
+
 //LIBERA A MEMÓRIA ALOCADA DO COMÉRCIO
 void free_comercio (Comercio com);
 
