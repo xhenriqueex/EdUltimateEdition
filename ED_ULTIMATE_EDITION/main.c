@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
     p->regis = (Registrador*) calloc (11, sizeof (Registrador));
     for (i=0; i<11; i++)
     {
-        *(p->regis+i) = NULL;
+        *(p->regis+i) = cria_registrador ();
     }
 
     //INICIALIZANDO PARÂMETROS DE CHAMADA

@@ -976,7 +976,7 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(quadras); i++)
+    for(i = 0; i < largura_lista(quadras); i++)
     {
         remove_lista(quadras, get_primeiro_lista(quadras));
     }
@@ -1001,7 +1001,7 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(size_t i = 0; i < largura_lista(hidrantes); i++)
+    for(i = 0; i < largura_lista(hidrantes); i++)
     {
         remove_lista(hidrantes, get_primeiro_lista(hidrantes));
     }
@@ -1026,7 +1026,7 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(semaforos); i++)
+    for(i = 0; i < largura_lista(semaforos); i++)
     {
         remove_lista(semaforos, get_primeiro_lista(semaforos));
     }
@@ -1051,7 +1051,7 @@ void fecha_qry (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(size_t i = 0; i < largura_lista(radiobases); i++)
+    for(i = 0; i < largura_lista(radiobases); i++)
     {
         remove_lista(radiobases, get_primeiro_lista(radiobases));
     }
@@ -1104,8 +1104,9 @@ void escreve_grafo (Grafo G, char **vertices, FILE *arquivo, char *cor1, char *c
     void *vert1 = NULL, *vert2 = NULL;
     double *pos1 = NULL, *pos2 = NULL;
     char *auxCor = NULL;
+    int i;
 
-    for(size_t i = 0; i < qtd_vertices(G)-1; i++)
+    for(i = 0; i < qtd_vertices(G)-1; i++)
     {
         vert1 = get_vertice(G, vertices[i]);
         vert2 = get_vertice(G, vertices[i+1]);
@@ -1321,6 +1322,170 @@ char** detectar_colisoes (Lista carros)
 
 //FUNÇÃO QUE GERA O SVG DAS COLISÕES
 void fecha_colisao (Parametros* par, char* sufixo)
+{
+    int i;
+    double* coord;
+    char* caminho;
+    char* percorre;
+    char* conteudo_svg;
+    char* remove_ext;
+    void* primeiro;
+    void* fila_linha;
+    FILE* saida_SVG;
+    FILE* saida_QRY;
+    Fila aux;
+    Lista quadras;
+    Lista hidrantes;
+    Lista semaforos;
+    Lista radiobases;
+    remove_ext = par->arquivo_entrada;
+    percorre = remove_ext;
+    while (*percorre != '.')
+    {
+        percorre++;
+    }
+    *percorre = '\0';
+    caminho = (char*) calloc (255, sizeof(char));
+    strcpy (caminho, par->diretorio_saida);
+    strcat (caminho, "/");
+    strcat (caminho, remove_ext);
+    strcat (caminho, "-");
+    remove_ext = par->arquivo_entrada_qry;
+    percorre = remove_ext + strlen (remove_ext) - 1;
+    while (*percorre != '/')
+    {
+        percorre--;
+    }
+    remove_ext = percorre + 1;
+    percorre = remove_ext + strlen (remove_ext) - 1;
+    while (*percorre != '.')
+    {
+        percorre--;
+    }
+    *percorre = '\0';
+    strcat (caminho, remove_ext);
+    strcat (caminho, "-");
+    strcat (caminho, sufixo);
+    strcat (caminho, ".svg");
+    saida_SVG = fopen (caminho, "w");
+    free (caminho);
+    caminho = NULL;
+    fprintf (saida_SVG, "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100000\" height=\"100000\">");
+    for (i=0; i<par->max_figuras; i++)
+    {
+        if (*(par->figuras + i) == NULL)
+        {
+            continue;
+        }
+        if (!strcmp (get_tipo_item (*(par->figuras + i)), R))
+        {
+            conteudo_svg = cria_svg_retangulo (get_valor_item (*(par->figuras + i)));
+            fprintf (saida_SVG, conteudo_svg);
+            free (conteudo_svg);
+            conteudo_svg = NULL;
+            continue;
+        }
+        if (!strcmp (get_tipo_item (*(par->figuras + i)), C))
+        {
+            conteudo_svg = cria_svg_circulo (get_valor_item (*(par->figuras + i)));
+            fprintf (saida_SVG, conteudo_svg);
+            free (conteudo_svg);
+            conteudo_svg = NULL;
+            continue;
+        }
+    }
+    quadras = get_todos_arvore (par->tree_quadras);
+    primeiro = get_primeiro_lista (quadras);
+    do
+    {
+        if (get_valor_lista (primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (quadras, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_quadra (get_valor_lista (primeiro));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">%s</text>", get_x_quadra (get_valor_lista (primeiro)) + 3, get_y_quadra (get_valor_lista (primeiro)) + get_h_quadra (get_valor_lista (primeiro)) - 3, get_cep_quadra (get_valor_lista (primeiro)));
+        free (conteudo_svg);
+        conteudo_svg = NULL;
+        primeiro = get_proximo_lista (quadras, primeiro);
+    }
+    while (primeiro != NULL);
+    hidrantes = get_todos_arvore (par->tree_hidrantes);
+    primeiro = get_primeiro_lista (hidrantes);
+    do
+    {
+        if (get_valor_lista (primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (hidrantes, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_hidrante(get_valor_lista(primeiro));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">H</text>", get_x_hidrante(get_valor_lista(primeiro)), get_y_hidrante(get_valor_lista(primeiro)));
+        free (conteudo_svg);
+        conteudo_svg = NULL;
+        primeiro = get_proximo_lista (hidrantes, primeiro);
+    }
+    while (primeiro != NULL);
+    semaforos = get_todos_arvore (par->tree_semaforos);
+    primeiro = get_primeiro_lista (semaforos);
+    do
+    {
+        if (get_valor_lista(primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (semaforos, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_semaforo (get_valor_lista (primeiro));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">S</text>", get_x_semaforo (get_valor_lista (primeiro)), get_y_semaforo (get_valor_lista (primeiro)));
+        free (conteudo_svg);
+        conteudo_svg = NULL;
+        primeiro = get_proximo_lista (semaforos, primeiro);
+    }
+    while (primeiro != NULL);
+    radiobases = get_todos_arvore (par->tree_radiobases);
+    primeiro = get_primeiro_lista (radiobases);
+    do
+    {
+        if (get_valor_lista (primeiro) == NULL)
+        {
+            primeiro = get_proximo_lista (radiobases, primeiro);
+            continue;
+        }
+        conteudo_svg = cria_svg_radiobase (get_valor_lista (primeiro));
+        fprintf (saida_SVG, conteudo_svg);
+        fprintf (saida_SVG, "\n<text x=\"%f\" y=\"%f\" fill=\"black\">R</text>", get_x_radiobase (get_valor_lista (primeiro)), get_y_radiobase (get_valor_lista (primeiro)));
+        free (conteudo_svg);
+        conteudo_svg = NULL;
+        primeiro = get_proximo_lista (radiobases, primeiro);
+    }
+    while (primeiro != NULL);
+    aux = cria_fila();
+    while (!fila_vazia (par->anotacoes))
+    {
+        fila_linha = remove_fila (par->anotacoes);
+        conteudo_svg = cria_svg_anotacao (fila_linha);
+        fprintf (saida_SVG, conteudo_svg);
+        free (conteudo_svg);
+        conteudo_svg = NULL;
+        insere_fila (aux, fila_linha);
+        continue;
+    }
+    while (!fila_vazia(aux))
+    {
+        insere_fila (par->anotacoes, remove_fila(aux));
+    }
+    free (aux);
+    aux = NULL;
+    ///////////escreve_grafo(par->grafo_via, par->vertices, saida_SVG, )
+    fprintf (saida_SVG, "\n</svg>");
+    fclose (saida_SVG);
+}
+
+//FUNÇÃO QUE GERA O SVG DO CAMINHO
+void fecha_caminho (Parametros* par, char* sufixo)
 {
     int i;
     double* coord;
