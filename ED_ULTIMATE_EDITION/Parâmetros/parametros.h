@@ -13,6 +13,7 @@
 #include "../Estruturas/Árvore/arvore.h"
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"
+#include "../Formas/Grafo_Forma/grafo_forma.h"
 
 //DEFINE A STRUCT DE PARAMETROS
 typedef struct params {
@@ -45,6 +46,7 @@ typedef struct params {
     Item* figuras;
     Fila* anotacoes;
     Fila* resultado;
+    Fila grafo_f;
     Arvore tree_quadras;
     Arvore tree_hidrantes;
     Arvore tree_semaforos;

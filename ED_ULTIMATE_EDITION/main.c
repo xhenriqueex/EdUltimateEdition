@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
     //INICIALIZANDO FILAS
     p->anotacoes = cria_fila();
     p->resultado = cria_fila();
+    p->grafo_f = cria_fila();
     
     //INICIALIZANDO HASHTABLES
     p->hash_comercios = cria_hashtable (100, compare_cnpj_comercio, hashcode_comercio);
@@ -482,6 +483,8 @@ int main(int argc, char* argv[])
     p->anotacoes = NULL;
     free(p->resultado);
     p->resultado = NULL;
+    free(p->grafo_f);
+    p->grafo_f = NULL;
     free (p);
     p = NULL;
 

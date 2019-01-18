@@ -8,6 +8,7 @@
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"
+#include "../Formas/Grafo_Forma/grafo_forma.h"
 
 typedef struct params {
     char* caminho_GEO;
@@ -39,6 +40,7 @@ typedef struct params {
     Item* figuras;
     Fila* anotacoes;
     Fila* resultado;
+    Fila grafo_f;
     Arvore tree_quadras;
     Arvore tree_hidrantes;
     Arvore tree_semaforos;

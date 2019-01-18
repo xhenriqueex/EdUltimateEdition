@@ -8,6 +8,7 @@
 #include "../Formas/Círculo/circulo.h"
 #include "../Formas/Retângulo/retangulo.h"
 #include "../Formas/Anotação/anotacao.h"
+#include "../Formas/Grafo_Forma/grafo_forma.h"
 #include "../Objetos/Quadra/quadra.h"
 #include "../Objetos/Hidrante/hidrante.h"
 #include "../Objetos/Semáforo/semaforo.h"
@@ -902,6 +903,7 @@ void fecha_qry (Parametros* par)
     Lista semaforos;
     Lista radiobases;
     Posic p = NULL;
+    Grafo_forma gf = NULL;
     remove_ext = par->arquivo_entrada;
     percorre = remove_ext;
     while (*percorre != '.')
@@ -1075,7 +1077,13 @@ void fecha_qry (Parametros* par)
         conteudo_svg = NULL;
         continue;
     }
-    ///////////escreve_grafo(par->grafo_via, par->vertices, saida_SVG, )
+
+    while(!fila_vazia(par->grafo_f)) {
+        gf = remove_fila(par->grafo_f);
+        escreve_grafo(gf);
+        free_grafo_forma(gf);
+        gf = NULL;
+    }
 
     fprintf (saida_SVG, "\n</svg>");
     fclose (saida_SVG);
@@ -1106,34 +1114,6 @@ void fecha_qry (Parametros* par)
     }
     fclose (saida_QRY);
     printf ("\n"); 
-}
-
-void escreve_grafo (Grafo G, char **vertices, FILE *arquivo, char *cor1, char *cor2)
-{
-    void *vert1 = NULL, *vert2 = NULL;
-    double *pos1 = NULL, *pos2 = NULL;
-    char *auxCor = NULL;
-    int i;
-
-    for(i = 0; i < qtd_vertices(G)-1; i++)
-    {
-        vert1 = get_vertice(G, vertices[i]);
-        vert2 = get_vertice(G, vertices[i+1]);
-
-        pos1 = get_pos_vertice(vert1);
-        pos2 = get_pos_vertice(vert2);
-
-        if(i%2 == 0) {
-            auxCor = cor1;
-        }
-        else {
-            auxCor = cor2;
-        }
-
-        fprintf (arquivo,
-            "\n<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"%s\" stroke-width=\"2\"/>",
-            pos1[0], pos1[1], pos2[0], pos2[1], auxCor);
-    }
 }
 
 double distancia(double *pos1, double *pos2)

@@ -22,6 +22,7 @@
 #include "../Estruturas/Merge/mergesort.h"
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Funções/parproximo.h"
+#include "../Formas/Grafo_Forma/grafo_forma.h"
 
 #define C "circulo"
 #define R "retangulo"
@@ -3474,6 +3475,15 @@ void caso_p_pergunta (Parametros* par)
     char *direcao = NULL, *rua = NULL;
     int i = 0;
     char *texto = NULL;
+    Grafo_forma gf = NULL;
+    char *caminho = NULL, *auxCaminho = NULL;
+
+    caminho = (char *) calloc(
+        strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+5, sizeof(char));
+
+    sprintf(caminho, "%s/%s", par->diretorio_saida, par->arquivo_entrada_via);
+    auxCaminho = strrchr(caminho, '.');
+    *auxCaminho = '\0';
 
     registrador1 = (char *) calloc(5, sizeof(char));
     registrador2 = (char *) calloc(5, sizeof(char));
@@ -3494,29 +3504,17 @@ void caso_p_pergunta (Parametros* par)
         registrador1 = NULL;
         free(registrador2);
         registrador2 = NULL;
+        free(caminho);
+        caminho = NULL;
         return;
     }
 
     i = 0;
     
     if (formato == 'p') {
-        anotTexto = (char *) calloc(60, sizeof(char));
-        cor = (char *) calloc(255, sizeof(char));
-        while(vertices[i+1] != NULL)
-        {
-            v1 = get_vertice(par->grafo_via, vertices[i]);
-            v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
-            pos1 = get_pos_vertice(v1);
-            pos2 = get_pos_vertice(v2);
-            
-            sprintf(anotTexto, "p %s", cor);
-            anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-            insere_fila(par->anotacoes, anot);
-        }
-        free(anotTexto);
-        free(cor);
+        sprintf(caminho, "%s-%s.svg", caminho, sufixo);
+        gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor, NULL);
+        insere_fila(par->grafo_f, gf);
     }
     else {
         texto = (char *) calloc(1000, sizeof(char));
@@ -3575,8 +3573,7 @@ void caso_p_pergunta (Parametros* par)
                         }
                     }
                 }
-            }
-            
+            }            
 
             sprintf(texto, "%sSiga na direção %s na %s", texto, direcao, rua);
             
@@ -3599,6 +3596,8 @@ void caso_p_pergunta (Parametros* par)
     registrador1 = NULL;
     free(registrador2);
     registrador2 = NULL;
+    free(caminho);
+    caminho = NULL;
 }
 
 void caso_sp_pergunta(Parametros *par)
@@ -3620,6 +3619,15 @@ void caso_sp_pergunta(Parametros *par)
     char *direcao = NULL, *rua = NULL;
     int i = 0;
     char *texto = NULL;
+    Grafo_forma *gf = NULL;
+    char *caminho = NULL, *auxCaminho = NULL;
+
+    caminho = (char *) calloc(
+        strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+5, sizeof(char));
+
+    sprintf(caminho, "%s/%s", par->diretorio_saida, par->arquivo_entrada_via);
+    auxCaminho = strrchr(caminho, '.');
+    *auxCaminho = '\0';
 
     cor1 = (char *) calloc(255, sizeof(char));
     cor2 = (char *) calloc(255, sizeof(char));
@@ -3672,32 +3680,17 @@ void caso_sp_pergunta(Parametros *par)
     }
 
     if (vertices[0] == NULL) {
+        free(caminho);
+        caminho = NULL;
         return;
     }
 
     i = 0;
     
     if (formato == 'p') {
-        while(vertices[i+1] != NULL)
-        {
-            v1 = get_vertice(par->grafo_via, vertices[i]);
-            v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
-            pos1 = get_pos_vertice(v1);
-            pos2 = get_pos_vertice(v2);
-
-            if(i%2 == 0) {
-                auxCor = cor1;
-            }
-            else {
-                auxCor = cor2;
-            }
-            
-            sprintf(anotTexto, "p %s", auxCor);
-            anot = cria_anotacao(pos1[0], pos1[1], pos2[0], pos2[1], anotTexto);
-
-            insere_fila(par->anotacoes, anot);
-        }
+        sprintf(caminho, "%s-%s.svg", caminho, sufixo);
+        gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor1, cor2);
+        insere_fila(par->grafo_f, gf);
     }
     else {
         texto = (char *) calloc(1000, sizeof(char));
@@ -3770,6 +3763,8 @@ void caso_sp_pergunta(Parametros *par)
             insere_fila(par->resultado, texto);
         }
     }
+    free(caminho);
+    caminho = NULL;
 }
 
 void caso_au (Parametros* par)
