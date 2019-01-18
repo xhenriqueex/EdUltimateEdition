@@ -87,7 +87,7 @@ int busca_registrador (Registrador* registradores, char* nome)
         {
             continue;
         }
-    
+
         if (!strcmp (regis->nome, nome))
         {
             break;

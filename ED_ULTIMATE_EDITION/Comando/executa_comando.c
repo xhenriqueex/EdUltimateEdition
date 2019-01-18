@@ -633,7 +633,7 @@ void caso_c (Parametros* par)
     Item it;
     if (par->contador_figuras >= par->max_figuras)
     {
-        printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
+        printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!\n");
         return;
     }
     cor1 = (char*) calloc (55, sizeof (char));
@@ -660,7 +660,7 @@ void caso_r (Parametros* par)
     Item it;
     if (par->contador_figuras >= par->max_figuras)
     {
-        printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!");
+        printf ("\nERRO: LIMITE DE FIGURAS ATINGIDO!\n");
         return;
     }
     cor1 = (char*) calloc (55, sizeof (char));
@@ -819,15 +819,15 @@ void caso_o (Parametros* par)
     {
         if (fig2 == NULL)
         {
-            printf ("\nERRO: AS FIGURAS NAO FORAM ENCONTRADAS!");
+            printf ("\nERRO: AS FIGURAS NAO FORAM ENCONTRADAS!\n");
             return;
         }
-        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!\n");
         return;
     }
     if (fig2 == NULL)
     {
-        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!\n");
         return;
     }
     if (!strcmp (get_tipo_item (fig1), C) && !strcmp (get_tipo_item (fig2), C))
@@ -1048,7 +1048,7 @@ void caso_i (Parametros* par)
     }
     if (fig == NULL)
     {
-        printf ("\nERRO: FIGURA NAO ENCONTRADA!");
+        printf ("\nERRO: FIGURA NAO ENCONTRADA!\n");
         return;
     }
     if (!strcmp (get_tipo_item (fig), R))
@@ -1124,23 +1124,23 @@ void caso_d (Parametros* par)
     {
         if ((fig2) == NULL)
         {
-            printf ("\nERRO: AS FIGURAS NAO FORAM ENCONTRADAS!");
+            printf ("\nERRO: AS FIGURAS NAO FORAM ENCONTRADAS!\n");
             result_string = (char*) calloc (55, sizeof (char));
-            sprintf (result_string, "\nAS FIGURAS NÃO FORAM ENCONTRADAS!");
+            sprintf (result_string, "\nAS FIGURAS NÃO FORAM ENCONTRADAS!\n");
             insere_fila (par->resultado, (Valor*) result_string);
             return;
         }
-        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!\n");
         result_string = (char*) calloc (55, sizeof (char));
-        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FOI ENCONTRADA!");
+        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FOI ENCONTRADA!\n");
         insere_fila (par->resultado, (Valor*) result_string);    
         return;
     }
     if ((fig2) == NULL)
     {
-        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!");
+        printf ("\nERRO: UMA DAS FIGURAS NAO FORAM ENCONTRADAS!\n");
         result_string = (char*) calloc (55, sizeof (char));
-        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FORAM ENCONTRADAS!");
+        sprintf (result_string, "\nUMA DAS FIGURAS NÃO FORAM ENCONTRADAS!\n");
         insere_fila (par->resultado, (Valor*) result_string);
         return;
     }
@@ -1228,7 +1228,7 @@ void caso_a (Parametros* par)
     }
     if (fig == NULL)
     {
-        printf ("\nERRO: FIGURA NAO ENCONTRADA!");
+        printf ("\nERRO: FIGURA NAO ENCONTRADA!\n");
         return;
     }
     par->caminho_SVG = (char*) calloc (255, sizeof(char));
@@ -2382,7 +2382,7 @@ void caso_ecr_pergunta (Parametros* par)
         if (!largura_lista (report))
         {
             result = (char*) calloc (55, sizeof (char));
-            sprintf (result, "\nNENHUMA QUADRA ENCONTRADA!");
+            sprintf (result, "\nNENHUMA QUADRA ENCONTRADA!\n");
             insere_fila (par->resultado, result);
             return;
         }
@@ -2450,7 +2450,7 @@ void caso_ecr_pergunta (Parametros* par)
     if (!largura_lista (report))
     {
         result = (char*) calloc (75, sizeof (char));
-        sprintf (result, "\nNENHUMA QUADRA ENCONTRADA DENTRO DO RETÂNGULO ESPECIFICADO!");
+        sprintf (result, "\nNENHUMA QUADRA ENCONTRADA DENTRO DO RETÂNGULO ESPECIFICADO!\n");
         insere_fila (par->resultado, result);
         anot = cria_anotacao (w, h, x, y, "ecr");
         insere_fila (par->anotacoes, anot);
@@ -2478,7 +2478,7 @@ void caso_ecr_pergunta (Parametros* par)
         if (!largura_lista (enderecos))
         {
             result = (char*) calloc (55, sizeof (char));
-            sprintf (result, "\nNENHUM COMÉRCIO DO TIPO ESPECIFICADO NESSA QUADRA!");
+            sprintf (result, "\nNENHUM COMÉRCIO DO TIPO ESPECIFICADO NESSA QUADRA!\n");
             insere_fila (par->resultado, result);
             primeiro = get_proximo_lista (report, primeiro);
 
@@ -2574,7 +2574,7 @@ void caso_tecq_pergunta (Parametros* par)
     if (!largura_lista (enderecos))
     {
         relatorio = (char*) calloc (55, sizeof (char));
-        sprintf (relatorio, "\nNENHUM COMÉRCIO ENCONTRADO NESSA QUADRA!");
+        sprintf (relatorio, "\nNENHUM COMÉRCIO ENCONTRADO NESSA QUADRA!\n");
         insere_fila (par->resultado, relatorio);
         free(cep);
         cep = NULL;
@@ -3260,12 +3260,13 @@ void caso_arroba_m_pergunta (Parametros* par)
     int r = 0;
     registrador = (char*) calloc (5, sizeof (char));
     cpf = (char*) calloc (25, sizeof (char));
+    par->comando += 4;
     sscanf (par->comando, "%s %s", registrador, cpf);
     auxPes = cria_pessoa ("", "", cpf, "", "");
     pessoa = get_hashtable (par->hash_pessoas, auxPes);
     
     if (pessoa == NULL) {
-        printf("\nERRO: PESSOA NAO ENCONTRADA!");
+        printf("\nERRO: PESSOA NAO ENCONTRADA!\n");
         free (registrador);
         registrador = NULL;
         free (cpf);
@@ -3297,16 +3298,17 @@ void caso_arroba_e_pergunta (Parametros* par)
     Endereco end = NULL;
     int r = 0;
     Lista *lista = NULL;
+    Posic p = NULL, percorre = NULL;
 
     registrador = (char*) calloc (5, sizeof (char));
     cep = (char*) calloc (255, sizeof (char));
     face = (char*) calloc (255, sizeof (char));
     num = (char*) calloc (255, sizeof (char));
+    par->comando += 4;
     sscanf (par->comando, "%s %s %s %s", registrador, cep, face, num);
 
     end  = identificador_endereco_comercio(cep);
     lista = get_lista_hashtable(par->hash_end_comercios, end);
-    void *percorre;
     percorre = get_primeiro_lista(lista);
     
     while(percorre != NULL){
@@ -3317,19 +3319,21 @@ void caso_arroba_e_pergunta (Parametros* par)
             auxCom = com;
             break;
         }
+        percorre = get_proximo_lista(lista, percorre);
     }
-    free_endereco(end);
-    end = NULL;
+    //free_endereco(end);
+    //end = NULL;
     
     while(largura_lista(lista) != 0)
     {
-        remove_lista(lista, get_primeiro_lista(lista));
+        p = remove_lista(lista, get_primeiro_lista(lista));
+        free_posic(p);
     }
     free(lista);
     lista = NULL;
     
     if (auxCom == NULL) {
-        printf("\nERRO: NENHUM COMÉRCIO ENCONTRADO!");
+        printf("\nERRO: NENHUM COMÉRCIO ENCONTRADO!\n");
         free (registrador);
         registrador = NULL;
         free (cep);
@@ -3367,6 +3371,7 @@ void caso_arroba_g_pergunta (Parametros* par)
     double* pos_equipamento = NULL;
     registrador = (char*) calloc (5, sizeof (char));
     id = (char*) calloc (255, sizeof (char));
+    par->comando += 4;
     sscanf (par->comando, "%s %s", registrador, id);
     auxEquip = cria_hidrante (id, 0, 0, 0, "", "");
     equipamento = get_hashtable (par->hash_hidrantes, auxEquip);
@@ -3381,7 +3386,7 @@ void caso_arroba_g_pergunta (Parametros* par)
             equipamento = get_hashtable(par->hash_semaforos, auxEquip);
             if (equipamento == NULL) 
             {
-                printf("\nERRO: NENHUM EQUIPAMENTO ENCONTRADO!");
+                printf("\nERRO: NENHUM EQUIPAMENTO ENCONTRADO!\n");
                 return;
             }
         }
@@ -3403,11 +3408,12 @@ void caso_arroba_xy (Parametros* par)
     int r = 0;
     registrador = (char*) calloc (5, sizeof (char));
     pos = (double*) calloc (2, sizeof (double));
-    sscanf (par->comando, "%s %lf %lf", registrador, pos[0], pos[1]);
+    par->comando += 4;
+    sscanf (par->comando, "%s %lf %lf", registrador, &pos[0], &pos[1]);
     r = busca_registrador (par->regis, registrador);
     
     if (r == -1) {
-        printf("\nERRO: REGISTRADOR NÃO ENCONTRADO!");
+        printf("\nERRO: REGISTRADOR NÃO ENCONTRADO!\n");
         free (registrador);
         registrador = NULL;
         free(pos);
@@ -3470,14 +3476,14 @@ void caso_p_pergunta (Parametros* par)
     char *cor1 = NULL, *cor2 = NULL;
     Anotacao anot = NULL;
     char *anotTexto = NULL;
-    char formato = 0, *sufixo = NULL, def = 0;
+    char *formato = NULL, *sufixo = NULL, *def = NULL;
     double eixoX = 0, eixoY = 0;
     char *direcao = NULL, *rua = NULL;
     int i = 0;
     char *texto = NULL;
     Grafo_forma gf = NULL;
     char *caminho = NULL, *auxCaminho = NULL;
-
+    par->comando += 3;
     caminho = (char *) calloc(
         strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+5, sizeof(char));
 
@@ -3487,17 +3493,21 @@ void caso_p_pergunta (Parametros* par)
 
     registrador1 = (char *) calloc(5, sizeof(char));
     registrador2 = (char *) calloc(5, sizeof(char));
+    formato = (char *) calloc(2, sizeof(char));
+    def = (char *) calloc(2, sizeof(char));
+    sufixo = (char *) calloc(10, sizeof(char));
 
-    sscanf(par->comando, "%c", formato);
+    sscanf(par->comando, "%s", formato);
+    par->comando += strlen(formato)+1;
 
-    if (formato == 'p') {
-        sscanf(par->comando, "%s %c %s %s %s", sufixo, def, registrador1, registrador2, cor);
+    if (*formato == 'p') {
+        sscanf(par->comando, "%s %s %s %s %s", sufixo, def, registrador1, registrador2, cor);
     }
     else {
-        sscanf(par->comando, "%c %s %s %s %s", def, registrador1, registrador2);
+        sscanf(par->comando, "%s %s %s %s %s", def, registrador1, registrador2);
     }
 
-    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via, def);
+    vertices = melhor_trajeto_registradores(par->regis, registrador1, registrador2, par->grafo_via, *def);
     
     if (vertices == NULL) {
         free(registrador1);
@@ -3506,12 +3516,18 @@ void caso_p_pergunta (Parametros* par)
         registrador2 = NULL;
         free(caminho);
         caminho = NULL;
+        free(formato);
+        formato = NULL;
+        free(def);
+        def = NULL;
+        free(sufixo);
+        sufixo = NULL;
         return;
     }
 
     i = 0;
     
-    if (formato == 'p') {
+    if (*formato == 'p') {
         sprintf(caminho, "%s-%s.svg", caminho, sufixo);
         gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor, NULL);
         insere_fila(par->grafo_f, gf);
@@ -3598,6 +3614,12 @@ void caso_p_pergunta (Parametros* par)
     registrador2 = NULL;
     free(caminho);
     caminho = NULL;
+    free(formato);
+    formato = NULL;
+    free(def);
+    def = NULL;
+    free(sufixo);
+    sufixo = NULL;
 }
 
 void caso_sp_pergunta(Parametros *par)
@@ -3614,14 +3636,15 @@ void caso_sp_pergunta(Parametros *par)
     char *anotTexto = NULL;
     int k = 0;
     int m = 0;
-    char formato = 0, *sufixo = NULL, def = 0;
+    char *formato = NULL, *sufixo = NULL, *def = NULL;
     double eixoX = 0, eixoY = 0;
     char *direcao = NULL, *rua = NULL;
     int i = 0;
     char *texto = NULL;
     Grafo_forma *gf = NULL;
     char *caminho = NULL, *auxCaminho = NULL;
-
+    char *auxLeitura = NULL;
+    par->comando += 4;
     caminho = (char *) calloc(
         strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+5, sizeof(char));
 
@@ -3633,31 +3656,42 @@ void caso_sp_pergunta(Parametros *par)
     cor2 = (char *) calloc(255, sizeof(char));
     anotTexto = (char *) calloc(60, sizeof(char));
     direcao = (char *) calloc(10, sizeof(char));
+    auxLeitura = (char *) calloc(3, sizeof(char));
+    formato = (char *) calloc(2, sizeof(char));
+    def = (char *) calloc(2, sizeof(char));
+    sufixo = (char *) calloc(10, sizeof(char));
 
     sscanf(par->comando, "%c", formato);
-
-    if (formato == 'p') {
-        sscanf(par->comando, "%s %c", sufixo, def);
-
-        sscanf(par->comando, "%d", &n);
+    par->comando += 2;
+    if (*formato == 'p') {
+        sscanf(par->comando, "%s %c %s", sufixo, def, auxLeitura);
+        par->comando += strlen(sufixo)+strlen(auxLeitura)+4;
+        n = atoi(auxLeitura);
+        free(auxLeitura);
+        auxLeitura = NULL;
         registradores = (char **) calloc(n, sizeof(char *));
 
         for(i = 0; i < n; i++)
         {
             sscanf(par->comando, "%s", registradores[i]);
+            par->comando += strlen(registradores[i])+1;
         }
         
         sscanf(par->comando, "%s %s", cor1, cor2);
     }
     else {
-        sscanf(par->comando, "%c", def);
+        sscanf(par->comando, "%c %s", def, auxLeitura);
+        par->comando += strlen(auxLeitura)+3;
+        n = atoi(auxLeitura);
+        free(auxLeitura);
+        auxLeitura = NULL;
 
-        sscanf(par->comando, "%d", &n);
         registradores = (char **) calloc(n, sizeof(char *));
 
         for(i = 0; i < n; i++)
         {
             sscanf(par->comando, "%s", registradores[i]);
+            par->comando += strlen(registradores[i])+1;
         }
     }
 
@@ -3665,7 +3699,7 @@ void caso_sp_pergunta(Parametros *par)
     
     for(i = 0; i < n-1; i++)
     {
-        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via, def);
+        auxVertices = melhor_trajeto_registradores(par->regis, registradores[i], registradores[i+1], par->grafo_via, *def);
 
         k = 0;
         while(vertices[k] != NULL){
@@ -3682,12 +3716,18 @@ void caso_sp_pergunta(Parametros *par)
     if (vertices[0] == NULL) {
         free(caminho);
         caminho = NULL;
+        free(formato);
+        formato = NULL;
+        free(def);
+        def = NULL;
+        free(sufixo);
+        sufixo = NULL;
         return;
     }
 
     i = 0;
     
-    if (formato == 'p') {
+    if (*formato == 'p') {
         sprintf(caminho, "%s-%s.svg", caminho, sufixo);
         gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor1, cor2);
         insere_fila(par->grafo_f, gf);
@@ -3765,6 +3805,12 @@ void caso_sp_pergunta(Parametros *par)
     }
     free(caminho);
     caminho = NULL;
+    free(formato);
+    formato = NULL;
+    free(def);
+    def = NULL;
+    free(sufixo);
+    sufixo = NULL;
 }
 
 void caso_au (Parametros* par)
@@ -3879,7 +3925,7 @@ void caso_rau (Parametros* par)
     }
     while (primeiro != NULL);
 
-    printf("\nERRO: NENHUM CARRO ENCONTRADO!");
+    printf("\nERRO: NENHUM CARRO ENCONTRADO!\n");
     return;    
 }
 
@@ -3998,7 +4044,7 @@ void caso_m (Parametros* par)
     cpf = NULL;
     if (pessoa == NULL)
     {
-        printf ("\nERRO: MORADOR NAO ENCONTRADO!");
+        printf ("\nERRO: MORADOR NAO ENCONTRADO!\n");
         free (cep);
         cep = NULL;
         free (face);
@@ -4032,6 +4078,7 @@ void caso_v (Parametros* par)
     double* pos = NULL;
     id = (char*) calloc (255, sizeof (char));
     pos = (double*) calloc (2, sizeof (double));
+    par->comando += 2;
     sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     pos[0] = x;
     pos[1] = y;
@@ -4057,6 +4104,7 @@ void caso_e_via (Parametros* par)
     ldir = (char*) calloc (255, sizeof (char));
     lesq = (char*) calloc (255, sizeof (char));
     nome = (char*) calloc (255, sizeof (char));
+    par->comando += 2;
     sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nome);
     insere_aresta (par->grafo_via, i, j);
     define_atributos_aresta (par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
