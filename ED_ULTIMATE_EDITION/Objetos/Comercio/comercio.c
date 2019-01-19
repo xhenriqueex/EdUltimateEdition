@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../Quadra/quadra.h"
-#include "../../Formas/Retângulo/retangulo.h"
-#include "../../Parâmetros/parametros.h"
+#include "../../Formas/Retangulo/retangulo.h"
+#include "../../Parametros/parametros.h"
 #include "../../Estruturas/Hash/hashtable.h"
 
 //DEFINE A STRUCT TIPO
@@ -454,4 +454,159 @@ void free_tipo_comercio (void *tipo_comercio)
     free(tipo->info);
     tipo->info = NULL;
     free(tipo);
+}
+
+//ESCREVE O COMÉRCIO NO ARQUIVO
+void escreve_arquivo_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->cnpj[i], sizeof (char), 1, arq);
+    }
+    escreve_arquivo_tipo_comercio (com->tipo, ftell (arq), arq);
+    escreve_arquivo_endereco_comercio (comercio, ftell (arq), arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->nome[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O COMERCIO DO ARQUIVO
+void ler_arquivo_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->cnpj[i], sizeof (char), 1, arq);
+    }
+    ler_arquivo_tipo_comercio (com->tipo, ftell (arq), arq);
+    ler_arquivo_endereco_comercio (comercio, ftell (arq), arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->nome[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO COMÉRCIO
+int get_tamanho_comercio ()
+{
+    return (55 * sizeof (char)) + get_tamanho_tipo_comercio () + get_tamanho_endereco_comercio () + (55 * sizeof (char));
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO COMÉRCIO
+double compare_comercio_arvoreB (void* objA, void* objB)
+{
+    double result;
+    Com* comA;
+    Com* comB;
+    comA = (Com*) objA;
+    comB = (Com*) objB;
+    result = sqrt (pow (comB->x - comA->x, 2) + pow (comB->y - comA->y, 2));
+    if (comB->x > comA->x && comB->y > comA->x) return result;
+    return -result;
+}
+
+//ESCREVE O TIPO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq)
+{
+    int i;
+    Tip* tp;
+    tp = (Tip*) tipo;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&tp->cod[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&tp->cod[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O TIPO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq)
+{
+    int i;
+    Tip* tp;
+    tp = (Tip*) tipo;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&tp->cod[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&tp->cod[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO TIPO DO COMÉRCIO
+int get_tamanho_tipo_comercio ()
+{
+    return (2 * 55 * sizeof (char));
+}
+
+//ESCREVE O ENDEREÇO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&com->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O ENDEREÇO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    fread (&com->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO ENDEREÇO DO COMÉRCIO
+int get_tamanho_endereco_comercio ()
+{
+    return sizeof (int) + (4 * 55 * sizeof (char));
 }

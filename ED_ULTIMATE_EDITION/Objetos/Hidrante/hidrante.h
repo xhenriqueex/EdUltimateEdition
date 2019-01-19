@@ -47,4 +47,16 @@ void* get_circulo_hidrante (void* hidrante);
 
 void free_hidrante(void *hidrante);
 
+//ESCREVE O HIDRANTE NO ARQUIVO
+void escreve_arquivo_hidrante (void* hidrante, int procura, FILE* arq);
+
+//LE O HIDRANTE DO ARQUIVO
+void ler_arquivo_hidrante (void* hidrante, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO HIDRANTE
+int get_tamanho_hidrante ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO HIDRANTE
+double compare_hidrante_arvoreb (void* objA, void* objB);
+
 #endif

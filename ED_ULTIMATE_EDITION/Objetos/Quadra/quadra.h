@@ -2,7 +2,7 @@
 
 #ifndef QUADRA_H
 #define QUADRA_H
-#include "../../Formas/Retângulo/retangulo.h"
+#include "../../Formas/Retangulo/retangulo.h"
 
 //DEFINE O TIPO QUADRA
 typedef void* Quadra;
@@ -51,5 +51,17 @@ int compare_hash_quadra (void* quad, void* cep);
 
 //LIBERA A MEMÓRIA ALOCADA DA QUADRA
 void free_quadra (void* quad);
+
+//ESCREVE A QUADRA NO ARQUIVO
+void escreve_arquivo_quadra (void* quadra, int procura, FILE* arq);
+
+//LE A QUADRA DO ARQUIVO
+void ler_arquivo_quadra (void* quadra, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DA QUADRA
+int get_tamanho_quadra ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA QUADRA
+double compare_quadra_arvoreB (void* objA, void* objB);
 
 #endif

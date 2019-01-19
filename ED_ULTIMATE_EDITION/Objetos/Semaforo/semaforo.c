@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Círculo/circulo.h"
+#include "../../Formas/Circulo/circulo.h"
 
 //INICIA A STRUCT SEMÁFORO
 typedef struct semaforo{
@@ -176,4 +176,71 @@ void free_semaforo(void *semaforo)
     }
     free(sem);
     sem = NULL;
+}
+
+//ESCREVE O SEMÁFORO NO ARQUIVO
+void escreve_arquivo_semaforo (void* semaforo, int procura, FILE* arq)
+{
+    int i;
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&sem->r, sizeof (double), 1, arq);
+    fwrite (&sem->x, sizeof (double), 1, arq);
+    fwrite (&sem->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O SEMÁFORO DO ARQUIVO
+void ler_arquivo_semaforo (void* semaforo, int procura, FILE* arq)
+{
+    int i;
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    fseek (arq, procura, SEEK_SET);
+    fread (&sem->r, sizeof (double), 1, arq);
+    fread (&sem->x, sizeof (double), 1, arq);
+    fread (&sem->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO SEMÁFORO
+int get_tamanho_semaforo ()
+{
+    return 3 * sizeof (double) + (3 * 55 * sizeof (char));
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO SEMÁFORO
+double compare_semaforo_arvoreB (void* objA, void* objB)
+{
+    double result;
+    Semaforo* semA;
+    Semaforo* semB;
+    semA = (Semaforo*) objA;
+    semB = (Semaforo*) objB;
+    result = sqrt (pow (semB->x - semA->x, 2) + pow (semB->y - semA->y, 2));
+    if (semB->x > semA->x && semB->y > semA->x) return result;
+    return -result;
 }

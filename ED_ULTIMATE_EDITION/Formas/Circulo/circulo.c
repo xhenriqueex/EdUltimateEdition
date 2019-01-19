@@ -11,7 +11,7 @@ typedef struct circle {
     double r;
     double x;
     double y;
-}Circulo;
+} Circulo;
 
 //RETORNA UM PONTEIRO PARA VOID COM AS INFORMAÇÕES DO CÍRCULO
 void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, double y)
@@ -147,4 +147,65 @@ void free_circulo (void* circle)
     free (circulo);
     circulo = NULL;
     return;
+}
+
+//ESCREVE O CÍRCULO NO ARQUIVO
+void escreve_arquivo_circulo (void* circulo, int procura, FILE* arq)
+{
+    int i;
+    Circulo* circ;
+    circ = (Circulo*) circulo;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&circ->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&circ->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&circ->cor2[i], sizeof (char), 1, arq);
+    }
+    fwrite (&circ->r, sizeof (double), 1, arq);
+    fwrite (&circ->x, sizeof (double), 1, arq);
+    fwrite (&circ->y, sizeof (double), 1, arq);
+}
+
+// LÊ O CÍRCULO DO ARQUIVO
+void ler_arquivo_circulo (void* circulo, int procura, FILE* arq)
+{
+    int i;
+    Circulo* circ;
+    circ = (Circulo*) circulo;
+    fseek (arq, procura, SEEK_SET);
+    fread (&circ->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&circ->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&circ->cor2[i], sizeof (char), 1, arq);
+    }
+    fread (&circ->r, sizeof (double), 1, arq);
+    fread (&circ->x, sizeof (double), 1, arq);
+    fread (&circ->y, sizeof (double), 1, arq);
+}
+
+// RETORNA O TAMANHO DO CÍRCULO
+int get_tamanho_circulo ()
+{
+    return sizeof (long int) + (2 * 55 * sizeof (char)) + 3 * sizeof (double);
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CÍRCULO
+double compare_circulo (void* objA, void* objB)
+{
+    double result;
+    Circulo* circA;
+    Circulo* circB;
+    circA = (Circulo*) objA;
+    circB = (Circulo*) objB;
+    result = sqrt (pow (circB->x - circA->x, 2) + pow (circB->y - circA->y, 2));
+    if (circB->x > circA->x && circB->y > circA->x) return result;
+    return -result;
 }

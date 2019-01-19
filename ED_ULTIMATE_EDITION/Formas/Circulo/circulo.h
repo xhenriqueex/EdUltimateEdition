@@ -42,4 +42,16 @@ char* get_cor2_circulo (void* circle);
 //FUNÇÃO PARA DAR FREE NA MEMÓRIA ALOCADA DO CÍRCULO
 void free_circulo (void* circle);
 
+//ESCREVE O CÍRCULO NO ARQUIVO
+void escreve_arquivo_circulo (void* circulo, int procura, FILE* arq);
+
+//LÊ O CÍRCULO DO ARQUIVO
+void ler_arquivo_circulo (void* circulo, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO CÍRCULO
+int get_tamanho_circulo ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CÍRCULO
+double compare_circulo (void* objA, void* objB);
+
 #endif

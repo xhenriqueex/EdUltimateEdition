@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Parâmetros/parametros.h"
+#include "../../Parametros/parametros.h"
 #include "../Quadra/quadra.h"
 #include "../../Estruturas/Hash/hashtable.h"
 
@@ -357,4 +357,145 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
         sprintf (relatorio, "\nNome: %s %s\nEndereço antigo: %s/%s/%s/%s", pes->nome, pes->sobrenome, endA->cep, endA->face, endA->num, endA->comp);
     }
     return relatorio;
+}
+
+//ESCREVE A PESSOA NO ARQUIVO
+void escreve_arquivo_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0;i<55; i++)
+    {
+        fwrite (&pes->nome[i], sizeof (char), 1, arq);
+    }
+    for (i=0;i<55; i++)
+    {
+        fwrite (&pes->sobrenome[i], sizeof (char), 1, arq);
+    }
+
+    for (i=0;i<55; i++)
+    {
+        fwrite (&pes->cpf[i], sizeof (char), 1, arq);
+    }
+
+    for (i=0;i<55; i++)
+    {
+        fwrite (&pes->sexo[i], sizeof (char), 1, arq);
+    }
+    for (i=0;i<55; i++)
+    {
+        fwrite (&pes->nascimento[i], sizeof (char), 1, arq);
+    }
+    escreve_arquivo_endereco_pessoa (pessoa, ftell (arq), arq);
+}
+
+//LÊ A PESSOA DO ARQUIVO
+void ler_arquivo_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0;i<55; i++)
+    {
+        fread (&pes->nome[i], sizeof (char), 1, arq);
+    }
+    for (i=0;i<55; i++)
+    {
+        fread (&pes->sobrenome[i], sizeof (char), 1, arq);
+    }
+
+    for (i=0;i<55; i++)
+    {
+        fread (&pes->cpf[i], sizeof (char), 1, arq);
+    }
+
+    for (i=0;i<55; i++)
+    {
+        fread (&pes->sexo[i], sizeof (char), 1, arq);
+    }
+    for (i=0;i<55; i++)
+    {
+        fread (&pes->nascimento[i], sizeof (char), 1, arq);
+    }
+    ler_arquivo_endereco_pessoa (pessoa, ftell (arq), arq);
+}
+
+//RETORNA O TAMANHO DA PESSOA
+int get_tamanho_pessoa ()
+{
+    return (5 * 55 * sizeof (char)) + get_tamanho_endereco_pessoa ();
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA PESSOA
+double compare_pessoa_arvoreB (void* objA, void* objB)
+{
+    double result;
+    Pessoa* pesA;
+    Pessoa* pesB;
+    pesA = (Pessoa*) objA;
+    pesB = (Pessoa*) objB;
+    result = sqrt (pow (pesB->x - pesA->x, 2) + pow (pesB->y - pesA->y, 2));
+    if (pesB->x > pesA->x && pesB->y > pesA->x) return result;
+    return -result;
+}
+
+//ESCREVE O ENDEREÇO DA PESSOA NO ARQUIVO
+void escreve_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&pes->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O ENDEREÇO DA PESSOA NO ARQUIVO
+void ler_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    fread (&pes->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO ENDEREÇO DA PESSOA
+int get_tamanho_endereco_pessoa ()
+{
+    return sizeof (int) + (4 * 55 * sizeof (char));
 }

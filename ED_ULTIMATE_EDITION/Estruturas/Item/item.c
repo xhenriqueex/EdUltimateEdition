@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "item.h"
+
+#define C "circulo"
+#define R "retangulo"
+#define A "anotacao"
+
 //INICIA STRUCT ITEM
 typedef struct it {
     void* valor;
@@ -12,7 +17,7 @@ typedef struct it {
 Item cria_item (void* Valor, char* tipo)
 {
     it* aux = NULL;
-    aux = (it*) calloc (1, sizeof(it));
+    aux = (it*) calloc (1, sizeof (it));
     aux->valor = Valor;
     aux->tipo = (char *) calloc(255,sizeof(char));
     strcpy(aux->tipo, tipo);
@@ -50,4 +55,52 @@ void free_item (Item item)
         free (aux);
     }
     return; 
+}
+
+//ESCREVE AS INFORMAÇÕES DO ITEM NO ARQUIVO
+void escreve_arquivo_item (Item item, int procura, FILE* arq)
+{
+    int i;
+    it* aux;
+    aux = (it*) item;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&aux->tipo[i], sizeof (char), 1, arq);
+    }
+    if (!strcmp (aux->tipo, R))
+    {
+        escreve_arquivo_retangulo (aux->valor, ftell (arq), arq);
+    }
+    if (!strcmp (aux->tipo, C))
+    {
+        escreve_arquivo_circulo (aux->valor, ftell (arq), arq);
+    }
+}
+
+//LÊ AS INFORMAÇÕES DO ITEM DO ARQUIVO
+void ler_arquivo_item (Item item, int procura, FILE* arq)
+{
+    int i;
+    it* aux;
+    aux = (it*) item;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&aux->tipo, sizeof (char), 1, arq);
+    }
+    if (!strcmp (aux->tipo, R))
+    {
+        ler_arquivo_retangulo (aux->valor, ftell (arq), arq);
+    }
+    if (!strcmp (aux->tipo, C))
+    {
+        ler_arquivo_circulo (aux->valor, ftell (arq), arq);
+    }
+}
+
+//RETORNA O TAMANHO DO ITEM
+int get_tamanho_item ()
+{
+    return sizeof (int) + get_size_retangulo ();
 }

@@ -12,6 +12,6 @@ void* cria_anotacao (double w, double h, double x, double y, char* text);
 //RETORNA UMA STRING COM AS INFORMAÇÕES PARA IMPRIMIR A ANOTAÇÃO NO SVG
 char* cria_svg_anotacao (void* anotation);
 
-void free_anotacao(void* anotation);
+void free_anotacao (void* anotation);
 
 #endif

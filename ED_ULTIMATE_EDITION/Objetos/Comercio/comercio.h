@@ -2,7 +2,7 @@
 
 #ifndef COMERCIO_H
 #define COMERCIO_H
-#include "../../Parâmetros/parametros.h"
+#include "../../Parametros/parametros.h"
 
 typedef void* Tipo;
 typedef void* Comercio;
@@ -79,6 +79,36 @@ char* get_cnpj_comercio (Comercio* comercio);
 //GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
 char* relatorio_mud_comercio (Comercio comercio, void* end1, void* end2);
 
-void free_tipo_comercio(void *tipo_comercio);
+void free_tipo_comercio (void *tipo_comercio);
+
+//ESCREVE O COMÉRCIO NO ARQUIVO
+void escreve_arquivo_comercio (void* comercio, int procura, FILE* arq);
+
+//LE O COMÉRCIO DO ARQUIVO
+void ler_arquivo_comercio (void* comercio, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO COMÉRCIO
+int get_tamanho_comercio ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO COMÉRCIO
+double compare_comercio_arvoreB (void* objA, void* objB);
+
+//ESCREVE O TIPO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq);
+
+//LE O TIPO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO TIPO DO COMÉRCIO
+int get_tamanho_tipo_comercio ();
+
+//ESCREVE O ENDEREÇO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq);
+
+//LE O ENDEREÇO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO ENDEREÇO DO COMÉRCIO
+int get_tamanho_endereco_comercio ();
 
 #endif

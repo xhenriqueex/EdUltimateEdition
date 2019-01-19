@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Retângulo/retangulo.h"
+#include "../../Formas/Retangulo/retangulo.h"
 
 //DEFINE A STRUCT QUADRA
 typedef struct quadra{
@@ -187,4 +187,73 @@ void free_quadra (void* quad)
     free (quadra);
     quadra = NULL;
     return;
+}
+
+//ESCREVE A QUADRA NO ARQUIVO
+void escreve_arquivo_quadra (void* quadra, int procura, FILE* arq)
+{
+    int i;
+    Quadra* quad;
+    quad = (Quadra*) quadra;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&quad->x, sizeof (double), 1, arq);
+    fwrite (&quad->y, sizeof (double), 1, arq);
+    fwrite (&quad->w, sizeof (double), 1, arq);
+    fwrite (&quad->h, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&quad->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&quad->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&quad->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+// LÊ A QUADRA DO ARQUIVO
+void ler_arquivo_quadra (void* quadra, int procura, FILE* arq)
+{
+    int i;
+    Quadra* quad;
+    quad = (Quadra*) quadra;
+    fseek (arq, procura, SEEK_SET);
+    fread (&quad->x, sizeof (double), 1, arq);
+    fread (&quad->y, sizeof (double), 1, arq);
+    fread (&quad->w, sizeof (double), 1, arq);
+    fread (&quad->h, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&quad->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&quad->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&quad->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+// RETORNA O TAMANHO DA QUADRA
+int get_tamanho_quadra ()
+{
+    return 4 * sizeof (double) + (3 * 55 * sizeof (char));
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA QUADRA
+double compare_quadra (void* objA, void* objB)
+{
+    double result;
+    Quadra* quadA;
+    Quadra* quadB;
+    quadA = (Quadra*) objA;
+    quadB = (Quadra*) objB;
+    result = sqrt (pow (quadB->x - quadA->x, 2) + pow (quadB->y - quadA->y, 2));
+    if (quadB->x > quadA->x && quadB->y > quadA->x) return result;
+    return -result;
 }

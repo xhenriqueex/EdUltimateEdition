@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Círculo/circulo.h"
+#include "../../Formas/Circulo/circulo.h"
 
 //INICIA A STRUCT RÁDIO-BASE
 typedef struct radiobase {
@@ -169,4 +169,71 @@ void free_radiobase (void* radiobase)
     free (rb);
     rb = NULL;
     return;
+}
+
+//ESCREVE A RÁDIOBASE NO ARQUIVO
+void escreve_arquivo_radiobase (void* radiobase, int procura, FILE* arq)
+{
+    int i;
+    Radiobase* rb;
+    rb = (Radiobase*) radiobase;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&rb->r, sizeof (double), 1, arq);
+    fwrite (&rb->x, sizeof (double), 1, arq);
+    fwrite (&rb->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&rb->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&rb->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&rb->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ A RÁDIOBASE DO ARQUIVO
+void ler_arquivo_radiobase (void* radiobase, int procura, FILE* arq)
+{
+    int i;
+    Radiobase* rb;
+    rb = (Radiobase*) radiobase;
+    fseek (arq, procura, SEEK_SET);
+    fread (&rb->r, sizeof (double), 1, arq);
+    fread (&rb->x, sizeof (double), 1, arq);
+    fread (&rb->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&rb->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&rb->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&rb->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DA RÁDIOBASE
+int get_tamanho_radiobase ()
+{
+    return 3 * sizeof (double) + (3 * 55 * sizeof (char));
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA RÁDIOBASE
+double compare_radiobase_arvoreB (void* objA, void* objB)
+{
+    double result;
+    Radiobase* rbA;
+    Radiobase* rbB;
+    rbA = (Radiobase*) objA;
+    rbB = (Radiobase*) objB;
+    result = sqrt (pow (rbB->x - rbA->x, 2) + pow (rbB->y - rbA->y, 2));
+    if (rbB->x > rbA->x && rbB->y > rbA->x) return result;
+    return -result;
 }

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Retângulo/retangulo.h"
-#include "../../Formas/Anotação/anotacao.h"
+#include "../../Formas/Retangulo/retangulo.h"
+#include "../../Formas/Anotacao/anotacao.h"
 #include "../../Estruturas/Lista/lista.h"
 
 typedef struct car {
@@ -181,4 +181,57 @@ void* get_carro_placa (Lista carros, char* placa)
     }
     while (primeiro != NULL);
     return carro;
+}
+
+//ESCREVE O CARRO NO ARQUIVO
+void escreve_arquivo_carro (void* carro, int procura, FILE* arq)
+{
+    int i;
+    carro* car;
+    car = (carro*) carro;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&car->placa[i], sizeof (char), 1, arq);
+    }
+    fwrite (&car->x, sizeof (double), 1, arq);
+    fwrite (&car->y, sizeof (double), 1, arq);
+    fwrite (&car->w, sizeof (double), 1, arq);
+    fwrite (&car->h, sizeof (double), 1, arq);
+}
+
+//LÊ O CARRO DO ARQUIVO
+void ler_arquivo_carro (void* carro, int procura, FILE* arq)
+{
+    int i;
+    carro* car;
+    car = (carro*) carro;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&car->placa[i], sizeof (char), 1, arq);
+    }
+    fread (&car->x, sizeof (double), 1, arq);
+    fread (&car->y, sizeof (double), 1, arq);
+    fread (&car->w, sizeof (double), 1, arq);
+    fread (&car->h, sizeof (double), 1, arq);
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CARRO
+double compare_carro_arvoreB (void* objA, void* objB)
+{
+    double result;
+    carro* carA;
+    carro* carB;
+    carA = (carro*) objA;
+    carA = (carro*) objB;
+    result = sqrt (pow (carB->x - carA->x, 2) + pow (carB->y - carA->y, 2));
+    if (carB->x > carA->x && carB->y > carA->x) return result;
+    return -result;
+}
+
+//RETORNA O TAMANHO DO CARRO
+int get_tamanho_carro (void* carro, int procura, FILE* arq)
+{
+    return 55 * sizeof (char) + (4 * sizeof (double));
 }

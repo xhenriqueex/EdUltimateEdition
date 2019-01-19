@@ -48,4 +48,16 @@ void* get_circulo_radiobase (void* radiobase);
 //LIBERA A MEMÓRIA ALOCADA DA RÁDIOBASE
 void free_radiobase (void* radiobase);
 
+//ESCREVE A RÁDIOBASE NO ARQUIVO
+void escreve_arquivo_radiobase (void* radiobase, int procura, FILE* arq);
+
+//LE A RÁDIOBASE DO ARQUIVO
+void ler_arquivo_radiobase (void* radiobase, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DA RÁDIOBASE
+int get_tamanho_radiobase ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA RÁDIOBASE
+double compare_radiobase_arvoreB (void* objA, void* objB);
+
 #endif

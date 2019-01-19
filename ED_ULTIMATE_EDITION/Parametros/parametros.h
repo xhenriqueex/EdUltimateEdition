@@ -10,7 +10,7 @@
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Hash/hashtable.h"
-#include "../Estruturas/Árvore/arvore.h"
+#include "../Estruturas/Arvore/arvore.h"
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"
 #include "../Formas/Grafo_Forma/grafo_forma.h"

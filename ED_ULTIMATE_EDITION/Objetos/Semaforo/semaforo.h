@@ -45,6 +45,19 @@ int compare_hash_semaforo (void* sem, void* id);
 //FUNÇÃO QUE RETORNA UM CÍRCULO COM AS INFORMAÇÕES DO SEMÁFORO
 void* get_circulo_semaforo (void* semaforo);
 
+//LIBERA A MEMÓRIA ALOCADA DO SEMÁFORO
 void free_semaforo(void *semaforo);
+
+//ESCREVE O SEMÁFORO NO ARQUIVO
+void escreve_arquivo_semaforo (void* semaforo, int procura, FILE* arq);
+
+//LE O SEMÁFORO DO ARQUIVO
+void ler_arquivo_semaforo (void* semaforo, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO SEMÁFORO
+int get_tamanho_semaforo ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO SEMÁFORO
+double compare_semaforo_arvoreB (void* objA, void* objB);
 
 #endif

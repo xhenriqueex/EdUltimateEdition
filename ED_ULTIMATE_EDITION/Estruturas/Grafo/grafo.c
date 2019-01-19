@@ -3,7 +3,7 @@
 #include <string.h>
 #include <limits.h>
 #include "grafo.h"
-#include "../../Funções/funcoes.h"
+#include "../../Funcoes/funcoes.h"
 
 struct _atributos_aresta
 {
@@ -518,7 +518,7 @@ void *vertice_mais_proximo(Grafo G, double *pos)
     void *v = NULL, **vertices = NULL;
     int sptset[qtd_vertices(G)];
     int index = 0;
-
+    int i;
     for (int i = 0; i < qtd_vertices(G); i++) {
         sptset[i] = 0;
     }
@@ -528,7 +528,7 @@ void *vertice_mais_proximo(Grafo G, double *pos)
     
     p = get_primeiro_lista(G);
     
-    for(size_t i = 1; i < qtd_vertices(G); i++)
+    for(i = 1; i < qtd_vertices(G); i++)
     {
         v = get_valor_lista(p);
         vertices[i] = v;

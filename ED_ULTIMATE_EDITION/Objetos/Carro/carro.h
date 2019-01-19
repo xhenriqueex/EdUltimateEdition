@@ -41,4 +41,17 @@ int compare_hash_carro (void* carA, void* carB);
 //RETORNA UM CARRO COM A PLACA ESPECÍFICADA
 void* get_carro_placa (Lista carros, char* placa);
 
+//ESCREVE O CARRO NO ARQUIVO
+void escreve_arquivo_carro (void* carro, int procura, FILE* arq);
+
+//LE O CARRO DO ARQUIVO
+void ler_arquivo_carro (void* carro, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO CARRO
+int get_tamanho_carro ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CARRO
+double compare_carro_arvoreB (void* objA, void* objB);
+
+
 #endif
