@@ -61,9 +61,6 @@ void ler_arquivo_pessoa (void* morador, int procura, FILE* arq);
 //RETORNA O TAMANHO DA PESSOA
 int get_tamanho_pessoa ();
 
-//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA PESSOA
-double compare_pessoa_arvoreB (void* objA, void* objB);
-
 //ESCREVE O ENDEREÇO DA PESSOA NO ARQUIVO
 void escreve_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq);
 
@@ -72,5 +69,8 @@ void ler_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq);
 
 //RETORNA O TAMANHO DO ENDEREÇO DA PESSOA
 int get_tamanho_endereco_pessoa ();
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A PESSOA
+void* alloc_pessoa ();
 
 #endif

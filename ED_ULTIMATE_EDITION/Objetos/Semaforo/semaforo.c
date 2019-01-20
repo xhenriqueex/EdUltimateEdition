@@ -18,7 +18,7 @@ void* cria_semaforo (char* id, double r, double x, double y, char* cor_borda, ch
 {
     Semaforo* aux;
     aux = (Semaforo*) calloc (1, sizeof (Semaforo));
-    aux->id = (char*) calloc (strlen (id) + 2, sizeof (char));
+    aux->id = (char*) calloc (55, sizeof (char));
     strcpy (aux->id, id);
     aux->cor_borda = (char*) calloc (55, sizeof (char));
     strcpy (aux->cor_borda, cor_borda);
@@ -34,7 +34,7 @@ void* cria_semaforo (char* id, double r, double x, double y, char* cor_borda, ch
 char* cria_svg_semaforo (void* semaforo)
 {
     Semaforo* aux;
-    char* result = (char*) calloc(255, sizeof(char));
+    char* result = (char*) calloc (255, sizeof(char));
     aux = (Semaforo*) semaforo;
     sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
@@ -243,4 +243,14 @@ double compare_semaforo_arvoreB (void* objA, void* objB)
     result = sqrt (pow (semB->x - semA->x, 2) + pow (semB->y - semA->y, 2));
     if (semB->x > semA->x && semB->y > semA->x) return result;
     return -result;
+}
+
+void* alloc_semaforo ()
+{
+    Semaforo* sem;
+    sem = (Semaforo*) calloc (1, sizeof (Semaforo));
+    sem->id   = (char*) calloc (55, sizeof (char));
+    sem->cor_borda = (char*) calloc (55, sizeof (char));
+    sem->cor_preenche = (char*) calloc (55, sizeof(char));
+    return sem;
 }

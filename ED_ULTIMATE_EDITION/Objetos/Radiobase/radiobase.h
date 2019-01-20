@@ -60,4 +60,7 @@ int get_tamanho_radiobase ();
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA RÁDIOBASE
 double compare_radiobase_arvoreB (void* objA, void* objB);
 
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A RÁDIOBASE
+void* alloc_radiobase ();
+
 #endif

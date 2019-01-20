@@ -30,11 +30,11 @@ void* cria_pessoa (char* nome, char* sobrenome, char* cpf, char* sexo, char* nas
 {
     Pessoa* result;
     result = (Pessoa*) calloc (1, sizeof (Pessoa));
-    result->nome = (char*) calloc (strlen (nome) + 1, sizeof(char));
-    result->sobrenome = (char*) calloc (strlen (sobrenome) + 1, sizeof(char));
-    result->cpf = (char*) calloc (strlen (cpf) + 1, sizeof(char));
-    result->sexo = (char*) calloc (strlen (sexo) + 1, sizeof(char));
-    result->nascimento = (char*) calloc (strlen (nascimento) + 1, sizeof(char));
+    result->nome = (char*) calloc (55, sizeof (char));
+    result->sobrenome = (char*) calloc (55, sizeof (char));
+    result->cpf = (char*) calloc (55, sizeof (char));
+    result->sexo = (char*) calloc (55, sizeof (char));
+    result->nascimento = (char*) calloc (55, sizeof (char));
     result->endereco = NULL;
     strcpy (result->nome, nome);
     strcpy (result->sobrenome, sobrenome);
@@ -104,7 +104,7 @@ void free_pessoa (void* pes)
     }
 }
 
-void free_endereco(void *endereco)
+void free_endereco (void *endereco)
 {
     Endereco *end = NULL;
 
@@ -132,7 +132,7 @@ void free_endereco(void *endereco)
             free(end->num);
             end->num = NULL;
         }
-        free_pessoa(end->pessoa);
+        free_pessoa (end->pessoa);
         end->pessoa = NULL;
         free(end);
     }
@@ -157,10 +157,10 @@ void* set_endereco_pessoa (void* pes, char* cep, char* face, char* num, char* co
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof (Endereco));
     end->tipo = tipo;
-    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
-    end->face= (char*) calloc (strlen (face) + 2, sizeof (char));
-    end->num = (char*) calloc (strlen (num) + 2, sizeof (char));
-    end->comp= (char*) calloc (strlen (comp) + 2, sizeof (char));
+    end->cep = (char*) calloc (55, sizeof (char));
+    end->face= (char*) calloc (55, sizeof (char));
+    end->num = (char*) calloc (55, sizeof (char));
+    end->comp= (char*) calloc (55, sizeof (char));
     end->pessoa = pessoa;
     strcpy (end->cep, cep);
     strcpy (end->face, face);
@@ -255,7 +255,7 @@ void* identificador_endereco_pessoa (char* cep)
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof (Endereco));
     end->tipo = 1;
-    end->cep = (char*) calloc (strlen (cep) + 1, sizeof (char));
+    end->cep = (char*) calloc (55, sizeof (char));
     strcpy (end->cep, cep);
     end->face= NULL;
     end->num = NULL;
@@ -359,6 +359,64 @@ char* relatorio_mud_pessoa (void* pessoa, void* end1, void* end2)
     return relatorio;
 }
 
+//ESCREVE O ENDEREÇO DA PESSOA NO ARQUIVO
+void escreve_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&pes->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&pes->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O ENDEREÇO DA PESSOA NO ARQUIVO
+void ler_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
+{
+    int i;
+    Pessoa* pes;
+    pes = (Pessoa*) pessoa;
+    fseek (arq, procura, SEEK_SET);
+    fread (&pes->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&pes->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO ENDEREÇO DA PESSOA
+int get_tamanho_endereco_pessoa ()
+{
+    return sizeof (int) + (4 * 55 * sizeof (char));
+}
+
 //ESCREVE A PESSOA NO ARQUIVO
 void escreve_arquivo_pessoa (void* pessoa, int procura, FILE* arq)
 {
@@ -429,73 +487,21 @@ int get_tamanho_pessoa ()
     return (5 * 55 * sizeof (char)) + get_tamanho_endereco_pessoa ();
 }
 
-//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA PESSOA
-double compare_pessoa_arvoreB (void* objA, void* objB)
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A PESSOA
+void* alloc_pessoa ()
 {
-    double result;
-    Pessoa* pesA;
-    Pessoa* pesB;
-    pesA = (Pessoa*) objA;
-    pesB = (Pessoa*) objB;
-    result = sqrt (pow (pesB->x - pesA->x, 2) + pow (pesB->y - pesA->y, 2));
-    if (pesB->x > pesA->x && pesB->y > pesA->x) return result;
-    return -result;
-}
-
-//ESCREVE O ENDEREÇO DA PESSOA NO ARQUIVO
-void escreve_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
-{
-    int i;
-    Pessoa* pes;
-    pes = (Pessoa*) pessoa;
-    fseek (arq, procura, SEEK_SET);
-    fwrite (&pes->endereco->tipo, sizeof (int), 1, arq);
-    for (i=0; i<55; i++)
-    {
-        fwrite (&pes->endereco->cep[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fwrite (&pes->endereco->face[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fwrite (&pes->endereco->num[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fwrite (&pes->endereco->comp[i], sizeof (char), 1, arq);
-    }
-}
-
-//LÊ O ENDEREÇO DA PESSOA NO ARQUIVO
-void ler_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq)
-{
-    int i;
-    Pessoa* pes;
-    pes = (Pessoa*) pessoa;
-    fseek (arq, procura, SEEK_SET);
-    fread (&pes->endereco->tipo, sizeof (int), 1, arq);
-    for (i=0; i<55; i++)
-    {
-        fread (&pes->endereco->cep[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fread (&pes->endereco->face[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fread (&pes->endereco->num[i], sizeof (char), 1, arq);
-    }
-    for (i=0; i<55; i++)
-    {
-        fread (&pes->endereco->comp[i], sizeof (char), 1, arq);
-    }
-}
-
-//RETORNA O TAMANHO DO ENDEREÇO DA PESSOA
-int get_tamanho_endereco_pessoa ()
-{
-    return sizeof (int) + (4 * 55 * sizeof (char));
+    Pessoa* pessoa;
+    pessoa = (Pessoa*) calloc (1, sizeof (Pessoa));    
+    pessoa->nome = (char*) calloc(55, sizeof (char));
+    pessoa->sobrenome = (char*) calloc (55, sizeof (char));
+    pessoa->cpf = (char*) calloc (55, sizeof (char));
+    pessoa->sexo = (char*) calloc (55, sizeof (char));
+    pessoa->nascimento = (char*) calloc (55, sizeof (char));
+    pessoa->endereco = (Endereco*) calloc (1, sizeof (Endereco));
+    pessoa->endereco->cep = (char*) calloc (55, sizeof (char));
+    pessoa->endereco->face = (char*) calloc (55, sizeof (char));
+    pessoa->endereco->num = (char*) calloc (55, sizeof (char));
+    pessoa->endereco->comp = (char*) calloc (55, sizeof (char));
+    pessoa->endereco->pessoa = pessoa;
+    return (void*) pessoa;
 }

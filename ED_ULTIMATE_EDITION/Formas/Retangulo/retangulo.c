@@ -18,8 +18,8 @@ void* cria_retangulo (long int id, char* cor1, char* cor2, double w, double h, d
 {
     Retangulo* retangulo;
     retangulo = (Retangulo*) calloc (1, sizeof (Retangulo));
-    retangulo->cor1 = (char*) calloc (strlen(cor1) + 2, sizeof(char));
-    retangulo->cor2 = (char*) calloc (strlen(cor2) + 2, sizeof(char));
+    retangulo->cor1 = (char*) calloc (55, sizeof(char));
+    retangulo->cor2 = (char*) calloc (55, sizeof(char));
     strcpy(retangulo->cor1, cor1);
     strcpy(retangulo->cor2, cor2);
     retangulo->id = id;
@@ -215,4 +215,14 @@ double compare_retangulo (void* objA, void* objB)
     result = sqrt (pow (rectB->x - rectA->x, 2) + pow (rectB->y - rectA->y, 2));
     if (rectB->x > rectA->x && rectB->y > rectA->x) return result;
     return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO RETÂNGULO
+void* alloc_retangulo ()
+{
+    Retangulo* result;
+    result = (Retangulo*) calloc (1, sizeof (Retangulo));
+    result->cor1 = (char*) calloc (55, sizeof (char));
+    result->cor2 = (char*) calloc (55, sizeof (char)); 
+    return result;   
 }

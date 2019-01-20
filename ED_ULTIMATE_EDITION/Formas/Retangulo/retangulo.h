@@ -57,4 +57,7 @@ int get_tamanho_retangulo ();
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO RETÂNGULO
 double compare_retangulo (void* objA, void* objB);
 
+//ALOCA A MEMÓRIA NECESSÁRIA DO RETÂNGULO
+void* alloc_retangulo ();
+
 #endif

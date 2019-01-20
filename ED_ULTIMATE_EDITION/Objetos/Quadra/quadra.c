@@ -19,7 +19,7 @@ void* cria_quadra (char* cep, double x, double y, double w, double h, char* cor_
 {
     Quadra* aux;
     aux = (Quadra*) calloc (1, sizeof (Quadra));
-    aux->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+    aux->cep = (char*) calloc (55, sizeof (char));
     strcpy (aux->cep, cep);
     aux->cor_borda = (char*) calloc (55, sizeof(char));
     strcpy (aux->cor_borda, cor_borda);
@@ -256,4 +256,15 @@ double compare_quadra (void* objA, void* objB)
     result = sqrt (pow (quadB->x - quadA->x, 2) + pow (quadB->y - quadA->y, 2));
     if (quadB->x > quadA->x && quadB->y > quadA->x) return result;
     return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A QUADRA
+void* alloc_quadra ()
+{
+    Quadra *quad;
+    quad = (Quadra*) calloc (1, sizeof (Quadra));
+    quad->cep = (char*) calloc (55, sizeof (char));
+    quad->cor_borda = (char*) calloc (55, sizeof (char));
+    quad->cor_preenche = (char*) calloc (55, sizeof (char));
+    return quad;
 }

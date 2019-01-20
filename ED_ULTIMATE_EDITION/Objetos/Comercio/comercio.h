@@ -8,7 +8,7 @@ typedef void* Tipo;
 typedef void* Comercio;
 
 //CRIA UM COMÉRCIO
-Comercio cria_comercio (char* cnpj, Tipo tipo, char* cep, char* face, char* num, char* nome);
+Comercio cria_comercio (Parametros* par, char* cnpj, Tipo tipo, char* cep, char* face, char* num, char* nome);
 
 //DEFINE O TIPO DO COMÉRCIO
 Tipo cria_tipo_comercio (char* cod, char* info);
@@ -90,9 +90,6 @@ void ler_arquivo_comercio (void* comercio, int procura, FILE* arq);
 //RETORNA O TAMANHO DO COMÉRCIO
 int get_tamanho_comercio ();
 
-//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO COMÉRCIO
-double compare_comercio_arvoreB (void* objA, void* objB);
-
 //ESCREVE O TIPO DO COMÉRCIO NO ARQUIVO
 void escreve_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq);
 
@@ -110,5 +107,14 @@ void ler_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq);
 
 //RETORNA O TAMANHO DO ENDEREÇO DO COMÉRCIO
 int get_tamanho_endereco_comercio ();
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO COMÉRCIO
+void* alloc_comercio ();
+
+//CALCULA A COORDENADA COMÉRCIO
+double* calcula_coordenada (void* comercio, Parametros* par);
+
+//CRIA UM COMÉRCIO SÓ COM AS COORDENADAS
+Comercio cria_comercio_coordenada (double x, double y);
 
 #endif

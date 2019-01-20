@@ -64,4 +64,7 @@ int get_tamanho_quadra ();
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA QUADRA
 double compare_quadra_arvoreB (void* objA, void* objB);
 
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A QUADRA
+void* alloc_quadra ();
+
 #endif

@@ -60,4 +60,7 @@ int get_tamanho_semaforo ();
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO SEMÁFORO
 double compare_semaforo_arvoreB (void* objA, void* objB);
 
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O SEMÁFORO
+void* alloc_semaforo ();
+
 #endif

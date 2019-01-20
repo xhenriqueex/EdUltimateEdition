@@ -18,8 +18,8 @@ void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, dou
 {
     Circulo* circulo = NULL;
     circulo = (Circulo*) calloc (1, sizeof (Circulo));
-    circulo->cor1 = (char*) calloc (strlen(cor1) + 2, sizeof(char));
-    circulo->cor2 = (char*) calloc (strlen(cor2) + 2, sizeof(char));
+    circulo->cor1 = (char*) calloc (55, sizeof(char));
+    circulo->cor2 = (char*) calloc (55, sizeof(char));
     strcpy(circulo->cor1, cor1);
     strcpy(circulo->cor2, cor2);
     circulo->id = id;
@@ -33,7 +33,7 @@ void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, dou
 char* cria_svg_circulo (void* circle)
 {
     Circulo* circulo = NULL;
-    char* result = (char*) calloc(255, sizeof(char));
+    char* result = (char*) calloc (255, sizeof(char));
     circulo = (Circulo*) circle;
     sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", circulo->x, circulo->y, circulo->r, circulo->cor2, circulo->cor1);
     return result;

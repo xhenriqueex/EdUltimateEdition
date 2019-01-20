@@ -18,7 +18,7 @@ void* cria_hidrante (char* id, double r, double x, double y, char* cor_borda, ch
 {
     Hidrante* aux;
     aux = (Hidrante*) calloc (1, sizeof (Hidrante));
-    aux->id = (char*) calloc (strlen (id) + 2, sizeof (char));
+    aux->id = (char*) calloc (55, sizeof (char));
     strcpy (aux->id, id);
     aux->cor_borda = (char*) calloc (55, sizeof (char));
     strcpy (aux->cor_borda, cor_borda);
@@ -243,4 +243,15 @@ double compare_hidrante_arvoreb (void* objA, void* objB)
     result = sqrt (pow (hidB->x - hidA->x, 2) + pow (hidB->y - hidA->y, 2));
     if (hidB->x > hidA->x && hidB->y > hidA->x) return result;
     return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O HIDRANTE
+void* alloc_hidrante ()
+{
+    Hidrante* hid;
+    hid = (Hidrante*) calloc (1, sizeof (Hidrante));
+    hid->id = (char*) calloc (55, sizeof (char));
+    hid->cor_borda = (char*) calloc (55, sizeof (char));
+    hid->cor_preenche = (char*) calloc (55, sizeof (char));
+    return hid;
 }

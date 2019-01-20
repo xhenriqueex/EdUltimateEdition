@@ -18,7 +18,7 @@ void* cria_radiobase (char* id, double r, double x, double y, char* cor_borda, c
 {
     Radiobase* aux;
     aux = (Radiobase*) calloc (1, sizeof (Radiobase));
-    aux->id = (char*) calloc (strlen (id) + 2, sizeof(char));
+    aux->id = (char*) calloc (55, sizeof(char));
     strcpy (aux->id, id);
     aux->cor_borda = (char*) calloc (55, sizeof(char));
     strcpy (aux->cor_borda, cor_borda);
@@ -236,4 +236,15 @@ double compare_radiobase_arvoreB (void* objA, void* objB)
     result = sqrt (pow (rbB->x - rbA->x, 2) + pow (rbB->y - rbA->y, 2));
     if (rbB->x > rbA->x && rbB->y > rbA->x) return result;
     return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A RÁDIOBASE
+void* alloc_radiobase ()
+{
+    Radiobase* rb;
+    rb = (Radiobase*) calloc (1, sizeof (Radiobase));
+    rb->id = (char*) calloc (55, sizeof (char));
+    rb->cor_borda = (char*) calloc (55, sizeof (char));
+    rb->cor_preenche = (char*) calloc (55, sizeof (char));
+    return rb;
 }

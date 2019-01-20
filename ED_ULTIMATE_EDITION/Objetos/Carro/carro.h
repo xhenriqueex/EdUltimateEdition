@@ -53,5 +53,8 @@ int get_tamanho_carro ();
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CARRO
 double compare_carro_arvoreB (void* objA, void* objB);
 
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O CARRO
+void* alloc_carro ();
+
 
 #endif
