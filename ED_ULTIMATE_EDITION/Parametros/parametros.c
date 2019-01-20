@@ -4,7 +4,7 @@
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
-#include "../Estruturas/Árvore/arvore.h"
+#include "../Estruturas/Arvore/arvore.h"
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"

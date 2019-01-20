@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Círculo/circulo.h"
+#include "../../Formas/Circulo/circulo.h"
 
 //INICIA A STRUCT SEMÁFORO
 typedef struct semaforo{
@@ -18,7 +18,7 @@ void* cria_semaforo (char* id, double r, double x, double y, char* cor_borda, ch
 {
     Semaforo* aux;
     aux = (Semaforo*) calloc (1, sizeof (Semaforo));
-    aux->id = (char*) calloc (strlen (id) + 2, sizeof (char));
+    aux->id = (char*) calloc (55, sizeof (char));
     strcpy (aux->id, id);
     aux->cor_borda = (char*) calloc (55, sizeof (char));
     strcpy (aux->cor_borda, cor_borda);
@@ -34,7 +34,7 @@ void* cria_semaforo (char* id, double r, double x, double y, char* cor_borda, ch
 char* cria_svg_semaforo (void* semaforo)
 {
     Semaforo* aux;
-    char* result = (char*) calloc(255, sizeof(char));
+    char* result = (char*) calloc (255, sizeof(char));
     aux = (Semaforo*) semaforo;
     sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" />", aux->x, aux->y, aux->r, aux->cor_preenche, aux->cor_borda);
     return result;
@@ -176,4 +176,81 @@ void free_semaforo(void *semaforo)
     }
     free(sem);
     sem = NULL;
+}
+
+//ESCREVE O SEMÁFORO NO ARQUIVO
+void escreve_arquivo_semaforo (void* semaforo, int procura, FILE* arq)
+{
+    int i;
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&sem->r, sizeof (double), 1, arq);
+    fwrite (&sem->x, sizeof (double), 1, arq);
+    fwrite (&sem->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&sem->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O SEMÁFORO DO ARQUIVO
+void ler_arquivo_semaforo (void* semaforo, int procura, FILE* arq)
+{
+    int i;
+    Semaforo* sem;
+    sem = (Semaforo*) semaforo;
+    fseek (arq, procura, SEEK_SET);
+    fread (&sem->r, sizeof (double), 1, arq);
+    fread (&sem->x, sizeof (double), 1, arq);
+    fread (&sem->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&sem->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO SEMÁFORO
+int get_tamanho_semaforo ()
+{
+    return 3 * sizeof (double) + (3 * 55 * sizeof (char));
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO SEMÁFORO
+double compare_semaforo_arvoreB (void* objA, void* objB)
+{
+    double result;
+    Semaforo* semA;
+    Semaforo* semB;
+    semA = (Semaforo*) objA;
+    semB = (Semaforo*) objB;
+    result = sqrt (pow (semB->x - semA->x, 2) + pow (semB->y - semA->y, 2));
+    if (semB->x > semA->x && semB->y > semA->x) return result;
+    return -result;
+}
+
+void* alloc_semaforo ()
+{
+    Semaforo* sem;
+    sem = (Semaforo*) calloc (1, sizeof (Semaforo));
+    sem->id   = (char*) calloc (55, sizeof (char));
+    sem->cor_borda = (char*) calloc (55, sizeof (char));
+    sem->cor_preenche = (char*) calloc (55, sizeof(char));
+    return sem;
 }

@@ -21,4 +21,13 @@ Valor get_valor_item (Item item);
 //LIBERA A MEMÓRIA ALOCADA DOS ITENS
 void free_item (Item item);
 
+//ESCREVE AS INFORMAÇÕES DO ITEM NO ARQUIVO
+void escreve_arquivo_item (Item item, int procura, FILE* arq);
+
+//LÊ AS INFORMAÇÕES DO ITEM DO ARQUIVO
+void ler_arquivo_item (Item item, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO ITEM
+int get_tamanho_item ();
+
 #endif

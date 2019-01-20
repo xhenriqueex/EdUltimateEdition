@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../Quadra/quadra.h"
-#include "../../Formas/Retângulo/retangulo.h"
-#include "../../Parâmetros/parametros.h"
+#include "../../Formas/Retangulo/retangulo.h"
+#include "../../Parametros/parametros.h"
 #include "../../Estruturas/Hash/hashtable.h"
 
 //DEFINE A STRUCT TIPO
@@ -28,33 +28,36 @@ typedef struct c{
     Tip* tipo;
     Endereco* endereco;
     char* nome;
+    double* coord;
 } Com;
 
+double* calcula_coordenada (void* comercio, Parametros* par);
+
 //CRIA UM COMÉRCIO
-void* cria_comercio (char* cnpj, void* tip, char* cep, char* face, char* num, char* nome)
+void* cria_comercio (Parametros* par, char* cnpj, void* tip, char* cep, char* face, char* num, char* nome)
 {
     Com* result;
-    result = (Com*) calloc (1, sizeof (Com));
-
+    Tip* tipo;
     Endereco* end;
+    result = (Com*) calloc (1, sizeof (Com));
     end = (Endereco*) calloc (1, sizeof (Endereco));
     end->tipo = 0;
-    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char*));
-    end->face = (char*) calloc (strlen (face) + 2, sizeof (char*));
-    end->num = (char*) calloc (strlen (num) + 2, sizeof (char*));
+    end->cep = (char*) calloc (55, sizeof (char*));
+    end->face = (char*) calloc (55, sizeof (char*));
+    end->num = (char*) calloc (55, sizeof (char*));
     end->comp = NULL;
-    Tip* tipo;
     tipo = (Tip*) tip;
-    result->cnpj = (char*) calloc (strlen (cnpj) + 2, sizeof (char*));
-    result->nome = (char*) calloc (strlen (nome) + 2, sizeof (char*));
-    strcpy(result->cnpj, cnpj);
-    strcpy(end->cep, cep);
-    strcpy(end->face, face);
-    strcpy(end->num, num);
-    strcpy(result->nome, nome);
+    result->cnpj = (char*) calloc (55, sizeof (char*));
+    result->nome = (char*) calloc (55, sizeof (char*));
+    strcpy (result->cnpj, cnpj);
+    strcpy (end->cep, cep);
+    strcpy (end->face, face);
+    strcpy (end->num, num);
+    strcpy (result->nome, nome);
     result->tipo = tipo;
     result->endereco = end;
     result->endereco->comercio = result;
+    if (result->tipo != NULL) result->coord = calculo_coordenada (result, par);
     return (void*) result;
 }
 
@@ -63,8 +66,8 @@ void* cria_tipo_comercio (char* cod, char* info)
 {
     Tip* tipo;
     tipo = (Tip*) calloc (1, sizeof (Tip));
-    tipo->cod = (char*) calloc (strlen (cod) + 2, sizeof (char));
-    tipo->info = (char*) calloc (strlen (info) + 2, sizeof (char));
+    tipo->cod = (char*) calloc (55, sizeof (char));
+    tipo->info = (char*) calloc (55, sizeof (char));
     strcpy (tipo->cod, cod);
     strcpy (tipo->info, info);
     return (void*) tipo;
@@ -81,9 +84,9 @@ void* set_endereco_comercio (void* com,  char* cep, char* face, char* num)
     result->endereco->face = NULL;
     free (result->endereco->num);
     result->endereco->num = NULL;
-    result->endereco->cep = (char*) calloc (strlen (cep) + 2 , sizeof (char*));
-    result->endereco->face = (char*) calloc (strlen (face) + 2 , sizeof (char*));
-    result->endereco->num = (char*) calloc (strlen (num) + 2  , sizeof (char*));
+    result->endereco->cep = (char*) calloc (55, sizeof (char*));
+    result->endereco->face = (char*) calloc (55, sizeof (char*));
+    result->endereco->num = (char*) calloc (55, sizeof (char*));
     strcpy (result->endereco->cep, cep);
     strcpy (result->endereco->face, face);
     strcpy (result->endereco->num, num);
@@ -381,7 +384,7 @@ void* identificador_endereco_comercio (char* cep)
     Endereco* end;
     end = (Endereco*) calloc (1, sizeof(Endereco));
     end->tipo = 0;
-    end->cep = (char*) calloc (strlen (cep) + 2, sizeof (char));
+    end->cep = (char*) calloc (55, sizeof (char));
     strcpy (end->cep,cep);
     end->face= NULL;
     end->num = NULL;
@@ -454,4 +457,230 @@ void free_tipo_comercio (void *tipo_comercio)
     free(tipo->info);
     tipo->info = NULL;
     free(tipo);
+}
+
+//ESCREVE O COMÉRCIO NO ARQUIVO
+void escreve_arquivo_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->cnpj[i], sizeof (char), 1, arq);
+    }
+    escreve_arquivo_tipo_comercio (com->tipo, ftell (arq), arq);
+    escreve_arquivo_endereco_comercio (comercio, ftell (arq), arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->nome[i], sizeof (char), 1, arq);
+    }
+    fwrite (&com->coord[0], sizeof (double), 1, arq);
+    fwrite (&com->coord[1], sizeof (double), 1, arq);
+}
+
+//LÊ O COMERCIO DO ARQUIVO
+void ler_arquivo_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->cnpj[i], sizeof (char), 1, arq);
+    }
+    ler_arquivo_tipo_comercio (com->tipo, ftell (arq), arq);
+    ler_arquivo_endereco_comercio (comercio, ftell (arq), arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->nome[i], sizeof (char), 1, arq);
+    }
+    fread (&com->coord[0], sizeof (double), 1, arq);
+    fread (&com->coord[1], sizeof (double), 1, arq);
+}
+
+//RETORNA O TAMANHO DO COMÉRCIO
+int get_tamanho_comercio ()
+{
+    return (55 * sizeof (char)) + get_tamanho_tipo_comercio () + get_tamanho_endereco_comercio () + (55 * sizeof (char));
+}
+
+//ESCREVE O TIPO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq)
+{
+    int i;
+    Tip* tp;
+    tp = (Tip*) tipo;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&tp->cod[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&tp->cod[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O TIPO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_tipo_comercio (void* tipo, int procura, FILE* arq)
+{
+    int i;
+    Tip* tp;
+    tp = (Tip*) tipo;
+    fseek (arq, procura, SEEK_SET);
+    for (i=0; i<55; i++)
+    {
+        fread (&tp->cod[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&tp->cod[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO TIPO DO COMÉRCIO
+int get_tamanho_tipo_comercio ()
+{
+    return (2 * 55 * sizeof (char));
+}
+
+//ESCREVE O ENDEREÇO DO COMÉRCIO NO ARQUIVO
+void escreve_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&com->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&com->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O ENDEREÇO DO COMÉRCIO DO ARQUIVO
+void ler_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq)
+{
+    int i;
+    Com* com;
+    com = (Com*) comercio;
+    fseek (arq, procura, SEEK_SET);
+    fread (&com->endereco->tipo, sizeof (int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->cep[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->face[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->num[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&com->endereco->comp[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO ENDEREÇO DO COMÉRCIO
+int get_tamanho_endereco_comercio ()
+{
+    return sizeof (int) + (4 * 55 * sizeof (char));
+}
+
+//CALCULA A COORDENADA COMÉRCIO
+double* calcula_coordenada (void* comercio, Parametros* par)
+{
+    double num;
+    double* result;
+    Com* com;
+    Quadra temp;
+    Quadra quad;
+    com = (Com*) comercio;
+    if(com->endereco == NULL)
+    {
+        return NULL;
+    }
+    temp = cria_quadra (com->endereco->cep, 0, 0, 0, 0, "", "");
+    quad = get_hashtable (par->hash_quadras, temp);
+    sscanf (com->endereco->num, "%lf", &num);
+    result = (double*) calloc (2, sizeof (double));
+    result[0] = get_x_retangulo (get_retangulo_quadra (quad));
+    result[1] = get_y_retangulo (get_retangulo_quadra (quad));
+    if (!strcmp (com->endereco->face, "N"))
+    {
+        result[0] += num;
+        result[1] += get_h_retangulo (get_retangulo_quadra (quad));
+    }
+    if (!strcmp (com->endereco->face, "S"))
+    {
+        result[0] += num;
+    }
+    if (!strcmp (com->endereco->face, "L"))
+    {
+        result[1] += num;
+    }
+    if (!strcmp (com->endereco->face, "O"))
+    {
+        result[1] += num;
+        result[0] += get_w_retangulo (get_retangulo_quadra (quad));
+    }
+    return result;
+}
+
+//CRIA UM COMÉRCIO SÓ COM AS COORDENADAS
+Com* cria_comercio_coordenada (double x, double y)
+{
+    Com* result;
+    result = (Com*) calloc (1, sizeof(Com));
+
+    result->cnpj = (char*) calloc (10 , sizeof (char*));
+    strcpy(result->cnpj, "");
+    result->coord = (double*) calloc (2, sizeof(double));
+    result->coord[0] = x;
+    result->coord[1] = y;
+    return result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO COMÉRCIO
+void* alloc_comercio ()
+{
+    Com* result;
+    result = (Com*) calloc (1, sizeof (Com));
+    Endereco* end;
+    end = (Endereco*) calloc (1, sizeof (Endereco));
+    end->tipo = 0;
+    end->cep = (char*) calloc (55, sizeof (char));
+    end->face = (char*) calloc (55, sizeof(char));
+    end->num = (char*) calloc (55, sizeof(char));
+    end->comp = NULL;
+    end->comercio = result;
+    Tip* tipo;
+    tipo = calloc (1, sizeof (Tip));
+    tipo->cod = (char*) calloc (55, sizeof (char));
+    tipo->info= (char*) calloc (55, sizeof (char));
+    result->cnpj = (char*) calloc (55, sizeof (char));
+    result->nome = (char*) calloc (55, sizeof (char));
+    result->tipo = tipo;
+    result->endereco = end;
+    result->endereco->comercio = result;
+    result->coord = (double*) calloc (2, sizeof (double));
+    return result;
 }

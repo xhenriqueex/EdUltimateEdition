@@ -2,26 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "../Parâmetros/parametros.h"
-#include "../Funções/funcoes.h"
-#include "../Formas/Retângulo/retangulo.h"
-#include "../Formas/Círculo/circulo.h"
+#include "../Parametros/parametros.h"
+#include "../Funcoes/funcoes.h"
+#include "../Formas/Retangulo/retangulo.h"
+#include "../Formas/Circulo/circulo.h"
 #include "../Objetos/Quadra/quadra.h"
 #include "../Objetos/Hidrante/hidrante.h"
-#include "../Objetos/Semáforo/semaforo.h"
-#include "../Objetos/Rádiobase/radiobase.h"
+#include "../Objetos/Semaforo/semaforo.h"
+#include "../Objetos/Radiobase/radiobase.h"
 #include "../Objetos/Pessoa/pessoa.h"
-#include "../Objetos/Comércio/comercio.h"
+#include "../Objetos/Comercio/comercio.h"
 #include "../Objetos/Carro/carro.h"
-#include "../Formas/Anotação/anotacao.h"
+#include "../Formas/Anotacao/anotacao.h"
 #include "../Estruturas/Item/item.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Lista/lista.h"
-#include "../Estruturas/Árvore/arvore.h"
+#include "../Estruturas/Arvore/arvore.h"
 #include "../Estruturas/Hash/hashtable.h"
 #include "../Estruturas/Merge/mergesort.h"
 #include "../Estruturas/Registrador/registrador.h"
-#include "../Funções/parproximo.h"
+#include "../Funcoes/parproximo.h"
 #include "../Formas/Grafo_Forma/grafo_forma.h"
 
 #define C "circulo"
@@ -1962,6 +1962,7 @@ void caso_crb_pergunta (Parametros* par)
 
 void caso_m_pergunta (Parametros* par)
 {
+    int i;
     char* aux;
     char* cep;
     char* relatorio;
@@ -2024,7 +2025,7 @@ void caso_m_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    for(i = 0; i < largura_lista(enderecos); i++)
     {
         remove_lista(enderecos, get_primeiro_lista(enderecos));
     }
@@ -2038,6 +2039,7 @@ void caso_m_pergunta (Parametros* par)
 
 void caso_mr_pergunta (Parametros* par)
 {
+    int i;
     double w, h, x, y;
     char* aux;
     char* relatorio;
@@ -2061,7 +2063,7 @@ void caso_mr_pergunta (Parametros* par)
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
 
     
-    for(size_t i = 0; i < largura_lista(quadras); i++)
+    for(i = 0; i < largura_lista(quadras); i++)
     {
         remove_lista(quadras, get_primeiro_lista(quadras));
     }
@@ -2120,7 +2122,7 @@ void caso_mr_pergunta (Parametros* par)
         while (percorre != NULL);
         primeiro = get_proximo_lista (report, primeiro);
 
-        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        for(i = 0; i < largura_lista(enderecos); i++)
         {
             remove_lista(enderecos, get_primeiro_lista(enderecos));
         }
@@ -2284,6 +2286,7 @@ void caso_rip (Parametros* par)
 
 void caso_ecq_pergunta (Parametros* par)
 {
+    int i;
     char* aux;
     char* cep;
     char* result;
@@ -2333,7 +2336,7 @@ void caso_ecq_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    for(i = 0; i < largura_lista(enderecos); i++)
     {
         remove_lista(enderecos, get_primeiro_lista(enderecos));
     }
@@ -2440,7 +2443,7 @@ void caso_ecr_pergunta (Parametros* par)
     quadras = get_todos_hashtable (par->hash_quadras);
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
     
-    for(size_t i = 0; i < largura_lista(quadras); i++)
+    for(i = 0; i < largura_lista(quadras); i++)
     {
         remove_lista(quadras, get_primeiro_lista(quadras));
     }
@@ -2506,7 +2509,7 @@ void caso_ecr_pergunta (Parametros* par)
         while (percorre != NULL);
         primeiro = get_proximo_lista (report, primeiro);
 
-        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        for( i = 0; i < largura_lista(enderecos); i++)
         {
             remove_lista(enderecos, get_primeiro_lista(enderecos));
         }
@@ -2516,7 +2519,7 @@ void caso_ecr_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(report); i++)
+    for( i = 0; i < largura_lista(report); i++)
     {
         remove_lista(report, get_primeiro_lista(report));
     }
@@ -2535,6 +2538,7 @@ void caso_ecr_pergunta (Parametros* par)
 
 void caso_tecq_pergunta (Parametros* par)
 {
+    int i;
     char* aux;
     char* cep;
     char* relatorio;
@@ -2595,7 +2599,7 @@ void caso_tecq_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
 
-    for(size_t i = 0; i < largura_lista(enderecos); i++)
+    for( i = 0; i < largura_lista(enderecos); i++)
     {
         remove_lista(enderecos, get_primeiro_lista(enderecos));
     }
@@ -2619,6 +2623,7 @@ void caso_tecq_pergunta (Parametros* par)
 
 void caso_tecr_pergunta (Parametros* par)
 {
+    int i;
     double w, h, x, y;
     char* aux;
     char* relatorio;
@@ -2645,7 +2650,7 @@ void caso_tecr_pergunta (Parametros* par)
     quadras = get_todos_hashtable (par->hash_quadras);
     report = reporta_quadra_dentro_retangulo (quadras, w, h, x, y);
 
-    for(size_t i = 0; i < largura_lista(quadras); i++)
+    for(i = 0; i < largura_lista(quadras); i++)
     {
         remove_lista(quadras, get_primeiro_lista(quadras));
     }
@@ -2705,14 +2710,14 @@ void caso_tecr_pergunta (Parametros* par)
         insere_fila (par->resultado, relatorioQuad);
         primeiro = get_proximo_lista (report, primeiro);
 
-        for(size_t i = 0; i < largura_lista(enderecos); i++)
+        for( i = 0; i < largura_lista(enderecos); i++)
         {
             remove_lista(enderecos, get_primeiro_lista(enderecos));
         }
         free(enderecos);
         enderecos = NULL;
         
-        for(size_t i = 0; i < largura_lista(comercios); i++)
+        for( i = 0; i < largura_lista(comercios); i++)
         {
             remove_lista(comercios, get_primeiro_lista(comercios));
         }
@@ -2721,7 +2726,7 @@ void caso_tecr_pergunta (Parametros* par)
     }
     while (primeiro != NULL);
     
-    for(size_t i = 0; i < largura_lista(report); i++)
+    for( i = 0; i < largura_lista(report); i++)
     {
         remove_lista(report, get_primeiro_lista(report));
     }
@@ -2976,6 +2981,7 @@ void caso_mudec (Parametros* par)
 
 void caso_dpr (Parametros* par)
 {
+    int i;
     double x, y, w, h, xi, xf, yi, yf;
     char* aux;
     char* tempChar;
@@ -3099,7 +3105,7 @@ void caso_dpr (Parametros* par)
                 while (auxA != NULL);
             }
             
-            for(size_t i = 0; i < largura_lista(enderecos); i++)
+            for(i = 0; i < largura_lista(enderecos); i++)
             {
                 remove_lista(enderecos, get_primeiro_lista(enderecos));
             }

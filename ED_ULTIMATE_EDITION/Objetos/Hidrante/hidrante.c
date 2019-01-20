@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../Formas/Círculo/circulo.h"
+#include "../../Formas/Circulo/circulo.h"
 
 //DEFINE A STRUCT HIDRANTE
 typedef struct hidrante {
@@ -18,7 +18,7 @@ void* cria_hidrante (char* id, double r, double x, double y, char* cor_borda, ch
 {
     Hidrante* aux;
     aux = (Hidrante*) calloc (1, sizeof (Hidrante));
-    aux->id = (char*) calloc (strlen (id) + 2, sizeof (char));
+    aux->id = (char*) calloc (55, sizeof (char));
     strcpy (aux->id, id);
     aux->cor_borda = (char*) calloc (55, sizeof (char));
     strcpy (aux->cor_borda, cor_borda);
@@ -156,7 +156,7 @@ void* get_circulo_hidrante (void* hidrante)
 }
 
 
-void free_hidrante(void *hidrante)
+void free_hidrante (void *hidrante)
 {
     Hidrante *hid;
     hid = (Hidrante *) hidrante;
@@ -175,4 +175,83 @@ void free_hidrante(void *hidrante)
     }
     free(hid);
     hid = NULL;
+}
+
+//ESCREVE O HIDRANTE NO ARQUIVO
+void escreve_arquivo_hidrante (void* hidrante, int procura, FILE* arq)
+{
+    int i;
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&hid->r, sizeof (double), 1, arq);
+    fwrite (&hid->x, sizeof (double), 1, arq);
+    fwrite (&hid->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&hid->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&hid->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&hid->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//LÊ O HIDRANTE DO ARQUIVO
+void ler_arquivo_hidrante (void* hidrante, int procura, FILE* arq)
+{
+    int i;
+    Hidrante* hid;
+    hid = (Hidrante*) hidrante;
+    fseek (arq, procura, SEEK_SET);
+    fread (&hid->r, sizeof (double), 1, arq);
+    fread (&hid->x, sizeof (double), 1, arq);
+    fread (&hid->y, sizeof (double), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&hid->id[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&hid->cor_borda[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&hid->cor_preenche[i], sizeof (char), 1, arq);
+    }
+}
+
+//RETORNA O TAMANHO DO HIDRANTE
+int get_tamanho_hidrante ()
+{
+    return 3 * sizeof (double) + (3 * 55 * sizeof (char));
+}
+
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO HIDRANTE
+double compare_hidrante_arvoreb (void* objA, void* objB)
+{
+    double result;
+    Hidrante* hidA;
+    Hidrante* hidB;
+    hidA = (Hidrante*) objA;
+    hidB = (Hidrante*) objB;
+    result = sqrt (pow (hidB->x - hidA->x, 2) + pow (hidB->y - hidA->y, 2));
+    if (hidB->x > hidA->x && hidB->y > hidA->x) return result;
+    return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O HIDRANTE
+void* alloc_hidrante ()
+{
+    Hidrante* hid;
+    hid = (Hidrante*) calloc (1, sizeof (Hidrante));
+    hid->id = (char*) calloc (55, sizeof (char));
+    hid->cor_borda = (char*) calloc (55, sizeof (char));
+    hid->cor_preenche = (char*) calloc (55, sizeof (char));
+    return hid;
 }

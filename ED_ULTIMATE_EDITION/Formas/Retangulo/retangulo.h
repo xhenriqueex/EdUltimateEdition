@@ -45,4 +45,19 @@ char* get_cor2_retangulo (void* rectangle);
 //FUNÇÃO PARA DAR FREE NA MEMÓRIA ALOCADA DO RETÂNGULO
 void free_retangulo (void* rectangle);
 
+//ESCREVE O RETÂNGULO NO ARQUIVO
+void escreve_arquivo_retangulo (void* retangulo, int procura, FILE* arq);
+
+//LE O RETÂNGULO DO ARQUIVO
+void ler_arquivo_retangulo (void* retangulo, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO RETÂNGULO
+int get_tamanho_retangulo ();
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO RETÂNGULO
+double compare_retangulo (void* objA, void* objB);
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO RETÂNGULO
+void* alloc_retangulo ();
+
 #endif

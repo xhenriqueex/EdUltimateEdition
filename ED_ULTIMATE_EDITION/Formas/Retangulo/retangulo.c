@@ -18,8 +18,8 @@ void* cria_retangulo (long int id, char* cor1, char* cor2, double w, double h, d
 {
     Retangulo* retangulo;
     retangulo = (Retangulo*) calloc (1, sizeof (Retangulo));
-    retangulo->cor1 = (char*) calloc (strlen(cor1) + 2, sizeof(char));
-    retangulo->cor2 = (char*) calloc (strlen(cor2) + 2, sizeof(char));
+    retangulo->cor1 = (char*) calloc (55, sizeof(char));
+    retangulo->cor2 = (char*) calloc (55, sizeof(char));
     strcpy(retangulo->cor1, cor1);
     strcpy(retangulo->cor2, cor2);
     retangulo->id = id;
@@ -152,4 +152,77 @@ void free_retangulo (void* rectangle)
     free (retangulo);
     retangulo = NULL;
     return;
+}
+
+//ESCREVE O RETÂNGULO NO ARQUIVO
+void escreve_arquivo_retangulo (void* retangulo, int procura, FILE* arq)
+{
+    int i;
+    Retangulo* rect;
+    rect = (Retangulo*) retangulo;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&rect->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&rect->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&rect->cor2[i], sizeof (char), 1, arq);
+    }
+    fwrite (&rect->w, sizeof (double), 1, arq);
+    fwrite (&rect->h, sizeof (double), 1, arq);
+    fwrite (&rect->x, sizeof (double), 1, arq);
+    fwrite (&rect->y, sizeof (double), 1, arq);
+}
+
+//LÊ O RETÂNGULO DO ARQUIVO
+void ler_arquivo_retangulo (void* retangulo, int procura, FILE* arq)
+{
+    int i;
+    Retangulo* rect;
+    rect = (Retangulo*) retangulo;
+    fseek (arq, procura, SEEK_SET);
+    fread (&rect->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&rect->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&rect->cor2[i], sizeof (char), 1, arq);
+    }
+    fread (&rect->w, sizeof (double), 1, arq);
+    fread (&rect->h, sizeof (double), 1, arq);
+    fread (&rect->x, sizeof (double), 1, arq);
+    fread (&rect->y, sizeof (double), 1, arq);
+}
+
+//RETORNA O TAMANHO DO RETÂNGULO
+int get_tamanho_retangulo ()
+{
+    return sizeof (long int) + (2 * 55 * sizeof (char)) + 4 * sizeof (double);
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO RETÂNGULO
+double compare_retangulo (void* objA, void* objB)
+{
+    double result;
+    Retangulo* rectA;
+    Retangulo* rectB;
+    rectA = (Retangulo*) objA;
+    rectB = (Retangulo*) objB;
+    result = sqrt (pow (rectB->x - rectA->x, 2) + pow (rectB->y - rectA->y, 2));
+    if (rectB->x > rectA->x && rectB->y > rectA->x) return result;
+    return -result;
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO RETÂNGULO
+void* alloc_retangulo ()
+{
+    Retangulo* result;
+    result = (Retangulo*) calloc (1, sizeof (Retangulo));
+    result->cor1 = (char*) calloc (55, sizeof (char));
+    result->cor2 = (char*) calloc (55, sizeof (char)); 
+    return result;   
 }

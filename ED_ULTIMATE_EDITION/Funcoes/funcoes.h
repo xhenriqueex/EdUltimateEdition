@@ -1,13 +1,13 @@
 //BIBLIOTECA DE FUNÇÕES PARA UTILIZAÇÃO DURANTE O PROGRAMA
 
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef FUNCOES_H
+#define FUNCOES_H
 #include <stdio.h>
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Lista/lista.h"
-#include "../Parâmetros/parametros.h"
+#include "../Parametros/parametros.h"
 #include "../Estruturas/Grafo/grafo.h"
-#include "../Formas/Retângulo/retangulo.h"
+#include "../Formas/Retangulo/retangulo.h"
 
 //TRATA OS CAMINHOS
 void altera_caminho (char** caminho);

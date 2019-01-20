@@ -11,15 +11,15 @@ typedef struct circle {
     double r;
     double x;
     double y;
-}Circulo;
+} Circulo;
 
 //RETORNA UM PONTEIRO PARA VOID COM AS INFORMAÇÕES DO CÍRCULO
 void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, double y)
 {
     Circulo* circulo = NULL;
     circulo = (Circulo*) calloc (1, sizeof (Circulo));
-    circulo->cor1 = (char*) calloc (strlen(cor1) + 2, sizeof(char));
-    circulo->cor2 = (char*) calloc (strlen(cor2) + 2, sizeof(char));
+    circulo->cor1 = (char*) calloc (55, sizeof(char));
+    circulo->cor2 = (char*) calloc (55, sizeof(char));
     strcpy(circulo->cor1, cor1);
     strcpy(circulo->cor2, cor2);
     circulo->id = id;
@@ -33,7 +33,7 @@ void* cria_circulo (long int id, char* cor1, char* cor2, double r, double x, dou
 char* cria_svg_circulo (void* circle)
 {
     Circulo* circulo = NULL;
-    char* result = (char*) calloc(255, sizeof(char));
+    char* result = (char*) calloc (255, sizeof(char));
     circulo = (Circulo*) circle;
     sprintf (result, "\n<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"%s\" stroke=\"%s\" stroke-width=\"2\" style=\"opacity:0.7\"/>", circulo->x, circulo->y, circulo->r, circulo->cor2, circulo->cor1);
     return result;
@@ -147,4 +147,65 @@ void free_circulo (void* circle)
     free (circulo);
     circulo = NULL;
     return;
+}
+
+//ESCREVE O CÍRCULO NO ARQUIVO
+void escreve_arquivo_circulo (void* circulo, int procura, FILE* arq)
+{
+    int i;
+    Circulo* circ;
+    circ = (Circulo*) circulo;
+    fseek (arq, procura, SEEK_SET);
+    fwrite (&circ->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fwrite (&circ->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fwrite (&circ->cor2[i], sizeof (char), 1, arq);
+    }
+    fwrite (&circ->r, sizeof (double), 1, arq);
+    fwrite (&circ->x, sizeof (double), 1, arq);
+    fwrite (&circ->y, sizeof (double), 1, arq);
+}
+
+// LÊ O CÍRCULO DO ARQUIVO
+void ler_arquivo_circulo (void* circulo, int procura, FILE* arq)
+{
+    int i;
+    Circulo* circ;
+    circ = (Circulo*) circulo;
+    fseek (arq, procura, SEEK_SET);
+    fread (&circ->id, sizeof (long int), 1, arq);
+    for (i=0; i<55; i++)
+    {
+        fread (&circ->cor1[i], sizeof (char), 1, arq);
+    }
+    for (i=0; i<55; i++)
+    {
+        fread (&circ->cor2[i], sizeof (char), 1, arq);
+    }
+    fread (&circ->r, sizeof (double), 1, arq);
+    fread (&circ->x, sizeof (double), 1, arq);
+    fread (&circ->y, sizeof (double), 1, arq);
+}
+
+// RETORNA O TAMANHO DO CÍRCULO
+int get_tamanho_circulo ()
+{
+    return sizeof (long int) + (2 * 55 * sizeof (char)) + 3 * sizeof (double);
+}
+
+//FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO CÍRCULO
+double compare_circulo (void* objA, void* objB)
+{
+    double result;
+    Circulo* circA;
+    Circulo* circB;
+    circA = (Circulo*) objA;
+    circB = (Circulo*) objB;
+    result = sqrt (pow (circB->x - circA->x, 2) + pow (circB->y - circA->y, 2));
+    if (circB->x > circA->x && circB->y > circA->x) return result;
+    return -result;
 }

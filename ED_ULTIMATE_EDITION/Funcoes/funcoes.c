@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "../Parâmetros/parametros.h"
+#include "../Parametros/parametros.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Lista/lista.h"
-#include "../Formas/Círculo/circulo.h"
-#include "../Formas/Retângulo/retangulo.h"
-#include "../Formas/Anotação/anotacao.h"
+#include "../Formas/Circulo/circulo.h"
+#include "../Formas/Retangulo/retangulo.h"
+#include "../Formas/Anotacao/anotacao.h"
 #include "../Formas/Grafo_Forma/grafo_forma.h"
 #include "../Objetos/Quadra/quadra.h"
 #include "../Objetos/Hidrante/hidrante.h"
-#include "../Objetos/Semáforo/semaforo.h"
-#include "../Objetos/Rádiobase/radiobase.h"
-#include "../Objetos/Comércio/comercio.h"
+#include "../Objetos/Semaforo/semaforo.h"
+#include "../Objetos/Radiobase/radiobase.h"
+#include "../Objetos/Comercio/comercio.h"
 #include "../Objetos/Carro/carro.h"
 
 #define C "circulo"

@@ -2,7 +2,7 @@
 
 #ifndef EXECUTA_COMANDO_H
 #define EXECUTA_COMANDO_H
-#include "../Parâmetros/parametros.h"
+#include "../Parametros/parametros.h"
 
 void executa_comando (void* p);
 

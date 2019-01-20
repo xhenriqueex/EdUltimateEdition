@@ -2,7 +2,7 @@
 
 #ifndef PESSOA_H
 #define PESSOA_H
-#include "../../Parâmetros/parametros.h"
+#include "../../Parametros/parametros.h"
 
 //DEFINE O TIPO PESSOA
 typedef void* Pessoa;
@@ -51,5 +51,26 @@ char* relatorio_morte_pessoa (Pessoa pessoa);
 
 //GERA UMA STRING COM O RELATÓRIO DA MUDANÇA DA PESSOA
 char* relatorio_mud_pessoa (Pessoa pessoa, void* end1, void* end2);
+
+//ESCREVE A PESSOA NO ARQUIVO
+void escreve_arquivo_pessoa (void* morador, int procura, FILE* arq);
+
+//LE A PESSOA DO ARQUIVO
+void ler_arquivo_pessoa (void* morador, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DA PESSOA
+int get_tamanho_pessoa ();
+
+//ESCREVE O ENDEREÇO DA PESSOA NO ARQUIVO
+void escreve_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq);
+
+//LE O ENDEREÇO DA PESSOA DO ARQUIVO
+void ler_arquivo_endereco_pessoa (void* pessoa, int procura, FILE* arq);
+
+//RETORNA O TAMANHO DO ENDEREÇO DA PESSOA
+int get_tamanho_endereco_pessoa ();
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA A PESSOA
+void* alloc_pessoa ();
 
 #endif

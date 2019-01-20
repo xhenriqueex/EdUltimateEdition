@@ -270,6 +270,7 @@ void remove_valor_arvore (Arvore* arv, void* ref)
 {
     Arvore* arvore = NULL;
     arvore = (Arvore*) arv;
+    int i;
     int dim = 0;
     Lista list = NULL;
     list = remove_valor_nodulo (arv, arvore->nodulo, dim, ref);
@@ -294,7 +295,7 @@ void remove_valor_arvore (Arvore* arv, void* ref)
         }
     }
     
-    for(size_t i = 0; i < largura_lista(list); i++)
+    for(i = 0; i < largura_lista(list); i++)
     {
         remove_lista(list, get_primeiro_lista(list));
     }

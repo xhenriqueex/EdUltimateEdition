@@ -3,7 +3,7 @@
 #include <string.h>
 #include <limits.h>
 #include "grafo.h"
-#include "../../Funções/funcoes.h"
+#include "../../Funcoes/funcoes.h"
 
 struct _atributos_aresta
 {
