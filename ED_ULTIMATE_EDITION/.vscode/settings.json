@@ -35,6 +35,7 @@
         "executa_comando.h": "c",
         "stdio.h": "c",
         "stdlib.h": "c",
-        "lista.h": "c"
+        "lista.h": "c",
+        "funcoes.h": "c"
     }
 }

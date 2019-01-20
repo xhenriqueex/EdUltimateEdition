@@ -628,7 +628,7 @@ int main(int argc, char* argv[])
     free_hashtable (p->hash_radiobases, free_radiobase);
     free_hashtable (p->hash_semaforos, free_semaforo);
     free_hashtable (p->hash_carros, free_carro);
-    free_registradores(p->regis);
+    //free_registradores(p->regis);
     for (i = 0; i < p->contador_figuras; i++)
     {
         free_item (p->figuras[i]);

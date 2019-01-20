@@ -7,6 +7,8 @@ typedef void* Grafo_forma;
 
 Grafo_forma cria_grafo_forma(Grafo G, char **vertices, char *sufixo, char *cor1, char *cor2);
 
+char *get_nome_arq_grafo_forma(Grafo_forma gf);
+
 void escreve_grafo(Grafo_forma gf);
 
 void free_grafo_forma(Grafo_forma gf);

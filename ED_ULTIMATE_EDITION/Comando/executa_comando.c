@@ -3395,8 +3395,24 @@ void caso_arroba_g_pergunta (Parametros* par)
                 printf("\nERRO: NENHUM EQUIPAMENTO ENCONTRADO!\n");
                 return;
             }
+            else {
+                pos_equipamento = (double *) calloc(2, sizeof(double));
+                pos_equipamento[0] = get_x_semaforo(equipamento);
+                pos_equipamento[1] = get_y_semaforo(equipamento);
+            }
+        }
+        else {
+            pos_equipamento = (double *) calloc(2, sizeof(double));
+            pos_equipamento[0] = get_x_radiobase(equipamento);
+            pos_equipamento[1] = get_y_radiobase(equipamento);
         }
     }
+    else {
+        pos_equipamento = (double *) calloc(2, sizeof(double));
+        pos_equipamento[0] = get_x_hidrante(equipamento);
+        pos_equipamento[1] = get_y_hidrante(equipamento);
+    }
+
     r = busca_registrador (par->regis, registrador);
     insere_pos_registrador (par->regis[r], pos_equipamento);
     free (registrador);
@@ -3479,7 +3495,6 @@ void caso_p_pergunta (Parametros* par)
     void *v1 = NULL, *v2 = NULL;
     Lista *l = NULL;
     char **vertices = NULL;
-    char *cor1 = NULL, *cor2 = NULL;
     Anotacao anot = NULL;
     char *anotTexto = NULL;
     char *formato = NULL, *sufixo = NULL, *def = NULL;
@@ -3489,11 +3504,13 @@ void caso_p_pergunta (Parametros* par)
     char *texto = NULL;
     Grafo_forma gf = NULL;
     char *caminho = NULL, *auxCaminho = NULL;
+    char *aux = NULL;
     par->comando += 3;
     caminho = (char *) calloc(
-        strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+5, sizeof(char));
+        strlen(par->diretorio_saida)+strlen(par->arquivo_entrada_via)+10, sizeof(char));
 
     sprintf(caminho, "%s/%s", par->diretorio_saida, par->arquivo_entrada_via);
+    printf("%s\n", caminho);
     auxCaminho = strrchr(caminho, '.');
     *auxCaminho = '\0';
 
@@ -3502,6 +3519,7 @@ void caso_p_pergunta (Parametros* par)
     formato = (char *) calloc(2, sizeof(char));
     def = (char *) calloc(2, sizeof(char));
     sufixo = (char *) calloc(10, sizeof(char));
+    cor = (char *) calloc(30, sizeof(char));
 
     sscanf(par->comando, "%s", formato);
     par->comando += strlen(formato)+1;
@@ -3534,24 +3552,44 @@ void caso_p_pergunta (Parametros* par)
     i = 0;
     
     if (*formato == 'p') {
-        sprintf(caminho, "%s-%s.svg", caminho, sufixo);
-        gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor, NULL);
+        auxCaminho = (char *) calloc(strlen(caminho)+1, sizeof(char));
+        strcpy(auxCaminho, caminho);
+        sprintf(caminho, "%s-%s.svg", auxCaminho, sufixo);
+        free(auxCaminho);
+        auxCaminho = NULL;
+        gf = cria_grafo_forma(par->grafo_via, vertices, caminho, cor, " ");
         insere_fila(par->grafo_f, gf);
     }
     else {
-        texto = (char *) calloc(1000, sizeof(char));
-        rua = (char *) calloc(100, sizeof(char));
+        texto = (char *) calloc(5, sizeof(char));
+        rua = (char *) calloc(1000, sizeof(char));
         direcao = (char *) calloc(10, sizeof(char));
         strcpy(texto, " ");
+        strcpy(rua, " ");
+        aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+        strcpy(aux, texto);
+        texto = aux;
+        aux = NULL;
         while(vertices[i+1] != NULL)
         {
             v1 = get_vertice(par->grafo_via, vertices[i]);
             v2 = get_vertice(par->grafo_via, vertices[i+1]);
-
+            aux = (char *) calloc(strlen(rua)+1, sizeof(char));
+            strcpy(aux, rua);
             rua = get_nome_aresta(par->grafo_via, vertices[i], vertices[i+1]);
+            
+            if (strcmp(aux, rua) == 0) {
+                i++;
+                free(aux);
+                aux = NULL;
+                continue;
+            }
+            //free(aux);
+            aux = NULL;
 
             pos1 = get_pos_vertice(v1);
             pos2 = get_pos_vertice(v2);
+
 
             eixoX = pos1[0]-pos2[0];
             eixoY = pos1[1]-pos2[1];
@@ -3597,19 +3635,53 @@ void caso_p_pergunta (Parametros* par)
                 }
             }            
 
-            sprintf(texto, "%sSiga na direção %s na %s", texto, direcao, rua);
+            aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+            strcpy(aux, texto);
+            //free(texto);
+            texto = (char *) calloc(strlen(aux)+strlen(direcao)+strlen(rua)+25, sizeof(char));
+            sprintf(texto, "%sSiga na direção %s na %s", aux, direcao, rua);
+            /*free(aux);
+            aux = NULL;
+            aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+            strcpy(aux, texto);
+            free(texto);
+            texto = aux;
+            aux = NULL;*/
             
             if(vertices[i+2] != NULL) {
                 rua = get_nome_aresta(par->grafo_via, vertices[i+1], vertices[i+2]);
-                sprintf(texto, "%s até o cruzamento com a rua %s. ", texto, rua);
+                aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+                strcpy(aux, texto);
+                //free(texto);
+                texto = (char *) calloc(strlen(aux)+strlen(rua)+32, sizeof(char));
+                sprintf(texto, "%s até o cruzamento com a rua %s. ", aux, rua);
+                /*free(aux);
+                aux = NULL;
+                aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+                strcpy(aux, texto);
+                free(texto);
+                texto = aux;
+                aux = NULL;*/
             }
             else {
-                sprintf(texto, "%s. ", texto);
+                aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+                strcpy(aux, texto);
+                //free(texto);
+                texto = (char *) calloc(strlen(aux)+3, sizeof(char));
+                sprintf(texto, "%s. ", aux);
+                /*free(aux);
+                aux = NULL;
+                aux = (char *) calloc(strlen(texto)+1, sizeof(char));
+                strcpy(aux, texto);
+                free(texto);
+                texto = aux;
+                aux = NULL;*/
             }
 
             insere_fila(par->resultado, texto);
+            i++;
         }
-        free(rua);
+        //free(rua);
         free(direcao);
         rua = NULL;
         direcao = NULL;
@@ -4084,7 +4156,7 @@ void caso_v (Parametros* par)
     double* pos = NULL;
     id = (char*) calloc (255, sizeof (char));
     pos = (double*) calloc (2, sizeof (double));
-    par->comando += 2;
+    //par->comando += 2;
     sscanf (par->comando, "%s %lf %lf", id, &x, &y);
     pos[0] = x;
     pos[1] = y;
@@ -4110,7 +4182,7 @@ void caso_e_via (Parametros* par)
     ldir = (char*) calloc (255, sizeof (char));
     lesq = (char*) calloc (255, sizeof (char));
     nome = (char*) calloc (255, sizeof (char));
-    par->comando += 2;
+    //par->comando += 2;
     sscanf (par->comando, "%s %s %s %s %lf %lf %s", i, j, ldir, lesq, &cmp, &vm, nome);
     insere_aresta (par->grafo_via, i, j);
     define_atributos_aresta (par->grafo_via, i, j, nome, ldir, lesq, cmp, vm);
