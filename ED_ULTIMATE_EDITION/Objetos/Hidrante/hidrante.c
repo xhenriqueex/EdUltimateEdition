@@ -240,6 +240,7 @@ double compare_hidrante_arvoreb (void* objA, void* objB)
     Hidrante* hidB;
     hidA = (Hidrante*) objA;
     hidB = (Hidrante*) objB;
+    if (!strcmp (hidA->id, hidB->id)) return 0;
     result = sqrt (pow (hidB->x - hidA->x, 2) + pow (hidB->y - hidA->y, 2));
     if (hidB->x > hidA->x && hidB->y > hidA->x) return result;
     return -result;

@@ -10,9 +10,11 @@
 #include "../Estruturas/Lista/lista.h"
 #include "../Estruturas/Fila/fila.h"
 #include "../Estruturas/Hash/hashtable.h"
-#include "../Estruturas/Arvore/arvore.h"
+#include "../Estruturas/ArvoreB/arvoreb.h"
+#include "../Estruturas/Arvore/arvore.h" //remover dps
 #include "../Estruturas/Registrador/registrador.h"
 #include "../Estruturas/Grafo/grafo.h"
+#include "../Estruturas/ArquivoBin/arquivobin.h"
 #include "../Formas/Grafo_Forma/grafo_forma.h"
 
 //DEFINE A STRUCT DE PARAMETROS
@@ -24,6 +26,7 @@ typedef struct params {
     char* caminho_EC;
     char* caminho_PM;
     char* caminho_VIA;
+    char* caminho_banco;
     char* diretorio_entrada;
     char* arquivo_entrada;
     char* diretorio_saida;
@@ -31,6 +34,7 @@ typedef struct params {
     char* arquivo_entrada_ec;
     char* arquivo_entrada_pm;
     char* arquivo_entrada_via;
+    char* arquivo_entrada_banco;
     char* cor_borda_quadra;
     char* cor_preenche_quadra;
     char* cor_borda_hidrante;
@@ -43,15 +47,22 @@ typedef struct params {
     char* controle;
     long int max_figuras;
     int contador_figuras;
-    Item* figuras;
+    int criar;
+    Item* figuras; //remover
     Fila* anotacoes;
     Fila* resultado;
     Fila grafo_f;
-    Arvore tree_quadras;
-    Arvore tree_hidrantes;
-    Arvore tree_semaforos;
-    Arvore tree_radiobases;
-    Arvore tree_carros;
+    Lista* figs;
+    Arvore tree_quadras; //remover
+    Arvore tree_hidrantes; //remover
+    Arvore tree_semaforos; //remover
+    Arvore tree_radiobases; //remover
+    Arvore tree_carros; //remover
+    TreeB arvoreB_quadras;
+    TreeB arvoreB_hidrantes;
+    TreeB arvoreB_semaforos;
+    TreeB arvoreB_radiobases;
+    TreeB arvoreB_carros;
     Hashtable hash_quadras;
     Hashtable hash_hidrantes;
     Hashtable hash_semaforos;

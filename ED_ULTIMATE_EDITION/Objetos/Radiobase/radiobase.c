@@ -233,6 +233,7 @@ double compare_radiobase_arvoreB (void* objA, void* objB)
     Radiobase* rbB;
     rbA = (Radiobase*) objA;
     rbB = (Radiobase*) objB;
+    if (!strcmp (rbA->id, rbB->id)) return 0;
     result = sqrt (pow (rbB->x - rbA->x, 2) + pow (rbB->y - rbA->y, 2));
     if (rbB->x > rbA->x && rbB->y > rbA->x) return result;
     return -result;

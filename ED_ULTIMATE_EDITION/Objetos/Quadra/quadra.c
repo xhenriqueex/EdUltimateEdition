@@ -253,6 +253,7 @@ double compare_quadra (void* objA, void* objB)
     Quadra* quadB;
     quadA = (Quadra*) objA;
     quadB = (Quadra*) objB;
+    if (!strcmp (quadA->cep, quadB->cep)) return 0;
     result = sqrt (pow (quadB->x - quadA->x, 2) + pow (quadB->y - quadA->y, 2));
     if (quadB->x > quadA->x && quadB->y > quadA->x) return result;
     return -result;

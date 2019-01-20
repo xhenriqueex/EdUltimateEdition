@@ -4,7 +4,10 @@
 #include <string.h>
 #include "Estruturas/Item/item.h"
 #include "Estruturas/Lista/lista.h"
+#include "Estruturas/Arvore/arvore.h" //remover
+#include "Estruturas/ArvoreB/arvoreb.h"
 #include "Estruturas/Registrador/registrador.h"
+#include "Estruturas/ArquivoBin/arquivobin.h"
 #include "Funcoes/funcoes.h"
 #include "Comando/executa_comando.h"
 #include "Parametros/parametros.h"
@@ -15,6 +18,7 @@
 #include "Objetos/Comercio/comercio.h"
 #include "Objetos/Pessoa/pessoa.h"
 #include "Objetos/Carro/carro.h"
+#define TAMBLOCO 2048;
 
 //FUNÇÃO RESPONSÁVEL PELA EXECUÇÃO DO CÓDIGO
 int main(int argc, char* argv[])
@@ -30,8 +34,15 @@ int main(int argc, char* argv[])
 
     //DECLARANDO INTS
     int i;
+    
+    //DECLARANDO STRINGS AUXILIARES
+    char* aux = NULL;
 
-    char *aux = NULL;
+    //DECLARANDO LISTAS AUXILIARES
+    Lista* list;
+    
+    //DECLARANDO VOID POINTERS AUXILIARES
+    void* primeiro;
 
     //ALOCANDO STRUCT
     p = (Parametros*) calloc (1, sizeof (Parametros));
@@ -44,15 +55,19 @@ int main(int argc, char* argv[])
     p->caminho_EC = NULL;
     p->caminho_PM = NULL;
     p->caminho_VIA = NULL;
+    p->caminho_banco = NULL;
 
     //INICIALIZANDO STRING DE COMANDO
     p->comando = NULL;
     
-    //INICIALIZANDO NÚMERO MÁXIMO DE FIGURAS
+    //INICIALIZANDO NÚMERO MÁXIMO DE FIGURAS //remover
     p->max_figuras = 1000;
 
     //INICIALIZANDO CONTADOR DE FIGURAS
     p->contador_figuras = 0;
+
+    //INICIALIZANDO CONTROLE DE CRIAÇÃO DE BANCO
+    p->criar = 0;
 
     //INICIALIZANDO FILAS
     p->anotacoes = cria_fila();
@@ -61,22 +76,22 @@ int main(int argc, char* argv[])
     
     //INICIALIZANDO HASHTABLES
     p->hash_comercios = cria_hashtable (100, compare_cnpj_comercio, hashcode_comercio);
-    p->hash_pessoas = cria_hashtable (100, compare_cpf_pessoa, hashcode_pessoa);
-    p->hash_quadras = cria_hashtable (100, compare_hash_quadra, hashcode_quadra);
-    p->hash_hidrantes = cria_hashtable (100, compare_hash_hidrante, hashcode_hidrante);
-    p->hash_carros = cria_hashtable (100, compare_hash_carro, hashcode_carro);
-    p->hash_semaforos = cria_hashtable (100, compare_hash_semaforo, hashcode_semaforo);
-    p->hash_radiobases = cria_hashtable (100, compare_hash_radiobase, hashcode_radiobase);
-    p->hash_end_comercios = cria_hashtable (100, compare_hash_endereco_comercio, hashcode_endereco_comercio);
-    p->hash_end_pessoas = cria_hashtable (100, compare_cep_endereco_pessoa, hashcode_endereco_pessoa);
-    p->hash_tipos = cria_hashtable (100, compare_hash_tipo_comercio, hashcode_tipo_comercio);
+    p->hash_pessoas = cria_hashtable (100, compare_cpf_pessoa, hashcode_pessoa); 
+    p->hash_quadras = cria_hashtable (100, compare_hash_quadra, hashcode_quadra); 
+    p->hash_hidrantes = cria_hashtable (100, compare_hash_hidrante, hashcode_hidrante); 
+    p->hash_carros = cria_hashtable (100, compare_hash_carro, hashcode_carro); 
+    p->hash_semaforos = cria_hashtable (100, compare_hash_semaforo, hashcode_semaforo); 
+    p->hash_radiobases = cria_hashtable (100, compare_hash_radiobase, hashcode_radiobase); 
+    p->hash_end_comercios = cria_hashtable (100, compare_hash_endereco_comercio, hashcode_endereco_comercio); 
+    p->hash_end_pessoas = cria_hashtable (100, compare_cep_endereco_pessoa, hashcode_endereco_pessoa); 
+    p->hash_tipos = cria_hashtable (100, compare_hash_tipo_comercio, hashcode_tipo_comercio); 
 
     //INICIALIZANDO ÁRVORES
-    p->tree_quadras = cria_arvore (compare_quadra, 2);
-    p->tree_hidrantes = cria_arvore (compare_hidrante, 2);
-    p->tree_semaforos = cria_arvore (compare_semaforo, 2);
-    p->tree_radiobases = cria_arvore (compare_radiobase, 2);
-    p->tree_carros = cria_arvore (compare_carro, 2);
+    p->tree_quadras = cria_arvore (compare_quadra, 2); //remover
+    p->tree_hidrantes = cria_arvore (compare_hidrante, 2); //remover
+    p->tree_semaforos = cria_arvore (compare_semaforo, 2); //remover
+    p->tree_radiobases = cria_arvore (compare_radiobase, 2); //remover
+    p->tree_carros = cria_arvore (compare_carro, 2); //remover
 
     //INICIALIZANDO GRAFO
     p->grafo_via = cria_grafo();
@@ -99,7 +114,7 @@ int main(int argc, char* argv[])
     p->cor_preenche_radiobase = (char*) calloc (155, sizeof(char));
     strcpy (p->cor_preenche_radiobase, "red");
 
-    //INICIALIZANDO VETOR DE FIGURAS
+    //INICIALIZANDO VETOR DE FIGURAS // remover
     p->figuras = (Item*) calloc (p->max_figuras, sizeof(Item));
     for(i=0; i<p->max_figuras; i++)
     {
@@ -183,6 +198,19 @@ int main(int argc, char* argv[])
             i++;
             continue;
         }
+        if (!strcmp (argv[i], "-bd"))
+        {
+            p->arquivo_entrada_banco = (char*) calloc (strlen (argv[i+1]) + 1, sizeof (char));
+            strcpy (p->arquivo_entrada_banco, argv[i+1]);
+            i++;
+            continue;
+        }
+        if (!strcmp (argv[i], "-criar"))
+        {
+            p->criar = 1;
+            i++;
+            continue;
+        }
     }
     if (p->diretorio_entrada != NULL)
     {
@@ -221,6 +249,13 @@ int main(int argc, char* argv[])
             strcat (p->caminho_VIA, "/");
             strcat (p->caminho_VIA, p->arquivo_entrada_via);
         }
+        if (p->arquivo_entrada_banco != NULL)
+        {
+            p->caminho_banco = (char*) calloc (strlen (p->diretorio_entrada) + strlen (p->arquivo_entrada_banco) + 3, sizeof (char));
+            strcpy (p->caminho_banco, p->diretorio_entrada);
+            strcat (p->caminho_banco, "/");
+            strcat (p->caminho_banco, p->arquivo_entrada_banco);
+        }
     }
     else
     {
@@ -248,6 +283,129 @@ int main(int argc, char* argv[])
         {
             p->caminho_VIA = (char*) calloc (strlen (p->arquivo_entrada_via) + 2, sizeof(char));
             strcpy (p->caminho_VIA, p->arquivo_entrada_via);
+        }
+        if (p->arquivo_entrada_banco != NULL)
+        {
+            p->caminho_banco = (char*) calloc (strlen (p->arquivo_entrada_banco) + 2, sizeof (char));
+            strcpy (p->caminho_banco, p->arquivo_entrada_banco);
+        }
+    }
+
+    if (p->criar)
+    {
+        p->figs = cria_lista ();
+        aux = (char*) calloc (55, sizeof (char));
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_quadra.dat");
+        p->arvoreB_quadras = cria_banco (2048, aux, get_tamanho_quadra(), compare_quadra, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_hidrante.dat");
+        p->arvoreB_hidrantes = cria_banco (2048, aux, get_tamanho_hidrante(), compare_hidrante, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_semaforo.dat");
+        p->arvoreB_semaforos = cria_banco (2048, aux, get_tamanho_semaforo(), compare_semaforo, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_radiobase.dat");
+        p->arvoreB_radiobases = cria_banco (2048, aux, get_tamanho_radiobase(), compare_radiobase, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_carro.dat");
+        p->arvoreB_carros = cria_banco (2048, aux, get_tamanho_carro(), compare_carro, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
+        p->max_figuras = 1000;
+    }
+    else
+    {
+        aux = (char*) calloc (55, sizeof (char));
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_figuras.dat");
+        p->figs = get_todos_arquivo (aux, ler_arquivo_item, alloc_item);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "info.dat");
+        arquivo = fopen (aux, "r+b");
+        fread (p->max_figuras, sizeof (long int), 1, arquivo);
+        //for (i=0; i<55; i++){ fread (&p->arquivo_entrada)}
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_quadra.dat");
+        p->arvoreB_quadras = carrega_banco (aux, compare_quadra, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_hidrante.dat");
+        p->arvoreB_hidrantes = carrega_banco (aux, compare_hidrante, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_semaforo.dat");
+        p->arvoreB_semaforos = carrega_banco (aux, compare_semaforo, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_radiobase.dat");
+        p->arvoreB_radiobases = carrega_banco (aux, compare_radiobase, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_carro.dat");
+        p->arvoreB_carros = carrega_banco (aux, compare_carro, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_quadra.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_quadra, alloc_quadra);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_quadras, get_valor_lista (p));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_hidrante.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_hidrante, alloc_hidrante);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_hidrantes, get_valor_lista (p));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_semaforo.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_semaforo, alloc_semaforo);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_semaforos, get_valor_lista (p));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_radiobase.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_radiobase, alloc_radiobase);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_radiobases, get_valor_lista (p));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_carro.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_carro, alloc_carro);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_carros, get_valor_lista (p));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_pessoa.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_pessoa, alloc_pessoa);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_pessoas, get_valor_lista (p));
+            aux = get_endereco_pessoa (get_valor_lista (p));
+            if (aux) insere_hashtable (p->hash_end_pessoas, get_endereco_pessoa (get_valor_lista (p)));
+            p = get_proximo_lista (list, p);
+        }
+        strcpy (aux, p->caminho_banco);
+        strcat (aux, "_comercio.dat");
+        list = get_todos_arquivo (aux, ler_arquivo_comercio, alloc_comercio);
+        primeiro = get_primeiro_lista (list);
+        while (p)
+        {
+            insere_hashtable (p->hash_comercios, get_valor_lista (p));
+            aux = get_tipo_comercio (get_valor_lista (p));
+            if (aux) insere_hashtable (p->hash_tipos, get_tipo_comercio (get_valor_lista (p)));
+            aux = get_endereco_comercio (get_valor_lista (p));
+            if (aux) insere_hashtable (p->hash_end_comercios, get_endereco_comercio (get_valor_lista (p)));
+            p = get_proximo_lista (list, p);
         }
     }
 

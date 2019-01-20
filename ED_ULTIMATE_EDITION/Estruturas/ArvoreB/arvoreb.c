@@ -583,7 +583,50 @@ void fusao (ArvoreB* arvore, NoB* folha)
 		free (esq);
 		esq = NULL;
 	}
-	if (dir == NULL)
+	if (dir == NULL && esq == NULL)
+	{
+		k = 0;
+		for (j=0; j<folha->maxElementos; j++)
+		{
+			if (folha->elementos[j] == -1) break;
+			elem[k] = folha->elementos[j];
+			data[k] = folha->indexElemento[j];
+			k++;
+		}
+		for (j=0; j<pai->maxElementos; j++)
+		{
+			elem[k] = pai->elementos[j];
+			data[k] = pai->elementos[j];
+			k++;
+		}
+		if (k+1 < pai->maxElementos)
+		{
+			pai->filhos[i] = -1;
+			for (i=0; i<k+1; i++)
+			{
+				pai->elementos[i] = elem[i];
+				pai->indexElemento[i] = data[i];
+			}
+			pai->TotalElementoNo = k;
+			pai->totalFilhos = 0;
+		}
+		else
+		{
+			pai->filhos[i] = -1;
+			for (i=0; i<k+1; i++)
+			{
+				pai->elementos[i] = -1;
+				pai->indexElemento[i] = -1;
+			}
+			pai->TotalElementoNo = 0;
+			pai->totalFilhos = 0;
+			for (i=0; i < k+1; i++)
+			{
+				adicionar_elemento (arvore, pai, elem[i], data[i]);
+			}
+		}
+	}
+	if (dir == NULL && esq != NULL)
 	{
 		k = 0;
 		for (j=0; j<folha->maxElementos; j++)
@@ -674,7 +717,7 @@ void fusao (ArvoreB* arvore, NoB* folha)
 		}
 		return;
 	}
-	if (esq == NULL)
+	if (esq == NULL && dir != NULL)
 	{
 		k = 0;
 		for (j=0; j<folha->maxElementos; j++)
@@ -1064,13 +1107,14 @@ void* vizinho_proximo_arvoreB (ArvoreB* arvore, double ref, void* referencia, in
 	void** minDistObj;
 	NoB* folha;
 	if (arvore->raiz == NULL) return NULL;
-	if(arvore->raiz->TotalElementoNo == 0) return NULL;
+	if(arvore->raiz->elementos[0] == -1) return NULL;
 	minDist = (double*) malloc (sizeof (double));
 	minDistObj = (void**) malloc (sizeof (void*));
 	*minDist = 0;
 	i = 0;
 	do
 	{
+		if (i >= arvore->raiz->maxElementos) return NULL;
 		if (arvore->raiz->elementos[i] != -1)
 		{
 			*minDistObj = get_objeto_arquivo (arvore->caminho, arvore->raiz->indexElemento[i], arvore->leitor, arvore->alloc);
