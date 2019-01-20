@@ -72,6 +72,9 @@ char* imprime_tipos_comercios_quadra (Lista comercios);
 //IMPRIME TODOS OS TIPOS NAQUELA QUADRA
 char* imprime_tipos_quadra (Lista comercios);
 
+//FUNÇÃO QUE GERA O SVG DO CAMINHO
+void fecha_caminho (Parametros* par, Grafo_forma gf);
+
 //FUNÇÃO PARA FECHAR O ARQUIVO .QRY E GERAR OS ARQUIVOS
 void fecha_qry (Parametros* par);
 
@@ -86,9 +89,6 @@ char** detectar_colisoes (Lista carros);
 
 //FUNÇÃO QUE GERA O SVG DAS COLISÕES
 void fecha_colisao (Parametros* par, char* sufixo);
-
-//FUNÇÃO QUE GERA O SVG DO CAMINHO
-void fecha_caminho (Parametros* par, char* sufixo);
 
 //FUNCÃO QUE CALCULA A DISTÂNCIA ENTRE DOIS PONTOS
 double distancia (double* pos1, double* pos2);

@@ -88,7 +88,6 @@ Posic get_posic_vertice(Grafo G, char *v1)
         }
         p = get_proximo_lista(G, p);
     }
-
     if (logic == 0) {
         return NULL;
     }
@@ -270,7 +269,7 @@ double get_cmp_aresta(Grafo G, char *v1, char *v2)
     atributos_a = (atributos_aresta *) get_atributos_aresta(G, v1, v2);
 
     if(atributos_a == NULL) {
-        return __INT_MAX__;
+        return (double) __INT_MAX__;
     }
 
     return atributos_a->cmp;
@@ -357,16 +356,17 @@ Lista adjacentes(Grafo G, char *v1)
     return v->arestas;
 }
 
-char **dijkstra_distancia(Grafo G, char *v1)
+char **dijkstra_distancia(Grafo G, char *v1, char *v2)
 {
     int tam = qtd_vertices(G);
     double dist[tam];
     int sptset[tam];
     Posic p1 = NULL, p2 = NULL;
     char *vertice1 = NULL, *vertice2 = NULL;
-    char **vertices = NULL;
+    char **vertices = NULL, **aux = NULL;
     double cmp = 0;
-
+    int z = 0;
+    
     p1 = get_posic_vertice(G, v1);
     fixa_primeiro_lista(G, p1);
 
@@ -377,7 +377,11 @@ char **dijkstra_distancia(Grafo G, char *v1)
 
     dist[0] = 0;
 
-    vertices = (char **) calloc(1, sizeof(char *));
+    vertices = (char **) calloc(1, sizeof(char *)); 
+    vertice1 = get_id_vertice(get_vertice(G, v1));
+    vertices[0] = (char *) calloc(strlen(vertice1)+1, sizeof(char));
+    strcpy(vertices[0], vertice1);
+    z++;
 
     for(int k = 0; k < tam-1; k++)
     {
@@ -391,12 +395,29 @@ char **dijkstra_distancia(Grafo G, char *v1)
         }
         vertice1 = get_id_vertice(get_valor_lista(p1));
         
+        cmp = get_cmp_aresta(G, vertices[z-1], vertice1);
+        if (cmp != __INT_MAX__ && cmp != 0) {  
+            aux = (char **) calloc(z+1, sizeof(char *));
+            for(int a = 0; a < z; a++) {
+                aux[a] = (char *) calloc(strlen(vertices[a])+1, sizeof(char));
+                strcpy(aux[a], vertices[a]);
+                free(vertices[a]);
+                vertices[a] = NULL;
+            }
+            aux[z] = (char *) calloc(strlen(vertice1)+1, sizeof(char));
+            strcpy(aux[z], vertice1);
+            free(vertices);
+            vertices = aux;
+            z++;
+            if(strcmp(vertice1, v2) == 0) {
+                break;
+            }
+        }
         sptset[u] = 1;
 
-        printf("u = %d\n", u);
+        //printf("u = %d //// %s //// %s\n", u, vertice1, v2);
 
-        vertices = (char **) realloc(vertices, (k+1)*sizeof(char *));
-        vertices[k] = vertice1;
+        //vertices = (char **) realloc(vertices, (k+1)*sizeof(char *));
 
         p2 = get_primeiro_lista(G);
 
@@ -405,12 +426,17 @@ char **dijkstra_distancia(Grafo G, char *v1)
         {
             vertice2 = get_id_vertice(get_valor_lista(p2));
             cmp = get_cmp_aresta(G, vertice1, vertice2);
+            if(cmp == __INT_MAX__ || cmp == 0) {
+                v++;
+                p2 = get_proximo_lista(G, p2);
+                continue;
+            }
 
             //printf("Vértice processado? %d\n", sptset[v]);
             //printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, cmp);
             //printf("Distância processada do vértice %s: %lf\n", vertice1, dist[u]);
             //printf("Distância a ser processada de %s: %lf\n", vertice2, dist[v]);
-            if (!sptset[v] && cmp && dist[u] != __INT_MAX__ && dist[u]+cmp < dist[v])
+            if (!sptset[v] && cmp && dist[u] < __INT_MAX__ && dist[u]+cmp < dist[v])
             {
                 dist[v] = dist[u] + cmp;
             }
@@ -420,20 +446,33 @@ char **dijkstra_distancia(Grafo G, char *v1)
         }
     }
 
+    aux = (char **) calloc(z+2, sizeof(char *));
+    for(int a = 0; a < z; a++) {
+        aux[a] = (char *) calloc(strlen(vertices[a])+1, sizeof(char));
+        strcpy(aux[a], vertices[a]);
+        free(vertices[a]);
+        vertices[a] = NULL;
+    }
+    aux[z] = NULL;
+    aux[z+1] = NULL;
+    free(vertices);
+    vertices = aux;
+
     //printar_distancias(dist, tam);
 
     return vertices;
 }
 
-char **dijkstra_tempo(Grafo G, char *v1)
+char **dijkstra_tempo(Grafo G, char *v1, char *v2)
 {
     int tam = qtd_vertices(G);
     double dist[tam];
     int sptset[tam];
     Posic p1 = NULL, p2 = NULL;
     char *vertice1 = NULL, *vertice2 = NULL;
-    char **vertices = NULL;
+    char **vertices = NULL, **aux = NULL;
     double vm = 0, cmp = 0, tempo = 0;
+    int z = 0;
 
     p1 = get_posic_vertice(G, v1);
     fixa_primeiro_lista(G, p1);
@@ -445,7 +484,11 @@ char **dijkstra_tempo(Grafo G, char *v1)
 
     dist[0] = 0;
 
-    vertices = (char **) calloc(1, sizeof(char *));
+    vertices = (char **) calloc(1, sizeof(char *)); 
+    vertice1 = get_id_vertice(get_vertice(G, v1));
+    vertices[0] = (char *) calloc(strlen(vertice1)+1, sizeof(char));
+    strcpy(vertices[0], vertice1);
+    z++;
 
     for(int k = 0; k < tam-1; k++)
     {
@@ -458,13 +501,27 @@ char **dijkstra_tempo(Grafo G, char *v1)
             p1 = get_proximo_lista(G, p1);
         }
         vertice1 = get_id_vertice(get_valor_lista(p1));
+
+        cmp = get_cmp_aresta(G, vertices[z-1], vertice1);
+        if (cmp != __INT_MAX__ && cmp != 0) {  
+            aux = (char **) calloc(z+1, sizeof(char *));
+            for(int a = 0; a < z; a++) {
+                aux[a] = (char *) calloc(strlen(vertices[a])+1, sizeof(char));
+                strcpy(aux[a], vertices[a]);
+                free(vertices[a]);
+                vertices[a] = NULL;
+            }
+            aux[z] = (char *) calloc(strlen(vertice1)+1, sizeof(char));
+            strcpy(aux[z], vertice1);
+            free(vertices);
+            vertices = aux;
+            z++;
+            if(strcmp(vertice1, v2) == 0) {
+                break;
+            }
+        }
         
         sptset[u] = 1;
-
-        printf("u = %d\n", u);
-
-        vertices = (char **) realloc(vertices, (k+1)*sizeof(char *));
-        vertices[k] = vertice1;
 
         p2 = get_primeiro_lista(G);
 
@@ -473,8 +530,14 @@ char **dijkstra_tempo(Grafo G, char *v1)
         {
             vertice2 = get_id_vertice(get_valor_lista(p2));
             cmp = get_cmp_aresta(G, vertice1, vertice2);
+            if(cmp == __INT_MAX__ || cmp == 0) {
+                v++;
+                p2 = get_proximo_lista(G, p2);
+                continue;
+            }
             vm = get_vm_aresta(G, vertice1, vertice2);
             tempo = cmp/vm;
+
 
             //printf("Vértice processado? %d\n", sptset[v]);
             //printf("Comprimento aresta de %s a %s: %lf\n", vertice1, vertice2, vm);
@@ -490,6 +553,18 @@ char **dijkstra_tempo(Grafo G, char *v1)
         }
     }
 
+    aux = (char **) calloc(z+2, sizeof(char *));
+    for(int a = 0; a < z; a++) {
+        aux[a] = (char *) calloc(strlen(vertices[a])+1, sizeof(char));
+        strcpy(aux[a], vertices[a]);
+        free(vertices[a]);
+        vertices[a] = NULL;
+    }
+    aux[z] = NULL;
+    aux[z+1] = NULL;
+    free(vertices);
+    vertices = aux;
+    
     //printar_distancias(dist, tam);
 
     return vertices;
@@ -517,9 +592,9 @@ void *vertice_mais_proximo(Grafo G, double *pos)
     Posic p = NULL;
     void *v = NULL, **vertices = NULL;
     int sptset[qtd_vertices(G)];
-    int index = 0;
+    int index = 0, i = 0;
 
-    for (int i = 0; i < qtd_vertices(G); i++) {
+    for (i = 0; i < qtd_vertices(G); i++) {
         sptset[i] = 0;
     }
 
@@ -528,7 +603,7 @@ void *vertice_mais_proximo(Grafo G, double *pos)
     
     p = get_primeiro_lista(G);
     
-    for(size_t i = 1; i < qtd_vertices(G); i++)
+    for(i = 0; i < qtd_vertices(G); i++)
     {
         v = get_valor_lista(p);
         vertices[i] = v;
