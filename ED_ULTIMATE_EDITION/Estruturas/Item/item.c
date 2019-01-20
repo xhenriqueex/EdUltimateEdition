@@ -19,7 +19,7 @@ Item cria_item (void* Valor, char* tipo)
     it* aux = NULL;
     aux = (it*) calloc (1, sizeof (it));
     aux->valor = Valor;
-    aux->tipo = (char *) calloc(255,sizeof(char));
+    aux->tipo = (char *) calloc (55, sizeof(char));
     strcpy(aux->tipo, tipo);
     return aux;
 }
@@ -103,4 +103,13 @@ void ler_arquivo_item (Item item, int procura, FILE* arq)
 int get_tamanho_item ()
 {
     return sizeof (int) + get_size_retangulo ();
+}
+
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O ITEM
+void* alloc_item ()
+{
+    it* item;
+    item = (it*) calloc (1, sizeof (it));
+    item->valor = alloc_retangulo ();
+    return item;
 }

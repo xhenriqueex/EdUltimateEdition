@@ -226,6 +226,7 @@ double compare_carro_arvoreB (void* objA, void* objB)
     Carro* carB;
     carA = (Carro*) objA;
     carA = (Carro*) objB;
+    if (!strcmp (carA->placa, carB->placa)) return 0;
     result = sqrt (pow (carB->x - carA->x, 2) + pow (carB->y - carA->y, 2));
     if (carB->x > carA->x && carB->y > carA->x) return result;
     return -result;

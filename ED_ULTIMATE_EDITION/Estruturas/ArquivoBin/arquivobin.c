@@ -85,6 +85,7 @@ void* get_objeto_arquivo (char* caminho, int ind, void (*leitor)(void* obj, int 
     void* result;
     marca temp;
     arq = fopen (caminho, "r+b");
+    if (arq == NULL) return NULL;
     fread (&qte, sizeof (long int), 1, arq);
     fread (&bloco, sizeof (int), 1, arq);
     primeiro = ftell (arq);
@@ -120,10 +121,12 @@ Lista get_todos_arquivo (char* caminho, void (*leitor)(void* obj, int procura, F
     {
         fseek (arq, (primeiro + (i * (bloco + sizeof (marca)))), SEEK_SET);
         fread (&temp, sizeof (marca), 1, arq);
-        if (temp == vazio) continue;
-        objeto = alloc ();
-        leitor (objeto, ftell (arq), arq);
-        insere_lista (result, objeto);
+        if (temp == cheio)
+        {    
+            objeto = alloc ();
+            leitor (objeto, ftell (arq), arq);
+            insere_lista (result, objeto);
+        }
     }
     fflush (arq);
     fclose (arq);

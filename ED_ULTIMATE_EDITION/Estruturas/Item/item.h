@@ -30,4 +30,7 @@ void ler_arquivo_item (Item item, int procura, FILE* arq);
 //RETORNA O TAMANHO DO ITEM
 int get_tamanho_item ();
 
+//ALOCA A MEMÓRIA NECESSÁRIA PARA O ITEM
+void* alloc_item ();
+
 #endif

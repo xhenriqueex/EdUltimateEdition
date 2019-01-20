@@ -240,6 +240,7 @@ double compare_semaforo_arvoreB (void* objA, void* objB)
     Semaforo* semB;
     semA = (Semaforo*) objA;
     semB = (Semaforo*) objB;
+    if (!strcmp (semA->id, semB->id)) return 0;
     result = sqrt (pow (semB->x - semA->x, 2) + pow (semB->y - semA->y, 2));
     if (semB->x > semA->x && semB->y > semA->x) return result;
     return -result;
