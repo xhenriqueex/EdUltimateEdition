@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Lista/lista.h"
+#include "../Lista/lista.h"
 
 typedef short int marca;
 static marca cheio = 1;
@@ -22,33 +22,36 @@ void cria_arquivo (char* caminho, int tam)
 }
 
 //ADICIONA UM OBJETO NO ARQUIVO E RETORNA SEU ÍNDICE
-int adicionar_objeto_arquivo (char* caminho, void* objeto)
+int adicionar_objeto_arquivo (char* caminho, void* objeto, void (*escritor)(void* obj, int procura, FILE* arq))
 {
     FILE* arq;
-    int tam, header, i, offset;
-    long int indice;
+    int bloco, primeiro, i, qte;
+    long int indice, offset, prox;
     marca temp;
     arq = fopen (caminho, "r+b");
     fread (&indice, sizeof (long int), 1, arq);
-    fread (&tam, sizeof (int), 1, arq);
-    header = sizeof (long int) + sizeof (int);
-    for (i=0; i<indice; i++)
+    fread (&bloco, sizeof (int), 1, arq);
+    primeiro = ftell (arq);
+    rewind (arq);
+    i = 0;
+    while (1)
     {
-        offset = header + (i * (sizeof (marca) + tam));
-        fseek (arq, offset, SEEK_SET);
+        qte = fseek (arq, (primeiro + (i * (bloco + sizeof (marca)))), SEEK_SET);
         fread (&temp, sizeof (marca), 1, arq);
-        if (temp==0) break;
+        if (temp == 0) break;
+        if (i == indice) break;
+        i++;
     }
-    offset = header + (i * (sizeof (marca) + tam));
-    fseek (arq, offset, SEEK_SET);
-    fwrite (&cheio, sizeof (marca), 1, arq);
-    fwrite (objeto, tam, 1, arq);
+    offset = (primeiro + (i * (bloco + sizeof (marca))));
+    qte = fseek (arq, offset, SEEK_SET);
+    qte = fwrite (&cheio, sizeof (marca), 1, arq);
+    escritor (objeto, ftell (arq), arq);
     if (i == indice)
     {
-        indice++;
-        fwrite (&vazio, sizeof (marca), 1, arq);
+        prox = indice + 1;
+        qte = fwrite (&vazio, sizeof (marca), 1,arq);
         rewind (arq);
-        fwrite (&indice, sizeof (long int), 1, arq);
+        fwrite (&prox, sizeof (long int), 1, arq);
     }
     fflush (arq);
     fclose (arq);
@@ -59,14 +62,14 @@ int adicionar_objeto_arquivo (char* caminho, void* objeto)
 void deletar_objeto_arquivo (char* caminho, int ind)
 {
     FILE* arq;
-    int tam, header, i, offset;
-    long int indice;
+    int bloco, primeiro;
+    long int qte, offset;
     arq = fopen (caminho, "r+b");
-    fread (&indice, sizeof (long int), 1, arq);
-    fread (&tam, sizeof (int), 1, arq);
-    header = sizeof (long int) + sizeof (int);
-    if (ind >= indice || ind < 0) return;
-    offset = header + (ind * (sizeof (marca) + tam));
+    fread (&qte, sizeof (long int), 1, arq);
+    fread (&bloco, sizeof (int), 1, arq);
+    primeiro = ftell (arq);
+    if (ind >= qte || ind < 0) return;
+    offset = (primeiro + (ind * (bloco + sizeof (marca))));
     fseek (arq, offset, SEEK_SET);
     fwrite (&vazio, sizeof (marca), 1, arq);
     fflush (arq);
@@ -74,51 +77,52 @@ void deletar_objeto_arquivo (char* caminho, int ind)
 }
 
 //RETORNA UM OBJETO DO ARQUIVO, ESPECIFICADO PELO ÍNDICE
-void* get_objeto_arquivo (char* caminho, int ind)
+void* get_objeto_arquivo (char* caminho, int ind, void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
     FILE* arq;
-    int tam, header, i, offset;
-    long int indice;
+    int bloco, primeiro, pos;
+    long int qte;
     void* result;
     marca temp;
     arq = fopen (caminho, "r+b");
-    fread (&indice, sizeof (long int), 1, arq);
-    fread (&tam, sizeof (int), 1, arq);
-    header = sizeof (long int) + sizeof (int);
-    if (ind >= indice || ind < 0) return NULL;
-    offset = header + (ind * (sizeof (marca) + tam));
-    fseek (arq, offset, SEEK_SET);
+    fread (&qte, sizeof (long int), 1, arq);
+    fread (&bloco, sizeof (int), 1, arq);
+    primeiro = ftell (arq);
+    rewind (arq);
+    pos = fseek (arq, primeiro, SEEK_SET);
+    qte = fseek (arq, (primeiro + (ind * (bloco + sizeof (marca)))), SEEK_SET);
     fread (&temp, sizeof (marca), 1, arq);
     if (temp == vazio) return NULL;
-    result = malloc (tam);
-    fread (result, tam, 1, arq);
+    result = alloc ();
+    leitor (result, ftell (arq), arq);
     fflush (arq);
     fclose (arq);
     return result;
 }
 
 //RETORNA UMA LISTA COM TODOS OS OBJETOS DO ARQUIVO
-Lista get_todos_arquivo (char* caminho)
+Lista get_todos_arquivo (char* caminho, void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
     FILE* arq;
-    int tam, header, i, offset;
-    long int indice;
+    int bloco, primeiro, pos, i;
+    long int qte;
     void* objeto;
     Lista result;
     marca temp;
-    arq = fopen (caminho, "r+b");
-    fread (&indice, sizeof (long int), 1, arq);
-    fread (&tam, sizeof (int), 1, arq);
-    header = sizeof (long int) + sizeof (int);
     result = cria_lista ();
-    for (i = 0; i<indice; i++)
+    arq = fopen (caminho, "r+b");
+    fread (&qte, sizeof (long int), 1, arq);
+    fread (&bloco, sizeof (int), 1, arq);
+    primeiro = ftell (arq);
+    rewind (arq);
+    pos = fseek (arq, primeiro, SEEK_SET);
+    for (i=0; i<qte; i++)
     {
-        offset = header + (i *(tam + sizeof (marca)));
-        fseek (arq, offset, SEEK_SET);
+        fseek (arq, (primeiro + (i * (bloco + sizeof (marca)))), SEEK_SET);
         fread (&temp, sizeof (marca), 1, arq);
         if (temp == vazio) continue;
-        objeto = malloc (tam);
-        fread (objeto, tam, 1, arq);
+        objeto = alloc ();
+        leitor (objeto, ftell (arq), arq);
         insere_lista (result, objeto);
     }
     fflush (arq);

@@ -1,14 +1,15 @@
 #ifndef ARVOREB_H
 #define ARVOREB_H
-#include "Lista/lista.h"
+#include <stdio.h>
+#include "../Lista/lista.h"
 
 typedef void* TreeB;
 
 //CRIA UM NOVO BANCO DE DADOS
-TreeB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(void*, void*));
+TreeB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)());
 
 //CARREGA UM BANCO EXISTENTE
-TreeB* carrega_banco (char* caminho, double (*compare)(void*, void*));
+TreeB* carrega_banco (char* caminho, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)());
 
 //INSERE UM ITEM NA ÁRVORE B
 int insere_arvoreB (TreeB* arvore, double valor, void* objeto);
@@ -34,6 +35,9 @@ Lista get_itens_dentro_area_arvoreB (TreeB* arvore, void* refInic, void* refFin)
 
 //IMPRIME A ÁRVORE B
 void imprime_arvoreB (TreeB* arvore);
+
+//RETORNA UMA LISTA COM TODOS OS ITENS DA ÁRVORE B DENTRO DE UMA ÁREA
+Lista get_todos_dentro_area_arvoreB (TreeB* arvore, double valorInicial, void* refInicial, double valorFinal, void* refFinal);
 
 #endif
 

@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "arquivobin.h"
-#include "Lista/lista.h"
+#include "../ArquivoBin/arquivobin.h"
+#include "../Lista/lista.h"
 // #include "../Grafos/GrafoD.h"
 
 typedef struct nob {
     int pai;
-	int total_elemento_no;
+	int TotalElementoNo;
 	int maxElementos;
 	int totalFilhos;
 	int maxFilhos;
@@ -25,6 +25,9 @@ typedef struct arvoreb {
     FILE* arq;
     char* caminho;
 	long int tamHeader;
+	void (*escritor)(void* obj, int procura, FILE* arq);
+	void (*leitor)(void* obj, int procura, FILE* arq);
+	void* (*alloc)();
 } ArvoreB;
 
 typedef struct header {
@@ -38,13 +41,9 @@ typedef struct Info {
 	int data;
 }Info;
 
-//compare compara a distancia entre os objetos retorna 0 se o elemento for igual, 
-// negativo se estiver antes e positivo se estiver depois do obj comparado
-// o primeiro é o objeto de referencia, o segundo o da  celula
-
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO CRIA_BANCO
 
-ArvoreB* cria_banco (int tam, char*nomeBanco, int tamObj, double (*compare)(void*, void*))
+ArvoreB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
 	int i;
 	char* caminho;
@@ -54,9 +53,12 @@ ArvoreB* cria_banco (int tam, char*nomeBanco, int tamObj, double (*compare)(void
     arvore->compare = compare;
     arvore->tamBloco = tam;
 	arvore->raiz = NULL;
-	arvore->arq = fopen (nomeBanco, "w+b");
+	arvore->arq = fopen (bancoDados, "w+b");
+	arvore->escritor = escritor;
+	arvore->leitor = leitor;
+	arvore->alloc = alloc;
     caminho = (char*) malloc (sizeof (char) * 55);
-    strcpy (caminho, nomeBanco);
+    strcpy (caminho, bancoDados);
 	for (i=0; i<strlen (caminho); i++)
 	{
 		if (*(caminho+i) == '.') *(caminho+i) = 0;
@@ -76,7 +78,7 @@ ArvoreB* cria_banco (int tam, char*nomeBanco, int tamObj, double (*compare)(void
 	}
 	arvore->tamHeader = ftell (arvore->arq);
 	fclose (arvore->arq);
-	arvore->arq = fopen (nomeBanco, "r+b");
+	arvore->arq = fopen (bancoDados, "r+b");
     return arvore;
 }
 
@@ -89,7 +91,7 @@ int leitura_disco (ArvoreB* arvore, int seek, NoB *folha)
 {
 	int tamFolha, i;
 	if (fseek (arvore->arq, seek, SEEK_SET) == -1) return 0;
-	tamFolha = sizeof(folha);
+	tamFolha = sizeof (folha);
 	fread (folha, tamFolha, 1, arvore->arq);
 	for (i=0; i<folha->maxElementos; i++)
 	{
@@ -107,6 +109,15 @@ int leitura_disco (ArvoreB* arvore, int seek, NoB *folha)
 	return 1;
 }
 
+// CALCULA E RETORNA QUANTOS ELEMENTOS PODEM HAVER NA FOLHA
+int calcula_max_elementos (int bloco)
+{
+    int result;
+	bloco -= 6 * sizeof (int);
+    result = bloco / (2 * sizeof (int) + sizeof (double));
+    return result;
+}
+
 // INICIALIZA OS DADOS DA FOLHA
 NoB* inicializa_folha (int bloco) 
 {
@@ -115,7 +126,7 @@ NoB* inicializa_folha (int bloco)
 	NoB* folha = (NoB*) malloc (sizeof (NoB));
 	folha->maxElementos = 2 * tam - 1;
 	folha->pai = -1;
-	folha->total_elemento_no = 0;
+	folha->TotalElementoNo = 0;
 	folha->totalFilhos = 0;
 	folha->posAtual = -1;
 	folha->maxFilhos = 2 * tam;
@@ -135,13 +146,13 @@ NoB* inicializa_folha (int bloco)
 }
 
 // CARREGA UM BANCO EXISTENTE
-ArvoreB* carrega_banco (char* nomeBanco, double (*compare)(void*, void*))
+ArvoreB* carrega_banco (char* caminho, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
 	int i;
 	FILE* arq;
 	Header* header;
 	ArvoreB* result;
-	arq = fopen (nomeBanco, "r+b");
+	arq = fopen (caminho, "r+b");
 	header = (Header*) malloc (sizeof (Header));
 	header->caminho = malloc (55 * sizeof (char));
 	fread (&header->tamBloco, sizeof (int), 1, arq);
@@ -155,24 +166,19 @@ ArvoreB* carrega_banco (char* nomeBanco, double (*compare)(void*, void*))
 	result->compare = compare;
 	result->tamBloco = header->tamBloco;
 	result->caminho = header->caminho;
-	result->arq = fopen (nomeBanco, "r+b");
+	result->arq = fopen (caminho, "r+b");
 	result->raiz = inicializa_folha (header->tamBloco);
+	result->escritor = escritor;
+	result->leitor = leitor;
+	result->alloc = alloc;
 	leitura_disco (result, header->raiz, result->raiz);
+	result->tamHeader = result->raiz->posAtual;
 	return result;
 }
 
 ///// FIM DAS FUNÇÕES NECESÁRIAS PARA A FUNÇÂO CARREGA_BANCO
 
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO INSERE_ARVOREB
-
-// CALCULA E RETORNA QUANTOS ELEMENTOS PODEM HAVER NA FOLHA
-int calcula_max_elementos (int bloco)
-{
-    int result;
-	bloco -= 6 * sizeof (int);
-    result = bloco / (2 * sizeof (int) + sizeof (double));
-    return result;
-}
 
 // ADICIONA UM ELEMENTO ORDENADAMENTE EM UM NÓ
 void adicionar_elemento (ArvoreB* arvore,  NoB* folha, double elemento, int objeto) 
@@ -208,7 +214,7 @@ void adicionar_elemento (ArvoreB* arvore,  NoB* folha, double elemento, int obje
 			break;
 		}
 	}
-	folha->total_elemento_no++;
+	folha->TotalElementoNo++;
 }
 
 // ESCREVE AS INFORMAÇÕES DE UM NÓ NO DISCO
@@ -292,19 +298,19 @@ int separa (ArvoreB* arvore, NoB* pai, double valor, int objeto)
 	meio = pai->maxElementos / 2;
 	filho1 = inicializa_folha (arvore->tamBloco);
 	filho2 = inicializa_folha (arvore->tamBloco);
-	filho1->total_elemento_no = 0;
+	filho1->TotalElementoNo = 0;
 	for (i=0; i<meio; i++)
 	{
 		filho1->elementos[i] = valores[i];
 		filho1->indexElemento[i] = datas[i];
-		filho1->total_elemento_no++;
+		filho1->TotalElementoNo++;
 	}
-	filho2->total_elemento_no = 0;
+	filho2->TotalElementoNo = 0;
 	for (i=meio+1; i<=pai->maxElementos; i++)
 	{
 		filho2->elementos[i-(meio+1)] = valores[i];
 		filho2->indexElemento[i-(meio+1)] = datas[i];
-		filho2->total_elemento_no++;
+		filho2->TotalElementoNo++;
 	}
 	for (i=0; i<meio; i++)
 	{	
@@ -330,7 +336,7 @@ int separa (ArvoreB* arvore, NoB* pai, double valor, int objeto)
 	{
 		pai->filhos[i] = -1;
 	}
-	pai->total_elemento_no = 1;
+	pai->TotalElementoNo = 1;
 	pai->totalFilhos = 2;
 	pai->elementos[0] = valores[meio];
 	pai->indexElemento[0] = datas[meio];
@@ -341,14 +347,14 @@ int separa (ArvoreB* arvore, NoB* pai, double valor, int objeto)
 }
 
 // SEPARA O NÓ E RETORNA O ELEMENTO COM O FILHO À DIREITA
-int explodir (ArvoreB* arvore, NoB* folha, double valor, int objeto, int idfilho2) 
+int explodir (ArvoreB* arvore, NoB* folha, double valor, int objeto, int idfilho2)
 {
 	int indice, i, j, meio, dataAux, pos, datas[folha->maxElementos+1];
 	double valAux, valores[folha->maxElementos+1];
 	NoB* pai;
 	NoB* filho1;
 	NoB* filho2;
-	if (folha->total_elemento_no < folha->maxElementos)
+	if (folha->TotalElementoNo < folha->maxElementos)
 	{
 		adicionar_elemento (arvore, folha, valor, objeto);
 		indice = busca_indice (arvore, folha, valor, objeto);
@@ -383,21 +389,21 @@ int explodir (ArvoreB* arvore, NoB* folha, double valor, int objeto, int idfilho
 		}
 	}
 	meio = folha->maxElementos / 2;
-	filho1 = inicializa_folha (arvore->tamBloco);
+	filho1 = inicializa_folha (arvore->tamBloco);	
 	filho2 = inicializa_folha (arvore->tamBloco);
-	filho1->total_elemento_no = 0;
+	filho1->TotalElementoNo = 0;
 	for (i=0; i<meio; i++)
 	{
 		filho1->elementos[i] = valores[i];
 		filho1->indexElemento[i] = datas[i];
-		filho1->total_elemento_no++;
+		filho1->TotalElementoNo++;
 	}
-	filho2->total_elemento_no = 0;
+	filho2->TotalElementoNo = 0;
 	for (i=meio+1; i<=folha->maxElementos; i++)
 	{
 		filho2->elementos[i-(meio+1)] = valores[i];
 		filho2->indexElemento[i-(meio+1)] = datas[i];
-		filho2->total_elemento_no++;
+		filho2->TotalElementoNo++;
 	}
 	for (i=0; i<meio; i++)
 	{
@@ -442,6 +448,21 @@ void ordena (NoB* folha)
 			}
 		}
 	}
+	for (i=0; i<folha->maxFilhos; i++)
+	{
+		if (folha->filhos[i] == -1)
+		{
+			for (j=i+1; j<folha->maxFilhos; j++)
+			{
+				if (folha->filhos[j] == -1)
+				{
+					folha->filhos[i] = folha->filhos[j];
+					folha->filhos[j] = -1;
+					break;
+				}
+			}
+		}
+	}
 	return;
 }
 
@@ -474,7 +495,7 @@ int inserir_filho_arvoreB (ArvoreB* arvore, NoB* folha, double valor, double obj
 		{
 			adicionar_elemento (arvore, temp, valor, objeto);
 			ordena (temp);
-			escrita_disco (arvore, temp->posAtual, temp); // atualiza no disco
+			escrita_disco (arvore, temp->posAtual, temp);
 		}
 	}
 	return 1;
@@ -485,7 +506,7 @@ int insere_arvoreB (ArvoreB* arvore, double valor, void* objeto)
 {
 	int data, pos;
 	NoB* folha;
-	data = adicionar_objeto_arquivo (objeto, arvore->caminho);
+	data = adicionar_objeto_arquivo (objeto, arvore->caminho, arvore->escritor);
 	if (arvore->raiz == NULL) 
 	{
 		arvore->raiz = inicializa_folha (arvore->tamBloco);
@@ -534,7 +555,8 @@ void fusao (ArvoreB* arvore, NoB* folha)
 	NoB* pai;
 	NoB* dir;
 	NoB* esq;
-	if (folha->total_elemento_no >= folha->maxElementos / 2) return;
+	if (folha->TotalElementoNo >= folha->maxElementos / 2) return;
+	if (folha->pai == -1) return;
 	pai = inicializa_folha (arvore->tamBloco);
 	leitura_disco (arvore, folha->pai, pai);
 	for (i=0; i<pai->maxFilhos; i++)
@@ -592,13 +614,15 @@ void fusao (ArvoreB* arvore, NoB* folha)
 				esq->elementos[j] = elem[j];
 				esq->indexElemento[j] = data[j];
 			}
-			esq->total_elemento_no = k;
+			esq->TotalElementoNo = k;
 			ordena (esq);
 			pai->elementos[i-1] = -1;
 			pai->indexElemento[i-1] = -1;
 			pai->filhos[i] = -1;
-			pai->total_elemento_no--;
-			if (pai->total_elemento_no == 0) esq->posAtual = pai->posAtual;
+			pai->TotalElementoNo--;
+			if (pai->TotalElementoNo == 0) esq->posAtual = pai->posAtual;
+			ordena (pai);
+			ordena (esq);
 			escrita_disco (arvore, pai->posAtual, pai);
 			escrita_disco (arvore, esq->posAtual, esq);
 			free (pai);
@@ -634,13 +658,16 @@ void fusao (ArvoreB* arvore, NoB* folha)
 				esq->elementos[j] = elem[j];
 				esq->indexElemento[j] = data[j];
 			}
-			esq->total_elemento_no = meio;
+			esq->TotalElementoNo = meio;
 			for(j=(meio+1); j<=k; j++)
 			{
 				folha->elementos[j-(meio+1)] = elem[j];
 				folha->indexElemento[j-(meio+1)] = data[j];
 			}
-			folha->total_elemento_no = k-(meio);
+			folha->TotalElementoNo = k-(meio);
+			ordena (pai);
+			ordena (esq);
+			ordena (folha);
 			escrita_disco (arvore, pai->posAtual, pai);
 			escrita_disco (arvore, esq->posAtual, esq);
 			escrita_disco (arvore, folha->posAtual, folha);
@@ -678,16 +705,18 @@ void fusao (ArvoreB* arvore, NoB* folha)
 				dir->elementos[j] = elem[j];
 				dir->indexElemento[j] = data[j];
 			}
-			dir->total_elemento_no = k;
+			dir->TotalElementoNo = k;
 			ordena (dir);
 			pai->elementos[i] = -1;
 			pai->indexElemento[i] = -1;
 			pai->filhos[i+1] = -1;
-			pai->total_elemento_no--;
-			if (pai->total_elemento_no == 0)
+			pai->TotalElementoNo--;
+			if (pai->TotalElementoNo == 0)
 			{
 				dir->posAtual = pai->posAtual;
 			}
+			ordena (pai);
+			ordena (dir);
 			escrita_disco (arvore, pai->posAtual, pai);
 			escrita_disco (arvore, dir->posAtual, dir);
 			free (pai);
@@ -718,7 +747,7 @@ void fusao (ArvoreB* arvore, NoB* folha)
 				folha->elementos[j] = elem[j];
 				folha->indexElemento[j] = data[j];
 			}
-			folha->total_elemento_no = meio;
+			folha->TotalElementoNo = meio;
 			for (j=0; j<dir->maxElementos; j++)
 			{
 				dir->elementos[j] = -1;
@@ -729,7 +758,10 @@ void fusao (ArvoreB* arvore, NoB* folha)
 				dir->elementos[j-(meio+1)] = elem[j];
 				dir->indexElemento[j-(meio+1)] = data[j];
 			}
-			dir->total_elemento_no = k-(meio);
+			dir->TotalElementoNo = k-(meio);
+			ordena (pai);
+			ordena (folha);
+			ordena (dir);
 			escrita_disco (arvore, pai->posAtual, pai);
 			escrita_disco (arvore, folha->posAtual, folha);
 			escrita_disco (arvore, dir->posAtual, dir);
@@ -747,7 +779,7 @@ int busca_elemento (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 	{
 		if (folha->elementos[i] == valor)
 		{
-            obj = get_objeto_arquivo (arvore->caminho, folha->indexElemento[i]);
+            obj = get_objeto_arquivo (arvore->caminho, folha->indexElemento[i], arvore->leitor, arvore->alloc);
             if (arvore->compare (obj, objeto) == 0)
 			return folha->indexElemento[i];
 		}
@@ -764,13 +796,13 @@ int retira_elemento (ArvoreB* arvore, NoB* folha, double elem, void* objeto)
 	{
 		if (folha->elementos[i] == elem)
 		{
-            obj = get_objeto_arquivo (arvore->caminho, folha->indexElemento[i]);
+            obj = get_objeto_arquivo (arvore->caminho, folha->indexElemento[i], arvore->leitor, arvore->alloc);
             if (arvore->compare (obj, objeto) == 0)
 			{
                 folha->elementos[i] = -1;
                 deletar_objeto_arquivo (arvore->caminho, folha->indexElemento[i]);
                 folha->indexElemento[i] = -1;
-				folha->total_elemento_no--;
+				folha->TotalElementoNo--;
                 return i;
             }
 		}
@@ -857,7 +889,7 @@ int delete_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 				}
                 return delete_secundario (arvore, temp, valor, objeto);
 			}
-		}
+		}	
 		if (folha->filhos[i] != -1)
 		{
 				temp = inicializa_folha (arvore->tamBloco);
@@ -909,13 +941,14 @@ int delete_arvoreB (ArvoreB* arvore, double valor, void* objeto)
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO BUSCA_ARVOREB
 
 // FUNÇÃO SECUNDÁRIA DE BUSCA NA ÁRVORE B
-void* busca_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto) {	
+void* busca_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
+{	
 	int indice, i, res;
 	NoB* temp;
 	indice = busca_elemento (arvore, folha, valor, objeto);
     if (indice >= 0)
 	{
-		return get_objeto_arquivo (arvore->caminho, folha->indexElemento[indice]);
+		return get_objeto_arquivo (arvore->caminho, folha->indexElemento[indice], arvore->leitor, arvore->alloc);
 	}
 	else 
 	{
@@ -930,7 +963,7 @@ void* busca_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 				if (res >= 0) 
 				{
 					free (temp);
-					return get_objeto_arquivo (arvore->caminho, res);
+					return get_objeto_arquivo (arvore->caminho, res, arvore->leitor, arvore->alloc);
 				}
                 return busca_secundario (arvore, temp, valor, objeto);
 				free (temp);
@@ -944,7 +977,7 @@ void* busca_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 				if (res >= 0) 
 				{
 					free (temp);
-					return get_objeto_arquivo (arvore->caminho, res);
+					return get_objeto_arquivo (arvore->caminho, res, arvore->leitor, arvore->alloc);
 				}
                 return busca_secundario (arvore, temp, valor, objeto);
 				free (temp);
@@ -974,8 +1007,9 @@ void vizinho_proximo_secundario (ArvoreB* arvore, NoB* no, double ref, void* ref
 	{
 		if (no->elementos[i] != -1)
 		{
-			objeto = get_objeto_arquivo (arvore->caminho, arvore->raiz->indexElemento[i]);
+			objeto = get_objeto_arquivo (arvore->caminho, arvore->raiz->indexElemento[i], arvore->leitor, arvore->alloc);
 			dist = abs (arvore->compare (objeto, minDistObj));
+			if (dist < 0) dist = -dist;
 			if (dist < *minDist)
 			{
 				if (ctr != 0 || minDist != 0)
@@ -1030,7 +1064,7 @@ void* vizinho_proximo_arvoreB (ArvoreB* arvore, double ref, void* referencia, in
 	void** minDistObj;
 	NoB* folha;
 	if (arvore->raiz == NULL) return NULL;
-	if(arvore->raiz->total_elemento_no == 0) return NULL;
+	if(arvore->raiz->TotalElementoNo == 0) return NULL;
 	minDist = (double*) malloc (sizeof (double));
 	minDistObj = (void**) malloc (sizeof (void*));
 	*minDist = 0;
@@ -1039,17 +1073,16 @@ void* vizinho_proximo_arvoreB (ArvoreB* arvore, double ref, void* referencia, in
 	{
 		if (arvore->raiz->elementos[i] != -1)
 		{
-			*minDistObj = get_objeto_arquivo (arvore->caminho, arvore->raiz->indexElemento[i]);
+			*minDistObj = get_objeto_arquivo (arvore->caminho, arvore->raiz->indexElemento[i], arvore->leitor, arvore->alloc);
 			*minDist = abs (arvore->compare (referencia, minDistObj));
 		}
 		i++;
 	}
 	while (*minDist==0 || ctr);
-
 	folha = inicializa_folha (arvore->tamBloco);
 	leitura_disco (arvore, arvore->raiz->posAtual, folha);
 	vizinho_proximo_secundario (arvore, folha, ref, referencia, ctr, minDist, minDistObj);
-	return minDistObj;
+	return *minDistObj;
 }
 
 ///// FIM DAS FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO VIZINHO_PROXIMO_ARVOREB
@@ -1061,9 +1094,9 @@ void free_arvoreB (ArvoreB* arvore)
 {
 	fclose (arvore->arq);
 	free (arvore->caminho);
-	if(arvore->raiz != NULL)
+	if (arvore->raiz != NULL)
 	{	
-		free(arvore->raiz);
+		free (arvore->raiz);
 	}
 	free (arvore);
 }
@@ -1075,7 +1108,7 @@ void free_arvoreB (ArvoreB* arvore)
 // RETORNA TODOS OS ITENS DA ÁRVORE B
 Lista* get_todos_arvoreB (ArvoreB* arvore)
 {
-	return get_todos_arquivo (arvore->caminho);
+	return get_todos_arquivo (arvore->caminho, arvore->leitor, arvore->alloc);
 }
 
 ///// FIM DAS FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO GET_TODOS_ARVOREB
@@ -1110,8 +1143,53 @@ void imprime_arvoreB (ArvoreB* arvore)
 {
 	if (arvore->raiz!=NULL)
 	{
-		print_No_arvoreB (arvore, arvore->raiz);
+		print_no_arvoreB (arvore, arvore->raiz);
 	}
 }
 
 ///// FIM DAS FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO IMPRIME_ARVOREB
+
+//FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO GET_TODOS_DENTRO_AREA_ARVOREB
+
+void secundario_dentro_arvoreB (ArvoreB* arvore, NoB* folha, double valorInicial, void* refInicial, double valorFinal, void* refFinal, Lista lista)
+{
+	int i;
+	double esq, dir;
+	void* objeto;
+	NoB* no;
+	for (i=0; i<folha->maxElementos; i++)
+	{
+		if (folha->elementos[i] == -1) break;
+		objeto = get_objeto_arquivo (arvore->caminho, folha->indexElemento[i], arvore->leitor, arvore->alloc);
+		esq = arvore->compare (refInicial, objeto);
+		dir = arvore->compare (objeto, refFinal);
+		if (esq >= 0 && dir>=0)
+		{
+			insere_lista (lista, objeto);
+		}
+	}
+	for (i=0; i<folha->maxElementos; i++)
+	{
+		if (folha->elementos[i] == -1 || folha->filhos[i] == -1) break;
+		if (valorInicial <= folha->elementos[i] && folha->elementos[i] <= valorFinal)
+		{
+			no = inicializa_folha (arvore->tamBloco);
+			leitura_disco (arvore, folha->filhos[i], no);
+			secundario_dentro_area_arvoreB (arvore, no, valorInicial, refInicial, valorFinal, refFinal, lista);
+		}
+	}
+	if (folha->elementos[i-1] <= valorFinal && folha->filhos[i] != -1)
+	{
+			no = inicializa_folha (arvore->tamBloco);
+			ler_disco(arvore, folha->filhos[i], no);
+			secundario_dentro_arvoreB (arvore, no, valorInicial, refInicial, valorFinal, refFinal, lista);
+	}
+}
+
+//RETORNA UMA LISTA COM TODOS OS ITENS DA ÁRVORE B DENTRO DE UMA ÁREA
+Lista get_todos_dentro_area_arvoreB (ArvoreB* arvore, double valorInicial, void* refInicial, double valorFinal, void* refFinal)
+{
+	Lista lista = cria_lista();
+	secundario_dentro_area_arvoreB (arvore, arvore->raiz, valorInicial, refInicial, valorFinal, refFinal, lista);
+	return lista;
+}
