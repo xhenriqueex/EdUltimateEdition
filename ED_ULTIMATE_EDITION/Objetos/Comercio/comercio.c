@@ -5,6 +5,7 @@
 #include "../../Formas/Retangulo/retangulo.h"
 #include "../../Parametros/parametros.h"
 #include "../../Estruturas/Hash/hashtable.h"
+#include "comercio.h"
 
 //DEFINE A STRUCT TIPO
 typedef struct {
@@ -57,7 +58,7 @@ void* cria_comercio (Parametros* par, char* cnpj, void* tip, char* cep, char* fa
     result->tipo = tipo;
     result->endereco = end;
     result->endereco->comercio = result;
-    if (result->tipo != NULL) result->coord = calculo_coordenada (result, par);
+    if (result->tipo != NULL) result->coord = calcula_coordenada (result, par);
     return (void*) result;
 }
 
@@ -402,7 +403,7 @@ char* get_codigo_tipo_comercio (void* comercio)
 }
 
 //RETORNA O TIPO DO COMÉRCIO
-char* get_tipo_comercio (Com* comercio)
+char* get_tipo_comercio (Comercio* comercio)
 {
     Com* com;
     com = (Com*) comercio;
@@ -410,7 +411,7 @@ char* get_tipo_comercio (Com* comercio)
 }
 
 //RETORNA O NOME DO COMÉRCIO
-char* get_nome_comercio (Com* comercio)
+char* get_nome_comercio(Comercio* comercio)
 {
     Com* com;
     com = (Com*) comercio;
@@ -418,7 +419,7 @@ char* get_nome_comercio (Com* comercio)
 }
 
 //RETORNA O CNPJ DO COMÉRCIO
-char* get_cnpj_comercio (Com* comercio)
+char* get_cnpj_comercio (Comercio* comercio)
 {
     Com* com;
     com = (Com*) comercio;
@@ -470,8 +471,8 @@ void escreve_arquivo_comercio (void* comercio, int procura, FILE* arq)
     {
         fwrite (&com->cnpj[i], sizeof (char), 1, arq);
     }
-    escreve_arquivo_tipo_comercio (com->tipo, ftell (arq), arq);
-    escreve_arquivo_endereco_comercio (comercio, ftell (arq), arq);
+    escreve_arquivo_tipo_comercio ((void *) com->tipo, ftell (arq), arq);
+    escreve_arquivo_endereco_comercio ((void *) comercio, ftell (arq), arq);
     for (i=0; i<55; i++)
     {
         fwrite (&com->nome[i], sizeof (char), 1, arq);
@@ -646,7 +647,7 @@ double* calcula_coordenada (void* comercio, Parametros* par)
 }
 
 //CRIA UM COMÉRCIO SÓ COM AS COORDENADAS
-Com* cria_comercio_coordenada (double x, double y)
+Comercio cria_comercio_coordenada (double x, double y)
 {
     Com* result;
     result = (Com*) calloc (1, sizeof(Com));
@@ -656,7 +657,7 @@ Com* cria_comercio_coordenada (double x, double y)
     result->coord = (double*) calloc (2, sizeof(double));
     result->coord[0] = x;
     result->coord[1] = y;
-    return result;
+    return (void *) result;
 }
 
 //ALOCA A MEMÓRIA NECESSÁRIA DO COMÉRCIO

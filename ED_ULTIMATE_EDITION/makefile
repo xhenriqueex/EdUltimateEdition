@@ -1,11 +1,17 @@
-siguel: Comando/executa_comando.o Estruturas/Arvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Grafo_Forma/grafo_forma.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o main.o
-	gcc Comando/executa_comando.o Estruturas/Arvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Grafo_Forma/grafo_forma.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o main.o -lm -o siguel -g -pedantic -fstack-protector-all -std=c99
+siguel: Comando/executa_comando.o Estruturas/ArquivoBin/arquivobin.o Estruturas/Arvore/arvore.o Estruturas/ArvoreB/arvoreb.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Grafo_Forma/grafo_forma.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o main.o
+	gcc Comando/executa_comando.o Estruturas/ArquivoBin/arquivobin.o Estruturas/Arvore/arvore.o Estruturas/ArvoreB/arvoreb.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Grafo_Forma/grafo_forma.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o main.o -lm -o siguel -g -pedantic -fstack-protector-all -std=c99
 
 Comando/executa_comando.o: Comando/executa_comando.c Comando/executa_comando.h
 	gcc -c Comando/executa_comando.c -lm -o Comando/executa_comando.o -g -pedantic -fstack-protector-all -std=c99
 
+Estruturas/ArquivoBin/arquivobin.o: Estruturas/ArquivoBin/arquivobin.c Estruturas/ArquivoBin/arquivobin.h	
+	gcc -c Estruturas/ArquivoBin/arquivobin.c -lm -o Estruturas/ArquivoBin/arquivobin.o -g -pedantic -fstack-protector-all -std=c99
+
 Estruturas/Arvore/arvore.o: Estruturas/Arvore/arvore.c Estruturas/Arvore/arvore.h	
 	gcc -c Estruturas/Arvore/arvore.c -lm -o Estruturas/Arvore/arvore.o -g -pedantic -fstack-protector-all -std=c99
+
+Estruturas/ArvoreB/arvoreb.o: Estruturas/ArvoreB/arvoreb.c Estruturas/ArvoreB/arvoreb.h
+	gcc -c Estruturas/ArvoreB/arvoreb.c -lm -o Estruturas/ArvoreB/arvoreb.o -g -pedantic -fstack-protector-all -std=c99
 
 Estruturas/Fila/fila.o: Estruturas/Fila/fila.c Estruturas/Fila/fila.h	
 	gcc -c Estruturas/Fila/fila.c -lm -o Estruturas/Fila/fila.o -g -pedantic -fstack-protector-all -std=c99
@@ -40,7 +46,7 @@ Formas/Circulo/circulo.o: Formas/Circulo/circulo.c Formas/Circulo/circulo.h
 Formas/Retangulo/retangulo.o: Formas/Retangulo/retangulo.c Formas/Retangulo/retangulo.h 	
 	gcc -c Formas/Retangulo/retangulo.c -lm -o Formas/Retangulo/retangulo.o -g -pedantic -fstack-protector-all -std=c99
 
-Funcoes/funcoes.o: Funções/funcoes.c Funcoes/funcoes.h
+Funcoes/funcoes.o: Funcoes/funcoes.c Funcoes/funcoes.h
 	gcc -c Funcoes/funcoes.c -lm -o Funcoes/funcoes.o -g -pedantic -fstack-protector-all -std=c99
 
 Funcoes/parproximo.o: Funcoes/parproximo.c Funcoes/parproximo.h
@@ -74,4 +80,4 @@ main.o: main.c
 	gcc -c main.c -lm -o main.o -g -pedantic -fstack-protector-all -std=c99
 
 clean: 
-	rm -rf Comando/executa_comando.o Estruturas/Arvore/arvore.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o Formas/Grafo_Forma/grafo_forma.o main.o siguel vgcore.* Arquivos/Saídas/* && touch Arquivos/Saídas/.a
+	rm -rf Comando/executa_comando.o Estruturas/ArquivoBin/arquivobin.o Estruturas/Arvore/arvore.o Estruturas/ArvoreB/arvoreb.o Estruturas/Fila/fila.o Estruturas/Hash/hashtable.o Estruturas/Item/item.o Estruturas/Lista/lista.o Estruturas/Merge/mergesort.o Estruturas/Grafo/grafo.o Estruturas/Registrador/registrador.o Formas/Anotacao/anotacao.o Formas/Circulo/circulo.o Formas/Retangulo/retangulo.o Funcoes/funcoes.o Funcoes/parproximo.o Objetos/Comercio/comercio.o Objetos/Hidrante/hidrante.o Objetos/Pessoa/pessoa.o Objetos/Quadra/quadra.o Objetos/Radiobase/radiobase.o Objetos/Semaforo/semaforo.o Objetos/Carro/carro.o Parametros/parametros.o Formas/Grafo_Forma/grafo_forma.o main.o siguel vgcore.* Arquivos/Saidas/* && touch Arquivos/Saidas/.a

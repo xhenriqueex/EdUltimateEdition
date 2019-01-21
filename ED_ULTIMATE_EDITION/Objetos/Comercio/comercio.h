@@ -108,13 +108,13 @@ void ler_arquivo_endereco_comercio (void* comercio, int procura, FILE* arq);
 //RETORNA O TAMANHO DO ENDEREÇO DO COMÉRCIO
 int get_tamanho_endereco_comercio ();
 
-//ALOCA A MEMÓRIA NECESSÁRIA DO COMÉRCIO
-void* alloc_comercio ();
-
 //CALCULA A COORDENADA COMÉRCIO
 double* calcula_coordenada (void* comercio, Parametros* par);
 
 //CRIA UM COMÉRCIO SÓ COM AS COORDENADAS
 Comercio cria_comercio_coordenada (double x, double y);
+
+//ALOCA A MEMÓRIA NECESSÁRIA DO COMÉRCIO
+void* alloc_comercio ();
 
 #endif

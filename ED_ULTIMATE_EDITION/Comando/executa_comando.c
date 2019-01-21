@@ -2203,7 +2203,7 @@ void caso_de_pergunta (Parametros* par)
     par->comando += 4;
     cnpj = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cnpj);
-    auxCom = cria_comercio (cnpj, "", "", "", "", "");
+    auxCom = cria_comercio (par, cnpj, "", "", "", "", "");
     comercio = get_hashtable (par->hash_comercios, auxCom);
     free_comercio (auxCom);
     auxCom = NULL;
@@ -2838,7 +2838,7 @@ void caso_fec (Parametros* par)
     par->comando += 4;
     cnpj = (char*) calloc (strlen (par->comando) + 2, sizeof (char));
     sscanf (par->comando, "%s", cnpj);
-    comercioAux = cria_comercio (cnpj, "", "", "", "", "");
+    comercioAux = cria_comercio (par, cnpj, "", "", "", "", "");
     comercio = get_hashtable (par->hash_comercios, comercioAux);
     free_comercio (comercioAux);
     if (comercio == NULL)
@@ -2947,7 +2947,7 @@ void caso_mudec (Parametros* par)
     face = (char*) calloc (55, sizeof (char));
     num = (char*) calloc (55, sizeof (char));
     sscanf (par->comando, "%s %s %s %s", cnpj, cep, face, num);
-    comAux = cria_comercio (cnpj, "", "", "", "", "");
+    comAux = cria_comercio (par, cnpj, "", "", "", "", "");
     com = get_hashtable (par->hash_comercios, comAux);
     free_comercio (comAux);
     if (com == NULL)
@@ -4049,7 +4049,7 @@ void caso_e_ec (Parametros* par)
     t = get_hashtable (par->hash_tipos, tAux);
     free_tipo_comercio (tAux);
     tAux = NULL;
-    comercio = cria_comercio (cnpj, t, cep, face, num, nome);
+    comercio = cria_comercio (par, cnpj, t, cep, face, num, nome);
     free (cod);
     cod = NULL;
     free (cnpj);

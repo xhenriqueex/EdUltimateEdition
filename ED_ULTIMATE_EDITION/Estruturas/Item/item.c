@@ -102,7 +102,7 @@ void ler_arquivo_item (Item item, int procura, FILE* arq)
 //RETORNA O TAMANHO DO ITEM
 int get_tamanho_item ()
 {
-    return sizeof (int) + get_size_retangulo ();
+    return sizeof (int) + get_tamanho_retangulo();
 }
 
 //ALOCA A MEMÓRIA NECESSÁRIA PARA O ITEM

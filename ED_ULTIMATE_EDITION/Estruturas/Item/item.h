@@ -3,6 +3,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "../../Formas/Retangulo/retangulo.h"
+#include "../../Formas/Circulo/circulo.h"
+
 //DEFINE O TIPO DO ITEM
 typedef void* Item;
 

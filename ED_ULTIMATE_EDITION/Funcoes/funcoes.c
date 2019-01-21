@@ -1402,7 +1402,7 @@ char** detectar_colisoes (Lista carros)
     list1 = carros;
     i = largura_lista (list1);
     j = 0;
-    colisoes = (char**) calloc (i/2, sizeof (char*));
+    colisoes = (char**) calloc (i*2, sizeof (char*));
     *colisoes = (char*) calloc (55, sizeof (char));
     primeiro = get_primeiro_lista (list1);
     do

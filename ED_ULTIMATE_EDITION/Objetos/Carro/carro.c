@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "../../Formas/Retangulo/retangulo.h"
 #include "../../Formas/Anotacao/anotacao.h"
 #include "../../Estruturas/Lista/lista.h"

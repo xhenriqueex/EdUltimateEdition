@@ -57,7 +57,7 @@ void ler_arquivo_hidrante (void* hidrante, int procura, FILE* arq);
 int get_tamanho_hidrante ();
 
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DO HIDRANTE
-double compare_hidrante_arvoreb (void* objA, void* objB);
+double compare_hidrante_arvoreB(void* objA, void* objB);
 
 //ALOCA A MEMÓRIA NECESSÁRIA PARA O HIDRANTE
 void* alloc_hidrante ();

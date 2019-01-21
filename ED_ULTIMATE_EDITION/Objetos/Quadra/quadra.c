@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "../../Formas/Retangulo/retangulo.h"
+//#include "quadra.h"
 
 //DEFINE A STRUCT QUADRA
 typedef struct quadra{
@@ -246,7 +248,7 @@ int get_tamanho_quadra ()
 }
 
 //FUNÇÃO DE COMPARAÇÃO DA ÁRVORE B DA QUADRA
-double compare_quadra (void* objA, void* objB)
+double compare_quadra_arvoreB (void* objA, void* objB)
 {
     double result;
     Quadra* quadA;

@@ -297,19 +297,19 @@ int main(int argc, char* argv[])
         aux = (char*) calloc (55, sizeof (char));
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_quadra.dat");
-        p->arvoreB_quadras = cria_banco (2048, aux, get_tamanho_quadra(), compare_quadra, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
+        p->arvoreB_quadras = cria_banco (2048, aux, get_tamanho_quadra(), compare_quadra_arvoreB, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_hidrante.dat");
-        p->arvoreB_hidrantes = cria_banco (2048, aux, get_tamanho_hidrante(), compare_hidrante, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
+        p->arvoreB_hidrantes = cria_banco (2048, aux, get_tamanho_hidrante(), compare_hidrante_arvoreB, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_semaforo.dat");
-        p->arvoreB_semaforos = cria_banco (2048, aux, get_tamanho_semaforo(), compare_semaforo, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
+        p->arvoreB_semaforos = cria_banco (2048, aux, get_tamanho_semaforo(), compare_semaforo_arvoreB, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_radiobase.dat");
-        p->arvoreB_radiobases = cria_banco (2048, aux, get_tamanho_radiobase(), compare_radiobase, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
+        p->arvoreB_radiobases = cria_banco (2048, aux, get_tamanho_radiobase(), compare_radiobase_arvoreB, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_carro.dat");
-        p->arvoreB_carros = cria_banco (2048, aux, get_tamanho_carro(), compare_carro, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
+        p->arvoreB_carros = cria_banco (2048, aux, get_tamanho_carro(), compare_carro_arvoreB, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
         p->max_figuras = 1000;
     }
     else
@@ -321,23 +321,23 @@ int main(int argc, char* argv[])
         strcpy (aux, p->caminho_banco);
         strcat (aux, "info.dat");
         arquivo = fopen (aux, "r+b");
-        fread (p->max_figuras, sizeof (long int), 1, arquivo);
+        fread (&p->max_figuras, sizeof (long int), 1, arquivo);
         //for (i=0; i<55; i++){ fread (&p->arquivo_entrada)}
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_quadra.dat");
-        p->arvoreB_quadras = carrega_banco (aux, compare_quadra, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
+        p->arvoreB_quadras = carrega_banco (aux, compare_quadra_arvoreB, escreve_arquivo_quadra, ler_arquivo_quadra, alloc_quadra);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_hidrante.dat");
-        p->arvoreB_hidrantes = carrega_banco (aux, compare_hidrante, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
+        p->arvoreB_hidrantes = carrega_banco (aux, compare_hidrante_arvoreB, escreve_arquivo_hidrante, ler_arquivo_hidrante, alloc_hidrante);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_semaforo.dat");
-        p->arvoreB_semaforos = carrega_banco (aux, compare_semaforo, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
+        p->arvoreB_semaforos = carrega_banco (aux, compare_semaforo_arvoreB, escreve_arquivo_semaforo, ler_arquivo_semaforo, alloc_semaforo);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_radiobase.dat");
-        p->arvoreB_radiobases = carrega_banco (aux, compare_radiobase, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
+        p->arvoreB_radiobases = carrega_banco (aux, compare_radiobase_arvoreB, escreve_arquivo_radiobase, ler_arquivo_radiobase, alloc_radiobase);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_carro.dat");
-        p->arvoreB_carros = carrega_banco (aux, compare_carro, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
+        p->arvoreB_carros = carrega_banco (aux, compare_carro_arvoreB, escreve_arquivo_carro, ler_arquivo_carro, alloc_carro);
         strcpy (aux, p->caminho_banco);
         strcat (aux, "_quadra.dat");
         list = get_todos_arquivo (aux, ler_arquivo_quadra, alloc_quadra);

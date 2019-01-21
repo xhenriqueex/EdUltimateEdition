@@ -4,6 +4,7 @@
 #include <math.h>
 #include "../ArquivoBin/arquivobin.h"
 #include "../Lista/lista.h"
+#include "arvoreb.h"
 // #include "../Grafos/GrafoD.h"
 
 typedef struct nob {
@@ -43,7 +44,7 @@ typedef struct Info {
 
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO CRIA_BANCO
 
-ArvoreB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
+TreeB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
 	int i;
 	char* caminho;
@@ -51,8 +52,10 @@ ArvoreB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(vo
 	Header* header;
 	arvore = (ArvoreB*) malloc (sizeof (ArvoreB));
     arvore->compare = compare;
+	arvore->tamBloco = 0;
     arvore->tamBloco = tam;
 	arvore->raiz = NULL;
+	arvore->arq = NULL;
 	arvore->arq = fopen (bancoDados, "w+b");
 	arvore->escritor = escritor;
 	arvore->leitor = leitor;
@@ -67,6 +70,7 @@ ArvoreB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(vo
     arvore->caminho = caminho;
 	cria_arquivo (caminho, tamObj);
     header = (Header*) malloc (sizeof (Header));
+	header->tamBloco = 0;
     header->tamBloco = tam;
     header->raiz = -1;
     header->caminho = caminho;
@@ -79,7 +83,7 @@ ArvoreB* cria_banco (int tam, char* bancoDados, int tamObj, double (*compare)(vo
 	arvore->tamHeader = ftell (arvore->arq);
 	fclose (arvore->arq);
 	arvore->arq = fopen (bancoDados, "r+b");
-    return arvore;
+    return (void *) arvore;
 }
 
 ///// FIM DAS FUNÇÕES NECESSÁRIAS DE CRIA_BANCO
@@ -146,7 +150,7 @@ NoB* inicializa_folha (int bloco)
 }
 
 // CARREGA UM BANCO EXISTENTE
-ArvoreB* carrega_banco (char* caminho, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
+TreeB* carrega_banco (char* caminho, double (*compare)(void*, void*), void (*escritor)(void* obj, int procura, FILE* arq), void (*leitor)(void* obj, int procura, FILE* arq), void* (*alloc)())
 {
 	int i;
 	FILE* arq;
@@ -173,7 +177,7 @@ ArvoreB* carrega_banco (char* caminho, double (*compare)(void*, void*), void (*e
 	result->alloc = alloc;
 	leitura_disco (result, header->raiz, result->raiz);
 	result->tamHeader = result->raiz->posAtual;
-	return result;
+	return (void *) result;
 }
 
 ///// FIM DAS FUNÇÕES NECESÁRIAS PARA A FUNÇÂO CARREGA_BANCO
@@ -502,10 +506,12 @@ int inserir_filho_arvoreB (ArvoreB* arvore, NoB* folha, double valor, double obj
 }
 
 // INSERE UM ITEM NA ÁRVORE B
-int insere_arvoreB (ArvoreB* arvore, double valor, void* objeto)
+int insere_arvoreB (TreeB* arvr, double valor, void* objeto)
 {
 	int data, pos;
 	NoB* folha;
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	data = adicionar_objeto_arquivo (objeto, arvore->caminho, arvore->escritor);
 	if (arvore->raiz == NULL) 
 	{
@@ -962,10 +968,12 @@ int delete_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 }
 
 // DELETA UM ITEM DA ÁRVORE B
-int delete_arvoreB (ArvoreB* arvore, double valor, void* objeto)
+int delete_arvoreB (TreeB* arvr, double valor, void* objeto)
 {
 	int i;
 	NoB* no;
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	i = delete_secundario (arvore, arvore->raiz, valor, objeto);
 	no = inicializa_folha (arvore->tamBloco);
 	leitura_disco (arvore, i, no);
@@ -1030,8 +1038,10 @@ void* busca_secundario (ArvoreB* arvore, NoB* folha, double valor, void* objeto)
 }
 
 // BUSCA UM ITEM NA ÁRVORE B
-void* busca_arvoreB (ArvoreB* arvore, double valor, void* objeto)
+void* busca_arvoreB (TreeB* arvr, double valor, void* objeto)
 {
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	return busca_secundario (arvore, arvore->raiz, valor, objeto);
 }
 
@@ -1100,12 +1110,14 @@ void vizinho_proximo_secundario (ArvoreB* arvore, NoB* no, double ref, void* ref
 
 // RETORNA O ITEM MAIS PRÓXIMO À REFERÊNCIA
 // SE CTR != 0, PERMITE O RETORNO DE UM ITEM COM DISTÂNCIA = 0
-void* vizinho_proximo_arvoreB (ArvoreB* arvore, double ref, void* referencia, int ctr)
+void* vizinho_proximo_arvoreB (TreeB* arvr, double ref, void* referencia, int ctr)
 {
 	int i;
 	double* minDist;
 	void** minDistObj;
 	NoB* folha;
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	if (arvore->raiz == NULL) return NULL;
 	if(arvore->raiz->elementos[0] == -1) return NULL;
 	minDist = (double*) malloc (sizeof (double));
@@ -1134,8 +1146,10 @@ void* vizinho_proximo_arvoreB (ArvoreB* arvore, double ref, void* referencia, in
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO FREE_ARVOREB
 
 // LIBERA A MEMÓRIA ALOCADA DA ÁRVORE B
-void free_arvoreB (ArvoreB* arvore)
+void free_arvoreB (TreeB* arvr)
 {
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	fclose (arvore->arq);
 	free (arvore->caminho);
 	if (arvore->raiz != NULL)
@@ -1150,8 +1164,10 @@ void free_arvoreB (ArvoreB* arvore)
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO GET_TODOS_ARVOREB
 
 // RETORNA TODOS OS ITENS DA ÁRVORE B
-Lista* get_todos_arvoreB (ArvoreB* arvore)
+Lista* get_todos_arvoreB (TreeB* arvr)
 {
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	return get_todos_arquivo (arvore->caminho, arvore->leitor, arvore->alloc);
 }
 
@@ -1160,7 +1176,7 @@ Lista* get_todos_arvoreB (ArvoreB* arvore)
 ///// FUNÇÕES NECESSÁRIAS PARA A FUNÇÃO IMPRIME_ARVOREB
 
 // IMPRIME UM NÓ DA ÁRVORE B
-void print_no_arvoerB (ArvoreB* arvore, NoB* no)
+void print_no_arvoreB (ArvoreB* arvore, NoB* no)
 {
 	int i;
 	NoB* noAux;
@@ -1183,8 +1199,10 @@ void print_no_arvoerB (ArvoreB* arvore, NoB* no)
 }
 
 // IMPRIME A ÁRVORE B
-void imprime_arvoreB (ArvoreB* arvore)
+void imprime_arvoreB (TreeB* arvr)
 {
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	if (arvore->raiz!=NULL)
 	{
 		print_no_arvoreB (arvore, arvore->raiz);
@@ -1219,21 +1237,23 @@ void secundario_dentro_arvoreB (ArvoreB* arvore, NoB* folha, double valorInicial
 		{
 			no = inicializa_folha (arvore->tamBloco);
 			leitura_disco (arvore, folha->filhos[i], no);
-			secundario_dentro_area_arvoreB (arvore, no, valorInicial, refInicial, valorFinal, refFinal, lista);
+			secundario_dentro_arvoreB (arvore, no, valorInicial, refInicial, valorFinal, refFinal, lista);
 		}
 	}
 	if (folha->elementos[i-1] <= valorFinal && folha->filhos[i] != -1)
 	{
 			no = inicializa_folha (arvore->tamBloco);
-			ler_disco(arvore, folha->filhos[i], no);
+			leitura_disco(arvore, folha->filhos[i], no);
 			secundario_dentro_arvoreB (arvore, no, valorInicial, refInicial, valorFinal, refFinal, lista);
 	}
 }
 
 //RETORNA UMA LISTA COM TODOS OS ITENS DA ÁRVORE B DENTRO DE UMA ÁREA
-Lista get_todos_dentro_area_arvoreB (ArvoreB* arvore, double valorInicial, void* refInicial, double valorFinal, void* refFinal)
+Lista get_todos_dentro_area_arvoreB (TreeB* arvr, double valorInicial, void* refInicial, double valorFinal, void* refFinal)
 {
+	ArvoreB *arvore;
+	arvore = (ArvoreB *) arvr;
 	Lista lista = cria_lista();
-	secundario_dentro_area_arvoreB (arvore, arvore->raiz, valorInicial, refInicial, valorFinal, refFinal, lista);
+	secundario_dentro_arvoreB (arvore, arvore->raiz, valorInicial, refInicial, valorFinal, refFinal, lista);
 	return lista;
 }
